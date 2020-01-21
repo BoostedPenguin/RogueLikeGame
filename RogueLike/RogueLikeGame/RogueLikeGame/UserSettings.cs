@@ -29,7 +29,7 @@ namespace RogueLikeGame
         //When actually trying to inflict or receive damage
 
 
-        public UserSettings(string username, Characters character, Items items)
+        public UserSettings(string username, Characters character)
         {
             //Stores your inventory list
             this.weapons = new List<Weapons>();
@@ -74,6 +74,11 @@ namespace RogueLikeGame
         public double TotalDamage() //Returns total damage 
         {
             return this.characterDamage * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier;
+        }
+
+        public double TotalDamageWithoutCrit()
+        {
+            return this.characterDamage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier;
         }
 
         public int TotalArmor() //Returns total armor

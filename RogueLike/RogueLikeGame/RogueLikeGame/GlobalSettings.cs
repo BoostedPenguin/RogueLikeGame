@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RogueLikeGame
 {
@@ -32,5 +33,21 @@ namespace RogueLikeGame
         //        return (Weapons)weapons.Where(x => (x.WeaponName == "Blunt Sword")).First();
         //    }
         //}
+
+        public static void OnApplicationExit(FormClosingEventArgs e)
+        {
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult dialog = MessageBox.Show($"Are you sure you want to exit? {Environment.NewLine} Your current game won't be saved", "Warning", MessageBoxButtons.YesNo);
+                if(dialog == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

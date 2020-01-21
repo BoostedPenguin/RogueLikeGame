@@ -85,10 +85,12 @@
             // 
             // lbxCombatLog
             // 
+            this.lbxCombatLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbxCombatLog.FormattingEnabled = true;
+            this.lbxCombatLog.ItemHeight = 16;
             this.lbxCombatLog.Location = new System.Drawing.Point(542, 193);
             this.lbxCombatLog.Name = "lbxCombatLog";
-            this.lbxCombatLog.Size = new System.Drawing.Size(444, 251);
+            this.lbxCombatLog.Size = new System.Drawing.Size(444, 244);
             this.lbxCombatLog.TabIndex = 4;
             // 
             // lbxCurrentItems
@@ -190,6 +192,7 @@
             this.Controls.Add(this.tbxNarrative);
             this.Name = "MainGUI";
             this.Text = "MainGUI";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

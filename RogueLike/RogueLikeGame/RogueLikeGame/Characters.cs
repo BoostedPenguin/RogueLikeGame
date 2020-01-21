@@ -22,35 +22,35 @@ namespace RogueLikeGame
         public int AbilityCooldown { get; set; } //The ability cooldown in TURNS
         public Weapons StartWeapon { get; set; } //The starting weapon given on start of game
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
-        public Characters(string characterName, Items items) //If you want to change a character stats use this!
+        public Characters(Chars characterName) //If you want to change a character stats use this!
         {
-            if(characterName == "Berserker")
+            if(Chars.Berserker == characterName)
             {
                 this.CharacterName = Chars.Berserker;
-                UpdateArmor(items.allArmor, "Basic Armor"); //Give him this on game start
-                UpdateWeapon(items.allWeapons, "Blunt Saweword"); // ^
+                UpdateArmor("Basic Armor"); //Give him this on game start
+                UpdateWeapon("Blunt Sword"); // ^
                 this.Health = 150;
                 this.Damage = 1.5;
                 this.Armor = 5;
                 this.EvadeChance = 10;
                 this.AbilityCooldown = 5;
             }
-            else if(characterName == "Ghost")
+            else if(Chars.Ghost == characterName)
             {
                 this.CharacterName = Chars.Ghost;
                 string startWep = "Blunt Sword"; //Change this later
-                UpdateWeapon(items.allWeapons, startWep);
+                UpdateWeapon(startWep);
                 this.Health = 1;
                 this.Damage = 1.5;
                 this.Armor = 5;
                 this.EvadeChance = 10;
                 this.AbilityCooldown = 5;
             }
-            else if(characterName == "GodKnight")
+            else if(Chars.GodKnight == characterName)
             {
                 this.CharacterName = Chars.GodKnight;
                 string startWep = "Blunt Sword"; //Change this later
-                UpdateWeapon(items.allWeapons, startWep);
+                UpdateWeapon(startWep);
                 this.Health = 200;
                 this.Damage = 1;
                 this.Armor = 5;
@@ -60,25 +60,29 @@ namespace RogueLikeGame
         }
 
         //Send all items & startwep
-        private void UpdateWeapon(List<Weapons> weapons, string startwep) //Used for updating the startwep
+        private void UpdateWeapon(string startwep) //Used for updating the startwep
         {
-            foreach (Weapons a in weapons)
+            var item = Items.allWeapons.Where(x => (x.WeaponName == startwep)).FirstOrDefault();
+            if (item != null)
             {
-                if (a.WeaponName == startwep)
-                {
-                    this.StartWeapon = a;
-                }
+                this.StartWeapon = item;
+            }
+            else
+            {
+                this.StartWeapon = Items.allWeapons[0];
             }
         }
 
-        private void UpdateArmor(List<Armor> armor, string startarmor) //Used for updating the startarmor
+        private void UpdateArmor(string startarmor) //Used for updating the startarmor
         {
-            foreach(Armor a in armor)
+            var item = this.StartArmor = Items.allArmor.Where(x => (x.ArmorName == startarmor)).FirstOrDefault();
+            if (item != null)
             {
-                if(a.ArmorName == startarmor)
-                {
-                    this.StartArmor = a;
-                }
+                this.StartArmor = item;
+            }
+            else
+            {
+                this.StartArmor = Items.allArmor[0];
             }
         }
     }

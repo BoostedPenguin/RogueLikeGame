@@ -52,6 +52,10 @@ namespace RogueLikeGame
                     case MobTypes.SPIDER:                       //If enemy is a spider
                         int damage = (int)mob.SpiderAttack();   //Total damage
                         damage -= user.TotalArmor();            //Total received damage - counting armor
+                        if(damage < 0)
+                        {
+                            return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage";
+                        }
                         user.currentHealth -= damage;           //Player hit
                         string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage";
                         if (damage > mob.damage)                //On enemy crit hit
@@ -113,23 +117,50 @@ namespace RogueLikeGame
             }
         }
 
-        public static string DeathOfEnemy(int roundNr, UserSettings user, Items items, Mobs mob) //On enemy death
+        public static string DeathOfEnemy(int roundNr, UserSettings user, Mobs mob) //On enemy death
         {
             string onKill = $"You managed to defeat {mob.type.ToString()}";
-            switch (Randomizer.EnemyDeathLoot(items)) //Gives me 1 item or null, everytime this is called
+            switch (Randomizer.EnemyDeathLoot()) //Gives me 1 item or null, everytime this is called
             {
                 case Weapons Weapon:
-                    user.weapons.Add(Weapon); //Adds it to the user 
+                    if(DublicateItems(true, Weapon.WeaponName, user))
+                    {
+                        user.weapons.Add(Weapon); //Adds it to the user 
+                    }
                     return onKill += $", and you discovered {Weapon.WeaponName}";
                 case Potions Potion:
                     user.potions.Add(Potion);
                     return onKill += $", and you discovered {Potion.PotionName}";
                 case Armor Armor:
-                    user.armor.Add(Armor);
+                    if(DublicateItems(false, Armor.ArmorName, user))
+                    {
+                        user.armor.Add(Armor);
+                    }
                     return onKill += $", and you discovered {Armor.ArmorName}";
                 default:
                     return onKill += $", but you didn't find any loot";
             }
+        }
+
+        public static bool DublicateItems(bool type,string item, UserSettings user)
+        {
+            //var temp = user.weapons.Find(x => x.WeaponName == item);
+            //var temp2 = user.armor.Find(x => x.ArmorName == item);
+            if (type)
+            {
+                if (user.weapons.Find(x => x.WeaponName == item) == null)
+                {
+                    return true;
+                }
+            }
+            else 
+            {
+                if (user.armor.Find(y => y.ArmorName == item) == null)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

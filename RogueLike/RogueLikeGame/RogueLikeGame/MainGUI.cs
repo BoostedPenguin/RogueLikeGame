@@ -15,7 +15,6 @@ namespace RogueLikeGame
         CharacterSelect character; //<- Pass this if nessesary 
         Form1 userForm;            //Pass this in order to close the app on exit
 
-        Items items;               //Should ALWAYS be passed
         UserSettings user;         //Should ALWAYS be passed
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
 
@@ -23,10 +22,9 @@ namespace RogueLikeGame
         int choice = 0; //1 firstbutton 2secondbutton 3thirdbutton
         int roundCounter = 0; //Stores the rounds that have passed since the fight started
         bool ability = false; //False = ability on cd, True = ability available
-        public MainGUI(Items items, UserSettings user, CharacterSelect character, Form1 form)
+        public MainGUI(UserSettings user, CharacterSelect character, Form1 form)
         {
             InitializeComponent();
-            this.items = items;
             this.user = user;
             this.character = character;
             this.userForm = form;
@@ -123,25 +121,27 @@ namespace RogueLikeGame
         }
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamage()}  Armor: {user.TotalArmor()}";
+            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
             lblCurrentPotion.Text = $"Health Potions: {user.AmountPotions(true)} Poison Potions: {user.AmountPotions(false)} ";
         }
         private void StartFight()           //The fight mechanics
         {
-            currentMob = items.ReturnNewMob(MobTypes.SPIDER);                   //Creates a CONST spider as enemy | Change in future with random
+            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);                   //Creates a CONST spider as enemy | Change in future with random
             if (currentMob.health > 0 && roundCounter == 0)                     //On start of fight - Check if it's the first round
             {
                 lbxCombatLog.Items.Clear();
                 UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
                 roundCounter++;
                 lbxCombatLog.Items.Add(MobFight.TBStartFight(currentMob, user)); //On start of fight events
-                UpdateAbilityButton();                                           //Checks if you're ability is on CD
+                UpdateAbilityButton();                                           //Checks if you're ability is on CD;
+                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
             }
             else if(currentMob.health > 0 && roundCounter != 0)                                //Actual fight <- if it ain't the first round
             {
                 lbxCombatLog.Items.Add(MobFight.OnPlayerHit(roundCounter, user, currentMob, ability)); //On player hit
                 lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
                 UpdateProgressbar();
+                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 roundCounter++;
                 if (user.currentHealth <= 0) //On Player death 
                 {
@@ -172,9 +172,9 @@ namespace RogueLikeGame
         }
         private void OnEnemyDeath()     //If the enemy dies
         {
-            MessageBox.Show(MobFight.DeathOfEnemy(roundCounter, user, items, currentMob)); //Calls event of enemy death
+            MessageBox.Show(MobFight.DeathOfEnemy(roundCounter, user, currentMob)); //Calls event of enemy death
             roundCounter = 0;
-            items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
+            Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
         }
 
         private void UpdateProgressbar()    //Updates enemy healthbar
@@ -221,21 +221,29 @@ namespace RogueLikeGame
 
         private void btnUseItem_Click(object sender, EventArgs e) //On use item button | Equippes the selected ITEM
         {
-            string s = lbxCurrentItems.SelectedItem.ToString();
-            foreach(Weapons wep in user.weapons)
+            if (lbxCurrentItems.SelectedItem != null)
             {
-                if(s.Contains(wep.WeaponName))
+                string s = lbxCurrentItems.SelectedItem.ToString();
+                foreach (Weapons wep in user.weapons)
                 {
-                    user.currentWeapon = wep;
+                    if (s.Contains(wep.WeaponName))
+                    {
+                        user.currentWeapon = wep;
+                    }
                 }
+                UpdateItemsList();
+                UpdatePlayerStatistics();
             }
-            UpdateItemsList();
-            UpdatePlayerStatistics();
         }
 
         private void btnOptionC_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GlobalSettings.OnApplicationExit(e);
         }
     }
 }

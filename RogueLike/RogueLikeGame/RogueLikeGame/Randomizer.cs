@@ -52,14 +52,14 @@ namespace RogueLikeGame
         }
 
         //On Enemy death loot items
-        public static dynamic EnemyDeathLoot(Items items) //Dynamic - returns object depending on case
+        public static dynamic EnemyDeathLoot() //Dynamic - returns object depending on case
         {
             int wepArmPotNull = r.Next(0, 100); // 20% chance for each item // 40% chance for nothing
             if(wepArmPotNull < 20)
             {
-                int totalProbability = items.allWeapons.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
+                int totalProbability = Items.allWeapons.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);                       //Gets a number -> Higher = better loot
-                foreach(Weapons weap in items.allWeapons)
+                foreach(Weapons weap in Items.allWeapons)
                 {
                     if(chance < weap.DropChance)                                //If the rng is lower than the dropchance u
                     {                                                           //get the item
@@ -70,9 +70,9 @@ namespace RogueLikeGame
             }
             else if(20 < wepArmPotNull && wepArmPotNull < 40) //Armor
             {
-                int totalProbability = items.allArmor.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
+                int totalProbability = Items.allArmor.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);
-                foreach (Armor b in items.allArmor)
+                foreach (Armor b in Items.allArmor)
                 {
                     if (chance < b.DropChance)
                     {
@@ -83,10 +83,10 @@ namespace RogueLikeGame
             }
             else if(40 < wepArmPotNull && wepArmPotNull < 60) //Potion
             {
-                int totalProbability = items.allPotions.Sum(t => t.DropChance);
+                int totalProbability = Items.allPotions.Sum(t => t.DropChance);
                 int chance = r.Next(0, totalProbability);
 
-                foreach (Potions a in items.allPotions)
+                foreach (Potions a in Items.allPotions)
                 {
                     if(chance < a.DropChance)
                     {
