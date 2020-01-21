@@ -1,0 +1,237 @@
+RogueLikeGame
+old school textbased roguelike game
+Character with health and items vs a generated script 
+Goal: survive through the textbased interface and reach the end goal
+---------------------------------------------------------------------
+Features:
+Multiple characters with different stats and strenghts
+??Randomized damage whenever u fight - randomize between -5 +5 ?
+Randomized loot statistics
+Random items for the journey and loot
+Boss fights with healthbars
+Restart when death occurs
+Scoreboard with last best score
+---------------------------------------------------------------
+Global settings:
+
+!= Leave em to 1 unless you want to test something 
+!= Character ARMOR is ADDTIVE
+!= Character DAMAGE is MULTIPLICATIVE
+!= Character HEALTH is FIXED BASED ON CHARACTER
+!= Use a progressbar for the health?
+
+START_GAME: false;		//Starts the game whenever the player starts a new game OR dies and restarts
+GLOBAL_EVADE_CHANCE: 1		// Evade calculated: x * multiplier = evade_chance 
+ENEMY_DIFFICULTY_MULTIPLIER: 1; //Enemy dmg is calculated:   x * multiplier = dmg
+CHARACTER_HEALTH_MULTIPLIER: 1; //Character health is calculated: x * multiplier = health
+CHARACTER_ARMOR_MULTIPLIER: 1;  //Character armor is calculated: (base + items) * multiplier = amount blocked
+				//Ex: dragon deals 20 dmg, you have 10 armor = 10 dmg received
+CHARACTER_DAMAGE_MULTIPLIER: 1; // ^ same
+DICTIONARY<INT, STRING> SCORE   //Score of user, name of user
+---------------------------------------------------------------
+User settings:
+USER_NAME: "BoostedPenguin"     //Changed by user input
+PICKED_CHARACTER: (o)Berserker	//Changed by user input
+MAX_HEALTH: 100;		//Changed by picked_character selection
+CURRENT_HEALTH: 100;		//Changed by events
+CHARACTER_ARMOR: 1;		//Changed by pickup_character selection || (character_armor + current_armor(armor)) * multiplier
+CHARACTER_DAMAGE: 1;		//Changed by pickup_character selection || (character_damage * current_weapon) * character_damage_multiplier
+CHARACTER_EVADE_CHANCE: 10	//Changed by pickup_character selection || (character_evade_chance + current_armor(evade_chance)) * multiplier
+List<Weapons> weapons;		//Stores all collected weapons
+List<Armor> armor;		//Stores all collected armor
+List<Potions> potions; 		//Stores all collected potions
+CURRENT_WEAPON: (o)Weapon	//Stores the equipped weapon
+CURRENT_ARMOR: (o)Armor		//Stores the equipped armor
+CHARACTER_ABILITY_COOLDOWN: 0;	//Changed by pickup_character selection
+ABILITY_CURRENT_COOLDOWN: 0;	//Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
+ABILITY: 0			//The actual ability ex: Berserker - (character_damage * current_weapon) * character_damage_multiplier
+
+---------------------------------------------------------------
+
+
+Characters:
+Berserker - x1.5 health x1.5 damage - Ability: Deal x3 damage for the GIVEN encounter // Cooldown: 5 turns
+Ghost - x1.0 health x2.0 damage - Ability: Vanish from the fight - NO ITEMS WILL BE REWARDED - but you won't die (Only regular enemies, no boss) // Cooldown: 8 turns
+GodKnight = x2.0 health x1.0 damage  - Ability: PASSIVE: Activates "Second chance" on death, replenishes 50% of your max health // Cooldown: 8 turns
+
+---------------------------------------
+BERSERKER:
+HEALTH: 150					//Fixed health for berserker
+DAMAGE: 1.5					//Fixed 1.5 multiplier damage for berserker
+ARMOR: 5					//Fixed 5 armor for the berserker
+EVADE_CHANCE: 10				//Fixed 10% chance to evade
+START_WEAPON: (o)Blunt_Sword			//Starting items
+START_ARMOR: none				//Starting items
+Ability: Deal x3 damage for the GIVEN encounter // Cooldown: 5 turns
+AbilityCooldown: 0;	//Changed by pickup_character selection
+
+----------------------------------------
+Randoms (Static class called for different encounters):
+Random order of enemies
+Random amount of encounters before a boss
+Random loot based on a random encounter - every X turns you find some treasure (maybe with a riddle?)
+Random chance to crit during a fight
+RANDOM LOOT ON ENEMY KILL
+------------------------------------------------------------------------------------
+RANDOMIZER:
+
+LOOT RANDOMIZER (ENEMY_DEATH):		//Harder enemies have a better chance to drop loot -> the harder the enemy - the closer he goes to 100, the easier - more than 100
+ENEMY_DIFFICULTY = 100; 		//Ex: Spider enemy_difficulty = 250 -> more unlikely to get 0-100
+20% CHANCE TO GET A WEAPON		//Random between 0,100 (weapon <= 20 |||| 20 < armor < 40 |||| 40 < potion < 60 |||| 60 < nothing received
+20% CHANCE TO GET AN ARMOR
+20% CHANCE TO GET A POTION
+
+
+
+---------------------------------------------------------------------------------------
+Items: Randomized Stats
+Swords - SWORD_DMG * CHARACTER_BASE_DAMAGE = INFLICTED_DAMAGE
+Bows - ^
+Armor (Reduces damage received: DAMAGE / ARMOR = RECEIVED_DAMAGE
+Potions - 
+	Health - Can activate after a fight! - Fixed health 
+ 	(Optional)Poison - Can prepare before fight - fixed dmg
+
+------------------------------------------------------------------------------------
+Weapons:
+
+BLUNT_SWORD:
+DAMAGE: 2;		//The damage of the item ex: (character_damage * current_weapon) * character_damage_multiplier
+DROP_CHANCE: 35;	//The chance of it to drop from loot (Value of all must be == 100)
+Crit_Damage: 5;		//100% guranteed crit
+
+SHARP_SWORD:
+DAMAGE: 4;
+DROP_CHANCE: 30;
+
+DRAGON_SWORD:
+DAMAGE: 8;
+DROP_CHANCE: 10;
+
+BATTLEAXE:
+DAMAGE: 6;
+DROP_CHANCE: 20;
+
+SCEPTAR_OF_DIVINE:
+DAMAGE 15;
+DROP_CHANCE: 5;
+------------------------------------------------------------------------------------
+ARMOR:
+
+BASIC_ARMOR:
+ITEM_ARMOR: 2;		//The armor of the item ex: (character_armor + current_armor(armor)) * multiplier
+EVADE_CHANCE 5;		//The evade chance of the item ex: (character_evade_chance + current_armor(evade_chance)) * multiplier
+DROP_CHANCE: 35;	//The chance of it to drop from loot (Value of all must be == 100)
+
+ADVANCED_ARMOR:
+ITEM_ARMOR: 4;
+EVADE_CHANCE: 10;
+DROP_CHANCE 30:
+
+DRAGON_ARMOR:
+ITEM_ARMOR: 8;
+EVADE_CHANCE: 15;
+DROP_CHANCE: 10;
+
+FLESH_ARMOR:
+ITEM_ARMOR: 12;
+EVADE_CHANCE: 15;
+DROP_CHANCE: 20
+
+ARMOR_OF_DIVINE:
+ITEM_ARMOR 12;
+EVADE_CHANCE: 50;
+DROP_CHANEC: 5;
+-------------------------------------------------------------------------------------
+Potions:
+
+HEALTH_POTION:
+HEAL_AMOUNT: 50;	//The amount of health that the potion restores FIXED ex: User 34/100 -> 84/100
+DROP_CHANCE: 50;	//The chance of it to drop from loot (Value of all must be == 100)
+
+POISON_POTION:
+DAMAGE_AMOUNT: 50;	//The amount of damage it inflicts on enemies FIXED
+DROP_CHANCE 50;
+
+-------------------------------------------------------------------------------------
+Enemies:
+Ordered by difficulty:
+Spider
+Rat - poison -2 damage for 3 turns
+Ghost
+Zombie
+ElderDragon(boss)
+FleshBehemoth(boss)
+LifeReaper(boss)
+--------------------------------------------------------------------------------------
+Spider:
+HEALTH: 25
+DAMAGE: BaseDamage * 5
+EVADE_CHANCE: 10%
+Ability: Small chance for bonus damage
+
+ON-ENCOUNTER:   1.Character encountered a gigantic spider on his way. 
+		2.Character stuck upon a spider nest, with the queen getting ready to attack.
+		3.An ugly gigantic spider sits on the way of the character
+
+ON-DEATH:	1.The spider has been slain
+		2.The character emerged victorious against the spider
+
+ON-C-DEATH:	1.Character was slain by a spider
+		2.Character died. His guts are being used as egg-storage for the spider.
+
+ON-STUN		1.Kill the spider 50%
+
+------------------------------------------------------------------------------------------
+Bosses: 
+They have a fighting mechanic and DEFINITELYT have textbased combat with options
+
+!= The bosses will appear on random chance based on the amount of steps you've taken =!
+
+(1x compared to other bosses || NOT BY CHARACTER)
+-------------------------------------------------
+ElderDragon - Health: 1x, Damage: 1x
+
+!= Encounter on step between 10-15 =!
+
+ON-START: (RAN: Dragon will set ablaze the flesh of character, Dragon will feed you to it's lil-dragons)
+
+ON-DEATH: (TB: 1.Cut the head of the dragon, 2.Respect the corpse)
+
+ON-C-DEATH: (RAN: Dragon devours character, Dragon melts the character, Dragon lays eggs in character corps)
+
+ON-STUN: (TB: 1.Cut a limb of the dragon (DISABLE GRAB), 2.Cut it's tongue (DISABLE DRAGON_BREATH)
+
+ABILITIES (Random chance of occuring - ain't guranteed):
+TB: User decides what they want to do 
+
+FireBreath - Heavy damage on the character (TB: 2.Hide, 3.CounterStrike: limbs)
+Grab - Grabs the character and flies off with him (TB: 1.Break free, 2.Set aflame, 3.Strike: limbs)
+-------------------------------------------------
+
+FleshBehemtoh - Health 1x, Damage: 2.5x
+ABILITIES (Random chance of occuring - ain't guranteed): 
+
+
+
+LifeReaper - Health 2x, Damage 2x
+------------------------------------------------------------------------------------------------
+
+
+Narrative:
+
+--------------------------------------------------------------------------------------------
+
+
+Location & Environment: Deep Dungeon
+1-x Encounter: Easy - LOW stat enemies & No traps || ELDERDRAGON
+x-y Encounter: Medium - NORMAL stat enemies & traps || FLESHBEHEMOTH
+y-z Encounter: HARD - HARD stat enemies & traps || LIFEREAPER
+------------------------------------------------------------------------------------------------
+(Optional) Second chance items
+(Optional) Abilities for the character?
+(Optional) Regular fights with healthbars?
+(Optional)Randomly ordered text - so it doesnt follow the same narrative
+
+Have a character // static class - with:
+name
