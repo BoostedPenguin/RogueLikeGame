@@ -20,19 +20,14 @@ namespace RogueLikeGame
 
         public static bool isInFight = false;               //If the user is currently in fight
 
-        //public static dynamic ReturnItem(Items items, string nameOfGear, dynamic itemType)
-        //{
-        //    var foundItem = items.allArmor.Where(a => a.ArmorName == nameOfGear).Select(a => a);
-        //    var foundItem = items.
-        //    if (temp != null)
-        //    {
-        //        return temp;
-        //    }
-        //    else
-        //    {
-        //        return (Weapons)weapons.Where(x => (x.WeaponName == "Blunt Sword")).First();
-        //    }
-        //}
+
+
+        #region LootChance
+        //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance
+        public static int weaponDropChance = 30;
+        public static int armorDropChance = 60;
+        public static int potionDropChance = 90;
+        #endregion
 
         public static void OnApplicationExit(FormClosingEventArgs e)
         {

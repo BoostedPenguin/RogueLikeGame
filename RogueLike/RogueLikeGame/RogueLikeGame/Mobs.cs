@@ -34,23 +34,21 @@ namespace RogueLikeGame
 
         //Call this whenever you want a spider to attack instead of DAMAGE
         //5% chance to deal double damage
-        public double SpiderAttack()
+        public double Attack()
         {
-            return Randomizer.Damage(abilityChance, damage);
-        }
-
-        //Still in concept
-        public double RatAttack()
-        {
-            if(Randomizer.EnemyAbilityChance(abilityChance))
+            switch(type)
             {
-                //at the end of the round deduct -4 health from the user
-                return this.damage + 4;
+                case MobTypes.SPIDER:
+                    return Randomizer.Damage(abilityChance, damage);
+                case MobTypes.RAT:
+                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    {
+                        MobFight.currentRoundOfDebuff = 5;
+                        return damage;
+                    }
+                    return damage;
             }
-            else
-            {
-                return this.damage;
-            }
+            return -1;
         }
     }
 }

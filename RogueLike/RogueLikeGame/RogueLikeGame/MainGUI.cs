@@ -30,9 +30,8 @@ namespace RogueLikeGame
             this.userForm = form;
             StartNarrative();
         }
-        //START 0F INTRO CONCEPT
 
-
+        #region IntroConcept
 
         private void timerUpdate_Tick(object sender, EventArgs e)
         {
@@ -79,9 +78,7 @@ namespace RogueLikeGame
         {
             choice++;
         }
-
-
-        //END OF INTRO CONCEPT
+        #endregion
         private void btnOptionB_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
@@ -94,31 +91,35 @@ namespace RogueLikeGame
         {
             lbxCurrentItems.Items.Clear();
             lbxCurrentItems.Items.Add("All weapons:");
-            foreach(Weapons a in user.weapons)
+            foreach (Weapons a in user.weapons)
             {
+                string wepOutput = $"{a.WeaponName}\t{a.DamageBase} damage, {a.CriticalDamage}% Critical chance";
+
                 if (user.currentWeapon.WeaponName.Contains(a.WeaponName)) //If this item is currently equipped by the user
                 {
-                    lbxCurrentItems.Items.Add($"(+){a.WeaponName}\t{a.DamageBase} damage, {a.CriticalDamage}% Critical chance");
+                    lbxCurrentItems.Items.Add($"(+) {wepOutput}");
                 }
                 else //If it ain't
                 {
-                    lbxCurrentItems.Items.Add($"{a.WeaponName}\t{a.DamageBase} damage, {a.CriticalDamage}% Critical chance");
+                    lbxCurrentItems.Items.Add($"{wepOutput}");
                 }
             }
             lbxCurrentItems.Items.Add("");
             lbxCurrentItems.Items.Add("All armor:");
             foreach (Armor b in user.armor)
             {
+                string armOutput = $"{b.ArmorName}\t{b.ItemArmor} block, {b.EvadeChance}% EvadeChance";
                 if (user.currentArmor.ArmorName.Contains(b.ArmorName))  //If this item is currently equipped by the user
                 {
-                    lbxCurrentItems.Items.Add($"(+){b.ArmorName}\t{b.ItemArmor} block, {b.EvadeChance}% EvadeChance");
+                    lbxCurrentItems.Items.Add($"(+) {armOutput}");
                 }
                 else
                 {
-                    lbxCurrentItems.Items.Add($"{b.ArmorName}\t{b.ItemArmor} block, {b.EvadeChance}% EvadeChance");
+                    lbxCurrentItems.Items.Add($"{armOutput}");
                 }
             }
         }
+
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
@@ -126,7 +127,7 @@ namespace RogueLikeGame
         }
         private void StartFight()           //The fight mechanics
         {
-            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);                   //Creates a CONST spider as enemy | Change in future with random
+            currentMob = Items.ReturnNewMob(MobTypes.RAT);                   //Creates a CONST spider as enemy | Change in future with random
             if (currentMob.health > 0 && roundCounter == 0)                     //On start of fight - Check if it's the first round
             {
                 lbxCombatLog.Items.Clear();
@@ -223,16 +224,22 @@ namespace RogueLikeGame
         {
             if (lbxCurrentItems.SelectedItem != null)
             {
-                string s = lbxCurrentItems.SelectedItem.ToString();
-                foreach (Weapons wep in user.weapons)
+                string itemString = lbxCurrentItems.SelectedItem.ToString();
+                if (!string.IsNullOrEmpty(itemString) && !itemString.Contains("All weapons:") && !itemString.Contains("All armor:"))
                 {
-                    if (s.Contains(wep.WeaponName))
+                    var checkingWeapon = user.weapons.FirstOrDefault(x => itemString.Contains(x.WeaponName));
+                    if (checkingWeapon == null)
                     {
-                        user.currentWeapon = wep;
+                        user.currentArmor = user.armor.FirstOrDefault(x => itemString.Contains(x.ArmorName));
                     }
+                    else
+                    {
+                        user.currentWeapon = checkingWeapon;
+                    }
+
+                    UpdateItemsList();
+                    UpdatePlayerStatistics();
                 }
-                UpdateItemsList();
-                UpdatePlayerStatistics();
             }
         }
 

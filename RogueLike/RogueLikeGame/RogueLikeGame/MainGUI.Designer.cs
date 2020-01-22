@@ -43,6 +43,7 @@
             this.lblMobHealth = new System.Windows.Forms.Label();
             this.btnAbility = new System.Windows.Forms.Button();
             this.timerUpdate = new System.Windows.Forms.Timer(this.components);
+            this.lblDebuff = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbxNarrative
@@ -172,11 +173,22 @@
             this.timerUpdate.Interval = 1000;
             this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
             // 
+            // lblDebuff
+            // 
+            this.lblDebuff.AutoSize = true;
+            this.lblDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDebuff.Location = new System.Drawing.Point(469, 30);
+            this.lblDebuff.Name = "lblDebuff";
+            this.lblDebuff.Size = new System.Drawing.Size(245, 25);
+            this.lblDebuff.TabIndex = 13;
+            this.lblDebuff.Text = "Current rounds of debuff";
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(998, 512);
+            this.Controls.Add(this.lblDebuff);
             this.Controls.Add(this.btnAbility);
             this.Controls.Add(this.lblMobHealth);
             this.Controls.Add(this.prbEnemyHealth);
@@ -214,5 +226,6 @@
         private System.Windows.Forms.Label lblMobHealth;
         private System.Windows.Forms.Button btnAbility;
         private System.Windows.Forms.Timer timerUpdate;
+        private System.Windows.Forms.Label lblDebuff;
     }
 }

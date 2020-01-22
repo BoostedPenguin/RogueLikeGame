@@ -43,31 +43,41 @@ namespace RogueLikeGame
             }
         }
 
+        public static int currentRoundOfDebuff = 0;
+
         public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
         {
+            string debuff = "";
+            if (currentRoundOfDebuff > 0)
+            {
+                user.currentHealth -= 2;
+                currentRoundOfDebuff--;
+                debuff = "Poisoned for 2 damage";
+            }
+
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
-                switch(mob.type)
+                //Universal fight for every mob >>->> Change mob.attack for specific abilities
+                int damage = (int)mob.Attack();   //Total damage
+                damage -= user.TotalArmor();            //Total received damage - counting armor
+                if (damage < 0)
                 {
-                    case MobTypes.SPIDER:                       //If enemy is a spider
-                        int damage = (int)mob.SpiderAttack();   //Total damage
-                        damage -= user.TotalArmor();            //Total received damage - counting armor
-                        if(damage < 0)
-                        {
-                            return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage";
-                        }
-                        user.currentHealth -= damage;           //Player hit
-                        string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage";
-                        if (damage > mob.damage)                //On enemy crit hit
-                        {
-                            returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage";
-                        }
-                        return returnInfo;
+                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff}";
                 }
-                return null;
+                user.currentHealth -= damage;           //Player hit
+                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff}";
+                if (damage > mob.damage)                //On enemy crit hit
+                {
+                    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff}";
+                }
+                return returnInfo;
             }
             else
             {
+                if(debuff != "")
+                {
+                    return debuff;
+                }
                 return $"{user.userName} managed to evade {mob.type}'s attack!";
             }
         }
@@ -142,10 +152,8 @@ namespace RogueLikeGame
             }
         }
 
-        public static bool DublicateItems(bool type,string item, UserSettings user)
+        public static bool DublicateItems(bool type,string item, UserSettings user) //Type true - weapon, false - armor
         {
-            //var temp = user.weapons.Find(x => x.WeaponName == item);
-            //var temp2 = user.armor.Find(x => x.ArmorName == item);
             if (type)
             {
                 if (user.weapons.Find(x => x.WeaponName == item) == null)

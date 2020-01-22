@@ -55,7 +55,7 @@ namespace RogueLikeGame
         public static dynamic EnemyDeathLoot() //Dynamic - returns object depending on case
         {
             int wepArmPotNull = r.Next(0, 100); // 20% chance for each item // 40% chance for nothing
-            if(wepArmPotNull < 20)
+            if(wepArmPotNull < GlobalSettings.weaponDropChance)
             {
                 int totalProbability = Items.allWeapons.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);                       //Gets a number -> Higher = better loot
@@ -68,7 +68,7 @@ namespace RogueLikeGame
                     chance -= weap.DropChance;                                  // !Remove the last drop chance so it can find an item
                 }
             }
-            else if(20 < wepArmPotNull && wepArmPotNull < 40) //Armor
+            else if(GlobalSettings.weaponDropChance < wepArmPotNull && wepArmPotNull < GlobalSettings.armorDropChance) //Armor
             {
                 int totalProbability = Items.allArmor.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);
@@ -81,7 +81,7 @@ namespace RogueLikeGame
                     chance -= b.DropChance;
                 }
             }
-            else if(40 < wepArmPotNull && wepArmPotNull < 60) //Potion
+            else if(GlobalSettings.armorDropChance < wepArmPotNull && wepArmPotNull < GlobalSettings.potionDropChance) //Potion
             {
                 int totalProbability = Items.allPotions.Sum(t => t.DropChance);
                 int chance = r.Next(0, totalProbability);

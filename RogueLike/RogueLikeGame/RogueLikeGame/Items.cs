@@ -62,18 +62,12 @@ namespace RogueLikeGame
         {
                          //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth
             allMobs.Add(new Mobs(MobTypes.SPIDER, 5.0, 10, 5, 40));
+            allMobs.Add(new Mobs(MobTypes.RAT, 10, 15, 80, 50));
         }
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE
         {
-            foreach(Mobs a in allMobs)
-            {
-                if(a.type == types)
-                {
-                    return a;
-                }
-            }
-            return null;
+            return allMobs.FirstOrDefault(x => x.type == types);
         }
 
         public static int ReturnMobEvChance(MobTypes types) //Return the OBJECT'S evadechance based on its TYPE
