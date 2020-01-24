@@ -95,11 +95,11 @@ namespace RogueLikeGame
 
                 if (damage < 0)
                 {
-                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff} {user.currentHealth}";
+                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff}";
                 }
 
                 user.currentHealth -= damage;           //Player hit
-                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
+                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff}";
                 //if (damage > mob.damage)                //On enemy crit hit
                 //{
                 //    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
@@ -112,7 +112,7 @@ namespace RogueLikeGame
                 {
                     return mob.Ability(mob, user) + user.currentHealth;
                 }
-                return $"{user.userName} managed to evade {mob.type}'s attack! {user.currentHealth}";
+                return $"{user.userName} managed to evade {mob.type}'s attack!";
             }
         }
 

@@ -36,27 +36,31 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(62, 23);
+            this.label1.Location = new System.Drawing.Point(83, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(272, 261);
+            this.label1.Size = new System.Drawing.Size(363, 321);
             this.label1.TabIndex = 0;
             this.label1.Text = "\rWelcome to the world of <Name>\r\rPlease enter your name:";
             // 
             // tbxName
             // 
             this.tbxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxName.Location = new System.Drawing.Point(69, 296);
+            this.tbxName.Location = new System.Drawing.Point(92, 364);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxName.Multiline = true;
             this.tbxName.Name = "tbxName";
-            this.tbxName.Size = new System.Drawing.Size(246, 36);
+            this.tbxName.Size = new System.Drawing.Size(327, 43);
             this.tbxName.TabIndex = 1;
+            this.tbxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbxName_KeyDown);
             // 
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(117, 355);
+            this.btnStart.Location = new System.Drawing.Point(156, 437);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(139, 58);
+            this.btnStart.Size = new System.Drawing.Size(185, 71);
             this.btnStart.TabIndex = 2;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -64,12 +68,13 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 450);
+            this.ClientSize = new System.Drawing.Size(532, 554);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.tbxName);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.tbxNarrative = new System.Windows.Forms.TextBox();
             this.btnOptionA = new System.Windows.Forms.Button();
             this.btnOptionB = new System.Windows.Forms.Button();
@@ -41,12 +40,17 @@
             this.prbEnemyHealth = new System.Windows.Forms.ProgressBar();
             this.lblMobHealth = new System.Windows.Forms.Label();
             this.btnAbility = new System.Windows.Forms.Button();
-            this.timerUpdate = new System.Windows.Forms.Timer(this.components);
             this.lblDebuff = new System.Windows.Forms.Label();
             this.btnHealthPot = new System.Windows.Forms.Button();
             this.btnPoisonPot = new System.Windows.Forms.Button();
             this.lblHealthPot = new System.Windows.Forms.Label();
             this.lblPoisonPot = new System.Windows.Forms.Label();
+            this.btnAttack = new System.Windows.Forms.Button();
+            this.gpxFight = new System.Windows.Forms.GroupBox();
+            this.gpxItems = new System.Windows.Forms.GroupBox();
+            this.lblTurn = new System.Windows.Forms.Label();
+            this.gpxFight.SuspendLayout();
+            this.gpxItems.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxNarrative
@@ -97,7 +101,7 @@
             this.lbxCombatLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbxCombatLog.FormattingEnabled = true;
             this.lbxCombatLog.ItemHeight = 20;
-            this.lbxCombatLog.Location = new System.Drawing.Point(726, 343);
+            this.lbxCombatLog.Location = new System.Drawing.Point(12, 22);
             this.lbxCombatLog.Margin = new System.Windows.Forms.Padding(4);
             this.lbxCombatLog.Name = "lbxCombatLog";
             this.lbxCombatLog.Size = new System.Drawing.Size(591, 284);
@@ -107,7 +111,7 @@
             // 
             this.lbxCurrentItems.FormattingEnabled = true;
             this.lbxCurrentItems.ItemHeight = 16;
-            this.lbxCurrentItems.Location = new System.Drawing.Point(931, 15);
+            this.lbxCurrentItems.Location = new System.Drawing.Point(277, 22);
             this.lbxCurrentItems.Margin = new System.Windows.Forms.Padding(4);
             this.lbxCurrentItems.Name = "lbxCurrentItems";
             this.lbxCurrentItems.Size = new System.Drawing.Size(383, 212);
@@ -115,7 +119,7 @@
             // 
             // btnUseItem
             // 
-            this.btnUseItem.Location = new System.Drawing.Point(832, 98);
+            this.btnUseItem.Location = new System.Drawing.Point(178, 105);
             this.btnUseItem.Margin = new System.Windows.Forms.Padding(4);
             this.btnUseItem.Name = "btnUseItem";
             this.btnUseItem.Size = new System.Drawing.Size(91, 38);
@@ -128,12 +132,13 @@
             // 
             this.lblPlayerStatistics.AutoSize = true;
             this.lblPlayerStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerStatistics.Location = new System.Drawing.Point(19, 669);
+            this.lblPlayerStatistics.Location = new System.Drawing.Point(35, 658);
             this.lblPlayerStatistics.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerStatistics.Name = "lblPlayerStatistics";
             this.lblPlayerStatistics.Size = new System.Drawing.Size(86, 31);
             this.lblPlayerStatistics.TabIndex = 7;
             this.lblPlayerStatistics.Text = "label1";
+            this.lblPlayerStatistics.Visible = false;
             // 
             // lbxOptionC
             // 
@@ -144,10 +149,11 @@
             this.lbxOptionC.Name = "lbxOptionC";
             this.lbxOptionC.Size = new System.Drawing.Size(185, 196);
             this.lbxOptionC.TabIndex = 8;
+            this.lbxOptionC.Visible = false;
             // 
             // prbEnemyHealth
             // 
-            this.prbEnemyHealth.Location = new System.Drawing.Point(726, 635);
+            this.prbEnemyHealth.Location = new System.Drawing.Point(12, 314);
             this.prbEnemyHealth.Margin = new System.Windows.Forms.Padding(4);
             this.prbEnemyHealth.Name = "prbEnemyHealth";
             this.prbEnemyHealth.Size = new System.Drawing.Size(592, 28);
@@ -157,7 +163,7 @@
             // 
             this.lblMobHealth.AutoSize = true;
             this.lblMobHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobHealth.Location = new System.Drawing.Point(927, 669);
+            this.lblMobHealth.Location = new System.Drawing.Point(153, 348);
             this.lblMobHealth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMobHealth.Name = "lblMobHealth";
             this.lblMobHealth.Size = new System.Drawing.Size(93, 31);
@@ -166,7 +172,7 @@
             // 
             // btnAbility
             // 
-            this.btnAbility.Location = new System.Drawing.Point(798, 153);
+            this.btnAbility.Location = new System.Drawing.Point(144, 160);
             this.btnAbility.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbility.Name = "btnAbility";
             this.btnAbility.Size = new System.Drawing.Size(125, 38);
@@ -175,17 +181,11 @@
             this.btnAbility.UseVisualStyleBackColor = true;
             this.btnAbility.Click += new System.EventHandler(this.btnAbility_Click);
             // 
-            // timerUpdate
-            // 
-            this.timerUpdate.Enabled = true;
-            this.timerUpdate.Interval = 1000;
-            this.timerUpdate.Tick += new System.EventHandler(this.timerUpdate_Tick);
-            // 
             // lblDebuff
             // 
             this.lblDebuff.AutoSize = true;
             this.lblDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblDebuff.Location = new System.Drawing.Point(661, 34);
+            this.lblDebuff.Location = new System.Drawing.Point(7, 41);
             this.lblDebuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebuff.Name = "lblDebuff";
             this.lblDebuff.Size = new System.Drawing.Size(246, 25);
@@ -194,7 +194,7 @@
             // 
             // btnHealthPot
             // 
-            this.btnHealthPot.Location = new System.Drawing.Point(970, 262);
+            this.btnHealthPot.Location = new System.Drawing.Point(316, 269);
             this.btnHealthPot.Margin = new System.Windows.Forms.Padding(4);
             this.btnHealthPot.Name = "btnHealthPot";
             this.btnHealthPot.Size = new System.Drawing.Size(72, 29);
@@ -205,7 +205,7 @@
             // 
             // btnPoisonPot
             // 
-            this.btnPoisonPot.Location = new System.Drawing.Point(1180, 262);
+            this.btnPoisonPot.Location = new System.Drawing.Point(526, 269);
             this.btnPoisonPot.Margin = new System.Windows.Forms.Padding(4);
             this.btnPoisonPot.Name = "btnPoisonPot";
             this.btnPoisonPot.Size = new System.Drawing.Size(72, 29);
@@ -218,7 +218,7 @@
             // 
             this.lblHealthPot.AutoSize = true;
             this.lblHealthPot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHealthPot.Location = new System.Drawing.Point(935, 238);
+            this.lblHealthPot.Location = new System.Drawing.Point(281, 245);
             this.lblHealthPot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblHealthPot.Name = "lblHealthPot";
             this.lblHealthPot.Size = new System.Drawing.Size(85, 17);
@@ -229,31 +229,77 @@
             // 
             this.lblPoisonPot.AutoSize = true;
             this.lblPoisonPot.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPoisonPot.Location = new System.Drawing.Point(1149, 238);
+            this.lblPoisonPot.Location = new System.Drawing.Point(495, 245);
             this.lblPoisonPot.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPoisonPot.Name = "lblPoisonPot";
             this.lblPoisonPot.Size = new System.Drawing.Size(87, 17);
             this.lblPoisonPot.TabIndex = 17;
             this.lblPoisonPot.Text = "Poison Pots:";
             // 
+            // btnAttack
+            // 
+            this.btnAttack.Location = new System.Drawing.Point(144, 206);
+            this.btnAttack.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAttack.Name = "btnAttack";
+            this.btnAttack.Size = new System.Drawing.Size(125, 38);
+            this.btnAttack.TabIndex = 18;
+            this.btnAttack.Text = "Turn / Attack";
+            this.btnAttack.UseVisualStyleBackColor = true;
+            this.btnAttack.Click += new System.EventHandler(this.BtnTemporary_Click);
+            // 
+            // gpxFight
+            // 
+            this.gpxFight.Controls.Add(this.lblTurn);
+            this.gpxFight.Controls.Add(this.lbxCombatLog);
+            this.gpxFight.Controls.Add(this.prbEnemyHealth);
+            this.gpxFight.Controls.Add(this.lblMobHealth);
+            this.gpxFight.Location = new System.Drawing.Point(691, 310);
+            this.gpxFight.Name = "gpxFight";
+            this.gpxFight.Size = new System.Drawing.Size(628, 390);
+            this.gpxFight.TabIndex = 19;
+            this.gpxFight.TabStop = false;
+            this.gpxFight.Text = "gpxFight";
+            this.gpxFight.Visible = false;
+            // 
+            // gpxItems
+            // 
+            this.gpxItems.Controls.Add(this.lbxCurrentItems);
+            this.gpxItems.Controls.Add(this.btnUseItem);
+            this.gpxItems.Controls.Add(this.btnAttack);
+            this.gpxItems.Controls.Add(this.btnAbility);
+            this.gpxItems.Controls.Add(this.lblPoisonPot);
+            this.gpxItems.Controls.Add(this.lblDebuff);
+            this.gpxItems.Controls.Add(this.lblHealthPot);
+            this.gpxItems.Controls.Add(this.btnHealthPot);
+            this.gpxItems.Controls.Add(this.btnPoisonPot);
+            this.gpxItems.Location = new System.Drawing.Point(649, 2);
+            this.gpxItems.Name = "gpxItems";
+            this.gpxItems.Size = new System.Drawing.Size(670, 302);
+            this.gpxItems.TabIndex = 12;
+            this.gpxItems.TabStop = false;
+            this.gpxItems.Text = "gpxItems";
+            this.gpxItems.Visible = false;
+            // 
+            // lblTurn
+            // 
+            this.lblTurn.AutoSize = true;
+            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.Location = new System.Drawing.Point(384, 348);
+            this.lblTurn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTurn.Name = "lblTurn";
+            this.lblTurn.Size = new System.Drawing.Size(86, 31);
+            this.lblTurn.TabIndex = 20;
+            this.lblTurn.Text = "label1";
+            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 716);
-            this.Controls.Add(this.lblPoisonPot);
-            this.Controls.Add(this.lblHealthPot);
-            this.Controls.Add(this.btnPoisonPot);
-            this.Controls.Add(this.btnHealthPot);
-            this.Controls.Add(this.lblDebuff);
-            this.Controls.Add(this.btnAbility);
-            this.Controls.Add(this.lblMobHealth);
-            this.Controls.Add(this.prbEnemyHealth);
+            this.Controls.Add(this.gpxItems);
+            this.Controls.Add(this.gpxFight);
             this.Controls.Add(this.lbxOptionC);
             this.Controls.Add(this.lblPlayerStatistics);
-            this.Controls.Add(this.btnUseItem);
-            this.Controls.Add(this.lbxCurrentItems);
-            this.Controls.Add(this.lbxCombatLog);
             this.Controls.Add(this.btnOptionC);
             this.Controls.Add(this.btnOptionB);
             this.Controls.Add(this.btnOptionA);
@@ -262,6 +308,10 @@
             this.Name = "MainGUI";
             this.Text = "MainGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);
+            this.gpxFight.ResumeLayout(false);
+            this.gpxFight.PerformLayout();
+            this.gpxItems.ResumeLayout(false);
+            this.gpxItems.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -281,11 +331,14 @@
         private System.Windows.Forms.ProgressBar prbEnemyHealth;
         private System.Windows.Forms.Label lblMobHealth;
         private System.Windows.Forms.Button btnAbility;
-        private System.Windows.Forms.Timer timerUpdate;
         private System.Windows.Forms.Label lblDebuff;
         private System.Windows.Forms.Button btnHealthPot;
         private System.Windows.Forms.Button btnPoisonPot;
         private System.Windows.Forms.Label lblHealthPot;
         private System.Windows.Forms.Label lblPoisonPot;
+        private System.Windows.Forms.Button btnAttack;
+        private System.Windows.Forms.GroupBox gpxFight;
+        private System.Windows.Forms.GroupBox gpxItems;
+        private System.Windows.Forms.Label lblTurn;
     }
 }

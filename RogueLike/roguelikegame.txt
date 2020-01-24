@@ -226,6 +226,9 @@ LifeReaper - Health 2x, Damage 2x
 
 Narrative:
 
+IntroSequence -> Follow-Up tutorial with enabling of certain GUI features such as the combat screen
+NUMERIC CHECK : IF NUMBER < THAN THE LAST ONE 
+
 --------------------------------------------------------------------------------------------
 
 
@@ -241,3 +244,6 @@ y-z Encounter: HARD - HARD stat enemies & traps || LIFEREAPER
 
 Have a character // static class - with:
 name
+
+Current ALLIN res - 1349, 763
+Current BASE res - 580, 285

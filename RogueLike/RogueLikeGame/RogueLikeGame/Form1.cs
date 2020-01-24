@@ -35,5 +35,13 @@ namespace RogueLikeGame
                 cs.Show();
             }
         }
+
+        private void TbxName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnStart_Click(sender, e);
+            }
+        }
     }
 }

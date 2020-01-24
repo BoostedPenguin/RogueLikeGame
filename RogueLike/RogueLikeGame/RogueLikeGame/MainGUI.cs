@@ -23,64 +23,178 @@ namespace RogueLikeGame
         int roundCounter = 0; //Stores the rounds that have passed since the fight started
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
+
+        bool firstSequence = true;
+        bool firstButtonPressed = false;
+        bool secondButtonPressed = false;
+        bool thirdButtonPressed = false;
+
         public MainGUI(UserSettings user, CharacterSelect character, Form1 form)
         {
             InitializeComponent();
             this.user = user;
             this.character = character;
             this.userForm = form;
-            StartNarrative();
+            this.Height = 285;
+            this.Width = 580;
+            FirstSequence();
         }
 
         #region IntroConcept
-
-        private void timerUpdate_Tick(object sender, EventArgs e)
+        private void FirstSequence()
         {
-            ContinueNarrative();
-            ContinueNarrative2();
-            FirstChoiceNarrative();
+            switch(choice)
+            {
+                case 0:
+                    StartNarrative();
+                    ResetButtons();
+                    break;
+                case 1:
+                    ContinueNarrative();
+                    ResetButtons();
+                    break;
+                case 2:
+                    ContinueNarrative2();
+                    UpdatePlayerStatistics();
+                    ResetButtons();
+                    break;
+                case 3:
+                    FirstChoiceNarrative();
+                    UpdateItemsList();
+                    ResetButtons();
+                    break;
+                case 4:
+                    if(firstButtonPressed)
+                    {
+                        tbxNarrative.Text = TextNarrative.FirstChoiceA;
+                        this.Width = 1050;
+                        gpxItems.Visible = true;
+                        gpxItems.Enabled = false;
+                        btnOptionA.Text = "Continue";
+                        btnOptionB.Enabled = false;
+                        btnOptionC.Enabled = false;
+                    }
+                    else if(secondButtonPressed)
+                    {
+                        tbxNarrative.Text = TextNarrative.FirstChoiceB;
+                        choice--;
+                    }
+                    else if(thirdButtonPressed)
+                    {
+                        tbxNarrative.Text = TextNarrative.FirstChoiceC;
+                        user.userName = "Pussy";
+                        choice--;
+                    }
+                    ResetButtons();
+                    break;
+                case 5:
+                    SecondChoiceNarraitve();
+                    ResetButtons();
+                    break;
+                case 6:
+                    if(firstButtonPressed)
+                    {
+                        gpxItems.Enabled = true;
+                        tbxNarrative.Text = TextNarrative.SecondChoiceA;
+                        gpxFight.Visible = true;
+
+                        btnUseItem.Enabled = false;
+                        btnHealthPot.Enabled = false;
+                        btnPoisonPot.Enabled = false;
+                        btnAbility.Enabled = false;
+
+                        currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+                        btnOptionB.Enabled = false;
+                        btnOptionA.Enabled = false;
+                    }
+                    else if(secondButtonPressed)
+                    {
+                        gpxItems.Enabled = true;
+                        tbxNarrative.Text = TextNarrative.SecondChoiceB;
+                        user.CurrentHealth -= 10;
+                        UpdatePlayerStatistics();
+                        gpxFight.Visible = true;
+                        currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+                        btnOptionB.Enabled = false;
+                        btnOptionA.Enabled = false;
+                    }
+                    ResetButtons();
+                    break;
+            }
+        }
+
+        private void ResetButtons()
+        {
+            firstButtonPressed = false;
+            secondButtonPressed = false;
+            thirdButtonPressed = false;
         }
 
         private void StartNarrative()
         {
             tbxNarrative.Text = TextNarrative.Prologue;
             btnOptionA.Text = "Continue";
-            btnOptionB.Visible = true;
+            btnOptionB.Enabled = false;
+            btnOptionC.Enabled = false;
         }
 
         private void ContinueNarrative()
         {
-            if (choice == 1)
-            {
-                tbxNarrative.Text = TextNarrative.FirstSceneBD;
-                btnOptionA.Text = "Continue";
-            }      
+            tbxNarrative.Text = TextNarrative.FirstSceneBD;
+            btnOptionA.Text = "Continue";
         }
 
         private void ContinueNarrative2()
         {
-            if (choice == 2)
-            {
-                tbxNarrative.Text = TextNarrative.FirstSceneBD2;
-                btnOptionA.Text = "Continue";
-            }
+            tbxNarrative.Text = TextNarrative.FirstSceneBD2;
+            this.Height = 620;
+            lblPlayerStatistics.Visible = true;
+            btnOptionA.Text = "Continue";
         }
 
         private void FirstChoiceNarrative()
         {
-            if (choice == 3)
-            {
-                tbxNarrative.Text = TextNarrative.FirstChoiceNarrative;
-                btnOptionA.Text = "Continue";
-            }
+            tbxNarrative.Text = TextNarrative.FirstChoiceNarrative;
+            btnOptionB.Enabled = true;
+            btnOptionC.Enabled = true;
+            btnOptionA.Text = "Step In";
+            btnOptionB.Text = "Check sign";
+            btnOptionC.Text = "Go back home";
         }
+
+        private void SecondChoiceNarraitve()
+        {
+            tbxNarrative.Text = TextNarrative.SecondChoiceNarrative;
+            btnOptionA.Text = "Fight spider";
+            btnOptionB.Text = "Pray";
+            btnOptionB.Enabled = true;
+            btnOptionC.Enabled = false;
+        }
+        #endregion 
 
         private void btnOptionA_Click(object sender, EventArgs e)
         {
             choice++;
+            firstButtonPressed = true;
+            FirstSequence();
         }
-        #endregion
+
         private void btnOptionB_Click(object sender, EventArgs e)
+        {
+            choice++;
+            secondButtonPressed = true;
+            FirstSequence();
+        }
+
+        private void btnOptionC_Click(object sender, EventArgs e)
+        {
+            choice++;
+            thirdButtonPressed = true;
+            FirstSequence();
+        }
+
+        //REMOVE WHEN YOU'RE DONE WITH THE WHOLE APPLICATION 
+        private void BtnTemporary_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
             if (roundCounter > 0)
@@ -130,6 +244,15 @@ namespace RogueLikeGame
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
+            if(userAttack)
+            {
+                lblTurn.Text = $"Enemy turn";
+            }
+            else
+            {
+                lblTurn.Text = $"Player turn";
+            }
+
             if(MobFight.currentRoundOfDebuff > 0)
             {
                 lblDebuff.Text = currentMob.debuffString;
@@ -141,7 +264,7 @@ namespace RogueLikeGame
         }
         private void StartFight()           //The fight mechanics
         {
-            if (roundCounter == 0)          //Create a new random enemy only on start of fight
+            if (roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
             {
                 currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());
                 userAttack = false; //To ensure that the user will always hit first
@@ -205,6 +328,10 @@ namespace RogueLikeGame
             UpdateProgressbar();
             roundCounter = 0;
             Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
+            if(firstSequence)
+            {
+                firstSequence = false;
+            }
         }
 
         private void UpdateProgressbar()    //Updates enemy healthbar
@@ -300,10 +427,6 @@ namespace RogueLikeGame
             }
         }
 
-        private void btnOptionC_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
