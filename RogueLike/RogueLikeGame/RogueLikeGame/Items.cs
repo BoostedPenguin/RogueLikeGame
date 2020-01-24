@@ -64,7 +64,7 @@ namespace RogueLikeGame
             allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40));
             allMobs.Add(new Mobs(MobTypes.RAT, 1, 15, 10, 50));
             allMobs.Add(new Mobs(MobTypes.SHADOW, 1, 25, 10, 40));
-            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 1, 8, 15, 50));
+            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 1, 10, 15, 50));
         }
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE

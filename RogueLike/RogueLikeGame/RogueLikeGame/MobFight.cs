@@ -119,7 +119,7 @@ namespace RogueLikeGame
         public static string OnPlayerHit(int roundNr, UserSettings user, Mobs mob, bool ability)
         {
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
-            if (!Randomizer.Evade(mob.evadeChance)) //If the mob DOESNT evade
+            if (!Randomizer.Evade(mob.evadeChance) || ability == true) //If the mob DOESNT evade
             {
                 double damage = user.TotalDamage();
                 string returnInfo = $"{user.userName} dealt {damage} damage to {mob.type.ToString()}";

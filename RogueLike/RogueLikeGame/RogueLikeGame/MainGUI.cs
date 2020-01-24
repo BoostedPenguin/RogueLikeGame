@@ -128,12 +128,11 @@ namespace RogueLikeGame
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
-            lblCurrentPotion.Text = $"Health Potions: {user.AmountPotions(true)} Poison Potions: {user.AmountPotions(false)} ";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(MobFight.currentRoundOfDebuff > 0)
             {
-                lblDebuff.Text = $"Debuff rounds remaining: {MobFight.currentRoundOfDebuff}";
+                lblDebuff.Text = currentMob.debuffString;
             }
             else
             {
@@ -177,9 +176,11 @@ namespace RogueLikeGame
                 if (currentMob.health <= 0) //On Mob Death
                 {
                     OnEnemyDeath();
+                    MobFight.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
                 }
                 UpdateAbilityButton();
                 UpdatePlayerStatistics();
+                DisableIO();
             }
         }
 
@@ -232,8 +233,9 @@ namespace RogueLikeGame
 
         private void btnAbility_Click(object sender, EventArgs e) //On ability button click
         {
-            ability = true;
             btnAbility.Enabled = false;
+            userAttack = !userAttack;
+            ability = true;
             StartFight();
             ability = false;
             UpdatePlayerStatistics();
@@ -242,9 +244,26 @@ namespace RogueLikeGame
 
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
-            if (user.currentAbilityCooldown >= user.abilityCooldown)
+            if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && roundCounter != 0)
             {
                 btnAbility.Enabled = true;
+            }
+        }
+
+        private void DisableIO()
+        {
+            if(!userAttack)
+            {
+                btnUseItem.Enabled = true;
+                btnPoisonPot.Enabled = true;
+                btnHealthPot.Enabled = true;
+            }
+            else
+            {
+                btnAbility.Enabled = false;
+                btnUseItem.Enabled = false;
+                btnPoisonPot.Enabled = false;
+                btnHealthPot.Enabled = false;
             }
         }
 
@@ -259,10 +278,20 @@ namespace RogueLikeGame
                     if (checkingWeapon == null)
                     {
                         user.currentArmor = user.armor.FirstOrDefault(x => itemString.Contains(x.ArmorName));
+
+                        userAttack = !userAttack;
+                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
+                        btnUseItem.Enabled = false;
+                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     }
                     else
                     {
                         user.currentWeapon = checkingWeapon;
+
+                        userAttack = !userAttack;
+                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
+                        btnUseItem.Enabled = false;
+                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     }
 
                     UpdateItemsList();
@@ -283,36 +312,40 @@ namespace RogueLikeGame
 
         private void BtnHealthPot_Click(object sender, EventArgs e)
         {
-            if(!userAttack) //Needs to be reversed
-            {
-                foreach(Potions a in user.potions)
-                {
-                    if(a.PotionName == "Health Potion")
-                    {
-                        lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, null));
-                        userAttack = !userAttack;
-                        break;
-                    }
-                }
-                UpdatePlayerStatistics();
-            }
+            SearchForPotion("Health Potion");
         }
 
         private void BtnPoisonPot_Click(object sender, EventArgs e)
+        {
+            SearchForPotion("Poison Potion");
+        }
+
+        private void SearchForPotion(string name)
         {
             if (!userAttack)
             {
                 foreach (Potions a in user.potions)
                 {
-                    if (a.PotionName == "Poison Potion")
+                    if (a.PotionName == name)
                     {
-                        lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, currentMob));
-                        if (currentMob.health <= 0)
+                        if (a.IsHealthPotion) //Health potion
                         {
-                            OnEnemyDeath();
+                            lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, currentMob));
+                            userAttack = !userAttack;
+                            lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                            break;
                         }
-                        userAttack = !userAttack;
-                        break;
+                        else //Poison potion
+                        {
+                            lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, currentMob));
+                            if (currentMob.health <= 0)
+                            {
+                                OnEnemyDeath();
+                            }
+                            userAttack = !userAttack;
+                            lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                            break;
+                        }
                     }
                 }
                 UpdatePlayerStatistics();

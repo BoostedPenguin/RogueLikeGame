@@ -21,6 +21,7 @@ namespace RogueLikeGame
         public double maxHealth { get; set; }          //The MAX HEALTH
         public int evadeChance { get; set; }        //The TOTAL evade chance
         public int abilityChance { get; set; }      //Chance of an ability to happen
+        public string debuffString { get; set; }
 
         public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health)
         {
@@ -75,14 +76,17 @@ namespace RogueLikeGame
                     return null;
 
                 case MobTypes.RAT:  //Amount of damage per round
-                    user.currentHealth -= 2;    
-                    return $"Poisoned for {2} damage";
+                    user.currentHealth -= 2;
+                    this.debuffString = $"Poisoned for {2} damage";
+                    return debuffString;
 
                 case MobTypes.SHADOW:
                     user.debuff = 2;
-                    return $"Player damage reduced by {2} times";
+                    this.debuffString =  $"Player damage reduced by {2} times";
+                    return debuffString;
 
                 case MobTypes.ZOMBIE: //Amount of heal
+                    this.debuffString = $"Self-Regenerated {8} health";
                     if (mob.health + 8 > mob.maxHealth)
                     {
                         mob.health = mob.maxHealth;
@@ -91,7 +95,7 @@ namespace RogueLikeGame
                     {
                         mob.health += 8;
                     }
-                    return $"Self-Regenerated {8} health";
+                    return debuffString;
 
                 default:
                     return $"";

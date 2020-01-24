@@ -38,7 +38,6 @@
             this.btnUseItem = new System.Windows.Forms.Button();
             this.lblPlayerStatistics = new System.Windows.Forms.Label();
             this.lbxOptionC = new System.Windows.Forms.ListBox();
-            this.lblCurrentPotion = new System.Windows.Forms.Label();
             this.prbEnemyHealth = new System.Windows.Forms.ProgressBar();
             this.lblMobHealth = new System.Windows.Forms.Label();
             this.btnAbility = new System.Windows.Forms.Button();
@@ -121,7 +120,7 @@
             this.btnUseItem.Name = "btnUseItem";
             this.btnUseItem.Size = new System.Drawing.Size(91, 38);
             this.btnUseItem.TabIndex = 6;
-            this.btnUseItem.Text = "button4";
+            this.btnUseItem.Text = "Use";
             this.btnUseItem.UseVisualStyleBackColor = true;
             this.btnUseItem.Click += new System.EventHandler(this.btnUseItem_Click);
             // 
@@ -146,17 +145,6 @@
             this.lbxOptionC.Size = new System.Drawing.Size(185, 196);
             this.lbxOptionC.TabIndex = 8;
             // 
-            // lblCurrentPotion
-            // 
-            this.lblCurrentPotion.AutoSize = true;
-            this.lblCurrentPotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPotion.Location = new System.Drawing.Point(19, 597);
-            this.lblCurrentPotion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCurrentPotion.Name = "lblCurrentPotion";
-            this.lblCurrentPotion.Size = new System.Drawing.Size(86, 31);
-            this.lblCurrentPotion.TabIndex = 9;
-            this.lblCurrentPotion.Text = "label2";
-            // 
             // prbEnemyHealth
             // 
             this.prbEnemyHealth.Location = new System.Drawing.Point(726, 635);
@@ -178,7 +166,7 @@
             // 
             // btnAbility
             // 
-            this.btnAbility.Location = new System.Drawing.Point(49, 298);
+            this.btnAbility.Location = new System.Drawing.Point(798, 153);
             this.btnAbility.Margin = new System.Windows.Forms.Padding(4);
             this.btnAbility.Name = "btnAbility";
             this.btnAbility.Size = new System.Drawing.Size(125, 38);
@@ -197,7 +185,7 @@
             // 
             this.lblDebuff.AutoSize = true;
             this.lblDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblDebuff.Location = new System.Drawing.Point(636, 44);
+            this.lblDebuff.Location = new System.Drawing.Point(661, 34);
             this.lblDebuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebuff.Name = "lblDebuff";
             this.lblDebuff.Size = new System.Drawing.Size(246, 25);
@@ -261,7 +249,6 @@
             this.Controls.Add(this.btnAbility);
             this.Controls.Add(this.lblMobHealth);
             this.Controls.Add(this.prbEnemyHealth);
-            this.Controls.Add(this.lblCurrentPotion);
             this.Controls.Add(this.lbxOptionC);
             this.Controls.Add(this.lblPlayerStatistics);
             this.Controls.Add(this.btnUseItem);
@@ -291,7 +278,6 @@
         private System.Windows.Forms.Button btnUseItem;
         private System.Windows.Forms.Label lblPlayerStatistics;
         private System.Windows.Forms.ListBox lbxOptionC;
-        private System.Windows.Forms.Label lblCurrentPotion;
         private System.Windows.Forms.ProgressBar prbEnemyHealth;
         private System.Windows.Forms.Label lblMobHealth;
         private System.Windows.Forms.Button btnAbility;
