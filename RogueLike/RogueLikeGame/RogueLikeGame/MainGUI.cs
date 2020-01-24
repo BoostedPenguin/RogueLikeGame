@@ -22,6 +22,7 @@ namespace RogueLikeGame
         int choice = 0; //1 firstbutton 2secondbutton 3thirdbutton
         int roundCounter = 0; //Stores the rounds that have passed since the fight started
         bool ability = false; //False = ability on cd, True = ability available
+        bool userAttack = false; //If it's the users turn to attack
         public MainGUI(UserSettings user, CharacterSelect character, Form1 form)
         {
             InitializeComponent();
@@ -82,6 +83,10 @@ namespace RogueLikeGame
         private void btnOptionB_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
+            if (roundCounter > 0)
+            {
+                userAttack = !userAttack;
+            }
             StartFight();
             UpdatePlayerStatistics();
             UpdateItemsList();
@@ -124,6 +129,8 @@ namespace RogueLikeGame
         {
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
             lblCurrentPotion.Text = $"Health Potions: {user.AmountPotions(true)} Poison Potions: {user.AmountPotions(false)} ";
+            lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
+            lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(MobFight.currentRoundOfDebuff > 0)
             {
                 lblDebuff.Text = $"Debuff rounds remaining: {MobFight.currentRoundOfDebuff}";
@@ -135,7 +142,12 @@ namespace RogueLikeGame
         }
         private void StartFight()           //The fight mechanics
         {
-            currentMob = Items.ReturnNewMob(MobTypes.RAT);                   //Creates a CONST spider as enemy | Change in future with random
+            if (roundCounter == 0)          //Create a new random enemy only on start of fight
+            {
+                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());
+                userAttack = false; //To ensure that the user will always hit first
+            }
+
             if (currentMob.health > 0 && roundCounter == 0)                     //On start of fight - Check if it's the first round
             {
                 lbxCombatLog.Items.Clear();
@@ -147,8 +159,14 @@ namespace RogueLikeGame
             }
             else if(currentMob.health > 0 && roundCounter != 0)                                //Actual fight <- if it ain't the first round
             {
-                lbxCombatLog.Items.Add(MobFight.OnPlayerHit(roundCounter, user, currentMob, ability)); //On player hit
-                lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
+                if(userAttack)
+                {
+                    lbxCombatLog.Items.Add(MobFight.OnPlayerHit(roundCounter, user, currentMob, ability)); //On player hit
+                }
+                else
+                {
+                    lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
+                }
                 UpdateProgressbar();
                 lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 roundCounter++;
@@ -161,6 +179,7 @@ namespace RogueLikeGame
                     OnEnemyDeath();
                 }
                 UpdateAbilityButton();
+                UpdatePlayerStatistics();
             }
         }
 
@@ -182,6 +201,7 @@ namespace RogueLikeGame
         private void OnEnemyDeath()     //If the enemy dies
         {
             MessageBox.Show(MobFight.DeathOfEnemy(roundCounter, user, currentMob)); //Calls event of enemy death
+            UpdateProgressbar();
             roundCounter = 0;
             Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
         }
@@ -191,14 +211,14 @@ namespace RogueLikeGame
             if (roundCounter == 0)          //On first round
             {
                 lblMobHealth.Text = $"{currentMob.type.ToString()}: {currentMob.maxHealth}/{currentMob.maxHealth}";
-                prbEnemyHealth.Maximum = currentMob.maxHealth;
-                prbEnemyHealth.Value = currentMob.maxHealth;
+                prbEnemyHealth.Maximum = (int)currentMob.maxHealth;
+                prbEnemyHealth.Value = (int)currentMob.maxHealth;
             }
             else
             {
                 if(currentMob.health > 0)           //If enemy is still alive
                 {
-                    prbEnemyHealth.Value = currentMob.health;
+                    prbEnemyHealth.Value = (int)currentMob.health;
                     lblMobHealth.Text = $"{currentMob.type.ToString()}: {currentMob.health}/{currentMob.maxHealth}";
                 }
                 else                               //If enemy ain't
@@ -259,6 +279,44 @@ namespace RogueLikeGame
         private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             GlobalSettings.OnApplicationExit(e);
+        }
+
+        private void BtnHealthPot_Click(object sender, EventArgs e)
+        {
+            if(!userAttack) //Needs to be reversed
+            {
+                foreach(Potions a in user.potions)
+                {
+                    if(a.PotionName == "Health Potion")
+                    {
+                        lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, null));
+                        userAttack = !userAttack;
+                        break;
+                    }
+                }
+                UpdatePlayerStatistics();
+            }
+        }
+
+        private void BtnPoisonPot_Click(object sender, EventArgs e)
+        {
+            if (!userAttack)
+            {
+                foreach (Potions a in user.potions)
+                {
+                    if (a.PotionName == "Poison Potion")
+                    {
+                        lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, currentMob));
+                        if (currentMob.health <= 0)
+                        {
+                            OnEnemyDeath();
+                        }
+                        userAttack = !userAttack;
+                        break;
+                    }
+                }
+                UpdatePlayerStatistics();
+            }
         }
     }
 }

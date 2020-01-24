@@ -18,11 +18,11 @@ namespace RogueLikeGame
                     switch (i)
                     {
                         case 1:
-                            return $"{user.userName} stumbled on a gigantic spider";
+                            return $"{user.userName} {TextNarrative.SpiderEncounter1}";
                         case 2:
-                            return $"{user.userName} stuck upon a spider nest, with the queen getting ready to attack";
+                            return $"{user.userName} {TextNarrative.SpiderEncounter2}";
                         case 3:
-                            return $"An ugly gigantic spider sits on the way of {user.userName}";
+                            return $"{TextNarrative.SpiderEncounter3} {user.userName}";
                     }
                     return null;
 
@@ -31,11 +31,35 @@ namespace RogueLikeGame
                     switch(i)
                     {
                         case 1:
-                            return "";
+                            return $"{user.userName} {TextNarrative.RatEncounter1}";
                         case 2:
-                            return "";
+                            return $"{user.userName} {TextNarrative.RatEncounter2}";
                         case 3:
-                            return "";
+                            return $"{user.userName} {TextNarrative.RatEncounter3}";
+                    }
+                    return null;
+                case MobTypes.SHADOW:
+                    i = Randomizer.RandomizeText(3);
+                    switch (i)
+                    {
+                        case 1:
+                            return $"{user.userName} {TextNarrative.ShadowEncounter1}";
+                        case 2:
+                            return $"{user.userName} {TextNarrative.ShadowEncounter2}";
+                        case 3:
+                            return $"{TextNarrative.ShadowEncounter3} {user.userName}";
+                    }
+                    return null;
+                case MobTypes.ZOMBIE:
+                    i = Randomizer.RandomizeText(3);
+                    switch (i)
+                    {
+                        case 1:
+                            return $"{user.userName} {TextNarrative.ZombieEncounter1}";
+                        case 2:
+                            return $"{user.userName} {TextNarrative.ZombieEncounter2}";
+                        case 3:
+                            return $"{user.userName} {TextNarrative.ZombieEncounter3}";
                     }
                     return null;
                 default:
@@ -51,39 +75,44 @@ namespace RogueLikeGame
 
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
-                //Universal fight for every mob >>->> Change mob.attack for specific abilities
-                int damage = (int)mob.Attack();   //Total damage
+                //Universal fight for every mob
+                double damage = mob.Attack();   //Total damage
 
-                if(currentRoundOfDebuff > 0 && mob.Ability(mob.type) != -1) //Checks if the mob did an ability
+                if(currentRoundOfDebuff > 0) //Checks if the mob did an ability
                 {
-                    user.currentHealth -= (int)mob.Ability(mob.type);
-                    currentRoundOfDebuff--;
-                    debuff = $"Poisoned for {mob.Ability(mob.type)} damage";
+                    debuff = mob.Ability(mob, user);
+                    if (debuff != null)
+                    {
+                        currentRoundOfDebuff--;
+                    }
+                    if(currentRoundOfDebuff <= 0)
+                    {
+                        user.debuff = 1;
+                    }
                 }
 
                 damage -= user.TotalArmor();            //Total received damage - counting armor
 
                 if (damage < 0)
                 {
-                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff}";
+                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff} {user.currentHealth}";
                 }
 
                 user.currentHealth -= damage;           //Player hit
-                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff}";
-                if (damage > mob.damage)                //On enemy crit hit
-                {
-                    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff}";
-                }
+                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
+                //if (damage > mob.damage)                //On enemy crit hit
+                //{
+                //    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
+                //}
                 return returnInfo;
             }
             else
             {
                 if(currentRoundOfDebuff > 0)
                 {
-                    user.currentHealth -= (int)mob.Ability(mob.type);
-                    return $"Poisoned for {mob.Ability(mob.type)} damage";
+                    return mob.Ability(mob, user) + user.currentHealth;
                 }
-                return $"{user.userName} managed to evade {mob.type}'s attack!";
+                return $"{user.userName} managed to evade {mob.type}'s attack! {user.currentHealth}";
             }
         }
 
@@ -92,11 +121,11 @@ namespace RogueLikeGame
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
             if (!Randomizer.Evade(mob.evadeChance)) //If the mob DOESNT evade
             {
-                int damage = (int)user.TotalDamage();
+                double damage = user.TotalDamage();
                 string returnInfo = $"{user.userName} dealt {damage} damage to {mob.type.ToString()}";
                 if (ability)                        //If the user uses an ability (WORKS ONLY FOR BERSERKER)
                 {
-                    damage = (int)CharacterAbility(user, damage);
+                    damage = CharacterAbility(user, damage);
                     returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.type.ToString()}";
                 }
                 mob.health -= damage;               //Deduct the enemy health
@@ -115,7 +144,7 @@ namespace RogueLikeGame
         }
 
 
-        public static double CharacterAbility(UserSettings user, int damage) //on use of ability
+        public static double CharacterAbility(UserSettings user, double damage) //on use of ability
         {
             if(user.CharacterName == Chars.Berserker) //If it was the berserker
             {
@@ -129,6 +158,26 @@ namespace RogueLikeGame
             else
             {
                 return 1;
+            }
+        }
+
+        public static string PotionUse(Potions pot, UserSettings user, Mobs mob)
+        {
+            if(pot.IsHealthPotion)
+            {
+                user.CurrentHealth += pot.Damage;
+                user.potions.Remove(pot);
+                return $"{user.userName} healed for {pot.Damage} health";
+            }
+            else
+            {
+                if(mob != null)
+                {
+                    mob.health -= pot.Damage;
+                    user.potions.Remove(pot);
+                    return $"{user.userName} damaged {mob.type} for {pot.Damage} using a potion";
+                }
+                return "";
             }
         }
 
@@ -157,7 +206,7 @@ namespace RogueLikeGame
             }
         }
 
-        public static bool DublicateItems(bool type,string item, UserSettings user) //Type true - weapon, false - armor
+        public static bool DublicateItems(bool type,string item, UserSettings user) //Prevent dub item: Type true - weapon, false - armor
         {
             if (type)
             {

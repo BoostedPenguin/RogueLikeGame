@@ -11,8 +11,8 @@ namespace RogueLikeGame
         public Chars CharacterName;
         public string userName;             //Changed by user input
         public Characters pickedCharacter;  //Changed by user input
-        public int maxHealth;               //Changed by picked_character selection
-        public int currentHealth;           //Changed by events
+        public double maxHealth;               //Changed by picked_character selection
+        public double currentHealth;           //Changed by events
         public int characterArmor;          //Changed by pickup_character selection || (character_armor + current_armor(armor)) * multiplier
         public double characterDamage;         //Changed by pickup_character selection || (character_damage * current_weapon) * character_damage_multiplier
         public int characterEvadeChance;      //Changed by pickup_character selection || (character_evade_chance + current_armor(evade_chance)) * multiplier
@@ -23,7 +23,7 @@ namespace RogueLikeGame
         public Armor currentArmor;          //Stores the equipped armor
         public int abilityCooldown;     	//Changed by pickup_character selection
         public int currentAbilityCooldown; //Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
-
+        public double debuff;
 
         //Check for armor and weapon values != null
         //When actually trying to inflict or receive damage
@@ -51,6 +51,23 @@ namespace RogueLikeGame
             this.characterDamage = character.Damage;
             this.characterEvadeChance = character.EvadeChance;
             this.currentHealth = this.maxHealth;
+            this.debuff = 1;
+        }
+
+        public double CurrentHealth
+        {
+            get { return this.currentHealth; }
+            set
+            {
+                if(value > this.maxHealth)
+                {
+                    this.currentHealth = maxHealth;
+                }
+                else
+                {
+                    this.currentHealth = value;
+                }
+            }
         }
 
         public int AmountPotions(bool isHealthPot) //Returns the amount of specific potions: false - poison, true - health
@@ -73,12 +90,12 @@ namespace RogueLikeGame
 
         public double TotalDamage() //Returns total damage 
         {
-            return this.characterDamage * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier;
+            return this.characterDamage * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier / debuff;
         }
 
         public double TotalDamageWithoutCrit()
         {
-            return this.characterDamage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier;
+            return this.characterDamage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier / debuff;
         }
 
         public int TotalArmor() //Returns total armor

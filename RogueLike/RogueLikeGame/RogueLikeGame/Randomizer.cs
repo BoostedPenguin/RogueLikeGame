@@ -10,6 +10,28 @@ namespace RogueLikeGame
     {
         static Random r = new Random();
 
+
+        public static MobTypes EnemyRandomizer()
+        {
+            int mr = r.Next(0, 100);
+            if(mr < 25)
+            {
+                return MobTypes.SPIDER;
+            }
+            else if(25 <= mr && mr < 50)
+            {
+                return MobTypes.RAT;
+            }
+            else if(50 <= mr && mr < 75)
+            {
+                return MobTypes.SHADOW;
+            }
+            else
+            {
+                return MobTypes.ZOMBIE;
+            }
+        }
+
         //If the OBJECT manages to evade an attack
         public static bool Evade(int evadeChance)
         {

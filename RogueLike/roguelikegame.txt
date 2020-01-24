@@ -158,7 +158,7 @@ Enemies:
 Ordered by difficulty:
 Spider
 Rat - poison -2 damage for 3 turns
-Ghost
+Shadow - high evade chance && chance to reduce player damage by X%
 Zombie
 ElderDragon(boss)
 FleshBehemoth(boss)
@@ -181,6 +181,12 @@ ON-C-DEATH:	1.Character was slain by a spider
 		2.Character died. His guts are being used as egg-storage for the spider.
 
 ON-STUN		1.Kill the spider 50%
+
+------------------------------------------------------------------------------------------
+RAT:
+HEALTH: 50
+DAMAGE BaseDamage 
+
 
 ------------------------------------------------------------------------------------------
 Bosses: 

@@ -17,8 +17,8 @@ namespace RogueLikeGame
     {
         public MobTypes type { get; set; }          //Type of enemy
         public double damage { get; set; }          //The BASE damage
-        public int health { get; set; }             //The CURRENT amount of health
-        public int maxHealth { get; set; }          //The MAX HEALTH
+        public double health { get; set; }             //The CURRENT amount of health
+        public double maxHealth { get; set; }          //The MAX HEALTH
         public int evadeChance { get; set; }        //The TOTAL evade chance
         public int abilityChance { get; set; }      //Chance of an ability to happen
 
@@ -36,31 +36,65 @@ namespace RogueLikeGame
         //5% chance to deal double damage
         public double Attack()
         {
+            double multiplier = GlobalSettings.enemyDifficultyMultiplier;
             switch(type)
             {
                 case MobTypes.SPIDER:
-                    return Randomizer.Damage(abilityChance, damage);
+                    return multiplier * Randomizer.Damage(abilityChance, damage);
+
                 case MobTypes.RAT:
                     if(Randomizer.EnemyAbilityChance(abilityChance))
                     {
-                        MobFight.currentRoundOfDebuff = 5;
-                        return damage;
+                        MobFight.currentRoundOfDebuff = 3; //Rounds of debuff
                     }
-                    return damage;
+                    return damage * multiplier;
+
+                case MobTypes.SHADOW:
+                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    {
+                        MobFight.currentRoundOfDebuff = 3;
+                    }
+                    return damage * multiplier;
+                case MobTypes.ZOMBIE:
+                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    {
+                        MobFight.currentRoundOfDebuff = 1;
+                    }
+                    return damage * multiplier;
+
+                default:                    //Just return crit chance if mob doesnt have an ability
+                    return multiplier* Randomizer.Damage(abilityChance, damage);
             }
-            return -1;
         }
 
-        public double Ability(MobTypes type)
+        public string Ability(Mobs mob, UserSettings user)
         {
-            switch(type)
+            switch(mob.type)
             {
-                case MobTypes.SPIDER:
-                    return -1;
-                case MobTypes.RAT:
-                    return 2;
+                case MobTypes.SPIDER:   //Use some return that will never be used
+                    return null;
+
+                case MobTypes.RAT:  //Amount of damage per round
+                    user.currentHealth -= 2;    
+                    return $"Poisoned for {2} damage";
+
+                case MobTypes.SHADOW:
+                    user.debuff = 2;
+                    return $"Player damage reduced by {2} times";
+
+                case MobTypes.ZOMBIE: //Amount of heal
+                    if (mob.health + 8 > mob.maxHealth)
+                    {
+                        mob.health = mob.maxHealth;
+                    }
+                    else
+                    {
+                        mob.health += 8;
+                    }
+                    return $"Self-Regenerated {8} health";
+
                 default:
-                    return 0;
+                    return $"";
             }
         }
     }

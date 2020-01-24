@@ -9,7 +9,7 @@ namespace RogueLikeGame
     public static class TextNarrative
     {
         //Use this static class to extract string 
-
+        #region StartNarrative
         public static string Prologue = "Welcome to the world of Hellsgate. The game was designed based all around RNG. Depending on your luck you will" +
             "manage to fight different enemies, gather loot, explore the darkness surrounding the dungeon and fight powerful bosses. Have fun!";
         public static string FirstSceneBD = "It isn't every day that you find yourself in the bottom of a godforsaken dungeon," +
@@ -36,6 +36,23 @@ namespace RogueLikeGame
             "Maybe that's why the spider was 4 meters in width? Magic?";
         public static string SecondChoiceSuccess2 = "You touch the amulet and you feel a power surge through your body. You have a special ability now";
         //Enable abilities
+        #endregion
+        #region MobText
+        public static string SpiderEncounter1 = "stumbled on a gigantic spider";
+        public static string SpiderEncounter2 = "stuck upon a spider nest, with the queen getting ready to attack";
+        public static string SpiderEncounter3 = "An ugly gigantic spider sits on the way of ";
 
+        public static string RatEncounter1 = "encountered a poisonous rat";
+        public static string RatEncounter2 = "found a big mama rat";
+        public static string RatEncounter3 = "stepped on the the tail of a giant rat";
+
+        public static string ShadowEncounter1 = "witnessed a shadow passing through the wall";
+        public static string ShadowEncounter2 = "felt his hands freezing after he saw a shadow";
+        public static string ShadowEncounter3 = "A shadow tried to suck the brains of";
+
+        public static string ZombieEncounter1 = "saw a zombie eating the flesh out of a corpse";
+        public static string ZombieEncounter2 = "felt dizzy by the smell of a half-rotten zombie";
+        public static string ZombieEncounter3 = "draw his weapon at the sight of a zombie";
+        #endregion
     }
 }
