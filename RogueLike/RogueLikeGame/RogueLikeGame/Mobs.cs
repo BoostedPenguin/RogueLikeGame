@@ -50,5 +50,18 @@ namespace RogueLikeGame
             }
             return -1;
         }
+
+        public double Ability(MobTypes type)
+        {
+            switch(type)
+            {
+                case MobTypes.SPIDER:
+                    return -1;
+                case MobTypes.RAT:
+                    return 2;
+                default:
+                    return 0;
+            }
+        }
     }
 }

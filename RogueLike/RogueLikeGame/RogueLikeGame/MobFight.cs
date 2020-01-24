@@ -48,22 +48,26 @@ namespace RogueLikeGame
         public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
         {
             string debuff = "";
-            if (currentRoundOfDebuff > 0)
-            {
-                user.currentHealth -= 2;
-                currentRoundOfDebuff--;
-                debuff = "Poisoned for 2 damage";
-            }
 
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
                 //Universal fight for every mob >>->> Change mob.attack for specific abilities
                 int damage = (int)mob.Attack();   //Total damage
+
+                if(currentRoundOfDebuff > 0 && mob.Ability(mob.type) != -1) //Checks if the mob did an ability
+                {
+                    user.currentHealth -= (int)mob.Ability(mob.type);
+                    currentRoundOfDebuff--;
+                    debuff = $"Poisoned for {mob.Ability(mob.type)} damage";
+                }
+
                 damage -= user.TotalArmor();            //Total received damage - counting armor
+
                 if (damage < 0)
                 {
                     return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff}";
                 }
+
                 user.currentHealth -= damage;           //Player hit
                 string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff}";
                 if (damage > mob.damage)                //On enemy crit hit
@@ -74,9 +78,10 @@ namespace RogueLikeGame
             }
             else
             {
-                if(debuff != "")
+                if(currentRoundOfDebuff > 0)
                 {
-                    return debuff;
+                    user.currentHealth -= (int)mob.Ability(mob.type);
+                    return $"Poisoned for {mob.Ability(mob.type)} damage";
                 }
                 return $"{user.userName} managed to evade {mob.type}'s attack!";
             }

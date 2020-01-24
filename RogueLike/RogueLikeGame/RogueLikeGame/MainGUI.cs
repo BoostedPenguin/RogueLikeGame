@@ -124,6 +124,14 @@ namespace RogueLikeGame
         {
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
             lblCurrentPotion.Text = $"Health Potions: {user.AmountPotions(true)} Poison Potions: {user.AmountPotions(false)} ";
+            if(MobFight.currentRoundOfDebuff > 0)
+            {
+                lblDebuff.Text = $"Debuff rounds remaining: {MobFight.currentRoundOfDebuff}";
+            }
+            else
+            {
+                lblDebuff.Text = $"";
+            }
         }
         private void StartFight()           //The fight mechanics
         {

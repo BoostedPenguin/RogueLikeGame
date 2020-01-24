@@ -48,17 +48,19 @@
             // 
             // tbxNarrative
             // 
-            this.tbxNarrative.Location = new System.Drawing.Point(60, 12);
+            this.tbxNarrative.Location = new System.Drawing.Point(80, 15);
+            this.tbxNarrative.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbxNarrative.Multiline = true;
             this.tbxNarrative.Name = "tbxNarrative";
-            this.tbxNarrative.Size = new System.Drawing.Size(412, 127);
+            this.tbxNarrative.Size = new System.Drawing.Size(548, 155);
             this.tbxNarrative.TabIndex = 0;
             // 
             // btnOptionA
             // 
-            this.btnOptionA.Location = new System.Drawing.Point(85, 156);
+            this.btnOptionA.Location = new System.Drawing.Point(113, 192);
+            this.btnOptionA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOptionA.Name = "btnOptionA";
-            this.btnOptionA.Size = new System.Drawing.Size(94, 31);
+            this.btnOptionA.Size = new System.Drawing.Size(125, 38);
             this.btnOptionA.TabIndex = 1;
             this.btnOptionA.Text = "button1";
             this.btnOptionA.UseVisualStyleBackColor = true;
@@ -66,9 +68,10 @@
             // 
             // btnOptionB
             // 
-            this.btnOptionB.Location = new System.Drawing.Point(219, 156);
+            this.btnOptionB.Location = new System.Drawing.Point(292, 192);
+            this.btnOptionB.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOptionB.Name = "btnOptionB";
-            this.btnOptionB.Size = new System.Drawing.Size(94, 31);
+            this.btnOptionB.Size = new System.Drawing.Size(125, 38);
             this.btnOptionB.TabIndex = 2;
             this.btnOptionB.Text = "button2";
             this.btnOptionB.UseVisualStyleBackColor = true;
@@ -76,9 +79,10 @@
             // 
             // btnOptionC
             // 
-            this.btnOptionC.Location = new System.Drawing.Point(356, 156);
+            this.btnOptionC.Location = new System.Drawing.Point(475, 192);
+            this.btnOptionC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOptionC.Name = "btnOptionC";
-            this.btnOptionC.Size = new System.Drawing.Size(94, 31);
+            this.btnOptionC.Size = new System.Drawing.Size(125, 38);
             this.btnOptionC.TabIndex = 3;
             this.btnOptionC.Text = "button3";
             this.btnOptionC.UseVisualStyleBackColor = true;
@@ -88,25 +92,29 @@
             // 
             this.lbxCombatLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbxCombatLog.FormattingEnabled = true;
-            this.lbxCombatLog.ItemHeight = 16;
-            this.lbxCombatLog.Location = new System.Drawing.Point(542, 193);
+            this.lbxCombatLog.ItemHeight = 20;
+            this.lbxCombatLog.Location = new System.Drawing.Point(723, 238);
+            this.lbxCombatLog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxCombatLog.Name = "lbxCombatLog";
-            this.lbxCombatLog.Size = new System.Drawing.Size(444, 244);
+            this.lbxCombatLog.Size = new System.Drawing.Size(591, 284);
             this.lbxCombatLog.TabIndex = 4;
             // 
             // lbxCurrentItems
             // 
             this.lbxCurrentItems.FormattingEnabled = true;
-            this.lbxCurrentItems.Location = new System.Drawing.Point(698, 12);
+            this.lbxCurrentItems.ItemHeight = 16;
+            this.lbxCurrentItems.Location = new System.Drawing.Point(931, 15);
+            this.lbxCurrentItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxCurrentItems.Name = "lbxCurrentItems";
-            this.lbxCurrentItems.Size = new System.Drawing.Size(288, 173);
+            this.lbxCurrentItems.Size = new System.Drawing.Size(383, 212);
             this.lbxCurrentItems.TabIndex = 5;
             // 
             // btnUseItem
             // 
-            this.btnUseItem.Location = new System.Drawing.Point(624, 80);
+            this.btnUseItem.Location = new System.Drawing.Point(832, 98);
+            this.btnUseItem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUseItem.Name = "btnUseItem";
-            this.btnUseItem.Size = new System.Drawing.Size(68, 31);
+            this.btnUseItem.Size = new System.Drawing.Size(91, 38);
             this.btnUseItem.TabIndex = 6;
             this.btnUseItem.Text = "button4";
             this.btnUseItem.UseVisualStyleBackColor = true;
@@ -116,52 +124,59 @@
             // 
             this.lblPlayerStatistics.AutoSize = true;
             this.lblPlayerStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerStatistics.Location = new System.Drawing.Point(12, 478);
+            this.lblPlayerStatistics.Location = new System.Drawing.Point(16, 588);
+            this.lblPlayerStatistics.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerStatistics.Name = "lblPlayerStatistics";
-            this.lblPlayerStatistics.Size = new System.Drawing.Size(70, 25);
+            this.lblPlayerStatistics.Size = new System.Drawing.Size(86, 31);
             this.lblPlayerStatistics.TabIndex = 7;
             this.lblPlayerStatistics.Text = "label1";
             // 
             // lbxOptionC
             // 
             this.lbxOptionC.FormattingEnabled = true;
-            this.lbxOptionC.Location = new System.Drawing.Point(332, 193);
+            this.lbxOptionC.ItemHeight = 16;
+            this.lbxOptionC.Location = new System.Drawing.Point(443, 238);
+            this.lbxOptionC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lbxOptionC.Name = "lbxOptionC";
-            this.lbxOptionC.Size = new System.Drawing.Size(140, 160);
+            this.lbxOptionC.Size = new System.Drawing.Size(185, 196);
             this.lbxOptionC.TabIndex = 8;
             // 
             // lblCurrentPotion
             // 
             this.lblCurrentPotion.AutoSize = true;
             this.lblCurrentPotion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentPotion.Location = new System.Drawing.Point(12, 419);
+            this.lblCurrentPotion.Location = new System.Drawing.Point(16, 516);
+            this.lblCurrentPotion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentPotion.Name = "lblCurrentPotion";
-            this.lblCurrentPotion.Size = new System.Drawing.Size(70, 25);
+            this.lblCurrentPotion.Size = new System.Drawing.Size(86, 31);
             this.lblCurrentPotion.TabIndex = 9;
             this.lblCurrentPotion.Text = "label2";
             // 
             // prbEnemyHealth
             // 
-            this.prbEnemyHealth.Location = new System.Drawing.Point(542, 450);
+            this.prbEnemyHealth.Location = new System.Drawing.Point(723, 554);
+            this.prbEnemyHealth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.prbEnemyHealth.Name = "prbEnemyHealth";
-            this.prbEnemyHealth.Size = new System.Drawing.Size(444, 23);
+            this.prbEnemyHealth.Size = new System.Drawing.Size(592, 28);
             this.prbEnemyHealth.TabIndex = 10;
             // 
             // lblMobHealth
             // 
             this.lblMobHealth.AutoSize = true;
             this.lblMobHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobHealth.Location = new System.Drawing.Point(693, 478);
+            this.lblMobHealth.Location = new System.Drawing.Point(924, 588);
+            this.lblMobHealth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMobHealth.Name = "lblMobHealth";
-            this.lblMobHealth.Size = new System.Drawing.Size(74, 25);
+            this.lblMobHealth.Size = new System.Drawing.Size(93, 31);
             this.lblMobHealth.TabIndex = 11;
             this.lblMobHealth.Text = "Health";
             // 
             // btnAbility
             // 
-            this.btnAbility.Location = new System.Drawing.Point(37, 242);
+            this.btnAbility.Location = new System.Drawing.Point(49, 298);
+            this.btnAbility.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAbility.Name = "btnAbility";
-            this.btnAbility.Size = new System.Drawing.Size(94, 31);
+            this.btnAbility.Size = new System.Drawing.Size(125, 38);
             this.btnAbility.TabIndex = 12;
             this.btnAbility.Text = "Use Ability";
             this.btnAbility.UseVisualStyleBackColor = true;
@@ -176,18 +191,19 @@
             // lblDebuff
             // 
             this.lblDebuff.AutoSize = true;
-            this.lblDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDebuff.Location = new System.Drawing.Point(469, 30);
+            this.lblDebuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblDebuff.Location = new System.Drawing.Point(636, 44);
+            this.lblDebuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDebuff.Name = "lblDebuff";
-            this.lblDebuff.Size = new System.Drawing.Size(245, 25);
+            this.lblDebuff.Size = new System.Drawing.Size(246, 25);
             this.lblDebuff.TabIndex = 13;
-            this.lblDebuff.Text = "Current rounds of debuff";
+            this.lblDebuff.Text = "Debuff rounds remaining: 0";
             // 
             // MainGUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 512);
+            this.ClientSize = new System.Drawing.Size(1331, 630);
             this.Controls.Add(this.lblDebuff);
             this.Controls.Add(this.btnAbility);
             this.Controls.Add(this.lblMobHealth);
@@ -202,6 +218,7 @@
             this.Controls.Add(this.btnOptionB);
             this.Controls.Add(this.btnOptionA);
             this.Controls.Add(this.tbxNarrative);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainGUI";
             this.Text = "MainGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);
