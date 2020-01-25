@@ -69,14 +69,19 @@
             // 
             // btnMusic
             // 
+            this.btnMusic.BackColor = System.Drawing.Color.Orchid;
+            this.btnMusic.BackgroundImage = global::RogueLikeGame.Properties.Resources.musicEnable;
+            this.btnMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMusic.FlatAppearance.BorderColor = System.Drawing.Color.Purple;
+            this.btnMusic.FlatAppearance.BorderSize = 2;
+            this.btnMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnMusic.Location = new System.Drawing.Point(454, 13);
             this.btnMusic.Margin = new System.Windows.Forms.Padding(4);
             this.btnMusic.Name = "btnMusic";
             this.btnMusic.Size = new System.Drawing.Size(65, 56);
             this.btnMusic.TabIndex = 3;
-            this.btnMusic.Text = "Music";
-            this.btnMusic.UseVisualStyleBackColor = true;
+            this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
             // 
             // Form1

@@ -49,15 +49,28 @@ namespace RogueLikeGame
 
         private void BtnMusic_Click(object sender, EventArgs e)
         {
-            if(isOn)
+            if(MusicControl())
+            {
+                btnMusic.BackgroundImage = RogueLikeGame.Properties.Resources.musicDisable;
+            }
+            else
+            {
+                btnMusic.BackgroundImage = RogueLikeGame.Properties.Resources.musicEnable;
+            }
+        }
+        public bool MusicControl()
+        {
+            if (isOn)
             {
                 sound.Stop();
                 isOn = false;
+                return isOn;
             }
             else
             {
                 sound.PlayLooping();
                 isOn = true;
+                return isOn;
             }
         }
     }
