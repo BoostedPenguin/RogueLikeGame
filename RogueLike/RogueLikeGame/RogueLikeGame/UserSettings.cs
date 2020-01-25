@@ -112,12 +112,12 @@ namespace RogueLikeGame
             }
             else if(this.CharacterName == Chars.Ghost)
             {
-                return -1.5; //later - check for this number - if its true then do smth, same with bottom one;
+                this.currentHealth = maxHealth / 2;
+                return -2.5;
             }
             else
             {
-                this.currentHealth = maxHealth / 2;
-                return -2.5;
+                return 1320;
             }
         }
     }

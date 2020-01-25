@@ -14,18 +14,11 @@ namespace RogueLikeGame
     public partial class Form1 : Form
     {
         public Form1 mainForm;
-        SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
-        bool isOn = false;
         public Form1()
         {
             InitializeComponent();
             Items.RepopulateTheLists();
             mainForm = this;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -49,29 +42,8 @@ namespace RogueLikeGame
 
         private void BtnMusic_Click(object sender, EventArgs e)
         {
-            if(MusicControl())
-            {
-                btnMusic.BackgroundImage = RogueLikeGame.Properties.Resources.musicDisable;
-            }
-            else
-            {
-                btnMusic.BackgroundImage = RogueLikeGame.Properties.Resources.musicEnable;
-            }
-        }
-        public bool MusicControl()
-        {
-            if (isOn)
-            {
-                sound.Stop();
-                isOn = false;
-                return isOn;
-            }
-            else
-            {
-                sound.PlayLooping();
-                isOn = true;
-                return isOn;
-            }
+            GlobalSettings.SoundToggle();
+            GlobalSettings.ChangeSoundImage((Button)sender);
         }
     }
 }

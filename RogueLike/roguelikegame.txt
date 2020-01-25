@@ -51,8 +51,8 @@ ABILITY: 0			//The actual ability ex: Berserker - (character_damage * current_we
 
 Characters:
 Berserker - x1.5 health x1.5 damage - Ability: Deal x3 damage for the GIVEN encounter // Cooldown: 5 turns
-Ghost - x1.0 health x2.0 damage - Ability: Vanish from the fight - NO ITEMS WILL BE REWARDED - but you won't die (Only regular enemies, no boss) // Cooldown: 8 turns
-GodKnight = x2.0 health x1.0 damage  - Ability: PASSIVE: Activates "Second chance" on death, replenishes 50% of your max health // Cooldown: 8 turns
+Ghost - x1.0 health x2.0 damage - Ability: PASSIVE: Activates "Second chance" on death, replenishes 50% of your max health // Cooldown: 8 turns
+GodKnight = x2.0 health x1.0 damage  - Ability: Heal every round for X rounds for X health
 
 ---------------------------------------
 BERSERKER:

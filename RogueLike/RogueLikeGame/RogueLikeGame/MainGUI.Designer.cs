@@ -47,8 +47,10 @@
             this.lblPoisonPot = new System.Windows.Forms.Label();
             this.btnAttack = new System.Windows.Forms.Button();
             this.gpxFight = new System.Windows.Forms.GroupBox();
-            this.gpxItems = new System.Windows.Forms.GroupBox();
             this.lblTurn = new System.Windows.Forms.Label();
+            this.gpxItems = new System.Windows.Forms.GroupBox();
+            this.btnMusic = new System.Windows.Forms.Button();
+            this.lblBuff = new System.Windows.Forms.Label();
             this.gpxFight.SuspendLayout();
             this.gpxItems.SuspendLayout();
             this.SuspendLayout();
@@ -179,6 +181,7 @@
             this.btnAbility.TabIndex = 12;
             this.btnAbility.Text = "Use Ability";
             this.btnAbility.UseVisualStyleBackColor = true;
+            this.btnAbility.Visible = false;
             this.btnAbility.Click += new System.EventHandler(this.btnAbility_Click);
             // 
             // lblDebuff
@@ -261,8 +264,20 @@
             this.gpxFight.Text = "gpxFight";
             this.gpxFight.Visible = false;
             // 
+            // lblTurn
+            // 
+            this.lblTurn.AutoSize = true;
+            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.Location = new System.Drawing.Point(384, 348);
+            this.lblTurn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTurn.Name = "lblTurn";
+            this.lblTurn.Size = new System.Drawing.Size(86, 31);
+            this.lblTurn.TabIndex = 20;
+            this.lblTurn.Text = "label1";
+            // 
             // gpxItems
             // 
+            this.gpxItems.Controls.Add(this.lblBuff);
             this.gpxItems.Controls.Add(this.lbxCurrentItems);
             this.gpxItems.Controls.Add(this.btnUseItem);
             this.gpxItems.Controls.Add(this.btnAttack);
@@ -280,22 +295,40 @@
             this.gpxItems.Text = "gpxItems";
             this.gpxItems.Visible = false;
             // 
-            // lblTurn
+            // btnMusic
             // 
-            this.lblTurn.AutoSize = true;
-            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurn.Location = new System.Drawing.Point(384, 348);
-            this.lblTurn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTurn.Name = "lblTurn";
-            this.lblTurn.Size = new System.Drawing.Size(86, 31);
-            this.lblTurn.TabIndex = 20;
-            this.lblTurn.Text = "label1";
+            this.btnMusic.BackColor = System.Drawing.Color.Orchid;
+            this.btnMusic.BackgroundImage = global::RogueLikeGame.Properties.Resources.musicEnable;
+            this.btnMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMusic.FlatAppearance.BorderColor = System.Drawing.Color.Purple;
+            this.btnMusic.FlatAppearance.BorderSize = 2;
+            this.btnMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnMusic.Location = new System.Drawing.Point(13, 182);
+            this.btnMusic.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMusic.Name = "btnMusic";
+            this.btnMusic.Size = new System.Drawing.Size(65, 56);
+            this.btnMusic.TabIndex = 20;
+            this.btnMusic.UseVisualStyleBackColor = false;
+            this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
+            // 
+            // lblBuff
+            // 
+            this.lblBuff.AutoSize = true;
+            this.lblBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblBuff.Location = new System.Drawing.Point(7, 76);
+            this.lblBuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBuff.Name = "lblBuff";
+            this.lblBuff.Size = new System.Drawing.Size(223, 25);
+            this.lblBuff.TabIndex = 19;
+            this.lblBuff.Text = "Buff rounds remaining: 0";
             // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 716);
+            this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.gpxItems);
             this.Controls.Add(this.gpxFight);
             this.Controls.Add(this.lbxOptionC);
@@ -340,5 +373,7 @@
         private System.Windows.Forms.GroupBox gpxFight;
         private System.Windows.Forms.GroupBox gpxItems;
         private System.Windows.Forms.Label lblTurn;
+        private System.Windows.Forms.Button btnMusic;
+        private System.Windows.Forms.Label lblBuff;
     }
 }

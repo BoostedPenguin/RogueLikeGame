@@ -68,6 +68,7 @@ namespace RogueLikeGame
         }
 
         public static int currentRoundOfDebuff = 0;
+        public static int currentRoundOfBuff = 0;
 
         public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
         {
@@ -119,17 +120,44 @@ namespace RogueLikeGame
         public static string OnPlayerHit(int roundNr, UserSettings user, Mobs mob, bool ability)
         {
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
+
+            if (currentRoundOfBuff > 0) //Execute buff on start of round
+            {
+                switch (user.CharacterName)
+                {
+                    case Chars.Ghost:
+                        break;
+                    case Chars.GodKnight:
+                        GodKnightAbility(user);
+                        break;
+                }
+            }
+
             if (!Randomizer.Evade(mob.evadeChance) || ability == true) //If the mob DOESNT evade
             {
                 double damage = user.TotalDamage();
                 string returnInfo = $"{user.userName} dealt {damage} damage to {mob.type.ToString()}";
-                if (ability)                        //If the user uses an ability (WORKS ONLY FOR BERSERKER)
-                {
-                    damage = CharacterAbility(user, damage);
-                    returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.type.ToString()}";
-                }
-                mob.health -= damage;               //Deduct the enemy health
 
+                if (ability)                        //If the user uses an ability
+                {
+                    switch(user.CharacterName)
+                    {
+                        case Chars.Berserker:
+                            damage = BererkerAbility(user, damage);
+                            returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.type.ToString()}";
+                            break;
+
+                        case Chars.Ghost:
+                            break;
+
+                        case Chars.GodKnight:
+                            currentRoundOfBuff = 5;
+                            returnInfo = GodKnightAbility(user);
+                            break;
+                    }
+                }
+
+                mob.health -= damage;               //Deduct the enemy health
                 //If hit was critical
                 if (damage / user.characterDamage / GlobalSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
                 {
@@ -143,22 +171,21 @@ namespace RogueLikeGame
             }
         }
 
-
-        public static double CharacterAbility(UserSettings user, double damage) //on use of ability
+        private static double BererkerAbility(UserSettings user, double damage)
         {
-            if(user.CharacterName == Chars.Berserker) //If it was the berserker
+            damage *= user.Ability();
+            user.currentAbilityCooldown = 0;
+            return damage;
+        }
+        private static string GodKnightAbility(UserSettings user)
+        {
+
+            if(currentRoundOfBuff > 0)
             {
-                if (user.currentAbilityCooldown >= user.abilityCooldown)
-                {
-                    damage *= (int)user.Ability();
-                    user.currentAbilityCooldown = 0;
-                }
-                return damage;
+                user.CurrentHealth += 8; //amount of health that should be added
+                currentRoundOfBuff--;
             }
-            else
-            {
-                return 1;
-            }
+            return $"{user.userName} healed for 8 health";
         }
 
         public static string PotionUse(Potions pot, UserSettings user, Mobs mob)

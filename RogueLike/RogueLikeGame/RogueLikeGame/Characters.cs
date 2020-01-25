@@ -22,7 +22,9 @@ namespace RogueLikeGame
         public int AbilityCooldown { get; set; } //The ability cooldown in TURNS
         public Weapons StartWeapon { get; set; } //The starting weapon given on start of game
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
-        public Characters(Chars characterName) //If you want to change a character stats use this!
+
+
+        public Characters(Chars characterName)   //If you want to change a character stats use this!
         {
             if(Chars.Berserker == characterName)
             {
@@ -38,24 +40,24 @@ namespace RogueLikeGame
             else if(Chars.Ghost == characterName)
             {
                 this.CharacterName = Chars.Ghost;
-                string startWep = "Blunt Sword"; //Change this later
-                UpdateWeapon(startWep);
-                this.Health = 1;
-                this.Damage = 1.5;
-                this.Armor = 5;
-                this.EvadeChance = 10;
-                this.AbilityCooldown = 5;
+                UpdateArmor("Basic Armor");
+                UpdateWeapon("Blunt Sword");
+                this.Health = 100;
+                this.Damage = 2;
+                this.Armor = 2;
+                this.EvadeChance = 20;
+                this.AbilityCooldown = 15;
             }
             else if(Chars.GodKnight == characterName)
             {
                 this.CharacterName = Chars.GodKnight;
-                string startWep = "Blunt Sword"; //Change this later
-                UpdateWeapon(startWep);
+                UpdateArmor("Basic Armor");
+                UpdateWeapon("Blunt Sword");
                 this.Health = 200;
                 this.Damage = 1;
-                this.Armor = 5;
-                this.EvadeChance = 10;
-                this.AbilityCooldown = 8;
+                this.Armor = 8;
+                this.EvadeChance = 5;
+                this.AbilityCooldown = 20;
             }
         }
 

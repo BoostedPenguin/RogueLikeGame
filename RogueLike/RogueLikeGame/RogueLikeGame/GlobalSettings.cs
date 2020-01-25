@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace RogueLikeGame
 {
@@ -20,7 +21,36 @@ namespace RogueLikeGame
 
         public static bool isInFight = false;               //If the user is currently in fight
 
+        #region MusicSettings
+        public static bool musicOn = false;
+        public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
+        public static void SoundToggle()
+        {
+            if(musicOn)
+            {
+                sound.Stop();
+                musicOn = false;
+            }
+            else
+            {
+                sound.PlayLooping();
+                musicOn = true;
+            }
+        }
 
+        public static void ChangeSoundImage(Button btn)
+        {
+            if(musicOn)
+            {
+                btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicDisable;
+            }
+            else
+            {
+                btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicEnable;
+            }
+        }
+        
+        #endregion
 
         #region LootChance
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance

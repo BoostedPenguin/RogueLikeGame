@@ -20,26 +20,38 @@ namespace RogueLikeGame
             InitializeComponent();
             this.name = name;
             this.userForm = userform;
+            GlobalSettings.ChangeSoundImage(btnMusic);
         }
 
         private void btnChoose_Click(object sender, EventArgs e)
         {
             if(rbtBerserker.Checked)                                    //This part was used for testing only: FINAL CHANGES SHOULD BE MADE!
             {
-                Characters character = new Characters(Chars.Berserker); //Creates a new character based on userinput
-                UserSettings userSettings = new UserSettings(name, character); //ALWAYS pass this <- holds all USER related information
-                gui = new MainGUI(userSettings, this, userForm);
-                this.Hide();
-                gui.Show();
+                OnCharacterSelection(Chars.Berserker);
             }
             else if(rbtGhost.Checked)
             {
-
+                OnCharacterSelection(Chars.Ghost);
             }
             else if(rbtGodKnight.Checked)
             {
-
+                OnCharacterSelection(Chars.GodKnight);
             }
+        }
+
+        private void OnCharacterSelection(Chars type)
+        {
+            Characters character = new Characters(type); //Creates a new character based on userinput
+            UserSettings userSettings = new UserSettings(name, character); //ALWAYS pass this <- holds all USER related information
+            gui = new MainGUI(userSettings, this, userForm);
+            this.Hide();
+            gui.Show();
+        }
+
+        private void BtnMusic_Click(object sender, EventArgs e)
+        {
+            GlobalSettings.SoundToggle();
+            GlobalSettings.ChangeSoundImage((Button)sender);
         }
     }
 }

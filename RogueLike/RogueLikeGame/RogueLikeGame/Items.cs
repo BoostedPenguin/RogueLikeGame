@@ -61,27 +61,15 @@ namespace RogueLikeGame
         public static void AddAllMobs()  //CHANGE this if you want to alter STATS
         {
                          //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth
-            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40));
-            allMobs.Add(new Mobs(MobTypes.RAT, 1, 15, 10, 50));
-            allMobs.Add(new Mobs(MobTypes.SHADOW, 1, 25, 10, 40));
-            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 1, 10, 15, 50));
+            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40, 25));
+            allMobs.Add(new Mobs(MobTypes.RAT, 20, 15, 10, 50, 25));
+            allMobs.Add(new Mobs(MobTypes.SHADOW, 20, 25, 10, 40, 25));
+            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 20, 10, 15, 50, 25));
         }
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE
         {
             return allMobs.FirstOrDefault(x => x.type == types);
-        }
-
-        public static int ReturnMobEvChance(MobTypes types) //Return the OBJECT'S evadechance based on its TYPE
-        {
-            foreach(Mobs a in allMobs)
-            {
-                if(a.type == types)
-                {
-                    return a.evadeChance;
-                }
-            }
-            return -1;
         }
     }
 }

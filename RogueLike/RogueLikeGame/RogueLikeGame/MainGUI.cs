@@ -25,6 +25,8 @@ namespace RogueLikeGame
         bool userAttack = false; //If it's the users turn to attack
 
         bool firstSequence = true;
+        bool secondSequence = false;
+
         bool firstButtonPressed = false;
         bool secondButtonPressed = false;
         bool thirdButtonPressed = false;
@@ -37,89 +39,93 @@ namespace RogueLikeGame
             this.userForm = form;
             this.Height = 285;
             this.Width = 580;
+            GlobalSettings.ChangeSoundImage(btnMusic);
             FirstSequence();
         }
 
         #region IntroConcept
         private void FirstSequence()
         {
-            switch(choice)
+            if (firstSequence)
             {
-                case 0:
-                    StartNarrative();
-                    ResetButtons();
-                    break;
-                case 1:
-                    ContinueNarrative();
-                    ResetButtons();
-                    break;
-                case 2:
-                    ContinueNarrative2();
-                    UpdatePlayerStatistics();
-                    ResetButtons();
-                    break;
-                case 3:
-                    FirstChoiceNarrative();
-                    UpdateItemsList();
-                    ResetButtons();
-                    break;
-                case 4:
-                    if(firstButtonPressed)
-                    {
-                        tbxNarrative.Text = TextNarrative.FirstChoiceA;
-                        this.Width = 1050;
-                        gpxItems.Visible = true;
-                        gpxItems.Enabled = false;
-                        btnOptionA.Text = "Continue";
-                        btnOptionB.Enabled = false;
-                        btnOptionC.Enabled = false;
-                    }
-                    else if(secondButtonPressed)
-                    {
-                        tbxNarrative.Text = TextNarrative.FirstChoiceB;
-                        choice--;
-                    }
-                    else if(thirdButtonPressed)
-                    {
-                        tbxNarrative.Text = TextNarrative.FirstChoiceC;
-                        user.userName = "Pussy";
-                        choice--;
-                    }
-                    ResetButtons();
-                    break;
-                case 5:
-                    SecondChoiceNarraitve();
-                    ResetButtons();
-                    break;
-                case 6:
-                    if(firstButtonPressed)
-                    {
-                        gpxItems.Enabled = true;
-                        tbxNarrative.Text = TextNarrative.SecondChoiceA;
-                        gpxFight.Visible = true;
-
-                        btnUseItem.Enabled = false;
-                        btnHealthPot.Enabled = false;
-                        btnPoisonPot.Enabled = false;
-                        btnAbility.Enabled = false;
-
-                        currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
-                        btnOptionB.Enabled = false;
-                        btnOptionA.Enabled = false;
-                    }
-                    else if(secondButtonPressed)
-                    {
-                        gpxItems.Enabled = true;
-                        tbxNarrative.Text = TextNarrative.SecondChoiceB;
-                        user.CurrentHealth -= 10;
+                switch (choice)
+                {
+                    case 0:
+                        StartNarrative();
+                        ResetButtons();
+                        break;
+                    case 1:
+                        ContinueNarrative();
+                        ResetButtons();
+                        break;
+                    case 2:
+                        ContinueNarrative2();
                         UpdatePlayerStatistics();
-                        gpxFight.Visible = true;
-                        currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
-                        btnOptionB.Enabled = false;
-                        btnOptionA.Enabled = false;
-                    }
-                    ResetButtons();
-                    break;
+                        ResetButtons();
+                        break;
+                    case 3:
+                        FirstChoiceNarrative();
+                        UpdateItemsList();
+                        ResetButtons();
+                        break;
+                    case 4:
+                        if (firstButtonPressed)
+                        {
+                            tbxNarrative.Text = TextNarrative.FirstChoiceA;
+                            this.Width = 1050;
+                            gpxItems.Visible = true;
+                            gpxItems.Enabled = false;
+                            btnOptionA.Text = "Continue";
+                            btnOptionB.Enabled = false;
+                            btnOptionC.Enabled = false;
+                        }
+                        else if (secondButtonPressed)
+                        {
+                            tbxNarrative.Text = TextNarrative.FirstChoiceB;
+                            choice--;
+                        }
+                        else if (thirdButtonPressed)
+                        {
+                            tbxNarrative.Text = TextNarrative.FirstChoiceC;
+                            user.userName = "Pussy";
+                            choice--;
+                        }
+                        ResetButtons();
+                        break;
+                    case 5:
+                        SecondChoiceNarraitve();
+                        ResetButtons();
+                        break;
+                    case 6:
+                        if (firstButtonPressed)
+                        {
+                            gpxItems.Enabled = true;
+                            tbxNarrative.Text = TextNarrative.SecondChoiceA;
+                            gpxFight.Visible = true;
+
+                            btnUseItem.Enabled = false;
+                            btnHealthPot.Enabled = false;
+                            btnPoisonPot.Enabled = false;
+                            btnAbility.Enabled = false;
+
+                            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+                            btnOptionB.Enabled = false;
+                            btnOptionA.Enabled = false;
+                        }
+                        else if (secondButtonPressed)
+                        {
+                            gpxItems.Enabled = true;
+                            tbxNarrative.Text = TextNarrative.SecondChoiceB;
+                            user.CurrentHealth -= 10;
+                            UpdatePlayerStatistics();
+                            gpxFight.Visible = true;
+                            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+                            btnOptionB.Enabled = false;
+                            btnOptionA.Enabled = false;
+                        }
+                        ResetButtons();
+                        break;
+                }
             }
         }
 
@@ -170,6 +176,27 @@ namespace RogueLikeGame
             btnOptionB.Enabled = true;
             btnOptionC.Enabled = false;
         }
+
+        private void SecondSequence()
+        {
+            if (secondSequence)
+            {
+                switch (choice)
+                {
+                    case 0:
+                        tbxNarrative.Text = TextNarrative.SecondChoiceSuccess;
+                        btnOptionA.Enabled = true;
+                        btnOptionA.Text = "Continue";
+                        break;
+                    case 1:
+                        tbxNarrative.Text = TextNarrative.SecondChoiceSuccess2;
+                        btnOptionA.Enabled = false;
+                        btnAbility.Visible = true;
+                        break;
+                }
+            }
+        }
+
         #endregion 
 
         private void btnOptionA_Click(object sender, EventArgs e)
@@ -177,6 +204,7 @@ namespace RogueLikeGame
             choice++;
             firstButtonPressed = true;
             FirstSequence();
+            SecondSequence();
         }
 
         private void btnOptionB_Click(object sender, EventArgs e)
@@ -184,6 +212,7 @@ namespace RogueLikeGame
             choice++;
             secondButtonPressed = true;
             FirstSequence();
+            SecondSequence();
         }
 
         private void btnOptionC_Click(object sender, EventArgs e)
@@ -191,6 +220,7 @@ namespace RogueLikeGame
             choice++;
             thirdButtonPressed = true;
             FirstSequence();
+            SecondSequence();
         }
 
         //REMOVE WHEN YOU'RE DONE WITH THE WHOLE APPLICATION 
@@ -253,6 +283,15 @@ namespace RogueLikeGame
                 lblTurn.Text = $"Player turn";
             }
 
+            if(MobFight.currentRoundOfBuff > 0)
+            {
+                lblBuff.Text = "Healed Sucessfully";
+            }
+            else
+            {
+                lblBuff.Text = "";
+            }
+
             if(MobFight.currentRoundOfDebuff > 0)
             {
                 lblDebuff.Text = currentMob.debuffString;
@@ -262,6 +301,7 @@ namespace RogueLikeGame
                 lblDebuff.Text = $"";
             }
         }
+
         private void StartFight()           //The fight mechanics
         {
             if (roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
@@ -330,7 +370,11 @@ namespace RogueLikeGame
             Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
             if(firstSequence)
             {
+                btnOptionA.Enabled = true;
+                btnOptionA.Text = "Continue";
                 firstSequence = false;
+                secondSequence = true;
+                choice = -1;
             }
         }
 
@@ -473,6 +517,12 @@ namespace RogueLikeGame
                 }
                 UpdatePlayerStatistics();
             }
+        }
+
+        private void BtnMusic_Click(object sender, EventArgs e)
+        {
+            GlobalSettings.SoundToggle();
+            GlobalSettings.ChangeSoundImage((Button)sender);
         }
     }
 }

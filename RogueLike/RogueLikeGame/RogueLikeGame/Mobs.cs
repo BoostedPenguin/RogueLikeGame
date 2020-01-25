@@ -21,9 +21,10 @@ namespace RogueLikeGame
         public double maxHealth { get; set; }          //The MAX HEALTH
         public int evadeChance { get; set; }        //The TOTAL evade chance
         public int abilityChance { get; set; }      //Chance of an ability to happen
+        public int spawnChance { get; set; }
         public string debuffString { get; set; }
 
-        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health)
+        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance)
         {
             this.type = type;
             this.evadeChance = evadeChance;
@@ -31,6 +32,7 @@ namespace RogueLikeGame
             this.abilityChance = abilityChance;
             this.health = health;
             this.maxHealth = health;
+            this.spawnChance = spawnChance;
         }
 
         //Call this whenever you want a spider to attack instead of DAMAGE
@@ -77,7 +79,7 @@ namespace RogueLikeGame
 
                 case MobTypes.RAT:  //Amount of damage per round
                     user.currentHealth -= 2;
-                    this.debuffString = $"Poisoned for {2} damage";
+                    this.debuffString = $"Poisoned for {2} da   mage";
                     return debuffString;
 
                 case MobTypes.SHADOW:

@@ -13,23 +13,18 @@ namespace RogueLikeGame
 
         public static MobTypes EnemyRandomizer()
         {
-            int mr = r.Next(0, 100);
-            if(mr < 25)
+            int totalProbability = Items.allMobs.Sum(t => t.spawnChance);
+            int mr = r.Next(0, totalProbability);
+
+            foreach (Mobs a in Items.allMobs)
             {
-                return MobTypes.SPIDER;
+                if(mr < a.spawnChance)
+                {
+                    return a.type;
+                }
+                mr -= a.spawnChance;
             }
-            else if(25 <= mr && mr < 50)
-            {
-                return MobTypes.RAT;
-            }
-            else if(50 <= mr && mr < 75)
-            {
-                return MobTypes.SHADOW;
-            }
-            else
-            {
-                return MobTypes.ZOMBIE;
-            }
+            return MobTypes.RAT;
         }
 
         //If the OBJECT manages to evade an attack

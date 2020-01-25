@@ -42,12 +42,12 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(363, 321);
             this.label1.TabIndex = 0;
-            this.label1.Text = "\rWelcome to the world of <Name>\r\rPlease enter your name:";
+            this.label1.Text = "\rWelcome to the world of Hellsgate.\r\rPlease enter your name:";
             // 
             // tbxName
             // 
             this.tbxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxName.Location = new System.Drawing.Point(92, 364);
+            this.tbxName.Location = new System.Drawing.Point(91, 362);
             this.tbxName.Margin = new System.Windows.Forms.Padding(4);
             this.tbxName.Multiline = true;
             this.tbxName.Name = "tbxName";
@@ -58,7 +58,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(156, 437);
+            this.btnStart.Location = new System.Drawing.Point(162, 434);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(185, 71);
@@ -96,7 +96,6 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

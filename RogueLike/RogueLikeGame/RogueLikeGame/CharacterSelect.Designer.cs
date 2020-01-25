@@ -35,6 +35,7 @@
             this.rbtGhost = new System.Windows.Forms.RadioButton();
             this.rbtGodKnight = new System.Windows.Forms.RadioButton();
             this.btnChoose = new System.Windows.Forms.Button();
+            this.btnMusic = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +81,7 @@
             // 
             this.rbtBerserker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtBerserker.Location = new System.Drawing.Point(184, 436);
-            this.rbtBerserker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtBerserker.Margin = new System.Windows.Forms.Padding(4);
             this.rbtBerserker.Name = "rbtBerserker";
             this.rbtBerserker.Size = new System.Drawing.Size(19, 16);
             this.rbtBerserker.TabIndex = 1;
@@ -91,7 +92,7 @@
             // 
             this.rbtGhost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtGhost.Location = new System.Drawing.Point(551, 436);
-            this.rbtGhost.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtGhost.Margin = new System.Windows.Forms.Padding(4);
             this.rbtGhost.Name = "rbtGhost";
             this.rbtGhost.Size = new System.Drawing.Size(19, 16);
             this.rbtGhost.TabIndex = 2;
@@ -102,7 +103,7 @@
             // 
             this.rbtGodKnight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtGodKnight.Location = new System.Drawing.Point(917, 436);
-            this.rbtGodKnight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbtGodKnight.Margin = new System.Windows.Forms.Padding(4);
             this.rbtGodKnight.Name = "rbtGodKnight";
             this.rbtGodKnight.Size = new System.Drawing.Size(19, 16);
             this.rbtGodKnight.TabIndex = 3;
@@ -113,7 +114,7 @@
             // 
             this.btnChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChoose.Location = new System.Drawing.Point(425, 466);
-            this.btnChoose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChoose.Margin = new System.Windows.Forms.Padding(4);
             this.btnChoose.Name = "btnChoose";
             this.btnChoose.Size = new System.Drawing.Size(273, 73);
             this.btnChoose.TabIndex = 4;
@@ -121,11 +122,29 @@
             this.btnChoose.UseVisualStyleBackColor = true;
             this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
             // 
+            // btnMusic
+            // 
+            this.btnMusic.BackColor = System.Drawing.Color.Orchid;
+            this.btnMusic.BackgroundImage = global::RogueLikeGame.Properties.Resources.musicEnable;
+            this.btnMusic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnMusic.FlatAppearance.BorderColor = System.Drawing.Color.Purple;
+            this.btnMusic.FlatAppearance.BorderSize = 2;
+            this.btnMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnMusic.Location = new System.Drawing.Point(1050, 11);
+            this.btnMusic.Margin = new System.Windows.Forms.Padding(4);
+            this.btnMusic.Name = "btnMusic";
+            this.btnMusic.Size = new System.Drawing.Size(65, 56);
+            this.btnMusic.TabIndex = 5;
+            this.btnMusic.UseVisualStyleBackColor = false;
+            this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
+            // 
             // CharacterSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 554);
+            this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.btnChoose);
             this.Controls.Add(this.rbtGodKnight);
             this.Controls.Add(this.rbtGhost);
@@ -133,7 +152,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CharacterSelect";
             this.Text = "CharacterSelect";
             this.ResumeLayout(false);
@@ -149,5 +168,6 @@
         private System.Windows.Forms.RadioButton rbtGhost;
         private System.Windows.Forms.RadioButton rbtGodKnight;
         private System.Windows.Forms.Button btnChoose;
+        private System.Windows.Forms.Button btnMusic;
     }
 }
