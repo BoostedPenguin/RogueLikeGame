@@ -429,9 +429,11 @@ namespace RogueLikeGame
                 btnUseItem.Enabled = true;
                 btnPoisonPot.Enabled = true;
                 btnHealthPot.Enabled = true;
+                btnFlee.Enabled = true;
             }
             else
             {
+                btnFlee.Enabled = false;
                 btnAbility.Enabled = false;
                 btnUseItem.Enabled = false;
                 btnPoisonPot.Enabled = false;
@@ -524,6 +526,28 @@ namespace RogueLikeGame
         {
             GlobalSettings.SoundToggle();
             GlobalSettings.ChangeSoundImage((Button)sender);
+        }
+
+        private void btnFlee_Click(object sender, EventArgs e)
+        {
+            string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
+            if (checkIfFled == null)
+            {
+                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.type}");
+                roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
+            }
+            else
+            {
+                lbxCombatLog.Items.Add(checkIfFled);
+                if (user.currentHealth <= 0)
+                {
+                    OnPlayerDeath();
+                }
+                UpdatePlayerStatistics();
+            }
+            userAttack = !userAttack;
+            DisableIO();
+
         }
     }
 }

@@ -49,8 +49,9 @@
             this.gpxFight = new System.Windows.Forms.GroupBox();
             this.lblTurn = new System.Windows.Forms.Label();
             this.gpxItems = new System.Windows.Forms.GroupBox();
-            this.btnMusic = new System.Windows.Forms.Button();
             this.lblBuff = new System.Windows.Forms.Label();
+            this.btnMusic = new System.Windows.Forms.Button();
+            this.btnFlee = new System.Windows.Forms.Button();
             this.gpxFight.SuspendLayout();
             this.gpxItems.SuspendLayout();
             this.SuspendLayout();
@@ -277,6 +278,7 @@
             // 
             // gpxItems
             // 
+            this.gpxItems.Controls.Add(this.btnFlee);
             this.gpxItems.Controls.Add(this.lblBuff);
             this.gpxItems.Controls.Add(this.lbxCurrentItems);
             this.gpxItems.Controls.Add(this.btnUseItem);
@@ -295,6 +297,17 @@
             this.gpxItems.Text = "gpxItems";
             this.gpxItems.Visible = false;
             // 
+            // lblBuff
+            // 
+            this.lblBuff.AutoSize = true;
+            this.lblBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblBuff.Location = new System.Drawing.Point(7, 76);
+            this.lblBuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBuff.Name = "lblBuff";
+            this.lblBuff.Size = new System.Drawing.Size(223, 25);
+            this.lblBuff.TabIndex = 19;
+            this.lblBuff.Text = "Buff rounds remaining: 0";
+            // 
             // btnMusic
             // 
             this.btnMusic.BackColor = System.Drawing.Color.Orchid;
@@ -312,16 +325,16 @@
             this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
             // 
-            // lblBuff
+            // btnFlee
             // 
-            this.lblBuff.AutoSize = true;
-            this.lblBuff.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblBuff.Location = new System.Drawing.Point(7, 76);
-            this.lblBuff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBuff.Name = "lblBuff";
-            this.lblBuff.Size = new System.Drawing.Size(223, 25);
-            this.lblBuff.TabIndex = 19;
-            this.lblBuff.Text = "Buff rounds remaining: 0";
+            this.btnFlee.Location = new System.Drawing.Point(144, 252);
+            this.btnFlee.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFlee.Name = "btnFlee";
+            this.btnFlee.Size = new System.Drawing.Size(125, 38);
+            this.btnFlee.TabIndex = 21;
+            this.btnFlee.Text = "Flee Fight";
+            this.btnFlee.UseVisualStyleBackColor = true;
+            this.btnFlee.Click += new System.EventHandler(this.btnFlee_Click);
             // 
             // MainGUI
             // 
@@ -375,5 +388,6 @@
         private System.Windows.Forms.Label lblTurn;
         private System.Windows.Forms.Button btnMusic;
         private System.Windows.Forms.Label lblBuff;
+        private System.Windows.Forms.Button btnFlee;
     }
 }

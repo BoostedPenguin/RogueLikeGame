@@ -11,6 +11,22 @@ namespace RogueLikeGame
         static Random r = new Random();
 
 
+        public static int OnPlayerFleeRandomizer(UserSettings user, Mobs mob)
+        {
+            int escapeChance = r.Next(0, 100);
+            if(escapeChance > 70) //30% chance to flee the attack
+            {
+                return -1;
+            }
+            else
+            {
+                //Deals damage on failed flee attemp - random between 0 and the player maxHealth
+                int receiveDamage = r.Next(0, (int)user.maxHealth);
+                user.CurrentHealth -= receiveDamage;
+                return receiveDamage;
+            }
+        }
+
         public static MobTypes EnemyRandomizer()
         {
             int totalProbability = Items.allMobs.Sum(t => t.spawnChance);

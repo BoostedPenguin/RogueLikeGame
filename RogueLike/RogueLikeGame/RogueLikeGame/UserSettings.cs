@@ -63,6 +63,10 @@ namespace RogueLikeGame
                 {
                     this.currentHealth = maxHealth;
                 }
+                else if(value < 0)
+                {
+                    this.currentHealth = 0;
+                }
                 else
                 {
                     this.currentHealth = value;
@@ -103,24 +107,6 @@ namespace RogueLikeGame
             return (this.characterArmor + this.currentArmor.ItemArmor) * GlobalSettings.characterArmorMultiplier;
         }
 
-
-        public double Ability() //Returns key || Does the ability for you. Berserker ability works
-        {
-            if (this.CharacterName == Chars.Berserker)
-            {
-                return 3; 
-            }
-            else if(this.CharacterName == Chars.Ghost)
-            {
-                this.currentHealth = maxHealth / 2;
-                return -2.5;
-            }
-            else
-            {
-                return 1320;
-            }
-        }
-
         public string GodKnightAbility()
         {
             if(MobFight.currentRoundOfBuff > 0)
@@ -137,5 +123,6 @@ namespace RogueLikeGame
             currentAbilityCooldown = 0;
             return damage;
         }
+
     }
 }

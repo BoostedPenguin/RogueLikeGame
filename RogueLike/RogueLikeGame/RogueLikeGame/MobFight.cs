@@ -172,23 +172,6 @@ namespace RogueLikeGame
             }
         }
 
-        private static double BererkerAbility(UserSettings user, double damage)
-        {
-            damage *= user.Ability();
-            user.currentAbilityCooldown = 0;
-            return damage;
-        }
-        private static string GodKnightAbility(UserSettings user)
-        {
-
-            if(currentRoundOfBuff > 0)
-            {
-                user.CurrentHealth += 8; //amount of health that should be added
-                currentRoundOfBuff--;
-            }
-            return $"{user.userName} healed for 8 health";
-        }
-
         public static string PotionUse(Potions pot, UserSettings user, Mobs mob)
         {
             if(pot.IsHealthPotion)
@@ -251,6 +234,19 @@ namespace RogueLikeGame
                 }
             }
             return false;
+        }
+
+        public static string OnPlayerFlee(UserSettings user, Mobs mob)
+        {
+            int receivedDamage = Randomizer.OnPlayerFleeRandomizer(user, mob);
+            if (receivedDamage == -1) //Sucessfuly fled
+            {
+                return null;
+            }
+            else
+            {
+                return $"Unsucessfully fled {mob.type}. You received {receivedDamage} damage";
+            }
         }
     }
 }
