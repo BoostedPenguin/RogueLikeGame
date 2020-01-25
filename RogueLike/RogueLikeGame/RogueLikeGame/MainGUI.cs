@@ -415,6 +415,7 @@ namespace RogueLikeGame
 
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
+
             if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && roundCounter != 0)
             {
                 btnAbility.Enabled = true;

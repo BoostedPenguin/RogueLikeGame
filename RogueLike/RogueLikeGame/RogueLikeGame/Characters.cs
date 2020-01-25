@@ -35,7 +35,7 @@ namespace RogueLikeGame
                 this.Damage = 1.5;
                 this.Armor = 5;
                 this.EvadeChance = 10;
-                this.AbilityCooldown = 5;
+                this.AbilityCooldown = 5; //How many PLAYER ROUNDS it takes for it to refresh
             }
             else if(Chars.Ghost == characterName)
             {

@@ -120,5 +120,22 @@ namespace RogueLikeGame
                 return 1320;
             }
         }
+
+        public string GodKnightAbility()
+        {
+            if(MobFight.currentRoundOfBuff > 0)
+            {
+                this.CurrentHealth += 8;
+                MobFight.currentRoundOfBuff--;
+            }
+            return $"{this.userName} healed for {8} health";
+        }
+
+        public double BerserkerAbility(double damage)
+        {
+            damage *= 3; //Change this to determine the amount of damage you want it to do;
+            currentAbilityCooldown = 0;
+            return damage;
+        }
     }
 }

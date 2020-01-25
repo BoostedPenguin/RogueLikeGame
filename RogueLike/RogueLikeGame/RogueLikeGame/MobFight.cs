@@ -128,7 +128,7 @@ namespace RogueLikeGame
                     case Chars.Ghost:
                         break;
                     case Chars.GodKnight:
-                        GodKnightAbility(user);
+                        user.GodKnightAbility();
                         break;
                 }
             }
@@ -143,7 +143,7 @@ namespace RogueLikeGame
                     switch(user.CharacterName)
                     {
                         case Chars.Berserker:
-                            damage = BererkerAbility(user, damage);
+                            damage = user.BerserkerAbility(damage);
                             returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.type.ToString()}";
                             break;
 
@@ -151,8 +151,9 @@ namespace RogueLikeGame
                             break;
 
                         case Chars.GodKnight:
+                            user.currentAbilityCooldown = 0;
                             currentRoundOfBuff = 5;
-                            returnInfo = GodKnightAbility(user);
+                            returnInfo = user.GodKnightAbility();
                             break;
                     }
                 }
