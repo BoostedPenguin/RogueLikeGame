@@ -14,6 +14,7 @@ namespace RogueLikeGame
     public partial class Form1 : Form
     {
         public Form1 mainForm;
+        CharacterSelect cs;
         public Form1()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace RogueLikeGame
             if(!string.IsNullOrWhiteSpace(tbxName.Text))
             {
                 GlobalSettings.startGame = true;                //Use this to check if a new game has started & change when needed!
-                CharacterSelect cs = new CharacterSelect(tbxName.Text, this);
+                cs = new CharacterSelect(tbxName.Text, this);
                 this.Hide();
                 cs.Show();
             }

@@ -20,7 +20,7 @@ namespace RogueLikeGame
 
 
         int choice = 0; //1 firstbutton 2secondbutton 3thirdbutton
-        int roundCounter = 0; //Stores the rounds that have passed since the fight started
+        //int roundCounter = 0; //Stores the rounds that have passed since the fight started
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
 
@@ -197,8 +197,6 @@ namespace RogueLikeGame
             }
         }
 
-        #endregion 
-
         private void btnOptionA_Click(object sender, EventArgs e)
         {
             choice++;
@@ -223,11 +221,13 @@ namespace RogueLikeGame
             SecondSequence();
         }
 
+        #endregion
+
         //REMOVE WHEN YOU'RE DONE WITH THE WHOLE APPLICATION 
         private void BtnTemporary_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
-            if (roundCounter > 0)
+            if (GlobalSettings.roundCounter > 0)
             {
                 userAttack = !userAttack;
             }
@@ -271,7 +271,7 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()}";
+            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(userAttack)
@@ -304,26 +304,27 @@ namespace RogueLikeGame
 
         private void StartFight()           //The fight mechanics
         {
-            if (roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
+            if (GlobalSettings.roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
             {
                 currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());
                 userAttack = false; //To ensure that the user will always hit first
             }
 
-            if (currentMob.health > 0 && roundCounter == 0)                     //On start of fight - Check if it's the first round
+            if (currentMob.health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
             {
                 lbxCombatLog.Items.Clear();
                 UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
-                roundCounter++;
+                GlobalSettings.roundCounter++;
                 lbxCombatLog.Items.Add(MobFight.TBStartFight(currentMob, user)); //On start of fight events
                 UpdateAbilityButton();                                           //Checks if you're ability is on CD;
                 lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
             }
-            else if(currentMob.health > 0 && roundCounter != 0)                                //Actual fight <- if it ain't the first round
+            else if(currentMob.health > 0 && GlobalSettings.roundCounter != 0)                                //Actual fight <- if it ain't the first round
             {
-                if(userAttack)
+                GlobalSettings.roundCounter++;
+                if (userAttack)
                 {
-                    lbxCombatLog.Items.Add(MobFight.OnPlayerHit(roundCounter, user, currentMob, ability)); //On player hit
+                    lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, ability)); //On player hit
                 }
                 else
                 {
@@ -331,7 +332,6 @@ namespace RogueLikeGame
                 }
                 UpdateProgressbar();
                 lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-                roundCounter++;
                 if (user.currentHealth <= 0) //On Player death 
                 {
                     OnPlayerDeath();
@@ -350,23 +350,32 @@ namespace RogueLikeGame
 
         private void OnPlayerDeath()        //If the user dies
         {
-            GlobalSettings.startGame = false;
-            DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine} Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
-            if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
+            if (user.secondChance <= 0)         //If the user doesn't have a secondchance
             {
-                userForm.Show();
-                this.Dispose();             //Removes this form from the memory
+                GlobalSettings.startGame = false;
+                DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine} Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
+                if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
+                {
+                    userForm.Show();
+                    this.Dispose();             //Removes this form from the memory
+                }
+                else
+                {
+                    userForm.Close();
+                }
             }
             else
             {
-                userForm.Close();
+                user.secondChance--;
+                user.currentHealth = user.maxHealth / 2;
+                MessageBox.Show("You had a second chance - sucessfully revived");
             }
         }
         private void OnEnemyDeath()     //If the enemy dies
         {
-            MessageBox.Show(MobFight.DeathOfEnemy(roundCounter, user, currentMob)); //Calls event of enemy death
+            MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob)); //Calls event of enemy death
             UpdateProgressbar();
-            roundCounter = 0;
+            GlobalSettings.roundCounter = 0;
             Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
             if(firstSequence)
             {
@@ -380,7 +389,7 @@ namespace RogueLikeGame
 
         private void UpdateProgressbar()    //Updates enemy healthbar
         {
-            if (roundCounter == 0)          //On first round
+            if (GlobalSettings.roundCounter == 0)          //On first round
             {
                 lblMobHealth.Text = $"{currentMob.type.ToString()}: {currentMob.maxHealth}/{currentMob.maxHealth}";
                 prbEnemyHealth.Maximum = (int)currentMob.maxHealth;
@@ -416,7 +425,7 @@ namespace RogueLikeGame
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
 
-            if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && roundCounter != 0)
+            if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
             {
                 btnAbility.Enabled = true;
             }
@@ -534,7 +543,7 @@ namespace RogueLikeGame
             if (checkIfFled == null)
             {
                 lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.type}");
-                roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
+                GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
             }
             else
             {

@@ -19,7 +19,9 @@ namespace RogueLikeGame
         public static int characterDamageMultiplier = 1;    //Character damage is calculated: (base * items) * multiplier = amount dealt
         public static Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
 
-        public static bool isInFight = false;               //If the user is currently in fight
+        #region MobFight
+        public static int roundCounter = 0;
+        #endregion
 
         #region MusicSettings
         public static bool musicOn = false;

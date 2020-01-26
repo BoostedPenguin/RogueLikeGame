@@ -11,7 +11,7 @@ namespace RogueLikeGame
         static Random r = new Random();
 
 
-        public static int OnPlayerFleeRandomizer(UserSettings user, Mobs mob)
+        public static int OnPlayerFleeRandomizer(UserSettings user)
         {
             int escapeChance = r.Next(0, 100);
             if(escapeChance > 70) //30% chance to flee the attack

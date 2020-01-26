@@ -24,6 +24,7 @@ namespace RogueLikeGame
         public int abilityCooldown;     	//Changed by pickup_character selection
         public int currentAbilityCooldown; //Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
         public double debuff;
+        public int secondChance;
 
         //Check for armor and weapon values != null
         //When actually trying to inflict or receive damage
@@ -52,6 +53,7 @@ namespace RogueLikeGame
             this.characterEvadeChance = character.EvadeChance;
             this.currentHealth = this.maxHealth;
             this.debuff = 1;
+            this.secondChance = character.secondChance;
         }
 
         public double CurrentHealth
@@ -123,6 +125,5 @@ namespace RogueLikeGame
             currentAbilityCooldown = 0;
             return damage;
         }
-
     }
 }

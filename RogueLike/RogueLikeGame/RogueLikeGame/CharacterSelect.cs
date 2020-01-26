@@ -53,5 +53,10 @@ namespace RogueLikeGame
             GlobalSettings.SoundToggle();
             GlobalSettings.ChangeSoundImage((Button)sender);
         }
+
+        private void CharacterSelect_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            GlobalSettings.OnApplicationExit(e);
+        }
     }
 }

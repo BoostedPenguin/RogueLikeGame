@@ -22,7 +22,7 @@ namespace RogueLikeGame
         public int AbilityCooldown { get; set; } //The ability cooldown in TURNS
         public Weapons StartWeapon { get; set; } //The starting weapon given on start of game
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
-
+        public int secondChance { get; set; }
 
         public Characters(Chars characterName)   //If you want to change a character stats use this!
         {
@@ -36,6 +36,7 @@ namespace RogueLikeGame
                 this.Armor = 5;
                 this.EvadeChance = 10;
                 this.AbilityCooldown = 5; //How many PLAYER ROUNDS it takes for it to refresh
+                this.secondChance = 0;
             }
             else if(Chars.Ghost == characterName)
             {
@@ -47,6 +48,7 @@ namespace RogueLikeGame
                 this.Armor = 2;
                 this.EvadeChance = 20;
                 this.AbilityCooldown = 15;
+                this.secondChance = 1;
             }
             else if(Chars.GodKnight == characterName)
             {
@@ -58,6 +60,7 @@ namespace RogueLikeGame
                 this.Armor = 8;
                 this.EvadeChance = 5;
                 this.AbilityCooldown = 20;
+                this.secondChance = 0;
             }
         }
 

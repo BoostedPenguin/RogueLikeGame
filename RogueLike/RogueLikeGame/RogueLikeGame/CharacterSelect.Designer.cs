@@ -155,6 +155,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CharacterSelect";
             this.Text = "CharacterSelect";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CharacterSelect_FormClosing);
             this.ResumeLayout(false);
 
         }

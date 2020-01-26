@@ -117,7 +117,7 @@ namespace RogueLikeGame
             }
         }
 
-        public static string OnPlayerHit(int roundNr, UserSettings user, Mobs mob, bool ability)
+        public static string OnPlayerHit(UserSettings user, Mobs mob, bool ability)
         {
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
 
@@ -148,7 +148,9 @@ namespace RogueLikeGame
                             break;
 
                         case Chars.Ghost:
-                            break;
+                            GlobalSettings.roundCounter = 0;
+                            user.currentAbilityCooldown = 0;
+                            return $"{user.userName} used his ability and fled from {mob.type.ToString()}";
 
                         case Chars.GodKnight:
                             user.currentAbilityCooldown = 0;
@@ -192,7 +194,7 @@ namespace RogueLikeGame
             }
         }
 
-        public static string DeathOfEnemy(int roundNr, UserSettings user, Mobs mob) //On enemy death
+        public static string DeathOfEnemy(UserSettings user, Mobs mob) //On enemy death
         {
             string onKill = $"You managed to defeat {mob.type.ToString()}";
             switch (Randomizer.EnemyDeathLoot()) //Gives me 1 item or null, everytime this is called
@@ -238,7 +240,7 @@ namespace RogueLikeGame
 
         public static string OnPlayerFlee(UserSettings user, Mobs mob)
         {
-            int receivedDamage = Randomizer.OnPlayerFleeRandomizer(user, mob);
+            int receivedDamage = Randomizer.OnPlayerFleeRandomizer(user);
             if (receivedDamage == -1) //Sucessfuly fled
             {
                 return null;
