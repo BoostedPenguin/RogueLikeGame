@@ -8,6 +8,10 @@ namespace RogueLikeGame
 {
     public static class MobFight
     {
+        public static int currentRoundOfDebuff = 0;
+        public static int currentRoundOfBuff = 0;
+
+
         public static string TBStartFight(Mobs mob, UserSettings user) //On start of fight (First round)
         {
             int i;
@@ -66,9 +70,6 @@ namespace RogueLikeGame
                     return null;
             }
         }
-
-        public static int currentRoundOfDebuff = 0;
-        public static int currentRoundOfBuff = 0;
 
         public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
         {

@@ -9,19 +9,10 @@ namespace RogueLikeGame
     public static class Items
     {
         //Store all of the OBJECTS with their STATS and INFORMATION
-        //PASS only ONE object of this CLASS !
         public static List<Weapons> allWeapons = new List<Weapons>(); 
         public static List<Armor> allArmor = new List<Armor>();
         public static List<Potions> allPotions = new List<Potions>();
         public static List<Mobs> allMobs = new List<Mobs>();
-        
-        public static void Poppulate() //On start populate the lists ^
-        {
-            AddAllArmor();
-            AddAllWeapons();
-            AddAllPotions();
-            AddAllMobs();
-        }
 
         public static void RepopulateTheLists() //Repopulates the lists (on enemy death) <-Repopulate only allmobs maybe
         {

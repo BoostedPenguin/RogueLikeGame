@@ -71,24 +71,15 @@ namespace RogueLikeGame
                     case 4:
                         if (firstButtonPressed)
                         {
-                            tbxNarrative.Text = TextNarrative.FirstChoiceA;
-                            this.Width = 1050;
-                            gpxItems.Visible = true;
-                            gpxItems.Enabled = false;
-                            btnOptionA.Text = "Continue";
-                            btnOptionB.Enabled = false;
-                            btnOptionC.Enabled = false;
+                            FirstChoiceOptionA();
                         }
                         else if (secondButtonPressed)
                         {
-                            tbxNarrative.Text = TextNarrative.FirstChoiceB;
-                            choice--;
+                            FirstChoiceOptionB();
                         }
                         else if (thirdButtonPressed)
                         {
-                            tbxNarrative.Text = TextNarrative.FirstChoiceC;
-                            user.userName = "Pussy";
-                            choice--;
+                            FirstChoiceOptionC();
                         }
                         ResetButtons();
                         break;
@@ -99,29 +90,11 @@ namespace RogueLikeGame
                     case 6:
                         if (firstButtonPressed)
                         {
-                            gpxItems.Enabled = true;
-                            tbxNarrative.Text = TextNarrative.SecondChoiceA;
-                            gpxFight.Visible = true;
-
-                            btnUseItem.Enabled = false;
-                            btnHealthPot.Enabled = false;
-                            btnPoisonPot.Enabled = false;
-                            btnAbility.Enabled = false;
-
-                            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
-                            btnOptionB.Enabled = false;
-                            btnOptionA.Enabled = false;
+                            SecondChoiceOptionA();
                         }
                         else if (secondButtonPressed)
                         {
-                            gpxItems.Enabled = true;
-                            tbxNarrative.Text = TextNarrative.SecondChoiceB;
-                            user.CurrentHealth -= 10;
-                            UpdatePlayerStatistics();
-                            gpxFight.Visible = true;
-                            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
-                            btnOptionB.Enabled = false;
-                            btnOptionA.Enabled = false;
+                            SecondChoiceOptionB();
                         }
                         ResetButtons();
                         break;
@@ -168,6 +141,30 @@ namespace RogueLikeGame
             btnOptionC.Text = "Go back home";
         }
 
+        private void FirstChoiceOptionA()
+        {
+            tbxNarrative.Text = TextNarrative.FirstChoiceA;
+            this.Width = 1050;
+            gpxItems.Visible = true;
+            gpxItems.Enabled = false;
+            btnOptionA.Text = "Continue";
+            btnOptionB.Enabled = false;
+            btnOptionC.Enabled = false;
+        }
+
+        private void FirstChoiceOptionB()
+        {
+            tbxNarrative.Text = TextNarrative.FirstChoiceB;
+            choice--;
+        }
+
+        private void FirstChoiceOptionC()
+        {
+            tbxNarrative.Text = TextNarrative.FirstChoiceC;
+            user.userName = "Pussy";
+            choice--;
+        }
+
         private void SecondChoiceNarraitve()
         {
             tbxNarrative.Text = TextNarrative.SecondChoiceNarrative;
@@ -175,6 +172,34 @@ namespace RogueLikeGame
             btnOptionB.Text = "Pray";
             btnOptionB.Enabled = true;
             btnOptionC.Enabled = false;
+        }
+
+        private void SecondChoiceOptionA()
+        {
+            gpxItems.Enabled = true;
+            tbxNarrative.Text = TextNarrative.SecondChoiceA;
+            gpxFight.Visible = true;
+
+            btnUseItem.Enabled = false;
+            btnHealthPot.Enabled = false;
+            btnPoisonPot.Enabled = false;
+            btnAbility.Enabled = false;
+
+            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+            btnOptionB.Enabled = false;
+            btnOptionA.Enabled = false;
+        }
+
+        private void SecondChoiceOptionB()
+        {
+            gpxItems.Enabled = true;
+            tbxNarrative.Text = TextNarrative.SecondChoiceB;
+            user.CurrentHealth -= 10;
+            UpdatePlayerStatistics();
+            gpxFight.Visible = true;
+            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+            btnOptionB.Enabled = false;
+            btnOptionA.Enabled = false;
         }
 
         private void SecondSequence()
@@ -424,7 +449,6 @@ namespace RogueLikeGame
 
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
-
             if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
             {
                 btnAbility.Enabled = true;

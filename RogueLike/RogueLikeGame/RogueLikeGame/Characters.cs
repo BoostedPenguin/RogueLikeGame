@@ -12,6 +12,7 @@ namespace RogueLikeGame
         Ghost,
         GodKnight
     }
+
     public class Characters
     {
         public Chars CharacterName { get; set; } //The name > use to check & display

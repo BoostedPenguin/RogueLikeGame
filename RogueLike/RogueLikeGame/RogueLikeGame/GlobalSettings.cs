@@ -10,7 +10,7 @@ namespace RogueLikeGame
 {
     public static class GlobalSettings
     {
-        public static bool startGame = false;               //Starts the game whenever the player starts a new game OR dies and restarts
+        public static bool startGame = false;  //Useless    //Starts the game whenever the player starts a new game OR dies and restarts
         public static int globalEvadeChance = 1;            // Evade calculated: x * multiplier = evade_chance 
         public static int enemyDifficultyMultiplier = 1;    //Enemy dmg is calculated:   x * multiplier = dmg
         public static int characterHealthMultiplier = 1;    //Character health is calculated: x * multiplier = health
