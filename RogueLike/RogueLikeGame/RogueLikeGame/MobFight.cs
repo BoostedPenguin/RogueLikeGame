@@ -8,14 +8,14 @@ namespace RogueLikeGame
 {
     public static class MobFight
     {
-        public static int currentRoundOfDebuff = 0;
-        public static int currentRoundOfBuff = 0;
+        public static int currentRoundOfDebuff = 0;     //Debuff from enemy to player
+        public static int currentRoundOfBuff = 0;       //Debuff from player to player
 
 
         public static string TBStartFight(Mobs mob, UserSettings user) //On start of fight (First round)
         {
             int i;
-            switch (mob.type)
+            switch (mob.Type)
             {
                 case MobTypes.SPIDER: //If the enemy is a SPIDER
                     i = Randomizer.RandomizeText(3); //3 - amount of items to randomize
@@ -73,21 +73,21 @@ namespace RogueLikeGame
 
         public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
         {
-            string debuff = "";
+            string debuff = "";                             //Return string for information on current debuff
 
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
-                //Universal fight for every mob
-                double damage = mob.Attack();   //Total damage
+                double damage = mob.Attack();               //Total damage
 
-                if(currentRoundOfDebuff > 0) //Checks if the mob did an ability
+                if(currentRoundOfDebuff > 0)                //Checks if the mob did an active debuff on the player
                 {
                     debuff = mob.Ability(mob, user);
-                    if (debuff != null)
+
+                    if (debuff != null)                     //Will never be null
                     {
-                        currentRoundOfDebuff--;
+                        currentRoundOfDebuff--;             //1 less round for the remaining debuff
                     }
-                    if(currentRoundOfDebuff <= 0)
+                    if(currentRoundOfDebuff <= 0)           //If debuffs gets to 0 - reset the debuff
                     {
                         user.debuff = 1;
                     }
@@ -95,13 +95,14 @@ namespace RogueLikeGame
 
                 damage -= user.TotalArmor();            //Total received damage - counting armor
 
-                if (damage < 0)
+                if (damage < 0)                         //Return string
                 {
-                    return $"{user.userName} got hit by {mob.type.ToString()} for 0 damage. {debuff}";
+                    return $"{user.userName} got hit by {mob.Type.ToString()} for 0 damage. {debuff}";
                 }
 
                 user.currentHealth -= damage;           //Player hit
-                string returnInfo = $"{user.userName} got hit by {mob.type.ToString()} for {damage} damage. {debuff}";
+
+                string returnInfo = $"{user.userName} got hit by {mob.Type.ToString()} for {damage} damage. {debuff}";
                 //if (damage > mob.damage)                //On enemy crit hit
                 //{
                 //    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
@@ -112,9 +113,9 @@ namespace RogueLikeGame
             {
                 if(currentRoundOfDebuff > 0)
                 {
-                    return mob.Ability(mob, user) + user.currentHealth;
+                    return mob.Ability(mob, user);
                 }
-                return $"{user.userName} managed to evade {mob.type}'s attack!";
+                return $"{user.userName} managed to evade {mob.Type}'s attack!";
             }
         }
 
@@ -126,34 +127,34 @@ namespace RogueLikeGame
             {
                 switch (user.CharacterName)
                 {
-                    case Chars.Ghost:
+                    case GameCharacters.Ghost:
                         break;
-                    case Chars.GodKnight:
+                    case GameCharacters.GodKnight:
                         user.GodKnightAbility();
                         break;
                 }
             }
 
-            if (!Randomizer.Evade(mob.evadeChance) || ability == true) //If the mob DOESNT evade
+            if (!Randomizer.Evade(mob.EvadeChance) || ability == true) //If the mob DOESNT evade
             {
                 double damage = user.TotalDamage();
-                string returnInfo = $"{user.userName} dealt {damage} damage to {mob.type.ToString()}";
+                string returnInfo = $"{user.userName} dealt {damage} damage to {mob.Type.ToString()}";
 
                 if (ability)                        //If the user uses an ability
                 {
                     switch(user.CharacterName)
                     {
-                        case Chars.Berserker:
+                        case GameCharacters.Berserker:
                             damage = user.BerserkerAbility(damage);
-                            returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.type.ToString()}";
+                            returnInfo = $"{user.userName} used his ability and did {damage} damage to {mob.Type.ToString()}";
                             break;
 
-                        case Chars.Ghost:
+                        case GameCharacters.Ghost:
                             GlobalSettings.roundCounter = 0;
                             user.currentAbilityCooldown = 0;
-                            return $"{user.userName} used his ability and fled from {mob.type.ToString()}";
+                            return $"{user.userName} used his ability and fled from {mob.Type.ToString()}";
 
-                        case Chars.GodKnight:
+                        case GameCharacters.GodKnight:
                             user.currentAbilityCooldown = 0;
                             currentRoundOfBuff = 5;
                             returnInfo = user.GodKnightAbility();
@@ -161,17 +162,17 @@ namespace RogueLikeGame
                     }
                 }
 
-                mob.health -= damage;               //Deduct the enemy health
+                mob.Health -= damage;               //Deduct the enemy health
                 //If hit was critical
-                if (damage / user.characterDamage / GlobalSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
+                if (damage / user.Damage / GlobalSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
                 {
-                    returnInfo = $"{user.userName} dealt a critical hit for {damage} damage to {mob.type.ToString()}";
+                    returnInfo = $"{user.userName} dealt a critical hit for {damage} damage to {mob.Type.ToString()}";
                 }
                 return returnInfo;
             }
             else
             {
-                return $"{mob.type.ToString()} managed to evade your attack!";
+                return $"{mob.Type.ToString()} managed to evade your attack!";
             }
         }
 
@@ -187,9 +188,9 @@ namespace RogueLikeGame
             {
                 if(mob != null)
                 {
-                    mob.health -= pot.Damage;
+                    mob.Health -= pot.Damage;
                     user.potions.Remove(pot);
-                    return $"{user.userName} damaged {mob.type} for {pot.Damage} using a potion";
+                    return $"{user.userName} damaged {mob.Type} for {pot.Damage} using a potion";
                 }
                 return "";
             }
@@ -197,7 +198,7 @@ namespace RogueLikeGame
 
         public static string DeathOfEnemy(UserSettings user, Mobs mob) //On enemy death
         {
-            string onKill = $"You managed to defeat {mob.type.ToString()}";
+            string onKill = $"You managed to defeat {mob.Type.ToString()}";
             switch (Randomizer.EnemyDeathLoot()) //Gives me 1 item or null, everytime this is called
             {
                 case Weapons Weapon:
@@ -248,7 +249,7 @@ namespace RogueLikeGame
             }
             else
             {
-                return $"Unsucessfully fled {mob.type}. You received {receivedDamage} damage";
+                return $"Unsucessfully fled {mob.Type}. You received {receivedDamage} damage";
             }
         }
     }

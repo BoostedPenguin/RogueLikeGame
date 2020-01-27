@@ -6,54 +6,34 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    public class UserSettings
+    public class UserSettings : Characters
     {
-        public Chars CharacterName;
-        public string userName;             //Changed by user input
-        public Characters pickedCharacter;  //Changed by user input
-        public double maxHealth;               //Changed by picked_character selection
-        public double currentHealth;           //Changed by events
-        public int characterArmor;          //Changed by pickup_character selection || (character_armor + current_armor(armor)) * multiplier
-        public double characterDamage;         //Changed by pickup_character selection || (character_damage * current_weapon) * character_damage_multiplier
-        public int characterEvadeChance;      //Changed by pickup_character selection || (character_evade_chance + current_armor(evade_chance)) * multiplier
-        public List<Weapons> weapons;       //Stores all collected weapons
-        public List<Armor> armor;           //Stores all collected armor
-        public List<Potions> potions; 		//Stores all collected potions
-        public Weapons currentWeapon;       //Stores the equipped weapon
-        public Armor currentArmor;          //Stores the equipped armor
-        public int abilityCooldown;     	//Changed by pickup_character selection
-        public int currentAbilityCooldown; //Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
-        public double debuff;
-        public int secondChance;
+        public string userName;                  //Changed by user input
+        public double currentHealth;             //Changed by events
+        public List<Weapons> weapons;            //Stores all collected weapons
+        public List<Armor> armor;                //Stores all collected armor
+        public List<Potions> potions; 	         //Stores all collected potions
+        public Weapons currentWeapon;            //Stores the equipped weapon
+        public Armor currentArmor;               //Stores the equipped armor
+        public int currentAbilityCooldown;       //Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
+        public double debuff;                    //Mob debuff for damage: damage / debuff = currentDamage 
 
-        //Check for armor and weapon values != null
-        //When actually trying to inflict or receive damage
-
-
-        public UserSettings(string username, Characters character)
+        public UserSettings(string username, GameCharacters character) : base(character)
         {
             //Stores your inventory list
             this.weapons = new List<Weapons>();
             this.armor = new List<Armor>();
             this.potions = new List<Potions>();
             //Adds starting items to inventory list
-            weapons.Add(character.StartWeapon);
-            armor.Add(character.StartArmor);
+            weapons.Add(base.StartWeapon);
+            armor.Add(base.StartArmor);
             //Changes user data based on the selected character
-            this.CharacterName = character.CharacterName;
-            this.abilityCooldown = character.AbilityCooldown;
-            this.currentAbilityCooldown = character.AbilityCooldown;
-            this.currentArmor = character.StartArmor;
-            this.currentWeapon = character.StartWeapon;
-            this.userName = username;
-            this.pickedCharacter = character;
-            this.maxHealth = character.Health;
-            this.characterArmor = character.Armor;
-            this.characterDamage = character.Damage;
-            this.characterEvadeChance = character.EvadeChance;
-            this.currentHealth = this.maxHealth;
-            this.debuff = 1;
-            this.secondChance = character.secondChance;
+            this.currentAbilityCooldown = base.AbilityCooldown;
+            this.currentArmor = base.StartArmor;
+            this.currentWeapon = base.StartWeapon;
+            this.userName = username;                               //Set the users input as username
+            this.currentHealth = base.MaxHealth;                    //Set the currentHealth to character MaxHealth
+            this.debuff = 1;                                        //Mob debuff for damage: damage / debuff = currentDamage 
         }
 
         public double CurrentHealth
@@ -61,9 +41,9 @@ namespace RogueLikeGame
             get { return this.currentHealth; }
             set
             {
-                if(value > this.maxHealth)
+                if(value > base.MaxHealth)
                 {
-                    this.currentHealth = maxHealth;
+                    this.currentHealth = base.MaxHealth;
                 }
                 else if(value < 0)
                 {
@@ -91,22 +71,22 @@ namespace RogueLikeGame
 
         public int TotalEvadeChance() //Returns total evade chance
         {
-            return this.characterEvadeChance + this.currentArmor.EvadeChance;
+            return base.EvadeChance + this.currentArmor.EvadeChance;
         }
 
         public double TotalDamage() //Returns total damage 
         {
-            return this.characterDamage * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier / debuff;
+            return base.Damage  * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier / debuff;
         }
 
         public double TotalDamageWithoutCrit()
         {
-            return this.characterDamage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier / debuff;
+            return base.Damage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier / debuff;
         }
 
         public int TotalArmor() //Returns total armor
         {
-            return (this.characterArmor + this.currentArmor.ItemArmor) * GlobalSettings.characterArmorMultiplier;
+            return (base.Armor + this.currentArmor.ItemArmor) * GlobalSettings.characterArmorMultiplier;
         }
 
         public string GodKnightAbility()

@@ -75,7 +75,7 @@
             this.btnOptionA.TabIndex = 1;
             this.btnOptionA.Text = "button1";
             this.btnOptionA.UseVisualStyleBackColor = true;
-            this.btnOptionA.Click += new System.EventHandler(this.btnOptionA_Click);
+            this.btnOptionA.Click += new System.EventHandler(this.BtnOptionA_Click);
             // 
             // btnOptionB
             // 
@@ -86,7 +86,7 @@
             this.btnOptionB.TabIndex = 2;
             this.btnOptionB.Text = "button2";
             this.btnOptionB.UseVisualStyleBackColor = true;
-            this.btnOptionB.Click += new System.EventHandler(this.btnOptionB_Click);
+            this.btnOptionB.Click += new System.EventHandler(this.BtnOptionB_Click);
             // 
             // btnOptionC
             // 
@@ -97,7 +97,7 @@
             this.btnOptionC.TabIndex = 3;
             this.btnOptionC.Text = "button3";
             this.btnOptionC.UseVisualStyleBackColor = true;
-            this.btnOptionC.Click += new System.EventHandler(this.btnOptionC_Click);
+            this.btnOptionC.Click += new System.EventHandler(this.BtnOptionC_Click);
             // 
             // lbxCombatLog
             // 
@@ -129,7 +129,7 @@
             this.btnUseItem.TabIndex = 6;
             this.btnUseItem.Text = "Use";
             this.btnUseItem.UseVisualStyleBackColor = true;
-            this.btnUseItem.Click += new System.EventHandler(this.btnUseItem_Click);
+            this.btnUseItem.Click += new System.EventHandler(this.BtnUseItem_Click);
             // 
             // lblPlayerStatistics
             // 
@@ -183,7 +183,7 @@
             this.btnAbility.Text = "Use Ability";
             this.btnAbility.UseVisualStyleBackColor = true;
             this.btnAbility.Visible = false;
-            this.btnAbility.Click += new System.EventHandler(this.btnAbility_Click);
+            this.btnAbility.Click += new System.EventHandler(this.BtnAbility_Click);
             // 
             // lblDebuff
             // 
@@ -334,7 +334,7 @@
             this.btnFlee.TabIndex = 21;
             this.btnFlee.Text = "Flee Fight";
             this.btnFlee.UseVisualStyleBackColor = true;
-            this.btnFlee.Click += new System.EventHandler(this.btnFlee_Click);
+            this.btnFlee.Click += new System.EventHandler(this.BtnFlee_Click);
             // 
             // MainGUI
             // 

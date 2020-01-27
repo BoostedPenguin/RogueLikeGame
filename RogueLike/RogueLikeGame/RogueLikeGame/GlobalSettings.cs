@@ -23,7 +23,7 @@ namespace RogueLikeGame
         public static int roundCounter = 0;
         #endregion
 
-        #region MusicSettings
+    #region MusicSettings
         public static bool musicOn = false;
         public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
         public static void SoundToggle()

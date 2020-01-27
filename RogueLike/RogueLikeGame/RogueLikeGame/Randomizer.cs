@@ -8,7 +8,7 @@ namespace RogueLikeGame
 {
     public static class Randomizer
     {
-        static Random r = new Random();
+        static readonly Random r = new Random();
 
 
         public static int OnPlayerFleeRandomizer(UserSettings user)
@@ -21,7 +21,7 @@ namespace RogueLikeGame
             else
             {
                 //Deals damage on failed flee attemp - random between 0 and the player maxHealth
-                int receiveDamage = r.Next(0, (int)user.maxHealth);
+                int receiveDamage = r.Next(0, (int)user.MaxHealth);
                 user.CurrentHealth -= receiveDamage;
                 return receiveDamage;
             }
@@ -29,16 +29,16 @@ namespace RogueLikeGame
 
         public static MobTypes EnemyRandomizer()
         {
-            int totalProbability = Items.allMobs.Sum(t => t.spawnChance);
+            int totalProbability = Items.allMobs.Sum(t => t.SpawnChance);
             int mr = r.Next(0, totalProbability);
 
             foreach (Mobs a in Items.allMobs)
             {
-                if(mr < a.spawnChance)
+                if(mr < a.SpawnChance)
                 {
-                    return a.type;
+                    return a.Type;
                 }
-                mr -= a.spawnChance;
+                mr -= a.SpawnChance;
             }
             return MobTypes.RAT;
         }

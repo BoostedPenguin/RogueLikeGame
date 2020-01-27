@@ -23,28 +23,28 @@ namespace RogueLikeGame
             GlobalSettings.ChangeSoundImage(btnMusic);
         }
 
-        private void btnChoose_Click(object sender, EventArgs e)
+        private void BtnChoose_Click(object sender, EventArgs e)
         {
-            if(rbtBerserker.Checked)                                    //This part was used for testing only: FINAL CHANGES SHOULD BE MADE!
+            RadioButton rbt = this.Controls.OfType<RadioButton>().Where(x => x.Checked).FirstOrDefault();
+            switch(rbt.Name)
             {
-                OnCharacterSelection(Chars.Berserker);
-            }
-            else if(rbtGhost.Checked)
-            {
-                OnCharacterSelection(Chars.Ghost);
-            }
-            else if(rbtGodKnight.Checked)
-            {
-                OnCharacterSelection(Chars.GodKnight);
+                case "rbtBerserker":
+                    OnCharacterSelection(GameCharacters.Berserker);
+                    break;
+                case "rbtGhost":
+                    OnCharacterSelection(GameCharacters.Ghost);
+                    break;
+                case "rbtGodKnight":
+                    OnCharacterSelection(GameCharacters.GodKnight);
+                    break;
             }
         }
 
-        private void OnCharacterSelection(Chars type)
+        private void OnCharacterSelection(GameCharacters type)
         {
-            Characters character = new Characters(type); //Creates a new character based on userinput
-            UserSettings userSettings = new UserSettings(name, character); //ALWAYS pass this <- holds all USER related information
-            gui = new MainGUI(userSettings, this, userForm);
-            this.Hide();
+            UserSettings userSettings = new UserSettings(name, type); //ALWAYS pass this <- holds all USER related information
+            gui = new MainGUI(userSettings, userForm);
+            this.Dispose();
             gui.Show();
         }
 

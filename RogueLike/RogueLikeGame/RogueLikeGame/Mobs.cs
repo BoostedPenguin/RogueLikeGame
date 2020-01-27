@@ -15,24 +15,24 @@ namespace RogueLikeGame
     }
     public class Mobs
     {
-        public MobTypes type { get; set; }          //Type of enemy
-        public double damage { get; set; }          //The BASE damage
-        public double health { get; set; }             //The CURRENT amount of health
-        public double maxHealth { get; set; }          //The MAX HEALTH
-        public int evadeChance { get; set; }        //The TOTAL evade chance
-        public int abilityChance { get; set; }      //Chance of an ability to happen
-        public int spawnChance { get; set; }
-        public string debuffString { get; set; }
+        public MobTypes Type { get; set; }          //Type of enemy
+        public double Damage { get; set; }          //The BASE damage
+        public double Health { get; set; }             //The CURRENT amount of health
+        public double MaxHealth { get; set; }          //The MAX HEALTH
+        public int EvadeChance { get; set; }        //The TOTAL evade chance
+        public int AbilityChance { get; set; }      //Chance of an ability to happen
+        public int SpawnChance { get; set; }
+        public string DebuffString { get; set; }
 
         public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance)
         {
-            this.type = type;
-            this.evadeChance = evadeChance;
-            this.damage = damage;
-            this.abilityChance = abilityChance;
-            this.health = health;
-            this.maxHealth = health;
-            this.spawnChance = spawnChance;
+            this.Type = type;
+            this.EvadeChance = evadeChance;
+            this.Damage = damage;
+            this.AbilityChance = abilityChance;
+            this.Health = health;
+            this.MaxHealth = health;
+            this.SpawnChance = spawnChance;
         }
 
         //Call this whenever you want a spider to attack instead of DAMAGE
@@ -40,64 +40,64 @@ namespace RogueLikeGame
         public double Attack()
         {
             double multiplier = GlobalSettings.enemyDifficultyMultiplier;
-            switch(type)
+            switch(Type)
             {
                 case MobTypes.SPIDER:
-                    return multiplier * Randomizer.Damage(abilityChance, damage);
+                    return multiplier * Randomizer.Damage(AbilityChance, Damage);
 
                 case MobTypes.RAT:
-                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
                         MobFight.currentRoundOfDebuff = 3; //Rounds of debuff
                     }
-                    return damage * multiplier;
+                    return Damage * multiplier;
 
                 case MobTypes.SHADOW:
-                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
                         MobFight.currentRoundOfDebuff = 3;
                     }
-                    return damage * multiplier;
+                    return Damage * multiplier;
                 case MobTypes.ZOMBIE:
-                    if(Randomizer.EnemyAbilityChance(abilityChance))
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
                         MobFight.currentRoundOfDebuff = 1;
                     }
-                    return damage * multiplier;
+                    return Damage * multiplier;
 
                 default:                    //Just return crit chance if mob doesnt have an ability
-                    return multiplier* Randomizer.Damage(abilityChance, damage);
+                    return multiplier* Randomizer.Damage(AbilityChance, Damage);
             }
         }
 
         public string Ability(Mobs mob, UserSettings user)
         {
-            switch(mob.type)
+            switch(mob.Type)
             {
                 case MobTypes.SPIDER:   //Use some return that will never be used
                     return null;
 
                 case MobTypes.RAT:  //Amount of damage per round
                     user.currentHealth -= 2;
-                    this.debuffString = $"Poisoned for {2} da   mage";
-                    return debuffString;
+                    this.DebuffString = $"Poisoned for {2} damage";
+                    return DebuffString;
 
                 case MobTypes.SHADOW:
                     user.debuff = 2;
-                    this.debuffString =  $"Player damage reduced by {2} times";
-                    return debuffString;
+                    this.DebuffString =  $"Player damage reduced by {2} times";
+                    return DebuffString;
 
                 case MobTypes.ZOMBIE: //Amount of heal
-                    this.debuffString = $"Self-Regenerated {8} health";
-                    if (mob.health + 8 > mob.maxHealth)
+                    this.DebuffString = $"Self-Regenerated {8} health";
+                    if (mob.Health + 8 > mob.MaxHealth)
                     {
-                        mob.health = mob.maxHealth;
+                        mob.Health = mob.MaxHealth;
                     }
                     else
                     {
-                        mob.health += 8;
+                        mob.Health += 8;
                     }
-                    return debuffString;
+                    return DebuffString;
 
                 default:
                     return $"";

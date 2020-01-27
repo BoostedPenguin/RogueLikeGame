@@ -120,7 +120,7 @@
             this.btnChoose.TabIndex = 4;
             this.btnChoose.Text = "Choose character";
             this.btnChoose.UseVisualStyleBackColor = true;
-            this.btnChoose.Click += new System.EventHandler(this.btnChoose_Click);
+            this.btnChoose.Click += new System.EventHandler(this.BtnChoose_Click);
             // 
             // btnMusic
             // 

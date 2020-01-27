@@ -60,7 +60,7 @@ namespace RogueLikeGame
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE
         {
-            return allMobs.FirstOrDefault(x => x.type == types);
+            return allMobs.FirstOrDefault(x => x.Type == types);
         }
     }
 }

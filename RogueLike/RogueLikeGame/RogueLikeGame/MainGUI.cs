@@ -12,15 +12,12 @@ namespace RogueLikeGame
 {
     public partial class MainGUI : Form
     {
-        CharacterSelect character; //<- Pass this if nessesary 
-        Form1 userForm;            //Pass this in order to close the app on exit
-
+        Form1 userForm;            //Pass this in order to restart 
         UserSettings user;         //Should ALWAYS be passed
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
 
 
         int choice = 0; //1 firstbutton 2secondbutton 3thirdbutton
-        //int roundCounter = 0; //Stores the rounds that have passed since the fight started
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
 
@@ -31,11 +28,10 @@ namespace RogueLikeGame
         bool secondButtonPressed = false;
         bool thirdButtonPressed = false;
 
-        public MainGUI(UserSettings user, CharacterSelect character, Form1 form)
+        public MainGUI(UserSettings user, Form1 form)
         {
             InitializeComponent();
             this.user = user;
-            this.character = character;
             this.userForm = form;
             this.Height = 285;
             this.Width = 580;
@@ -222,7 +218,7 @@ namespace RogueLikeGame
             }
         }
 
-        private void btnOptionA_Click(object sender, EventArgs e)
+        private void BtnOptionA_Click(object sender, EventArgs e)
         {
             choice++;
             firstButtonPressed = true;
@@ -230,7 +226,7 @@ namespace RogueLikeGame
             SecondSequence();
         }
 
-        private void btnOptionB_Click(object sender, EventArgs e)
+        private void BtnOptionB_Click(object sender, EventArgs e)
         {
             choice++;
             secondButtonPressed = true;
@@ -238,7 +234,7 @@ namespace RogueLikeGame
             SecondSequence();
         }
 
-        private void btnOptionC_Click(object sender, EventArgs e)
+        private void BtnOptionC_Click(object sender, EventArgs e)
         {
             choice++;
             thirdButtonPressed = true;
@@ -248,7 +244,6 @@ namespace RogueLikeGame
 
         #endregion
 
-        //REMOVE WHEN YOU'RE DONE WITH THE WHOLE APPLICATION 
         private void BtnTemporary_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
@@ -296,7 +291,7 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.maxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()} Evade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(userAttack)
@@ -319,7 +314,7 @@ namespace RogueLikeGame
 
             if(MobFight.currentRoundOfDebuff > 0)
             {
-                lblDebuff.Text = currentMob.debuffString;
+                lblDebuff.Text = currentMob.DebuffString;
             }
             else
             {
@@ -335,7 +330,7 @@ namespace RogueLikeGame
                 userAttack = false; //To ensure that the user will always hit first
             }
 
-            if (currentMob.health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
+            if (currentMob.Health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
             {
                 lbxCombatLog.Items.Clear();
                 UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
@@ -344,7 +339,7 @@ namespace RogueLikeGame
                 UpdateAbilityButton();                                           //Checks if you're ability is on CD;
                 lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
             }
-            else if(currentMob.health > 0 && GlobalSettings.roundCounter != 0)                                //Actual fight <- if it ain't the first round
+            else if(currentMob.Health > 0 && GlobalSettings.roundCounter != 0)                                //Actual fight <- if it ain't the first round
             {
                 GlobalSettings.roundCounter++;
                 if (userAttack)
@@ -361,7 +356,7 @@ namespace RogueLikeGame
                 {
                     OnPlayerDeath();
                 }
-                if (currentMob.health <= 0) //On Mob Death
+                if (currentMob.Health <= 0) //On Mob Death
                 {
                     OnEnemyDeath();
                     MobFight.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
@@ -375,10 +370,10 @@ namespace RogueLikeGame
 
         private void OnPlayerDeath()        //If the user dies
         {
-            if (user.secondChance <= 0)         //If the user doesn't have a secondchance
+            if (user.SecondChance <= 0)         //If the user doesn't have a SecondChance
             {
                 GlobalSettings.startGame = false;
-                DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine} Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine}Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
                 {
                     userForm.Show();
@@ -391,8 +386,8 @@ namespace RogueLikeGame
             }
             else
             {
-                user.secondChance--;
-                user.currentHealth = user.maxHealth / 2;
+                user.SecondChance--;
+                user.currentHealth = user.MaxHealth / 2;
                 MessageBox.Show("You had a second chance - sucessfully revived");
             }
         }
@@ -416,27 +411,27 @@ namespace RogueLikeGame
         {
             if (GlobalSettings.roundCounter == 0)          //On first round
             {
-                lblMobHealth.Text = $"{currentMob.type.ToString()}: {currentMob.maxHealth}/{currentMob.maxHealth}";
-                prbEnemyHealth.Maximum = (int)currentMob.maxHealth;
-                prbEnemyHealth.Value = (int)currentMob.maxHealth;
+                lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.MaxHealth}/{currentMob.MaxHealth}";
+                prbEnemyHealth.Maximum = (int)currentMob.MaxHealth;
+                prbEnemyHealth.Value = (int)currentMob.MaxHealth;
             }
             else
             {
-                if(currentMob.health > 0)           //If enemy is still alive
+                if(currentMob.Health > 0)           //If enemy is still alive
                 {
-                    prbEnemyHealth.Value = (int)currentMob.health;
-                    lblMobHealth.Text = $"{currentMob.type.ToString()}: {currentMob.health}/{currentMob.maxHealth}";
+                    prbEnemyHealth.Value = (int)currentMob.Health;
+                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.Health}/{currentMob.MaxHealth}";
                 }
                 else                               //If enemy ain't
                 {
                     prbEnemyHealth.Value = 0;
-                    lblMobHealth.Text = $"{currentMob.type.ToString()}: 0/{currentMob.maxHealth}";
+                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: 0/{currentMob.MaxHealth}";
                 }
             }
         }
 
 
-        private void btnAbility_Click(object sender, EventArgs e) //On ability button click
+        private void BtnAbility_Click(object sender, EventArgs e) //On ability button click
         {
             btnAbility.Enabled = false;
             userAttack = !userAttack;
@@ -449,7 +444,7 @@ namespace RogueLikeGame
 
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
-            if (user.currentAbilityCooldown >= user.abilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
+            if (user.currentAbilityCooldown >= user.AbilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
             {
                 btnAbility.Enabled = true;
             }
@@ -474,7 +469,7 @@ namespace RogueLikeGame
             }
         }
 
-        private void btnUseItem_Click(object sender, EventArgs e) //On use item button | Equippes the selected ITEM
+        private void BtnUseItem_Click(object sender, EventArgs e) //On use item button | Equippes the selected ITEM
         {
             if (lbxCurrentItems.SelectedItem != null)
             {
@@ -541,7 +536,7 @@ namespace RogueLikeGame
                         else //Poison potion
                         {
                             lbxCombatLog.Items.Add(MobFight.PotionUse(a, user, currentMob));
-                            if (currentMob.health <= 0)
+                            if (currentMob.Health <= 0)
                             {
                                 OnEnemyDeath();
                             }
@@ -561,12 +556,12 @@ namespace RogueLikeGame
             GlobalSettings.ChangeSoundImage((Button)sender);
         }
 
-        private void btnFlee_Click(object sender, EventArgs e)
+        private void BtnFlee_Click(object sender, EventArgs e)
         {
             string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
             if (checkIfFled == null)
             {
-                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.type}");
+                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
                 GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
             }
             else
@@ -580,7 +575,6 @@ namespace RogueLikeGame
             }
             userAttack = !userAttack;
             DisableIO();
-
         }
     }
 }

@@ -14,7 +14,6 @@ namespace RogueLikeGame
     public partial class Form1 : Form
     {
         public Form1 mainForm;
-        CharacterSelect cs;
         public Form1()
         {
             InitializeComponent();
@@ -22,12 +21,12 @@ namespace RogueLikeGame
             mainForm = this;
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void BtnStart_Click(object sender, EventArgs e)
         {
             if(!string.IsNullOrWhiteSpace(tbxName.Text))
             {
                 GlobalSettings.startGame = true;                //Use this to check if a new game has started & change when needed!
-                cs = new CharacterSelect(tbxName.Text, this);
+                CharacterSelect cs = new CharacterSelect(tbxName.Text, this);
                 this.Hide();
                 cs.Show();
             }
@@ -37,7 +36,7 @@ namespace RogueLikeGame
         {
             if(e.KeyCode == Keys.Enter)
             {
-                btnStart_Click(sender, e);
+                BtnStart_Click(sender, e);
             }
         }
 

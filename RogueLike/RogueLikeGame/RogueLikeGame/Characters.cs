@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    public enum Chars //All available characters
+    public enum GameCharacters //All available characters
     {
         Berserker,
         Ghost,
@@ -15,53 +15,53 @@ namespace RogueLikeGame
 
     public class Characters
     {
-        public Chars CharacterName { get; set; } //The name > use to check & display
-        public int Health { get; set; }          //Max Health of the character
+        public GameCharacters CharacterName { get; set; } //The name > use to check & display
+        public int MaxHealth { get; set; }          //Max Health of the character
         public double Damage { get; set; }       //Base damage MULTIPLIER based on character ex: 1.5 x damage
         public int Armor { get; set; }           //Base armor ADDITIVE not MULTIPLICATIVE
         public int EvadeChance { get; set; }     //Chance to evade an attack
         public int AbilityCooldown { get; set; } //The ability cooldown in TURNS
         public Weapons StartWeapon { get; set; } //The starting weapon given on start of game
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
-        public int secondChance { get; set; }
+        public int SecondChance { get; set; }
 
-        public Characters(Chars characterName)   //If you want to change a character stats use this!
+        public Characters(GameCharacters characterName)   //If you want to change a character stats use this!
         {
-            if(Chars.Berserker == characterName)
+            if(GameCharacters.Berserker == characterName)
             {
-                this.CharacterName = Chars.Berserker;
+                this.CharacterName = GameCharacters.Berserker;
                 UpdateArmor("Basic Armor"); //Give him this on game start
                 UpdateWeapon("Blunt Sword"); // ^
-                this.Health = 150;
+                this.MaxHealth = 150;
                 this.Damage = 1.5;
                 this.Armor = 5;
                 this.EvadeChance = 10;
                 this.AbilityCooldown = 5; //How many PLAYER ROUNDS it takes for it to refresh
-                this.secondChance = 0;
+                this.SecondChance = 0;
             }
-            else if(Chars.Ghost == characterName)
+            else if(GameCharacters.Ghost == characterName)
             {
-                this.CharacterName = Chars.Ghost;
+                this.CharacterName = GameCharacters.Ghost;
                 UpdateArmor("Basic Armor");
                 UpdateWeapon("Blunt Sword");
-                this.Health = 100;
+                this.MaxHealth = 100;
                 this.Damage = 2;
                 this.Armor = 2;
                 this.EvadeChance = 20;
                 this.AbilityCooldown = 15;
-                this.secondChance = 1;
+                this.SecondChance = 1;
             }
-            else if(Chars.GodKnight == characterName)
+            else if(GameCharacters.GodKnight == characterName)
             {
-                this.CharacterName = Chars.GodKnight;
+                this.CharacterName = GameCharacters.GodKnight;
                 UpdateArmor("Basic Armor");
                 UpdateWeapon("Blunt Sword");
-                this.Health = 200;
+                this.MaxHealth = 200;
                 this.Damage = 1;
                 this.Armor = 8;
                 this.EvadeChance = 5;
                 this.AbilityCooldown = 20;
-                this.secondChance = 0;
+                this.SecondChance = 0;
             }
         }
 
