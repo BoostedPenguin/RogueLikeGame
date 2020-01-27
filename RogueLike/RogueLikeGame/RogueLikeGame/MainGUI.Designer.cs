@@ -142,7 +142,6 @@
             this.lblPlayerStatistics.Size = new System.Drawing.Size(86, 31);
             this.lblPlayerStatistics.TabIndex = 7;
             this.lblPlayerStatistics.Text = "label1";
-            this.lblPlayerStatistics.Visible = false;
             // 
             // lbxOptionC
             // 
@@ -243,14 +242,14 @@
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(144, 206);
+            this.btnAttack.Location = new System.Drawing.Point(144, 252);
             this.btnAttack.Margin = new System.Windows.Forms.Padding(4);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(125, 38);
             this.btnAttack.TabIndex = 18;
             this.btnAttack.Text = "Turn / Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
-            this.btnAttack.Click += new System.EventHandler(this.BtnTemporary_Click);
+            this.btnAttack.Click += new System.EventHandler(this.BtnAttack_Click);
             // 
             // gpxFight
             // 
@@ -264,7 +263,6 @@
             this.gpxFight.TabIndex = 19;
             this.gpxFight.TabStop = false;
             this.gpxFight.Text = "gpxFight";
-            this.gpxFight.Visible = false;
             // 
             // lblTurn
             // 
@@ -296,11 +294,10 @@
             this.gpxItems.TabIndex = 12;
             this.gpxItems.TabStop = false;
             this.gpxItems.Text = "gpxItems";
-            this.gpxItems.Visible = false;
             // 
             // btnFlee
             // 
-            this.btnFlee.Location = new System.Drawing.Point(144, 252);
+            this.btnFlee.Location = new System.Drawing.Point(144, 206);
             this.btnFlee.Margin = new System.Windows.Forms.Padding(4);
             this.btnFlee.Name = "btnFlee";
             this.btnFlee.Size = new System.Drawing.Size(125, 38);

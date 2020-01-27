@@ -9,7 +9,7 @@ namespace RogueLikeGame
     public static class Randomizer
     {
         static readonly Random r = new Random();
-        public static int RandomEvent()
+        public static int RandomEncounter()
         {
             return r.Next(0, 2); //0 - Mob, 1 - Treasure Chest
         }

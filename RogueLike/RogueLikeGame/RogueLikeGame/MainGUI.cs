@@ -21,22 +21,25 @@ namespace RogueLikeGame
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
 
-        bool firstSequence = false;
+        bool firstSequence = true;
         bool secondSequence = false;
 
         bool firstButtonPressed = false;
         bool secondButtonPressed = false;
         bool thirdButtonPressed = false;
 
-        bool treasureEncounter = true;
+        bool encounter = false;
+
+        bool treasureEncounter = false;
+        bool mobEncounter = false;
 
         public MainGUI(UserSettings user, Form1 form)
         {
             InitializeComponent();
             this.user = user;
             this.userForm = form;
-            this.Height = 285;
-            this.Width = 580;
+            //this.Height = 285;
+            //this.Width = 580;
             GlobalSettings.ChangeSoundImage(btnMusic);
             FirstSequence();
         }
@@ -184,6 +187,11 @@ namespace RogueLikeGame
             btnAbility.Enabled = false;
 
             currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+
+            mobEncounter = true;
+
+            StartFight();
+
             btnOptionB.Enabled = false;
             btnOptionA.Enabled = false;
         }
@@ -213,31 +221,64 @@ namespace RogueLikeGame
                         break;
                     case 1:
                         tbxNarrative.Text = TextNarrative.SecondChoiceSuccess2;
-                        btnOptionA.Enabled = false;
+                        btnOptionA.Enabled = true;
                         btnAbility.Visible = true;
-                        break;
+
+
+                        //END OF CURRENT TUTORIAL
+                        //EXPERIMENTAL THINGS BELOW ONLY 
+                        secondSequence = false;
+                        encounter = true;
+                                                break;
                 }
             }
         }
 
         #endregion
 
+        #region NarrativeButtons
         private void BtnOptionA_Click(object sender, EventArgs e)
         {
             choice++;
             firstButtonPressed = true;
-            FirstSequence();
-            SecondSequence();
-            OnTreasureEncounter();
+            if(firstSequence)
+            {
+                FirstSequence();            //Tutorial 1
+            }
+            else if(secondSequence)
+            {
+                SecondSequence();           //Tutorial 2
+            }
+            else if(treasureEncounter)
+            {
+                OnTreasureEncounter();
+            }
+            else if(mobEncounter)
+            {
+                StartFight();
+            }
+            else if(encounter)
+            {
+                Encounters();
+            }
         }
 
         private void BtnOptionB_Click(object sender, EventArgs e)
         {
             choice++;
             secondButtonPressed = true;
-            FirstSequence();
-            SecondSequence();
-            OnTreasureEncounter();
+            if (firstSequence)
+            {
+                FirstSequence();            //Tutorial 1
+            }
+            else if (secondSequence)
+            {
+                SecondSequence();           //Tutorial 2
+            }
+            else if (treasureEncounter)
+            {
+                OnTreasureEncounter();
+            }
         }
 
         private void BtnOptionC_Click(object sender, EventArgs e)
@@ -247,8 +288,70 @@ namespace RogueLikeGame
             FirstSequence();
             SecondSequence();
         }
+        #endregion
+        private void Encounters()
+        {
+            if (encounter)
+            {
+                switch (Randomizer.RandomEncounter())
+                {
+                    case 0: //Mob
+                        mobEncounter = true;
+                        DisableNarrativeButton();
+                        StartFight();
+                        break;
+                    case 1: //Treasure maps
+                        ResetButtons();
+                        firstSequence = false;
+                        secondSequence = false;
+                        btnOptionA.Enabled = true;
+                        btnOptionA.Text = "Open the chest";
+                        btnOptionB.Enabled = true;
+                        btnOptionB.Text = "Leave the chest";
 
-        private void BtnTemporary_Click(object sender, EventArgs e)
+                        tbxNarrative.Text = "You've found a treasure chest";
+
+                        treasureEncounter = true;
+                        break;
+                }
+                encounter = false;
+            }
+        }
+        #region CombatButtons
+        private void BtnUseItem_Click(object sender, EventArgs e) //On use item button | Equippes the selected ITEM
+        {
+            if (lbxCurrentItems.SelectedItem != null)
+            {
+                string itemString = lbxCurrentItems.SelectedItem.ToString();
+                if (!string.IsNullOrEmpty(itemString) && !itemString.Contains("All weapons:") && !itemString.Contains("All armor:"))
+                {
+                    var checkingWeapon = user.weapons.FirstOrDefault(x => itemString.Contains(x.WeaponName));
+                    if (checkingWeapon == null)
+                    {
+                        user.currentArmor = user.armor.FirstOrDefault(x => itemString.Contains(x.ArmorName));
+
+                        userAttack = !userAttack;
+                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
+                        btnUseItem.Enabled = false;
+                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                    }
+                    else
+                    {
+                        user.currentWeapon = checkingWeapon;
+
+                        userAttack = !userAttack;
+                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
+                        btnUseItem.Enabled = false;
+                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                    }
+
+                    UpdateItemsList();
+                    UpdatePlayerStatistics();
+                }
+            }
+        }
+
+        private void BtnAttack_Click(object sender, EventArgs e)
         {
             //Temporary experimental works | CHANGE LATER
             if (GlobalSettings.roundCounter > 0)
@@ -260,6 +363,57 @@ namespace RogueLikeGame
             UpdateItemsList();
         }
 
+        private void BtnAbility_Click(object sender, EventArgs e) //On ability button click
+        {
+            btnAbility.Enabled = false;
+            userAttack = !userAttack;
+            ability = true;
+            StartFight();
+            ability = false;
+            UpdatePlayerStatistics();
+            UpdateItemsList();
+        }
+
+
+        private void BtnFlee_Click(object sender, EventArgs e)
+        {
+            string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
+            if (checkIfFled == null)
+            {
+                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
+                GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
+
+                btnOptionA.Enabled = true;
+                btnOptionA.Text = "Continue";
+                encounter = true;
+                mobEncounter = false;
+            }
+            else
+            {
+                lbxCombatLog.Items.Add(checkIfFled);
+                if (user.currentHealth <= 0)
+                {
+                    OnPlayerDeath();
+                }
+                UpdatePlayerStatistics();
+            }
+            userAttack = !userAttack;
+            DisableCombatButtons();
+        }
+
+        private void BtnHealthPot_Click(object sender, EventArgs e)
+        {
+            SearchForPotion("Health Potion");
+        }
+
+        private void BtnPoisonPot_Click(object sender, EventArgs e)
+        {
+            SearchForPotion("Poison Potion");
+        }
+
+        #endregion
+
+        #region UpdateVisuals
         private void UpdateItemsList() //Repopulates the items listbox > Adds all new items you've received
         {
             lbxCurrentItems.Items.Clear();
@@ -298,7 +452,7 @@ namespace RogueLikeGame
             lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
-            if(userAttack)
+            if (userAttack)
             {
                 lblTurn.Text = $"Enemy turn";
             }
@@ -307,7 +461,7 @@ namespace RogueLikeGame
                 lblTurn.Text = $"Player turn";
             }
 
-            if(MobFight.currentRoundOfBuff > 0)
+            if (MobFight.currentRoundOfBuff > 0)
             {
                 lblBuff.Text = "Healed Sucessfully";
             }
@@ -316,7 +470,7 @@ namespace RogueLikeGame
                 lblBuff.Text = "";
             }
 
-            if(MobFight.currentRoundOfDebuff > 0)
+            if (MobFight.currentRoundOfDebuff > 0)
             {
                 lblDebuff.Text = currentMob.DebuffString;
             }
@@ -326,6 +480,40 @@ namespace RogueLikeGame
             }
         }
 
+        private void UpdateProgressbar()    //Updates enemy healthbar
+        {
+            if (GlobalSettings.roundCounter == 0)          //On first round
+            {
+                lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.MaxHealth}/{currentMob.MaxHealth}";
+                prbEnemyHealth.Maximum = (int)currentMob.MaxHealth;
+                prbEnemyHealth.Value = (int)currentMob.MaxHealth;
+            }
+            else
+            {
+                if (currentMob.Health > 0)           //If enemy is still alive
+                {
+                    prbEnemyHealth.Value = (int)currentMob.Health;
+                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.Health}/{currentMob.MaxHealth}";
+                }
+                else                               //If enemy ain't
+                {
+                    prbEnemyHealth.Value = 0;
+                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: 0/{currentMob.MaxHealth}";
+                }
+            }
+        }
+
+
+        private void UpdateAbilityButton() //Checks if the ability is off cooldown
+        {
+            if (user.currentAbilityCooldown >= user.AbilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
+            {
+                btnAbility.Enabled = true;
+            }
+        }
+        #endregion
+
+        #region MobFight
         private void CreateMob()
         {
             if (GlobalSettings.roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
@@ -337,50 +525,51 @@ namespace RogueLikeGame
 
         private void StartFight()           //The fight mechanics
         {
-            if (GlobalSettings.roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
+            if (mobEncounter)
             {
-                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());      //CREATES A NEW MOB BASED ON RNG
-                userAttack = false;                                                 //To ensure that the user will always hit first
-            }
+                CreateMob();
 
-            if (currentMob.Health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
-            {
-                lbxCombatLog.Items.Clear();
-                UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
-                GlobalSettings.roundCounter++;
-                lbxCombatLog.Items.Add(MobFight.TBStartFight(currentMob, user)); //On start of fight events
-                UpdateAbilityButton();                                           //Checks if you're ability is on CD;
-                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-            }
-            else if(currentMob.Health > 0 && GlobalSettings.roundCounter != 0)                                //Actual fight <- if it ain't the first round
-            {
-                GlobalSettings.roundCounter++;
-                if (userAttack)
+                if (currentMob.Health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
                 {
-                    lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, ability)); //On player hit
+                    lbxCombatLog.Items.Clear();
+                    UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
+                    GlobalSettings.roundCounter++;
+                    lbxCombatLog.Items.Add(MobFight.TBStartFight(currentMob, user)); //On start of fight events
+                    UpdateAbilityButton();                                           //Checks if you're ability is on CD;
+                    lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 }
-                else
+                else if (currentMob.Health > 0 && GlobalSettings.roundCounter != 0)                                //Actual fight <- if it ain't the first round
                 {
-                    lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
+                    GlobalSettings.roundCounter++;
+                    if (userAttack)
+                    {
+                        lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, ability)); //On player hit
+                    }
+                    else
+                    {
+                        lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
+                    }
+                    UpdateProgressbar();
+                    lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                    if (user.currentHealth <= 0) //On Player death 
+                    {
+                        OnPlayerDeath();
+                    }
+                    if (currentMob.Health <= 0) //On Mob Death
+                    {
+                        OnEnemyDeath();
+                        MobFight.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
+                    }
+                    UpdateAbilityButton();
+                    UpdatePlayerStatistics();
+                    DisableCombatButtons();
                 }
-                UpdateProgressbar();
-                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-                if (user.currentHealth <= 0) //On Player death 
-                {
-                    OnPlayerDeath();
-                }
-                if (currentMob.Health <= 0) //On Mob Death
-                {
-                    OnEnemyDeath();
-                    MobFight.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
-                }
-                UpdateAbilityButton();
-                UpdatePlayerStatistics();
-                DisableIO();
             }
         }
 
+        #endregion
 
+        #region OnPlayerMobDeath
         private void OnPlayerDeath()        //If the user dies
         {
             if (user.SecondChance <= 0)         //If the user doesn't have a SecondChance
@@ -404,68 +593,52 @@ namespace RogueLikeGame
                 MessageBox.Show("You had a second chance - sucessfully revived");
             }
         }
+
         private void OnEnemyDeath()     //If the enemy dies
         {
             MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob)); //Calls event of enemy death
             UpdateProgressbar();
             GlobalSettings.roundCounter = 0;
+            if (!firstSequence)
+            {
+                encounter = true;
+                mobEncounter = false;
+                btnOptionA.Enabled = true;
+                btnOptionA.Text = "Continue";
+            }
             Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
             if(firstSequence)
             {
+                encounter = false;
                 btnOptionA.Enabled = true;
                 btnOptionA.Text = "Continue";
+                tbxNarrative.Text = "You managed to defeat the spider";
+                mobEncounter = false;
                 firstSequence = false;
                 secondSequence = true;
                 choice = -1;
             }
         }
 
-        private void UpdateProgressbar()    //Updates enemy healthbar
+        #endregion
+
+        #region Misc
+        private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (GlobalSettings.roundCounter == 0)          //On first round
-            {
-                lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.MaxHealth}/{currentMob.MaxHealth}";
-                prbEnemyHealth.Maximum = (int)currentMob.MaxHealth;
-                prbEnemyHealth.Value = (int)currentMob.MaxHealth;
-            }
-            else
-            {
-                if(currentMob.Health > 0)           //If enemy is still alive
-                {
-                    prbEnemyHealth.Value = (int)currentMob.Health;
-                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.Health}/{currentMob.MaxHealth}";
-                }
-                else                               //If enemy ain't
-                {
-                    prbEnemyHealth.Value = 0;
-                    lblMobHealth.Text = $"{currentMob.Type.ToString()}: 0/{currentMob.MaxHealth}";
-                }
-            }
+            GlobalSettings.OnApplicationExit(e);
         }
 
-
-        private void BtnAbility_Click(object sender, EventArgs e) //On ability button click
+        private void BtnMusic_Click(object sender, EventArgs e)
         {
-            btnAbility.Enabled = false;
-            userAttack = !userAttack;
-            ability = true;
-            StartFight();
-            ability = false;
-            UpdatePlayerStatistics();
-            UpdateItemsList();
+            GlobalSettings.SoundToggle();
+            GlobalSettings.ChangeSoundImage((Button)sender);
         }
+        #endregion
 
-        private void UpdateAbilityButton() //Checks if the ability is off cooldown
+        #region EnableDisableControls
+        private void DisableCombatButtons()
         {
-            if (user.currentAbilityCooldown >= user.AbilityCooldown && !userAttack && GlobalSettings.roundCounter != 0)
-            {
-                btnAbility.Enabled = true;
-            }
-        }
-
-        private void DisableIO()
-        {
-            if(!userAttack)
+            if (!userAttack)
             {
                 btnUseItem.Enabled = true;
                 btnPoisonPot.Enabled = true;
@@ -482,55 +655,13 @@ namespace RogueLikeGame
             }
         }
 
-        private void BtnUseItem_Click(object sender, EventArgs e) //On use item button | Equippes the selected ITEM
+        private void DisableNarrativeButton()
         {
-            if (lbxCurrentItems.SelectedItem != null)
-            {
-                string itemString = lbxCurrentItems.SelectedItem.ToString();
-                if (!string.IsNullOrEmpty(itemString) && !itemString.Contains("All weapons:") && !itemString.Contains("All armor:"))
-                {
-                    var checkingWeapon = user.weapons.FirstOrDefault(x => itemString.Contains(x.WeaponName));
-                    if (checkingWeapon == null)
-                    {
-                        user.currentArmor = user.armor.FirstOrDefault(x => itemString.Contains(x.ArmorName));
-
-                        userAttack = !userAttack;
-                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
-                        btnUseItem.Enabled = false;
-                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-                    }
-                    else
-                    {
-                        user.currentWeapon = checkingWeapon;
-
-                        userAttack = !userAttack;
-                        lbxCombatLog.Items.Add($"{user.userName} equipped new gear");
-                        btnUseItem.Enabled = false;
-                        lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-                    }
-
-                    UpdateItemsList();
-                    UpdatePlayerStatistics();
-                }
-            }
+            btnOptionA.Enabled = false;
+            btnOptionB.Enabled = false;
+            btnOptionC.Enabled = false;
         }
-
-
-        private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            GlobalSettings.OnApplicationExit(e);
-        }
-
-        private void BtnHealthPot_Click(object sender, EventArgs e)
-        {
-            SearchForPotion("Health Potion");
-        }
-
-        private void BtnPoisonPot_Click(object sender, EventArgs e)
-        {
-            SearchForPotion("Poison Potion");
-        }
-
+        #endregion
         private void SearchForPotion(string name)
         {
             if (!userAttack)
@@ -563,44 +694,9 @@ namespace RogueLikeGame
             }
         }
 
-        private void BtnMusic_Click(object sender, EventArgs e)
-        {
-            GlobalSettings.SoundToggle();
-            GlobalSettings.ChangeSoundImage((Button)sender);
-        }
-
-        private void BtnFlee_Click(object sender, EventArgs e)
-        {
-            string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
-            if (checkIfFled == null)
-            {
-                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
-                GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
-            }
-            else
-            {
-                lbxCombatLog.Items.Add(checkIfFled);
-                if (user.currentHealth <= 0)
-                {
-                    OnPlayerDeath();
-                }
-                UpdatePlayerStatistics();
-            }
-            userAttack = !userAttack;
-            DisableIO();
-        }
-
         private void BtnTemp_Click(object sender, EventArgs e)
         {
-            ResetButtons();
-            firstSequence = false;
-            secondSequence = false;
-            btnOptionA.Enabled = true;
-            btnOptionA.Text = "Open the chest";
-            btnOptionB.Enabled = true;
-            btnOptionB.Text = "Leave the chest";
 
-            tbxNarrative.Text = "You've found a treasure chest";
         }
 
         private void OnTreasureEncounter()
@@ -610,19 +706,34 @@ namespace RogueLikeGame
                 if (firstButtonPressed) //Open
                 {
                     tbxNarrative.Text = Randomizer.OnChestOpen(user);
-                    if(currentMob != null)
+                    if(user.CurrentHealth <= 0)
+                    {
+                        OnPlayerDeath();
+                    }
+                    //CreateMob();
+                    if (tbxNarrative.Text == "You tried to open the chest, but a hostile mob was hiding inside!")
                     {
                         btnOptionA.Enabled = false;
+                        treasureEncounter = false;
+                        mobEncounter = true;
+
+                        StartFight();
                     }
                     else
                     {
                         btnOptionA.Text = "Continue";
+
+                        treasureEncounter = false;
+                        encounter = true;
                     }
                 }
                 else if (secondButtonPressed) //Leave
                 {
                     tbxNarrative.Text = "You didn't open the chest. It's contents remain unknown";
+                    treasureEncounter = false;
+                    encounter = true;
                 }
+                UpdatePlayerStatistics();
             }
         }
     }
