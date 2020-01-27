@@ -199,7 +199,7 @@ namespace RogueLikeGame
         public static string DeathOfEnemy(UserSettings user, Mobs mob) //On enemy death
         {
             string onKill = $"You managed to defeat {mob.Type.ToString()}";
-            switch (Randomizer.EnemyDeathLoot()) //Gives me 1 item or null, everytime this is called
+            switch (Randomizer.EnemyDeathLoot(false))               //Gives me 1 item or null, everytime this is called
             {
                 case Weapons Weapon:
                     if(DublicateItems(true, Weapon.WeaponName, user))

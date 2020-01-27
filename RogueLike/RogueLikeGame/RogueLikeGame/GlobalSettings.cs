@@ -23,7 +23,7 @@ namespace RogueLikeGame
         public static int roundCounter = 0;
         #endregion
 
-    #region MusicSettings
+        #region MusicSettings
         public static bool musicOn = false;
         public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
         public static void SoundToggle()
@@ -56,11 +56,16 @@ namespace RogueLikeGame
 
         #region LootChance
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance
-        public static int weaponDropChance = 30;
-        public static int armorDropChance = 60;
-        public static int potionDropChance = 90;
+        public static int weaponDropChance = 10;
+        public static int armorDropChance = 20;
+        public static int potionDropChance = 30;
+
+        public static int totalChance = potionDropChance; //PotionDropChance has the MAX % Of which you will receive an item
         #endregion
 
+        #region TreasureChests
+        public static int damageOnFailedOpen = 20;
+        #endregion
         public static void OnApplicationExit(FormClosingEventArgs e)
         {
             if(e.CloseReason == CloseReason.UserClosing)

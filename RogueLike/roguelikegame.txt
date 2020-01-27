@@ -82,7 +82,10 @@ ENEMY_DIFFICULTY = 100; 		//Ex: Spider enemy_difficulty = 250 -> more unlikely t
 20% CHANCE TO GET AN ARMOR
 20% CHANCE TO GET A POTION
 
-
+Random Encounters on rounds:
+1.Enemy
+2.Treasure chest <- Chance to open it <- Success - item <- != Damage or ENEMY ENCOUNTER
+3.
 
 ---------------------------------------------------------------------------------------
 Items: Randomized Stats

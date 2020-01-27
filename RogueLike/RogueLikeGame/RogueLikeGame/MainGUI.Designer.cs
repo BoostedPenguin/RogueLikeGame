@@ -49,9 +49,10 @@
             this.gpxFight = new System.Windows.Forms.GroupBox();
             this.lblTurn = new System.Windows.Forms.Label();
             this.gpxItems = new System.Windows.Forms.GroupBox();
+            this.btnFlee = new System.Windows.Forms.Button();
             this.lblBuff = new System.Windows.Forms.Label();
             this.btnMusic = new System.Windows.Forms.Button();
-            this.btnFlee = new System.Windows.Forms.Button();
+            this.btnTemp = new System.Windows.Forms.Button();
             this.gpxFight.SuspendLayout();
             this.gpxItems.SuspendLayout();
             this.SuspendLayout();
@@ -297,6 +298,17 @@
             this.gpxItems.Text = "gpxItems";
             this.gpxItems.Visible = false;
             // 
+            // btnFlee
+            // 
+            this.btnFlee.Location = new System.Drawing.Point(144, 252);
+            this.btnFlee.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFlee.Name = "btnFlee";
+            this.btnFlee.Size = new System.Drawing.Size(125, 38);
+            this.btnFlee.TabIndex = 21;
+            this.btnFlee.Text = "Flee Fight";
+            this.btnFlee.UseVisualStyleBackColor = true;
+            this.btnFlee.Click += new System.EventHandler(this.BtnFlee_Click);
+            // 
             // lblBuff
             // 
             this.lblBuff.AutoSize = true;
@@ -325,22 +337,23 @@
             this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
             // 
-            // btnFlee
+            // btnTemp
             // 
-            this.btnFlee.Location = new System.Drawing.Point(144, 252);
-            this.btnFlee.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFlee.Name = "btnFlee";
-            this.btnFlee.Size = new System.Drawing.Size(125, 38);
-            this.btnFlee.TabIndex = 21;
-            this.btnFlee.Text = "Flee Fight";
-            this.btnFlee.UseVisualStyleBackColor = true;
-            this.btnFlee.Click += new System.EventHandler(this.BtnFlee_Click);
+            this.btnTemp.Location = new System.Drawing.Point(126, 377);
+            this.btnTemp.Margin = new System.Windows.Forms.Padding(4);
+            this.btnTemp.Name = "btnTemp";
+            this.btnTemp.Size = new System.Drawing.Size(125, 38);
+            this.btnTemp.TabIndex = 21;
+            this.btnTemp.Text = "btnTemp";
+            this.btnTemp.UseVisualStyleBackColor = true;
+            this.btnTemp.Click += new System.EventHandler(this.BtnTemp_Click);
             // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 716);
+            this.Controls.Add(this.btnTemp);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.gpxItems);
             this.Controls.Add(this.gpxFight);
@@ -389,5 +402,6 @@
         private System.Windows.Forms.Button btnMusic;
         private System.Windows.Forms.Label lblBuff;
         private System.Windows.Forms.Button btnFlee;
+        private System.Windows.Forms.Button btnTemp;
     }
 }

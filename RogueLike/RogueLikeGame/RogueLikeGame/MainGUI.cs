@@ -21,12 +21,14 @@ namespace RogueLikeGame
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
 
-        bool firstSequence = true;
+        bool firstSequence = false;
         bool secondSequence = false;
 
         bool firstButtonPressed = false;
         bool secondButtonPressed = false;
         bool thirdButtonPressed = false;
+
+        bool treasureEncounter = true;
 
         public MainGUI(UserSettings user, Form1 form)
         {
@@ -218,12 +220,15 @@ namespace RogueLikeGame
             }
         }
 
+        #endregion
+
         private void BtnOptionA_Click(object sender, EventArgs e)
         {
             choice++;
             firstButtonPressed = true;
             FirstSequence();
             SecondSequence();
+            OnTreasureEncounter();
         }
 
         private void BtnOptionB_Click(object sender, EventArgs e)
@@ -232,6 +237,7 @@ namespace RogueLikeGame
             secondButtonPressed = true;
             FirstSequence();
             SecondSequence();
+            OnTreasureEncounter();
         }
 
         private void BtnOptionC_Click(object sender, EventArgs e)
@@ -241,8 +247,6 @@ namespace RogueLikeGame
             FirstSequence();
             SecondSequence();
         }
-
-        #endregion
 
         private void BtnTemporary_Click(object sender, EventArgs e)
         {
@@ -322,12 +326,21 @@ namespace RogueLikeGame
             }
         }
 
+        private void CreateMob()
+        {
+            if (GlobalSettings.roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
+            {
+                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());      //CREATES A NEW MOB BASED ON RNG
+                userAttack = false;                                                 //To ensure that the user will always hit first
+            }
+        }
+
         private void StartFight()           //The fight mechanics
         {
             if (GlobalSettings.roundCounter == 0 && !firstSequence)          //Create a new random enemy only on start of fight
             {
-                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());
-                userAttack = false; //To ensure that the user will always hit first
+                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());      //CREATES A NEW MOB BASED ON RNG
+                userAttack = false;                                                 //To ensure that the user will always hit first
             }
 
             if (currentMob.Health > 0 && GlobalSettings.roundCounter == 0)                     //On start of fight - Check if it's the first round
@@ -575,6 +588,42 @@ namespace RogueLikeGame
             }
             userAttack = !userAttack;
             DisableIO();
+        }
+
+        private void BtnTemp_Click(object sender, EventArgs e)
+        {
+            ResetButtons();
+            firstSequence = false;
+            secondSequence = false;
+            btnOptionA.Enabled = true;
+            btnOptionA.Text = "Open the chest";
+            btnOptionB.Enabled = true;
+            btnOptionB.Text = "Leave the chest";
+
+            tbxNarrative.Text = "You've found a treasure chest";
+        }
+
+        private void OnTreasureEncounter()
+        {
+            if (treasureEncounter)
+            {
+                if (firstButtonPressed) //Open
+                {
+                    tbxNarrative.Text = Randomizer.OnChestOpen(user);
+                    if(currentMob != null)
+                    {
+                        btnOptionA.Enabled = false;
+                    }
+                    else
+                    {
+                        btnOptionA.Text = "Continue";
+                    }
+                }
+                else if (secondButtonPressed) //Leave
+                {
+                    tbxNarrative.Text = "You didn't open the chest. It's contents remain unknown";
+                }
+            }
         }
     }
 }
