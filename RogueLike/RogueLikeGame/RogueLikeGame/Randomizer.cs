@@ -11,16 +11,23 @@ namespace RogueLikeGame
         static readonly Random r = new Random();
         public static int RandomEncounter()
         {
-            return r.Next(0, 2); //0 - Mob, 1 - Treasure Chest
+            return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }
+
+        public static string OnRiddleEncounter()
+        {
+            return TextNarrative.riddles.ElementAt(r.Next(0, TextNarrative.riddles.Count)).Key;
+        }
+
         public static string OnChestOpen(UserSettings user)
         {
             string returnInformation = "";
 
-            int result = r.Next(0, 3);
+            int result = r.Next(0, 4);
             switch(result)
             {
                 case 0: //Return loot
+                case 1:
                     switch (Randomizer.EnemyDeathLoot(true))
                     {
                         case Weapons weapons:
@@ -47,10 +54,10 @@ namespace RogueLikeGame
                             return returnInformation;
                     }
                     break;
-                case 1: //Return enemy encounter
+                case 2: //Return enemy encounter
                     GlobalSettings.roundCounter = 0; //Will create a new mob
                     return "You tried to open the chest, but a hostile mob was hiding inside!";
-                case 2: //Inflict damage on player
+                case 3: //Inflict damage on player
                     user.CurrentHealth -= GlobalSettings.damageOnFailedOpen;
                     return $"The chest is filled with poison. You got damaged for a total of {GlobalSettings.damageOnFailedOpen} damage";
             }

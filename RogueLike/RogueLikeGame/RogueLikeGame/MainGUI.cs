@@ -30,11 +30,14 @@ namespace RogueLikeGame
 
         bool encounter = false;
 
+        bool riddleSetup = false;
+
         bool treasureEncounter = false;
         bool mobEncounter = false;
+        bool riddleEncounter = false;
 
         public MainGUI(UserSettings user, Form1 form)
-        {
+        { 
             InitializeComponent();
             this.user = user;
             this.userForm = form;
@@ -223,13 +226,17 @@ namespace RogueLikeGame
                         tbxNarrative.Text = TextNarrative.SecondChoiceSuccess2;
                         btnOptionA.Enabled = true;
                         btnAbility.Visible = true;
-
-
+                        break;
+                    case 2:
+                        tbxNarrative.Text = TextNarrative.ThirdChoiceNarrative;
+                        btnOptionA.Text = "Continue";
+                        TreasureSetup();
+                        encounter = true;
+                        break;
                         //END OF CURRENT TUTORIAL
                         //EXPERIMENTAL THINGS BELOW ONLY 
-                        secondSequence = false;
-                        encounter = true;
-                                                break;
+                        //secondSequence = false;
+                        //encounter = true;
                 }
             }
         }
@@ -252,6 +259,14 @@ namespace RogueLikeGame
             else if(treasureEncounter)
             {
                 OnTreasureEncounter();
+            }
+            else if(riddleSetup)
+            {
+                RiddleSetup();
+            }
+            else if(riddleEncounter)
+            {
+                OnRiddleEncounter();
             }
             else if(mobEncounter)
             {
@@ -289,6 +304,7 @@ namespace RogueLikeGame
             SecondSequence();
         }
         #endregion
+
         private void Encounters()
         {
             if (encounter)
@@ -300,18 +316,13 @@ namespace RogueLikeGame
                         DisableNarrativeButton();
                         StartFight();
                         break;
-                    case 1: //Treasure maps
-                        ResetButtons();
-                        firstSequence = false;
-                        secondSequence = false;
-                        btnOptionA.Enabled = true;
-                        btnOptionA.Text = "Open the chest";
-                        btnOptionB.Enabled = true;
-                        btnOptionB.Text = "Leave the chest";
-
-                        tbxNarrative.Text = "You've found a treasure chest";
-
-                        treasureEncounter = true;
+                    case 1: //Treasure chests
+                        TreasureSetup();
+                        break;
+                    case 2:
+                        choice = 0;
+                        riddleSetup = true;
+                        RiddleSetup();
                         break;
                 }
                 encounter = false;
@@ -344,7 +355,6 @@ namespace RogueLikeGame
                         btnUseItem.Enabled = false;
                         lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     }
-
                     UpdateItemsList();
                     UpdatePlayerStatistics();
                 }
@@ -383,6 +393,7 @@ namespace RogueLikeGame
                 lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
                 GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
 
+                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 btnOptionA.Enabled = true;
                 btnOptionA.Text = "Continue";
                 encounter = true;
@@ -534,7 +545,7 @@ namespace RogueLikeGame
                     lbxCombatLog.Items.Clear();
                     UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
                     GlobalSettings.roundCounter++;
-                    lbxCombatLog.Items.Add(MobFight.TBStartFight(currentMob, user)); //On start of fight events
+                    tbxNarrative.Text = MobFight.TBStartFight(currentMob, user); //On start of fight events
                     UpdateAbilityButton();                                           //Checks if you're ability is on CD;
                     lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 }
@@ -633,35 +644,7 @@ namespace RogueLikeGame
             GlobalSettings.SoundToggle();
             GlobalSettings.ChangeSoundImage((Button)sender);
         }
-        #endregion
 
-        #region EnableDisableControls
-        private void DisableCombatButtons()
-        {
-            if (!userAttack)
-            {
-                btnUseItem.Enabled = true;
-                btnPoisonPot.Enabled = true;
-                btnHealthPot.Enabled = true;
-                btnFlee.Enabled = true;
-            }
-            else
-            {
-                btnFlee.Enabled = false;
-                btnAbility.Enabled = false;
-                btnUseItem.Enabled = false;
-                btnPoisonPot.Enabled = false;
-                btnHealthPot.Enabled = false;
-            }
-        }
-
-        private void DisableNarrativeButton()
-        {
-            btnOptionA.Enabled = false;
-            btnOptionB.Enabled = false;
-            btnOptionC.Enabled = false;
-        }
-        #endregion
         private void SearchForPotion(string name)
         {
             if (!userAttack)
@@ -693,11 +676,50 @@ namespace RogueLikeGame
                 UpdatePlayerStatistics();
             }
         }
+        #endregion
 
-        private void BtnTemp_Click(object sender, EventArgs e)
+        #region EnableDisableControls
+        private void DisableCombatButtons()
         {
-
+            if (!userAttack)
+            {
+                btnUseItem.Enabled = true;
+                btnPoisonPot.Enabled = true;
+                btnHealthPot.Enabled = true;
+                btnFlee.Enabled = true;
+            }
+            else
+            {
+                btnFlee.Enabled = false;
+                btnAbility.Enabled = false;
+                btnUseItem.Enabled = false;
+                btnPoisonPot.Enabled = false;
+                btnHealthPot.Enabled = false;
+            }
         }
+
+        private void DisableNarrativeButton()
+        {
+            btnOptionA.Enabled = false;
+            btnOptionB.Enabled = false;
+            btnOptionC.Enabled = false;
+        }
+        #endregion
+
+        #region TreasureEncounter
+        private void TreasureSetup()
+        {
+            ResetButtons();
+            firstSequence = false;
+            secondSequence = false;
+            btnOptionA.Enabled = true;
+            btnOptionA.Text = "Open the chest";
+            btnOptionB.Enabled = true;
+            btnOptionB.Text = "Leave the chest";
+            tbxNarrative.Text = "You've found a treasure chest";
+            treasureEncounter = true;
+        }
+
 
         private void OnTreasureEncounter()
         {
@@ -705,12 +727,13 @@ namespace RogueLikeGame
             {
                 if (firstButtonPressed) //Open
                 {
+                    btnOptionB.Enabled = false;
                     tbxNarrative.Text = Randomizer.OnChestOpen(user);
                     if(user.CurrentHealth <= 0)
                     {
                         OnPlayerDeath();
                     }
-                    //CreateMob();
+
                     if (tbxNarrative.Text == "You tried to open the chest, but a hostile mob was hiding inside!")
                     {
                         btnOptionA.Enabled = false;
@@ -722,7 +745,7 @@ namespace RogueLikeGame
                     else
                     {
                         btnOptionA.Text = "Continue";
-
+                        UpdateItemsList();
                         treasureEncounter = false;
                         encounter = true;
                     }
@@ -730,10 +753,72 @@ namespace RogueLikeGame
                 else if (secondButtonPressed) //Leave
                 {
                     tbxNarrative.Text = "You didn't open the chest. It's contents remain unknown";
+                    btnOptionA.Text = "Continue";
+                    btnOptionB.Enabled = false;
                     treasureEncounter = false;
                     encounter = true;
                 }
+
+                if(secondSequence)
+                {
+                    secondSequence = false;
+                    encounter = true;
+                }
                 UpdatePlayerStatistics();
+            }
+        }
+        #endregion
+        private void RiddleSetup()
+        {
+            if (riddleSetup)
+            {
+                switch (choice)
+                {
+                    case 0:
+                        tbxNarrative.Text = "You've encountered a door with a riddle on it. You must complete it in order to continue";
+                        ResetButtons();
+                        firstSequence = false;
+                        secondSequence = false;
+                        btnOptionA.Enabled = true;
+                        btnOptionA.Text = "Continue";
+                        btnOptionB.Enabled = false;
+                        riddleSetup = true;
+                        break;
+                    case 1:
+                        riddleSetup = false;
+                        tbxNarrative.Text = Randomizer.OnRiddleEncounter();
+                        btnOptionA.Text = "Confirm answer";
+                        riddleEncounter = true;
+                        tbxRiddleAnswer.Visible = true;
+                        break;
+                }
+            }
+        }
+
+        private void OnRiddleEncounter()
+        {
+            if (riddleEncounter)
+            {
+                if (TextNarrative.riddles.ContainsKey(tbxNarrative.Text))
+                {
+                    if (tbxRiddleAnswer.Text == TextNarrative.riddles[tbxNarrative.Text])
+                    {
+                        tbxNarrative.Text = "Your answer is correct";
+                    }
+                    else
+                    {
+                        tbxNarrative.Text = TextNarrative.RiddleWrongAnswer;
+                        user.CurrentHealth -= GlobalSettings.damageOnWrongAnswer;
+                        if(user.CurrentHealth <= 0)
+                        {
+                            OnPlayerDeath();
+                        }
+                    }
+                }
+                tbxRiddleAnswer.Text = "";
+                tbxRiddleAnswer.Visible = false;
+                riddleEncounter = false;
+                encounter = true;
             }
         }
     }

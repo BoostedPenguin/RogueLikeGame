@@ -36,7 +36,6 @@
             this.lbxCurrentItems = new System.Windows.Forms.ListBox();
             this.btnUseItem = new System.Windows.Forms.Button();
             this.lblPlayerStatistics = new System.Windows.Forms.Label();
-            this.lbxOptionC = new System.Windows.Forms.ListBox();
             this.prbEnemyHealth = new System.Windows.Forms.ProgressBar();
             this.lblMobHealth = new System.Windows.Forms.Label();
             this.btnAbility = new System.Windows.Forms.Button();
@@ -52,7 +51,7 @@
             this.btnFlee = new System.Windows.Forms.Button();
             this.lblBuff = new System.Windows.Forms.Label();
             this.btnMusic = new System.Windows.Forms.Button();
-            this.btnTemp = new System.Windows.Forms.Button();
+            this.tbxRiddleAnswer = new System.Windows.Forms.TextBox();
             this.gpxFight.SuspendLayout();
             this.gpxItems.SuspendLayout();
             this.SuspendLayout();
@@ -142,17 +141,6 @@
             this.lblPlayerStatistics.Size = new System.Drawing.Size(86, 31);
             this.lblPlayerStatistics.TabIndex = 7;
             this.lblPlayerStatistics.Text = "label1";
-            // 
-            // lbxOptionC
-            // 
-            this.lbxOptionC.FormattingEnabled = true;
-            this.lbxOptionC.ItemHeight = 16;
-            this.lbxOptionC.Location = new System.Drawing.Point(443, 238);
-            this.lbxOptionC.Margin = new System.Windows.Forms.Padding(4);
-            this.lbxOptionC.Name = "lbxOptionC";
-            this.lbxOptionC.Size = new System.Drawing.Size(185, 196);
-            this.lbxOptionC.TabIndex = 8;
-            this.lbxOptionC.Visible = false;
             // 
             // prbEnemyHealth
             // 
@@ -334,27 +322,24 @@
             this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
             // 
-            // btnTemp
+            // tbxRiddleAnswer
             // 
-            this.btnTemp.Location = new System.Drawing.Point(126, 377);
-            this.btnTemp.Margin = new System.Windows.Forms.Padding(4);
-            this.btnTemp.Name = "btnTemp";
-            this.btnTemp.Size = new System.Drawing.Size(125, 38);
-            this.btnTemp.TabIndex = 21;
-            this.btnTemp.Text = "btnTemp";
-            this.btnTemp.UseVisualStyleBackColor = true;
-            this.btnTemp.Click += new System.EventHandler(this.BtnTemp_Click);
+            this.tbxRiddleAnswer.Location = new System.Drawing.Point(113, 237);
+            this.tbxRiddleAnswer.Multiline = true;
+            this.tbxRiddleAnswer.Name = "tbxRiddleAnswer";
+            this.tbxRiddleAnswer.Size = new System.Drawing.Size(125, 114);
+            this.tbxRiddleAnswer.TabIndex = 21;
+            this.tbxRiddleAnswer.Visible = false;
             // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 716);
-            this.Controls.Add(this.btnTemp);
+            this.Controls.Add(this.tbxRiddleAnswer);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.gpxItems);
             this.Controls.Add(this.gpxFight);
-            this.Controls.Add(this.lbxOptionC);
             this.Controls.Add(this.lblPlayerStatistics);
             this.Controls.Add(this.btnOptionC);
             this.Controls.Add(this.btnOptionB);
@@ -383,7 +368,6 @@
         private System.Windows.Forms.ListBox lbxCurrentItems;
         private System.Windows.Forms.Button btnUseItem;
         private System.Windows.Forms.Label lblPlayerStatistics;
-        private System.Windows.Forms.ListBox lbxOptionC;
         private System.Windows.Forms.ProgressBar prbEnemyHealth;
         private System.Windows.Forms.Label lblMobHealth;
         private System.Windows.Forms.Button btnAbility;
@@ -399,6 +383,6 @@
         private System.Windows.Forms.Button btnMusic;
         private System.Windows.Forms.Label lblBuff;
         private System.Windows.Forms.Button btnFlee;
-        private System.Windows.Forms.Button btnTemp;
+        private System.Windows.Forms.TextBox tbxRiddleAnswer;
     }
 }

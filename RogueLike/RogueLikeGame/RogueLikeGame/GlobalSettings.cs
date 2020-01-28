@@ -62,7 +62,9 @@ namespace RogueLikeGame
 
         public static int totalChance = potionDropChance; //PotionDropChance has the MAX % Of which you will receive an item
         #endregion
-
+        #region RiddleSettings
+        public static int damageOnWrongAnswer = 40;
+        #endregion
         #region TreasureChests
         public static int damageOnFailedOpen = 20;
         #endregion
