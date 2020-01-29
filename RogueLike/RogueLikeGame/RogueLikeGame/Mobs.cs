@@ -12,21 +12,24 @@ namespace RogueLikeGame
         RAT,
         SHADOW,
         ZOMBIE,
-        ELDERDRAGON
+        ELDERDRAGON,
+        FLESHBEHEMOTH,
+        LIFEREAPER
     }
     public class Mobs
     {
         public MobTypes Type { get; set; }          //Type of enemy
         public double Damage { get; set; }          //The BASE damage
-        public double Health { get; set; }             //The CURRENT amount of health
-        public double MaxHealth { get; set; }          //The MAX HEALTH
+        public double Health { get; set; }          //The CURRENT amount of health
+        public double MaxHealth { get; set; }       //The MAX HEALTH
         public int EvadeChance { get; set; }        //The TOTAL evade chance
         public int AbilityChance { get; set; }      //Chance of an ability to happen
-        public int SpawnChance { get; set; }
-        public string DebuffString { get; set; }
-        public int AbilityCounter { get; set; }
+        public int SpawnChance { get; set; }        //Chance of the enemy to spawn
+        public string DebuffString { get; set; }    //Debuff string 
+        public int AbilityCounter { get; set; }     //Switcher for multiple-abilities mobs
+        public bool Boss { get; set; }              //If it's a boss enemy
 
-        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance)
+        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance, bool boss)
         {
             this.Type = type;
             this.EvadeChance = evadeChance;
@@ -35,7 +38,7 @@ namespace RogueLikeGame
             this.Health = health;
             this.MaxHealth = health;
             this.SpawnChance = spawnChance;
-
+            this.Boss = boss;
             this.AbilityCounter = -1;
         }
 
@@ -75,7 +78,7 @@ namespace RogueLikeGame
                     {
                         if (AbilityCounter == -1) //Doesnt overlap abilities
                         {
-                            if (Randomizer.ElderDragonAbiliyRandomizer() == 0) //0, 1 randomize - 2 different abilities
+                            if (Randomizer.BossAbilityRandomizer() == 0) //0, 1 randomize - 2 different abilities
                             {
                                 MobFight.currentRoundOfDebuff = 3; //3 rounds of fire on player
                                 this.AbilityCounter = 0;
@@ -89,11 +92,30 @@ namespace RogueLikeGame
                     }
                     return Damage * multiplier;
 
+                case MobTypes.FLESHBEHEMOTH:
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
+                    {
+                        if(AbilityCounter == -1)
+                        {
+                            MobFight.currentRoundOfDebuff = 10;
+                        }
+                    }
+                    return Damage * multiplier;
+
+                case MobTypes.LIFEREAPER:
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
+                    {
+                        MobFight.currentRoundOfDebuff = 1;
+                        this.AbilityCounter = 1;
+                    }
+                    return Damage * multiplier;
+
                 default:                    //Just return crit chance if mob doesnt have a timed round debuff ability
                     return multiplier* Randomizer.Damage(AbilityChance, Damage);
             }
         }
 
+        public bool FirstEncounter = true;
         public string Ability(Mobs mob, UserSettings user)
         {
             switch(mob.Type)
@@ -127,14 +149,46 @@ namespace RogueLikeGame
                     if (AbilityCounter == 0)
                     {
                         this.DebuffString = "The dragon used his fire breath to inflict heavy damage on the player";
-                        user.CurrentHealth -= 15;
+                        user.CurrentHealth -= 5;
                     }
                     else if(AbilityCounter == 1)
                     {
                         this.DebuffString = "The dragon used it's claws and wounded the player";
-                        user.CurrentHealth -= 40;
+                        user.CurrentHealth -= 5;
                     }
                     return DebuffString;
+
+                case MobTypes.FLESHBEHEMOTH:
+                    this.AbilityCounter = 0;  //Prevents doing an ability once an ability is already in place
+                    this.DebuffString = $"Death incoming in {MobFight.currentRoundOfDebuff}";
+                    if(MobFight.currentRoundOfDebuff == 1)
+                    {
+                        user.CurrentHealth = 0; //kills the player
+                    }
+                    return DebuffString;
+
+                case MobTypes.LIFEREAPER:
+                    if(AbilityCounter == 0 && FirstEncounter)
+                    {
+                        FirstEncounter = false;
+                        DebuffString = "The life reaper respawns";
+                        this.Health = MaxHealth / 2;
+                    }
+                    else if(AbilityCounter == 1)
+                    {
+                        DebuffString = $"{mob.Type} sucks the life on {user.userName}";
+                        if(mob.Health + 10 > mob.MaxHealth)
+                        {
+                            mob.Health = mob.MaxHealth;
+                        }
+                        else
+                        {
+                            mob.Health += 10;
+                        }
+                        user.CurrentHealth -= 10;
+                    }
+                    return DebuffString;
+
                 default:
                     return $"";
             }

@@ -114,17 +114,20 @@ namespace RogueLikeGame
                 user.currentHealth -= damage;           //Player hit
 
                 string returnInfo = $"{user.userName} got hit by {mob.Type.ToString()} for {damage} damage. {debuff}";
-                //if (damage > mob.damage)                //On enemy crit hit
-                //{
-                //    returnInfo = $"{user.userName} received a critical hit by {mob.type.ToString()} for {damage} damage. {debuff} {user.currentHealth}";
-                //}
                 return returnInfo;
             }
             else
             {
                 if(currentRoundOfDebuff > 0)
                 {
-                    return mob.Ability(mob, user);
+                    debuff = mob.Ability(mob, user);
+                    currentRoundOfDebuff--;
+                    if(currentRoundOfDebuff <= 0)
+                    {
+                        mob.AbilityCounter = -1;
+                        user.debuff = 1;
+                    }
+                    return debuff;
                 }
                 return $"{user.userName} managed to evade {mob.Type}'s attack!";
             }
@@ -178,6 +181,11 @@ namespace RogueLikeGame
                 if (damage / user.Damage / GlobalSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
                 {
                     returnInfo = $"{user.userName} dealt a critical hit for {damage} damage to {mob.Type.ToString()}";
+                }
+                if (mob.Health <= 0 && mob.Type == MobTypes.LIFEREAPER && mob.FirstEncounter)
+                {
+                    mob.AbilityCounter = 0;
+                    returnInfo = mob.Ability(mob, user);
                 }
                 return returnInfo;
             }

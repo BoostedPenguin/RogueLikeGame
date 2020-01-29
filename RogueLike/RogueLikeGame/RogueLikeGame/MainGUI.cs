@@ -386,29 +386,32 @@ namespace RogueLikeGame
 
         private void BtnFlee_Click(object sender, EventArgs e)
         {
-            string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
-            if (checkIfFled == null)
+            if (!currentMob.Boss)
             {
-                lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
-                GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
-
-                lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
-                btnOptionA.Enabled = true;
-                btnOptionA.Text = "Continue";
-                encounter = true;
-                mobEncounter = false;
-            }
-            else
-            {
-                lbxCombatLog.Items.Add(checkIfFled);
-                if (user.currentHealth <= 0)
+                string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
+                if (checkIfFled == null)
                 {
-                    OnPlayerDeath();
+                    lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
+                    GlobalSettings.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
+
+                    lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
+                    btnOptionA.Enabled = true;
+                    btnOptionA.Text = "Continue";
+                    encounter = true;
+                    mobEncounter = false;
                 }
-                UpdatePlayerStatistics();
+                else
+                {
+                    lbxCombatLog.Items.Add(checkIfFled);
+                    if (user.currentHealth <= 0)
+                    {
+                        OnPlayerDeath();
+                    }
+                    UpdatePlayerStatistics();
+                }
+                userAttack = !userAttack;
+                DisableCombatButtons();
             }
-            userAttack = !userAttack;
-            DisableCombatButtons();
         }
 
         private void BtnHealthPot_Click(object sender, EventArgs e)
@@ -609,6 +612,7 @@ namespace RogueLikeGame
             MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob)); //Calls event of enemy death
             UpdateProgressbar();
             GlobalSettings.roundCounter = 0;
+            //currentMob.Boss = false;                                  //Even if it aint a boss it will get reset - thats ok
             if (!firstSequence)
             {
                 encounter = true;

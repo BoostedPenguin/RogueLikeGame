@@ -219,12 +219,12 @@ FireBreath - Heavy damage on the character (TB: 2.Hide, 3.CounterStrike: limbs)
 Grab - Grabs the character and flies off with him (TB: 1.Break free, 2.Set aflame, 3.Strike: limbs)
 -------------------------------------------------
 
-FleshBehemtoh - Health 1x, Damage: 2.5x
+FleshBehemtoh - Health 1x, Damage: 2.5x - time bomb - x rounds untill it blows up and kills the player
 ABILITIES (Random chance of occuring - ain't guranteed): 
 
 
 
-LifeReaper - Health 2x, Damage 2x
+LifeReaper - Health 2x, Damage 2x - on death - respawn
 ------------------------------------------------------------------------------------------------
 
 

@@ -14,7 +14,7 @@ namespace RogueLikeGame
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }
 
-        public static int ElderDragonAbiliyRandomizer()
+        public static int BossAbilityRandomizer()
         {
             return r.Next(0, 2);
         }
