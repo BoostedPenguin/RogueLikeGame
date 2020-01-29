@@ -59,6 +59,18 @@ namespace RogueLikeGame
         public const string FifthRiddleNarrative = "What goes up but never goes back down?";
         public static string FifthRiddleAnswer = "age";
 
+        public const string SixthRiddleNarrative = "I am an odd number. Take away a letter and I become even. What number am I?";
+        public static string SixthRiddleAnswer = "seven";
+
+        public const string SeventhRiddleNarrative = "David's father has three sons : Snap, Crackle and _____?";
+        public static string SeventhRiddleAnswer = "david";
+
+        public const string EightRiddleNarrative = "There is an ancient invention still used in some parts of the world today that allows people to see through walls. What is it?";
+        public static string EightRiddleAnswer = "window";
+
+        public const string NinthRiddleNarrative = "If you were running a race, and you passed the person in second place, what place would you be in now?";
+        public static string NinthRiddleAnswer = "second";
+
         public static string RiddleWrongAnswer = "Your answer is incorrect. You get shot by an arrow.";
 
         public static Dictionary<string, string> riddles;
@@ -70,7 +82,11 @@ namespace RogueLikeGame
                 {SecondRiddleNarrative, SecondRiddleAnswer },
                 {ThirdRiddleNarrative, ThirdRiddleAnswer },
                 {FourthRiddleNarrative, FourthRiddleAnswer },
-                {FifthRiddleNarrative, FifthRiddleAnswer }
+                {FifthRiddleNarrative, FifthRiddleAnswer },
+                {SixthRiddleNarrative, SixthRiddleAnswer },
+                {SeventhRiddleNarrative, SeventhRiddleAnswer },
+                {EightRiddleNarrative, EightRiddleAnswer },
+                {NinthRiddleNarrative, NinthRiddleAnswer }
             };
         }
         #endregion
@@ -90,6 +106,9 @@ namespace RogueLikeGame
         public static string ZombieEncounter1 = "saw a zombie eating the flesh out of a corpse";
         public static string ZombieEncounter2 = "felt dizzy by the smell of a half-rotten zombie";
         public static string ZombieEncounter3 = "draw his weapon at the sight of a zombie";
+
+        public static string ElderDragonEncounter1 = "finally meets the great Elder Dragon. It's time for an epic fight";
+        public static string ElderDragonEncounter2 = "sees the great Elder Dragon laying on top of a corpse. The battle begins.";
         #endregion
     }
 }

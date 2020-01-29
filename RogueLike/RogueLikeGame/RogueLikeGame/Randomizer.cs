@@ -14,6 +14,11 @@ namespace RogueLikeGame
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }
 
+        public static int ElderDragonAbiliyRandomizer()
+        {
+            return r.Next(0, 2);
+        }
+
         public static string OnRiddleEncounter()
         {
             return TextNarrative.riddles.ElementAt(r.Next(0, TextNarrative.riddles.Count)).Key;

@@ -66,6 +66,16 @@ namespace RogueLikeGame
                             return $"{user.userName} {TextNarrative.ZombieEncounter3}";
                     }
                     return null;
+                case MobTypes.ELDERDRAGON:
+                    i = Randomizer.RandomizeText(2);
+                    switch(i)
+                    {
+                        case 1:
+                            return $"{user.userName} {TextNarrative.ElderDragonEncounter1}";
+                        case 2:
+                            return $"{user.userName} {TextNarrative.ElderDragonEncounter2}";
+                    }
+                    return null;
                 default:
                     return null;
             }
@@ -89,6 +99,7 @@ namespace RogueLikeGame
                     }
                     if(currentRoundOfDebuff <= 0)           //If debuffs gets to 0 - reset the debuff
                     {
+                        mob.AbilityCounter = -1;
                         user.debuff = 1;
                     }
                 }

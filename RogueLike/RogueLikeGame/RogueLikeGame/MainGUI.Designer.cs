@@ -135,7 +135,7 @@
             // 
             this.lblPlayerStatistics.AutoSize = true;
             this.lblPlayerStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerStatistics.Location = new System.Drawing.Point(35, 658);
+            this.lblPlayerStatistics.Location = new System.Drawing.Point(13, 658);
             this.lblPlayerStatistics.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPlayerStatistics.Name = "lblPlayerStatistics";
             this.lblPlayerStatistics.Size = new System.Drawing.Size(86, 31);
@@ -241,7 +241,6 @@
             // 
             // gpxFight
             // 
-            this.gpxFight.Controls.Add(this.lblTurn);
             this.gpxFight.Controls.Add(this.lbxCombatLog);
             this.gpxFight.Controls.Add(this.prbEnemyHealth);
             this.gpxFight.Controls.Add(this.lblMobHealth);
@@ -256,7 +255,7 @@
             // 
             this.lblTurn.AutoSize = true;
             this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurn.Location = new System.Drawing.Point(384, 348);
+            this.lblTurn.Location = new System.Drawing.Point(13, 425);
             this.lblTurn.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTurn.Name = "lblTurn";
             this.lblTurn.Size = new System.Drawing.Size(86, 31);
@@ -336,6 +335,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1331, 716);
+            this.Controls.Add(this.lblTurn);
             this.Controls.Add(this.tbxRiddleAnswer);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.gpxItems);

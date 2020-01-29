@@ -11,7 +11,8 @@ namespace RogueLikeGame
         SPIDER,
         RAT,
         SHADOW,
-        ZOMBIE
+        ZOMBIE,
+        ELDERDRAGON
     }
     public class Mobs
     {
@@ -23,6 +24,7 @@ namespace RogueLikeGame
         public int AbilityChance { get; set; }      //Chance of an ability to happen
         public int SpawnChance { get; set; }
         public string DebuffString { get; set; }
+        public int AbilityCounter { get; set; }
 
         public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance)
         {
@@ -33,6 +35,8 @@ namespace RogueLikeGame
             this.Health = health;
             this.MaxHealth = health;
             this.SpawnChance = spawnChance;
+
+            this.AbilityCounter = -1;
         }
 
         //Call this whenever you want a spider to attack instead of DAMAGE
@@ -58,6 +62,7 @@ namespace RogueLikeGame
                         MobFight.currentRoundOfDebuff = 3;
                     }
                     return Damage * multiplier;
+
                 case MobTypes.ZOMBIE:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
@@ -65,7 +70,26 @@ namespace RogueLikeGame
                     }
                     return Damage * multiplier;
 
-                default:                    //Just return crit chance if mob doesnt have an ability
+                case MobTypes.ELDERDRAGON:
+                    if(Randomizer.EnemyAbilityChance(AbilityChance))
+                    {
+                        if (AbilityCounter == -1) //Doesnt overlap abilities
+                        {
+                            if (Randomizer.ElderDragonAbiliyRandomizer() == 0) //0, 1 randomize - 2 different abilities
+                            {
+                                MobFight.currentRoundOfDebuff = 3; //3 rounds of fire on player
+                                this.AbilityCounter = 0;
+                            }
+                            else
+                            {
+                                MobFight.currentRoundOfDebuff = 1;
+                                this.AbilityCounter = 1;
+                            }
+                        }
+                    }
+                    return Damage * multiplier;
+
+                default:                    //Just return crit chance if mob doesnt have a timed round debuff ability
                     return multiplier* Randomizer.Damage(AbilityChance, Damage);
             }
         }
@@ -78,7 +102,7 @@ namespace RogueLikeGame
                     return null;
 
                 case MobTypes.RAT:  //Amount of damage per round
-                    user.currentHealth -= 2;
+                    user.CurrentHealth -= 2;
                     this.DebuffString = $"Poisoned for {2} damage";
                     return DebuffString;
 
@@ -99,6 +123,18 @@ namespace RogueLikeGame
                     }
                     return DebuffString;
 
+                case MobTypes.ELDERDRAGON:
+                    if (AbilityCounter == 0)
+                    {
+                        this.DebuffString = "The dragon used his fire breath to inflict heavy damage on the player";
+                        user.CurrentHealth -= 15;
+                    }
+                    else if(AbilityCounter == 1)
+                    {
+                        this.DebuffString = "The dragon used it's claws and wounded the player";
+                        user.CurrentHealth -= 40;
+                    }
+                    return DebuffString;
                 default:
                     return $"";
             }

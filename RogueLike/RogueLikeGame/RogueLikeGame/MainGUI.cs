@@ -17,7 +17,7 @@ namespace RogueLikeGame
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
 
 
-        int choice = 0; //1 firstbutton 2secondbutton 3thirdbutton
+        int choice = 0; 
         bool ability = false; //False = ability on cd, True = ability available
         bool userAttack = false; //If it's the users turn to attack
 
@@ -319,7 +319,7 @@ namespace RogueLikeGame
                     case 1: //Treasure chests
                         TreasureSetup();
                         break;
-                    case 2:
+                    case 2: //Riddle
                         choice = 0;
                         riddleSetup = true;
                         RiddleSetup();
@@ -361,9 +361,8 @@ namespace RogueLikeGame
             }
         }
 
-        private void BtnAttack_Click(object sender, EventArgs e)
-        {
-            //Temporary experimental works | CHANGE LATER
+        private void BtnAttack_Click(object sender, EventArgs e) //On Turn/Attack button click
+        {   
             if (GlobalSettings.roundCounter > 0)
             {
                 userAttack = !userAttack;
@@ -813,6 +812,7 @@ namespace RogueLikeGame
                         {
                             OnPlayerDeath();
                         }
+                        UpdatePlayerStatistics();
                     }
                 }
                 tbxRiddleAnswer.Text = "";

@@ -52,10 +52,12 @@ namespace RogueLikeGame
         public static void AddAllMobs()  //CHANGE this if you want to alter STATS
         {
                          //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth
-            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40, 25));
-            allMobs.Add(new Mobs(MobTypes.RAT, 4, 15, 10, 50, 25));
-            allMobs.Add(new Mobs(MobTypes.SHADOW, 4, 25, 10, 40, 25));
-            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 4, 10, 15, 50, 25));
+            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40, 0));
+            allMobs.Add(new Mobs(MobTypes.RAT, 4, 15, 10, 50, 0));
+            allMobs.Add(new Mobs(MobTypes.SHADOW, 4, 25, 10, 40, 0));
+            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 4, 10, 15, 50, 0));
+
+            allMobs.Add(new Mobs(MobTypes.ELDERDRAGON, 10, 10, 20, 200, 100));
         }
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE
