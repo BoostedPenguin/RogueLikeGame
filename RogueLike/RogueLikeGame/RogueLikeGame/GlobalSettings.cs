@@ -20,29 +20,29 @@ namespace RogueLikeGame
         public static Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
 
         #region MobFight
-        public static int roundCounter = 0;
+
         #endregion
 
         #region MusicSettings
-        public static bool musicOn = false;
+
         public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
-        public static void SoundToggle()
+        public static void SoundToggle(UserSettings user)
         {
-            if(musicOn)
+            if(user.musicOn)
             {
                 sound.Stop();
-                musicOn = false;
+                user.musicOn = false;
             }
             else
             {
                 sound.PlayLooping();
-                musicOn = true;
+                user.musicOn = true;
             }
         }
 
-        public static void ChangeSoundImage(Button btn)
+        public static void ChangeSoundImage(Button btn, UserSettings user)
         {
-            if(musicOn)
+            if(user.musicOn)
             {
                 btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicDisable;
             }

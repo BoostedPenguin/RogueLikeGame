@@ -54,6 +54,7 @@
     <Compile Include="CharacterSelect.Designer.cs">
       <DependentUpon>CharacterSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="DictionaryEntries.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +78,7 @@
     <Compile Include="TextNarrative.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Weapons.cs" />
+    <Compile Include="XmlSerialization.cs" />
     <EmbeddedResource Include="CharacterSelect.resx">
       <DependentUpon>CharacterSelect.cs</DependentUpon>
     </EmbeddedResource>

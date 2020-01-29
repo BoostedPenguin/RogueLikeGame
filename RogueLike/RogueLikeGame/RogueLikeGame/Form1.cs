@@ -13,12 +13,10 @@ namespace RogueLikeGame
 {
     public partial class Form1 : Form
     {
-        public Form1 mainForm;
         public Form1()
         {
             InitializeComponent();
             Items.RepopulateTheLists();
-            mainForm = this;
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -42,8 +40,8 @@ namespace RogueLikeGame
 
         private void BtnMusic_Click(object sender, EventArgs e)
         {
-            GlobalSettings.SoundToggle();
-            GlobalSettings.ChangeSoundImage((Button)sender);
+            //GlobalSettings.SoundToggle();
+            //GlobalSettings.ChangeSoundImage((Button)sender);
         }
     }
 }

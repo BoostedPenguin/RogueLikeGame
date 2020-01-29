@@ -20,5 +20,10 @@ namespace RogueLikeGame
             this.Damage = damage;
             this.DropChance = dropChance;
         }
+
+        public Potions()
+        {
+
+        }
     }
 }

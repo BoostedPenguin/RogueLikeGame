@@ -20,5 +20,10 @@ namespace RogueLikeGame
             this.ItemArmor = armor;
             this.DropChance = dropChance;
         }
+
+        public Armor()
+        {
+
+        }
     }
 }

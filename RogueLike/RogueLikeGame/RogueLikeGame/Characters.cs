@@ -25,6 +25,12 @@ namespace RogueLikeGame
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
         public int SecondChance { get; set; }
 
+
+        public Characters()
+        {
+
+        }
+
         public Characters(GameCharacters characterName)   //If you want to change a character stats use this!
         {
             if(GameCharacters.Berserker == characterName)

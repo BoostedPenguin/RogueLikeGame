@@ -293,6 +293,7 @@
             this.btnFlee.TabIndex = 21;
             this.btnFlee.Text = "Flee Fight";
             this.btnFlee.UseVisualStyleBackColor = true;
+            this.btnFlee.Visible = false;
             this.btnFlee.Click += new System.EventHandler(this.BtnFlee_Click);
             // 
             // lblBuff

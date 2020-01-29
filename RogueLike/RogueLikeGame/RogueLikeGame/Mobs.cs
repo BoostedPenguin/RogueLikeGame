@@ -20,7 +20,12 @@ namespace RogueLikeGame
     {
         public MobTypes Type { get; set; }          //Type of enemy
         public double Damage { get; set; }          //The BASE damage
-        public double Health { get; set; }          //The CURRENT amount of health
+        private double _health;
+        public double Health
+        {
+            get;
+            set;
+        }
         public double MaxHealth { get; set; }       //The MAX HEALTH
         public int EvadeChance { get; set; }        //The TOTAL evade chance
         public int AbilityChance { get; set; }      //Chance of an ability to happen
@@ -35,11 +40,16 @@ namespace RogueLikeGame
             this.EvadeChance = evadeChance;
             this.Damage = damage;
             this.AbilityChance = abilityChance;
-            this.Health = health;
             this.MaxHealth = health;
+            this.Health = health;
             this.SpawnChance = spawnChance;
             this.Boss = boss;
             this.AbilityCounter = -1;
+        }
+
+        public Mobs()
+        {
+
         }
 
         //Call this whenever you want a spider to attack instead of DAMAGE
@@ -135,13 +145,13 @@ namespace RogueLikeGame
 
                 case MobTypes.ZOMBIE: //Amount of heal
                     this.DebuffString = $"Self-Regenerated {8} health";
-                    if (mob.Health + 8 > mob.MaxHealth)
+                    if(this.Health + 8 > MaxHealth)
                     {
-                        mob.Health = mob.MaxHealth;
+                        this.Health = this.MaxHealth;
                     }
                     else
                     {
-                        mob.Health += 8;
+                        this.Health += 8;
                     }
                     return DebuffString;
 

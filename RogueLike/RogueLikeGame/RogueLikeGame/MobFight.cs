@@ -164,7 +164,7 @@ namespace RogueLikeGame
                             break;
 
                         case GameCharacters.Ghost:
-                            GlobalSettings.roundCounter = 0;
+                            user.roundCounter = 0;
                             user.currentAbilityCooldown = 0;
                             return $"{user.userName} used his ability and fled from {mob.Type.ToString()}";
 

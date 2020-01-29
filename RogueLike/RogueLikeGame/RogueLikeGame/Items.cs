@@ -54,14 +54,14 @@ namespace RogueLikeGame
             //Bosses need to have 0% chance to spawn - It's not a random encounter
 
                          //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth //Boss
-            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40, 0, false));
-            allMobs.Add(new Mobs(MobTypes.RAT, 4, 15, 10, 50, 0, false));
-            allMobs.Add(new Mobs(MobTypes.SHADOW, 4, 25, 10, 40, 0, false));
-            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 4, 10, 15, 50, 0, false));
+            allMobs.Add(new Mobs(MobTypes.SPIDER, 1, 10, 5, 40, 25, false));
+            allMobs.Add(new Mobs(MobTypes.RAT, 4, 15, 10, 50, 25, false));
+            allMobs.Add(new Mobs(MobTypes.SHADOW, 4, 25, 10, 40, 25, false));
+            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 4, 10, 15, 50, 25, false));
 
             allMobs.Add(new Mobs(MobTypes.ELDERDRAGON, 10, 10, 20, 50, 0, true));
             allMobs.Add(new Mobs(MobTypes.FLESHBEHEMOTH, 4, 10, 20, 500, 0, true));
-            allMobs.Add(new Mobs(MobTypes.LIFEREAPER, 4, 10, 20, 50, 100, true));
+            allMobs.Add(new Mobs(MobTypes.LIFEREAPER, 4, 10, 20, 50, 0, true));
         }
 
         public static Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE

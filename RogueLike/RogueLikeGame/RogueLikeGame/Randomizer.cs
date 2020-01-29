@@ -9,8 +9,12 @@ namespace RogueLikeGame
     public static class Randomizer
     {
         static readonly Random r = new Random();
-        public static int RandomEncounter()
+        public static int RandomEncounter(int actionCounter)
         {
+            if(actionCounter == 1) //After how many random encounters - return boss fight
+            {
+                return 3;
+            }
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }
 
@@ -60,7 +64,7 @@ namespace RogueLikeGame
                     }
                     break;
                 case 2: //Return enemy encounter
-                    GlobalSettings.roundCounter = 0; //Will create a new mob
+                    user.roundCounter = 0; //Will create a new mob
                     return "You tried to open the chest, but a hostile mob was hiding inside!";
                 case 3: //Inflict damage on player
                     user.CurrentHealth -= GlobalSettings.damageOnFailedOpen;

@@ -21,6 +21,11 @@ namespace RogueLikeGame
             this.CriticalDamage = critical;
         }
 
+        public Weapons()
+        {
+
+        }
+
         public double Damage() //Call this when attacking > adds a crit chance to the attack
         {
             return Randomizer.Damage(this.CriticalDamage, this.DamageBase);

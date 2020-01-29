@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace RogueLikeGame
 {
@@ -18,6 +19,51 @@ namespace RogueLikeGame
         public int currentAbilityCooldown;       //Resets to 0 after pickup, +1 each turn; Available to use after it's same as character_ability_cooldown
         public double debuff;                    //Mob debuff for damage: damage / debuff = currentDamage 
 
+        public Mobs currentMob;
+        public int roundCounter = 0; //Save in user
+        #region PlayerDecisions
+        public int actionCounter = 0;      //Keeps track of all encounters that have passed since the start        //save in user
+
+        public int choice = 0;
+        public bool ability = false; //False = ability on cd, True = ability available     //save in user
+        public bool userAttack = false; //If it's the users turn to attack                 //save in user
+
+        public bool firstSequence = true;          //save in user
+        public bool secondSequence = false;        //save in user
+
+        public bool firstButtonPressed = false;    //save in user
+        public bool secondButtonPressed = false;   //save in user
+        public bool thirdButtonPressed = false;    //save in user
+
+        public bool encounter = false;             //save in user
+
+        public bool riddleSetup = false;           //save in user
+        public bool treasureEncounter = false;     //save in user
+        public bool mobEncounter = false;          //save in user
+        public bool riddleEncounter = false;       //save in user
+
+        public bool elderDragonSetup = false;      //save in user
+        public bool elderDragonEncounter = false;  //save in user
+        #endregion
+        public bool musicOn = false; //Save in user
+
+        #region LastRecordedOptions
+
+        public List<string> textsLbl = new List<string>();
+        public List<string> textsBtn = new List<string>();
+        public List<bool> isEnabled = new List<bool>();
+        public string lbxCombatText;
+        public string lastNarrative;
+
+        public void PoppulateOnClose(List<string> buttonstxt, List<bool> buttonsEnb, List<string> labelstxt, string text, string text2)
+        {
+            textsLbl = labelstxt;
+            textsBtn = buttonstxt;
+            isEnabled = buttonsEnb;
+            lbxCombatText = text;
+            lastNarrative = text2;
+        }
+        #endregion
         public UserSettings(string username, GameCharacters character) : base(character)
         {
             //Stores your inventory list
@@ -35,6 +81,11 @@ namespace RogueLikeGame
             this.currentHealth = base.MaxHealth;                    //Set the currentHealth to character MaxHealth
             this.debuff = 1;                                        //Mob debuff for damage: damage / debuff = currentDamage 
         }
+        public UserSettings() : base()
+        {
+
+        }
+
 
         public double CurrentHealth
         {
