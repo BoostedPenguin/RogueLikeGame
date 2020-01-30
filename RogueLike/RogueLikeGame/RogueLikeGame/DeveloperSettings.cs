@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -220,6 +222,33 @@ namespace RogueLikeGame
             foreach (Potions a in allItems.allPotions)
             {
                 lbxItems.Items.Add(a.PotionName);
+            }
+        }
+        public bool restart = true;
+        private void DeveloperSettings_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(restart)
+            {
+                restart = false;
+                Application.Restart();
+            }
+        }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(Directory.GetCurrentDirectory() + @"\CurrentGlobalSettings.xml"))
+            {
+                File.Delete(Directory.GetCurrentDirectory() + @"\CurrentGlobalSettings.xml");
+            }
+            if(File.Exists(Directory.GetCurrentDirectory() + @"\CurrentItems.xml"))
+            {
+                File.Delete(Directory.GetCurrentDirectory() + @"\CurrentItems.xml");
+            }
+
+            if (restart)
+            {
+                restart = false;
+                Application.Restart();
             }
         }
     }

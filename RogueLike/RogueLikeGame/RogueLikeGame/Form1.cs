@@ -23,18 +23,21 @@ namespace RogueLikeGame
             allItems = new Items();
             allSettings = new GlobalSettings();
             allItems.RepopulateTheLists();
-
-            string path = Directory.GetCurrentDirectory();
-            path += @"\CurrentUserSettings.xml";
-            if(!File.Exists(path))
+            if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml"))
             {
                 btnLoadLastSave.Enabled = false;
             }
-            //XmlSerialization.SerializeObject(allItems);       //<-- USE THESE 2 ONLY WHEN EDITING A SETTING
-            //XmlSerialization.SerializeObject(allSettings);    //<--
 
-            //allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
-            //allItems = (Items)XmlSerialization.DeserializeObject(2);
+            if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentGlobalSettings.xml"))
+            {
+                XmlSerialization.SerializeObject(allSettings);       //<-- USE THESE 2 ONLY WHEN EDITING A SETTING
+            }
+            if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentItems.xml"))
+            {
+                XmlSerialization.SerializeObject(allItems);    //<-- OR USING SYSTEM DEFAULT
+            }
+            allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
+            allItems = (Items)XmlSerialization.DeserializeObject(2);
         }
 
         private void BtnStart_Click(object sender, EventArgs e)

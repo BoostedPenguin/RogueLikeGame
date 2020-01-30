@@ -79,6 +79,12 @@
             this.lbxMobs = new System.Windows.Forms.ListBox();
             this.tabPlayerSettings = new System.Windows.Forms.TabPage();
             this.tabItems = new System.Windows.Forms.TabPage();
+            this.cbxIsHealthPot = new System.Windows.Forms.CheckBox();
+            this.tbxItemName = new System.Windows.Forms.TextBox();
+            this.btnPotions = new System.Windows.Forms.Button();
+            this.btnArmor = new System.Windows.Forms.Button();
+            this.btnWeapons = new System.Windows.Forms.Button();
+            this.label25 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -88,12 +94,7 @@
             this.nudItemDamArm = new System.Windows.Forms.NumericUpDown();
             this.btnSaveItem = new System.Windows.Forms.Button();
             this.lbxItems = new System.Windows.Forms.ListBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.btnWeapons = new System.Windows.Forms.Button();
-            this.btnArmor = new System.Windows.Forms.Button();
-            this.btnPotions = new System.Windows.Forms.Button();
-            this.tbxItemName = new System.Windows.Forms.TextBox();
-            this.cbxIsHealthPot = new System.Windows.Forms.CheckBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).BeginInit();
@@ -136,6 +137,7 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.btnReset);
             this.tabGeneral.Controls.Add(this.nudPotionsDropChance);
             this.tabGeneral.Controls.Add(this.nudArmorDropChance);
             this.tabGeneral.Controls.Add(this.nudWeaponDropChance);
@@ -776,6 +778,64 @@
             this.tabItems.Text = "Items settings";
             this.tabItems.UseVisualStyleBackColor = true;
             // 
+            // cbxIsHealthPot
+            // 
+            this.cbxIsHealthPot.AutoSize = true;
+            this.cbxIsHealthPot.Location = new System.Drawing.Point(524, 279);
+            this.cbxIsHealthPot.Name = "cbxIsHealthPot";
+            this.cbxIsHealthPot.Size = new System.Drawing.Size(121, 21);
+            this.cbxIsHealthPot.TabIndex = 60;
+            this.cbxIsHealthPot.Text = "IsHealthPotion";
+            this.cbxIsHealthPot.UseVisualStyleBackColor = true;
+            // 
+            // tbxItemName
+            // 
+            this.tbxItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbxItemName.Location = new System.Drawing.Point(524, 105);
+            this.tbxItemName.Name = "tbxItemName";
+            this.tbxItemName.Size = new System.Drawing.Size(120, 30);
+            this.tbxItemName.TabIndex = 59;
+            // 
+            // btnPotions
+            // 
+            this.btnPotions.Location = new System.Drawing.Point(230, 341);
+            this.btnPotions.Name = "btnPotions";
+            this.btnPotions.Size = new System.Drawing.Size(90, 29);
+            this.btnPotions.TabIndex = 58;
+            this.btnPotions.Text = "Potions";
+            this.btnPotions.UseVisualStyleBackColor = true;
+            this.btnPotions.Click += new System.EventHandler(this.BtnPotions_Click);
+            // 
+            // btnArmor
+            // 
+            this.btnArmor.Location = new System.Drawing.Point(117, 341);
+            this.btnArmor.Name = "btnArmor";
+            this.btnArmor.Size = new System.Drawing.Size(90, 29);
+            this.btnArmor.TabIndex = 57;
+            this.btnArmor.Text = "Armor";
+            this.btnArmor.UseVisualStyleBackColor = true;
+            this.btnArmor.Click += new System.EventHandler(this.BtnArmor_Click);
+            // 
+            // btnWeapons
+            // 
+            this.btnWeapons.Location = new System.Drawing.Point(8, 341);
+            this.btnWeapons.Name = "btnWeapons";
+            this.btnWeapons.Size = new System.Drawing.Size(90, 29);
+            this.btnWeapons.TabIndex = 56;
+            this.btnWeapons.Text = "Weapons";
+            this.btnWeapons.UseVisualStyleBackColor = true;
+            this.btnWeapons.Click += new System.EventHandler(this.BtnWeapons_Click);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.Location = new System.Drawing.Point(354, 279);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(148, 25);
+            this.label25.TabIndex = 54;
+            this.label25.Text = "Is Health Potion";
+            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -875,63 +935,15 @@
             this.lbxItems.TabIndex = 44;
             this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.LbxItems_SelectedIndexChanged);
             // 
-            // label25
+            // btnReset
             // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label25.Location = new System.Drawing.Point(354, 279);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(148, 25);
-            this.label25.TabIndex = 54;
-            this.label25.Text = "Is Health Potion";
-            // 
-            // btnWeapons
-            // 
-            this.btnWeapons.Location = new System.Drawing.Point(8, 341);
-            this.btnWeapons.Name = "btnWeapons";
-            this.btnWeapons.Size = new System.Drawing.Size(90, 29);
-            this.btnWeapons.TabIndex = 56;
-            this.btnWeapons.Text = "Weapons";
-            this.btnWeapons.UseVisualStyleBackColor = true;
-            this.btnWeapons.Click += new System.EventHandler(this.BtnWeapons_Click);
-            // 
-            // btnArmor
-            // 
-            this.btnArmor.Location = new System.Drawing.Point(117, 341);
-            this.btnArmor.Name = "btnArmor";
-            this.btnArmor.Size = new System.Drawing.Size(90, 29);
-            this.btnArmor.TabIndex = 57;
-            this.btnArmor.Text = "Armor";
-            this.btnArmor.UseVisualStyleBackColor = true;
-            this.btnArmor.Click += new System.EventHandler(this.BtnArmor_Click);
-            // 
-            // btnPotions
-            // 
-            this.btnPotions.Location = new System.Drawing.Point(230, 341);
-            this.btnPotions.Name = "btnPotions";
-            this.btnPotions.Size = new System.Drawing.Size(90, 29);
-            this.btnPotions.TabIndex = 58;
-            this.btnPotions.Text = "Potions";
-            this.btnPotions.UseVisualStyleBackColor = true;
-            this.btnPotions.Click += new System.EventHandler(this.BtnPotions_Click);
-            // 
-            // tbxItemName
-            // 
-            this.tbxItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxItemName.Location = new System.Drawing.Point(524, 105);
-            this.tbxItemName.Name = "tbxItemName";
-            this.tbxItemName.Size = new System.Drawing.Size(120, 30);
-            this.tbxItemName.TabIndex = 59;
-            // 
-            // cbxIsHealthPot
-            // 
-            this.cbxIsHealthPot.AutoSize = true;
-            this.cbxIsHealthPot.Location = new System.Drawing.Point(524, 279);
-            this.cbxIsHealthPot.Name = "cbxIsHealthPot";
-            this.cbxIsHealthPot.Size = new System.Drawing.Size(121, 21);
-            this.cbxIsHealthPot.TabIndex = 60;
-            this.cbxIsHealthPot.Text = "IsHealthPotion";
-            this.cbxIsHealthPot.UseVisualStyleBackColor = true;
+            this.btnReset.Location = new System.Drawing.Point(614, 160);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(133, 58);
+            this.btnReset.TabIndex = 22;
+            this.btnReset.Text = "System Default";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.BtnReset_Click);
             // 
             // DeveloperSettings
             // 
@@ -941,6 +953,7 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "DeveloperSettings";
             this.Text = "DeveloperSettings";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeveloperSettings_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
@@ -1042,5 +1055,6 @@
         private System.Windows.Forms.Button btnWeapons;
         private System.Windows.Forms.TextBox tbxItemName;
         private System.Windows.Forms.CheckBox cbxIsHealthPot;
+        private System.Windows.Forms.Button btnReset;
     }
 }
