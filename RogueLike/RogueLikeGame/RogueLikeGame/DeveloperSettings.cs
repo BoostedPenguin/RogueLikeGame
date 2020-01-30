@@ -113,5 +113,114 @@ namespace RogueLikeGame
                 tbxCharacterStartWeapon.Text = ch.StartWeapon.WeaponName;
             }
         }
+
+        int switcher = 0;
+        private void BtnSaveItem_Click(object sender, EventArgs e)
+        {
+            if(switcher != 0 && lbxItems.SelectedIndex != -1)
+            {
+                int index = lbxItems.SelectedIndex;
+                switch(switcher)
+                {
+                    case 1:
+                        Weapons wep = allItems.allWeapons[index];
+                        wep.DamageBase = (double)nudItemDamArm.Value;
+                        wep.DropChance = (int)nudItemDropChance.Value;
+                        wep.WeaponName = tbxItemName.Text;
+                        wep.CriticalDamage = (int)nudCritEvade.Value;
+                        XmlSerialization.SerializeObject(allItems);
+                        break;
+                    case 2:
+                        Armor arm = allItems.allArmor[index];
+                        arm.ArmorName = tbxItemName.Text;
+                        arm.ItemArmor = (int)nudItemDamArm.Value;
+                        arm.EvadeChance = (int)nudCritEvade.Value;
+                        arm.DropChance = (int)nudItemDropChance.Value;
+                        XmlSerialization.SerializeObject(allItems);
+                        break;
+                    case 3:
+                        Potions pot = allItems.allPotions[index];
+                        pot.PotionName = tbxItemName.Text;
+                        pot.Damage = (int)nudItemDamArm.Value;
+                        pot.DropChance = (int)nudItemDropChance.Value;
+                        pot.IsHealthPotion = cbxIsHealthPot.Checked;
+                        XmlSerialization.SerializeObject(allItems);
+                        break;
+                }
+            }
+        }
+
+        private void ClearItems()
+        {
+            tbxItemName.Text = string.Empty;
+            nudItemDamArm.Value = 0;
+            nudItemDropChance.Value = 0;
+            nudCritEvade.Value = 0;
+            cbxIsHealthPot.Checked = false;
+        }
+        private void LbxItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(lbxItems.SelectedIndex != -1)
+            {
+                int index = lbxItems.SelectedIndex;
+                switch(switcher)
+                {
+                    case 1:
+                        Weapons wep = allItems.allWeapons[index];
+                        tbxItemName.Text = wep.WeaponName;
+                        nudItemDamArm.Value = (decimal)wep.DamageBase;
+                        nudItemDropChance.Value = wep.DropChance;
+                        nudCritEvade.Value = wep.CriticalDamage;
+                        break;
+                    case 2:
+                        Armor arm = allItems.allArmor[index];
+                        tbxItemName.Text = arm.ArmorName;
+                        nudItemDamArm.Value = arm.ItemArmor;
+                        nudItemDropChance.Value = arm.DropChance;
+                        nudCritEvade.Value = arm.EvadeChance;
+                        break;
+                    case 3:
+                        Potions pot = allItems.allPotions[index];
+                        tbxItemName.Text = pot.PotionName;
+                        nudItemDamArm.Value = (decimal)pot.Damage;
+                        nudItemDropChance.Value = pot.DropChance;
+                        cbxIsHealthPot.Checked = pot.IsHealthPotion;
+                        break;
+                }
+            }
+        }
+
+        private void BtnWeapons_Click(object sender, EventArgs e)
+        {
+            switcher = 1;
+            ClearItems();
+            lbxItems.Items.Clear();
+            foreach (Weapons a in allItems.allWeapons)
+            {
+                lbxItems.Items.Add(a.WeaponName);
+            }
+        }
+
+        private void BtnArmor_Click(object sender, EventArgs e)
+        {
+            switcher = 2;
+            ClearItems();
+            lbxItems.Items.Clear();
+            foreach (Armor a in allItems.allArmor)
+            {
+                lbxItems.Items.Add(a.ArmorName);
+            }
+        }
+
+        private void BtnPotions_Click(object sender, EventArgs e)
+        {
+            switcher = 3;
+            ClearItems();
+            lbxItems.Items.Clear();
+            foreach (Potions a in allItems.allPotions)
+            {
+                lbxItems.Items.Add(a.PotionName);
+            }
+        }
     }
 }

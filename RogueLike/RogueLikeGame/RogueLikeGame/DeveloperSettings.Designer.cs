@@ -30,39 +30,28 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.nudPotionsDropChance = new System.Windows.Forms.NumericUpDown();
+            this.nudArmorDropChance = new System.Windows.Forms.NumericUpDown();
+            this.nudWeaponDropChance = new System.Windows.Forms.NumericUpDown();
+            this.nudCharacterDamageMultiplier = new System.Windows.Forms.NumericUpDown();
+            this.nudCharacterArmorMultiplier = new System.Windows.Forms.NumericUpDown();
+            this.nudEnemyDifficultyMultiplier = new System.Windows.Forms.NumericUpDown();
+            this.tbxSoundSource = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnSaveChanges = new System.Windows.Forms.Button();
             this.tabCharacter = new System.Windows.Forms.TabPage();
-            this.tabMob = new System.Windows.Forms.TabPage();
-            this.tabPlayerSettings = new System.Windows.Forms.TabPage();
-            this.tabItems = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.lbxMobs = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tbxSoundSource = new System.Windows.Forms.TextBox();
-            this.nudEnemyDifficultyMultiplier = new System.Windows.Forms.NumericUpDown();
-            this.nudCharacterArmorMultiplier = new System.Windows.Forms.NumericUpDown();
-            this.nudCharacterDamageMultiplier = new System.Windows.Forms.NumericUpDown();
-            this.nudWeaponDropChance = new System.Windows.Forms.NumericUpDown();
-            this.nudArmorDropChance = new System.Windows.Forms.NumericUpDown();
-            this.nudPotionsDropChance = new System.Windows.Forms.NumericUpDown();
-            this.nudMobSpawnCh = new System.Windows.Forms.NumericUpDown();
-            this.nudMobAbchance = new System.Windows.Forms.NumericUpDown();
-            this.nudMobEvChance = new System.Windows.Forms.NumericUpDown();
-            this.nudMobMaxHealth = new System.Windows.Forms.NumericUpDown();
-            this.nudMobDamage = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lbxCharacters = new System.Windows.Forms.ListBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.nudCharacterSecondChance = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.tbxCharacterStartWeapon = new System.Windows.Forms.TextBox();
+            this.tbxCharacterStartArmor = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -73,33 +62,63 @@
             this.nudCharacterEvChance = new System.Windows.Forms.NumericUpDown();
             this.nudCharacterMaxHealth = new System.Windows.Forms.NumericUpDown();
             this.nudCharacterDamage = new System.Windows.Forms.NumericUpDown();
-            this.tbxCharacterStartArmor = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.tbxCharacterStartWeapon = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.nudCharacterSecondChance = new System.Windows.Forms.NumericUpDown();
+            this.button2 = new System.Windows.Forms.Button();
+            this.lbxCharacters = new System.Windows.Forms.ListBox();
+            this.tabMob = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nudMobSpawnCh = new System.Windows.Forms.NumericUpDown();
+            this.nudMobAbchance = new System.Windows.Forms.NumericUpDown();
+            this.nudMobEvChance = new System.Windows.Forms.NumericUpDown();
+            this.nudMobMaxHealth = new System.Windows.Forms.NumericUpDown();
+            this.nudMobDamage = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.lbxMobs = new System.Windows.Forms.ListBox();
+            this.tabPlayerSettings = new System.Windows.Forms.TabPage();
+            this.tabItems = new System.Windows.Forms.TabPage();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.nudCritEvade = new System.Windows.Forms.NumericUpDown();
+            this.nudItemDropChance = new System.Windows.Forms.NumericUpDown();
+            this.nudItemDamArm = new System.Windows.Forms.NumericUpDown();
+            this.btnSaveItem = new System.Windows.Forms.Button();
+            this.lbxItems = new System.Windows.Forms.ListBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.btnWeapons = new System.Windows.Forms.Button();
+            this.btnArmor = new System.Windows.Forms.Button();
+            this.btnPotions = new System.Windows.Forms.Button();
+            this.tbxItemName = new System.Windows.Forms.TextBox();
+            this.cbxIsHealthPot = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
-            this.tabCharacter.SuspendLayout();
-            this.tabMob.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEnemyDifficultyMultiplier)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmorMultiplier)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamageMultiplier)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobSpawnCh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobAbchance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamageMultiplier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmorMultiplier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEnemyDifficultyMultiplier)).BeginInit();
+            this.tabCharacter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterSecondChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterAbCd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterEvChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterMaxHealth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterSecondChance)).BeginInit();
+            this.tabMob.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobSpawnCh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobAbchance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).BeginInit();
+            this.tabItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -140,6 +159,162 @@
             this.tabGeneral.Text = "General Settings";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // nudPotionsDropChance
+            // 
+            this.nudPotionsDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudPotionsDropChance.Location = new System.Drawing.Point(313, 267);
+            this.nudPotionsDropChance.Name = "nudPotionsDropChance";
+            this.nudPotionsDropChance.Size = new System.Drawing.Size(120, 30);
+            this.nudPotionsDropChance.TabIndex = 21;
+            // 
+            // nudArmorDropChance
+            // 
+            this.nudArmorDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudArmorDropChance.Location = new System.Drawing.Point(313, 226);
+            this.nudArmorDropChance.Name = "nudArmorDropChance";
+            this.nudArmorDropChance.Size = new System.Drawing.Size(120, 30);
+            this.nudArmorDropChance.TabIndex = 20;
+            // 
+            // nudWeaponDropChance
+            // 
+            this.nudWeaponDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudWeaponDropChance.Location = new System.Drawing.Point(313, 188);
+            this.nudWeaponDropChance.Name = "nudWeaponDropChance";
+            this.nudWeaponDropChance.Size = new System.Drawing.Size(120, 30);
+            this.nudWeaponDropChance.TabIndex = 19;
+            // 
+            // nudCharacterDamageMultiplier
+            // 
+            this.nudCharacterDamageMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudCharacterDamageMultiplier.Location = new System.Drawing.Point(313, 143);
+            this.nudCharacterDamageMultiplier.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudCharacterDamageMultiplier.Name = "nudCharacterDamageMultiplier";
+            this.nudCharacterDamageMultiplier.Size = new System.Drawing.Size(120, 30);
+            this.nudCharacterDamageMultiplier.TabIndex = 18;
+            this.nudCharacterDamageMultiplier.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nudCharacterArmorMultiplier
+            // 
+            this.nudCharacterArmorMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudCharacterArmorMultiplier.Location = new System.Drawing.Point(313, 101);
+            this.nudCharacterArmorMultiplier.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudCharacterArmorMultiplier.Name = "nudCharacterArmorMultiplier";
+            this.nudCharacterArmorMultiplier.Size = new System.Drawing.Size(120, 30);
+            this.nudCharacterArmorMultiplier.TabIndex = 17;
+            this.nudCharacterArmorMultiplier.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nudEnemyDifficultyMultiplier
+            // 
+            this.nudEnemyDifficultyMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudEnemyDifficultyMultiplier.Location = new System.Drawing.Point(313, 46);
+            this.nudEnemyDifficultyMultiplier.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudEnemyDifficultyMultiplier.Name = "nudEnemyDifficultyMultiplier";
+            this.nudEnemyDifficultyMultiplier.Size = new System.Drawing.Size(120, 30);
+            this.nudEnemyDifficultyMultiplier.TabIndex = 16;
+            this.nudEnemyDifficultyMultiplier.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // tbxSoundSource
+            // 
+            this.tbxSoundSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbxSoundSource.Location = new System.Drawing.Point(313, 303);
+            this.tbxSoundSource.Name = "tbxSoundSource";
+            this.tbxSoundSource.Size = new System.Drawing.Size(447, 30);
+            this.tbxSoundSource.TabIndex = 15;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(25, 265);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(198, 25);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Potions Drop Chance";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(25, 228);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(186, 25);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Armor Drop Chance";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(25, 190);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(208, 25);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Weapon Drop Chance";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(25, 303);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(138, 25);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Sound Source";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(25, 145);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(259, 25);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Character Damage Multiplier";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(25, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(238, 25);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Character Armor Multiplier";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(25, 51);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(232, 25);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Enemy Difficulty Multiplier";
+            // 
             // btnSaveChanges
             // 
             this.btnSaveChanges.Location = new System.Drawing.Point(324, 355);
@@ -178,375 +353,64 @@
             this.tabCharacter.Text = "Character Settings";
             this.tabCharacter.UseVisualStyleBackColor = true;
             // 
-            // tabMob
+            // label20
             // 
-            this.tabMob.Controls.Add(this.label12);
-            this.tabMob.Controls.Add(this.label11);
-            this.tabMob.Controls.Add(this.label9);
-            this.tabMob.Controls.Add(this.label10);
-            this.tabMob.Controls.Add(this.label8);
-            this.tabMob.Controls.Add(this.nudMobSpawnCh);
-            this.tabMob.Controls.Add(this.nudMobAbchance);
-            this.tabMob.Controls.Add(this.nudMobEvChance);
-            this.tabMob.Controls.Add(this.nudMobMaxHealth);
-            this.tabMob.Controls.Add(this.nudMobDamage);
-            this.tabMob.Controls.Add(this.button1);
-            this.tabMob.Controls.Add(this.lbxMobs);
-            this.tabMob.Location = new System.Drawing.Point(4, 25);
-            this.tabMob.Name = "tabMob";
-            this.tabMob.Size = new System.Drawing.Size(790, 425);
-            this.tabMob.TabIndex = 2;
-            this.tabMob.Text = "Mob Settings";
-            this.tabMob.UseVisualStyleBackColor = true;
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label20.Location = new System.Drawing.Point(341, 289);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(154, 25);
+            this.label20.TabIndex = 50;
+            this.label20.Text = "Second Chance";
             // 
-            // tabPlayerSettings
+            // nudCharacterSecondChance
             // 
-            this.tabPlayerSettings.Location = new System.Drawing.Point(4, 25);
-            this.tabPlayerSettings.Name = "tabPlayerSettings";
-            this.tabPlayerSettings.Size = new System.Drawing.Size(790, 425);
-            this.tabPlayerSettings.TabIndex = 3;
-            this.tabPlayerSettings.Text = "Player save settings";
-            this.tabPlayerSettings.UseVisualStyleBackColor = true;
-            // 
-            // tabItems
-            // 
-            this.tabItems.Location = new System.Drawing.Point(4, 25);
-            this.tabItems.Name = "tabItems";
-            this.tabItems.Size = new System.Drawing.Size(790, 425);
-            this.tabItems.TabIndex = 4;
-            this.tabItems.Text = "Items settings";
-            this.tabItems.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(25, 51);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(232, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Enemy Difficulty Multiplier";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(25, 103);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(238, 25);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Character Armor Multiplier";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(25, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(259, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Character Damage Multiplier";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(25, 303);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(138, 25);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Sound Source";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(25, 190);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(208, 25);
-            this.label5.TabIndex = 6;
-            this.label5.Text = "Weapon Drop Chance";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(25, 228);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(186, 25);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Armor Drop Chance";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(25, 265);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(198, 25);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Potions Drop Chance";
-            // 
-            // lbxMobs
-            // 
-            this.lbxMobs.FormattingEnabled = true;
-            this.lbxMobs.ItemHeight = 16;
-            this.lbxMobs.Location = new System.Drawing.Point(44, 86);
-            this.lbxMobs.Name = "lbxMobs";
-            this.lbxMobs.Size = new System.Drawing.Size(120, 164);
-            this.lbxMobs.TabIndex = 0;
-            this.lbxMobs.SelectedIndexChanged += new System.EventHandler(this.LbxMobs_SelectedIndexChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(694, 123);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 58);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Save Changes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
-            // 
-            // tbxSoundSource
-            // 
-            this.tbxSoundSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxSoundSource.Location = new System.Drawing.Point(313, 303);
-            this.tbxSoundSource.Name = "tbxSoundSource";
-            this.tbxSoundSource.Size = new System.Drawing.Size(447, 30);
-            this.tbxSoundSource.TabIndex = 15;
-            // 
-            // nudEnemyDifficultyMultiplier
-            // 
-            this.nudEnemyDifficultyMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudEnemyDifficultyMultiplier.Location = new System.Drawing.Point(313, 46);
-            this.nudEnemyDifficultyMultiplier.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudEnemyDifficultyMultiplier.Name = "nudEnemyDifficultyMultiplier";
-            this.nudEnemyDifficultyMultiplier.Size = new System.Drawing.Size(120, 30);
-            this.nudEnemyDifficultyMultiplier.TabIndex = 16;
-            this.nudEnemyDifficultyMultiplier.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nudCharacterArmorMultiplier
-            // 
-            this.nudCharacterArmorMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterArmorMultiplier.Location = new System.Drawing.Point(313, 101);
-            this.nudCharacterArmorMultiplier.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudCharacterArmorMultiplier.Name = "nudCharacterArmorMultiplier";
-            this.nudCharacterArmorMultiplier.Size = new System.Drawing.Size(120, 30);
-            this.nudCharacterArmorMultiplier.TabIndex = 17;
-            this.nudCharacterArmorMultiplier.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nudCharacterDamageMultiplier
-            // 
-            this.nudCharacterDamageMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterDamageMultiplier.Location = new System.Drawing.Point(313, 143);
-            this.nudCharacterDamageMultiplier.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudCharacterDamageMultiplier.Name = "nudCharacterDamageMultiplier";
-            this.nudCharacterDamageMultiplier.Size = new System.Drawing.Size(120, 30);
-            this.nudCharacterDamageMultiplier.TabIndex = 18;
-            this.nudCharacterDamageMultiplier.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // nudWeaponDropChance
-            // 
-            this.nudWeaponDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudWeaponDropChance.Location = new System.Drawing.Point(313, 188);
-            this.nudWeaponDropChance.Name = "nudWeaponDropChance";
-            this.nudWeaponDropChance.Size = new System.Drawing.Size(120, 30);
-            this.nudWeaponDropChance.TabIndex = 19;
-            // 
-            // nudArmorDropChance
-            // 
-            this.nudArmorDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudArmorDropChance.Location = new System.Drawing.Point(313, 226);
-            this.nudArmorDropChance.Name = "nudArmorDropChance";
-            this.nudArmorDropChance.Size = new System.Drawing.Size(120, 30);
-            this.nudArmorDropChance.TabIndex = 20;
-            // 
-            // nudPotionsDropChance
-            // 
-            this.nudPotionsDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudPotionsDropChance.Location = new System.Drawing.Point(313, 267);
-            this.nudPotionsDropChance.Name = "nudPotionsDropChance";
-            this.nudPotionsDropChance.Size = new System.Drawing.Size(120, 30);
-            this.nudPotionsDropChance.TabIndex = 21;
-            // 
-            // nudMobSpawnCh
-            // 
-            this.nudMobSpawnCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudMobSpawnCh.Location = new System.Drawing.Point(552, 247);
-            this.nudMobSpawnCh.Maximum = new decimal(new int[] {
+            this.nudCharacterSecondChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudCharacterSecondChance.Location = new System.Drawing.Point(519, 287);
+            this.nudCharacterSecondChance.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.nudMobSpawnCh.Name = "nudMobSpawnCh";
-            this.nudMobSpawnCh.Size = new System.Drawing.Size(120, 30);
-            this.nudMobSpawnCh.TabIndex = 28;
+            this.nudCharacterSecondChance.Name = "nudCharacterSecondChance";
+            this.nudCharacterSecondChance.Size = new System.Drawing.Size(120, 30);
+            this.nudCharacterSecondChance.TabIndex = 49;
             // 
-            // nudMobAbchance
+            // label19
             // 
-            this.nudMobAbchance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudMobAbchance.Location = new System.Drawing.Point(552, 206);
-            this.nudMobAbchance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudMobAbchance.Name = "nudMobAbchance";
-            this.nudMobAbchance.Size = new System.Drawing.Size(120, 30);
-            this.nudMobAbchance.TabIndex = 27;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label19.Location = new System.Drawing.Point(371, 363);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(132, 25);
+            this.label19.TabIndex = 48;
+            this.label19.Text = "Start Damage";
             // 
-            // nudMobEvChance
+            // tbxCharacterStartWeapon
             // 
-            this.nudMobEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudMobEvChance.Location = new System.Drawing.Point(552, 168);
-            this.nudMobEvChance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudMobEvChance.Name = "nudMobEvChance";
-            this.nudMobEvChance.Size = new System.Drawing.Size(120, 30);
-            this.nudMobEvChance.TabIndex = 26;
+            this.tbxCharacterStartWeapon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbxCharacterStartWeapon.Location = new System.Drawing.Point(519, 360);
+            this.tbxCharacterStartWeapon.Name = "tbxCharacterStartWeapon";
+            this.tbxCharacterStartWeapon.Size = new System.Drawing.Size(120, 30);
+            this.tbxCharacterStartWeapon.TabIndex = 47;
             // 
-            // nudMobMaxHealth
+            // tbxCharacterStartArmor
             // 
-            this.nudMobMaxHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudMobMaxHealth.Location = new System.Drawing.Point(552, 123);
-            this.nudMobMaxHealth.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudMobMaxHealth.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudMobMaxHealth.Name = "nudMobMaxHealth";
-            this.nudMobMaxHealth.Size = new System.Drawing.Size(120, 30);
-            this.nudMobMaxHealth.TabIndex = 25;
-            this.nudMobMaxHealth.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.tbxCharacterStartArmor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbxCharacterStartArmor.Location = new System.Drawing.Point(519, 324);
+            this.tbxCharacterStartArmor.Name = "tbxCharacterStartArmor";
+            this.tbxCharacterStartArmor.Size = new System.Drawing.Size(120, 30);
+            this.tbxCharacterStartArmor.TabIndex = 46;
             // 
-            // nudMobDamage
+            // label18
             // 
-            this.nudMobDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudMobDamage.Location = new System.Drawing.Point(552, 75);
-            this.nudMobDamage.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.nudMobDamage.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudMobDamage.Name = "nudMobDamage";
-            this.nudMobDamage.Size = new System.Drawing.Size(120, 30);
-            this.nudMobDamage.TabIndex = 23;
-            this.nudMobDamage.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(442, 77);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 25);
-            this.label8.TabIndex = 29;
-            this.label8.Text = "Damage";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(442, 128);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(106, 25);
-            this.label10.TabIndex = 31;
-            this.label10.Text = "MaxHealth";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(404, 170);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(142, 25);
-            this.label9.TabIndex = 32;
-            this.label9.Text = "Evade Chance";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(413, 208);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(133, 25);
-            this.label11.TabIndex = 33;
-            this.label11.Text = "AbilityChance";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(390, 249);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(147, 25);
-            this.label12.TabIndex = 34;
-            this.label12.Text = "Spawn Chance";
-            // 
-            // lbxCharacters
-            // 
-            this.lbxCharacters.FormattingEnabled = true;
-            this.lbxCharacters.ItemHeight = 16;
-            this.lbxCharacters.Location = new System.Drawing.Point(40, 52);
-            this.lbxCharacters.Name = "lbxCharacters";
-            this.lbxCharacters.Size = new System.Drawing.Size(120, 228);
-            this.lbxCharacters.TabIndex = 0;
-            this.lbxCharacters.SelectedIndexChanged += new System.EventHandler(this.LbxCharacters_SelectedIndexChanged);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(663, 160);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 58);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Save Changes";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label18.Location = new System.Drawing.Point(384, 329);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(111, 25);
+            this.label18.TabIndex = 45;
+            this.label18.Text = "Start Armor";
             // 
             // label13
             // 
@@ -683,64 +547,391 @@
             0,
             0});
             // 
-            // tbxCharacterStartArmor
+            // button2
             // 
-            this.tbxCharacterStartArmor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxCharacterStartArmor.Location = new System.Drawing.Point(519, 324);
-            this.tbxCharacterStartArmor.Name = "tbxCharacterStartArmor";
-            this.tbxCharacterStartArmor.Size = new System.Drawing.Size(120, 30);
-            this.tbxCharacterStartArmor.TabIndex = 46;
+            this.button2.Location = new System.Drawing.Point(663, 160);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 58);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Save Changes";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
-            // label18
+            // lbxCharacters
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(384, 329);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(111, 25);
-            this.label18.TabIndex = 45;
-            this.label18.Text = "Start Armor";
+            this.lbxCharacters.FormattingEnabled = true;
+            this.lbxCharacters.ItemHeight = 16;
+            this.lbxCharacters.Location = new System.Drawing.Point(40, 52);
+            this.lbxCharacters.Name = "lbxCharacters";
+            this.lbxCharacters.Size = new System.Drawing.Size(120, 228);
+            this.lbxCharacters.TabIndex = 0;
+            this.lbxCharacters.SelectedIndexChanged += new System.EventHandler(this.LbxCharacters_SelectedIndexChanged);
             // 
-            // tbxCharacterStartWeapon
+            // tabMob
             // 
-            this.tbxCharacterStartWeapon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxCharacterStartWeapon.Location = new System.Drawing.Point(519, 360);
-            this.tbxCharacterStartWeapon.Name = "tbxCharacterStartWeapon";
-            this.tbxCharacterStartWeapon.Size = new System.Drawing.Size(120, 30);
-            this.tbxCharacterStartWeapon.TabIndex = 47;
+            this.tabMob.Controls.Add(this.label12);
+            this.tabMob.Controls.Add(this.label11);
+            this.tabMob.Controls.Add(this.label9);
+            this.tabMob.Controls.Add(this.label10);
+            this.tabMob.Controls.Add(this.label8);
+            this.tabMob.Controls.Add(this.nudMobSpawnCh);
+            this.tabMob.Controls.Add(this.nudMobAbchance);
+            this.tabMob.Controls.Add(this.nudMobEvChance);
+            this.tabMob.Controls.Add(this.nudMobMaxHealth);
+            this.tabMob.Controls.Add(this.nudMobDamage);
+            this.tabMob.Controls.Add(this.button1);
+            this.tabMob.Controls.Add(this.lbxMobs);
+            this.tabMob.Location = new System.Drawing.Point(4, 25);
+            this.tabMob.Name = "tabMob";
+            this.tabMob.Size = new System.Drawing.Size(790, 425);
+            this.tabMob.TabIndex = 2;
+            this.tabMob.Text = "Mob Settings";
+            this.tabMob.UseVisualStyleBackColor = true;
             // 
-            // label19
+            // label12
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(371, 363);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(132, 25);
-            this.label19.TabIndex = 48;
-            this.label19.Text = "Start Damage";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label12.Location = new System.Drawing.Point(390, 249);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(147, 25);
+            this.label12.TabIndex = 34;
+            this.label12.Text = "Spawn Chance";
             // 
-            // label20
+            // label11
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label20.Location = new System.Drawing.Point(341, 289);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(154, 25);
-            this.label20.TabIndex = 50;
-            this.label20.Text = "Second Chance";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label11.Location = new System.Drawing.Point(413, 208);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(133, 25);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "AbilityChance";
             // 
-            // nudCharacterSecondChance
+            // label9
             // 
-            this.nudCharacterSecondChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterSecondChance.Location = new System.Drawing.Point(519, 287);
-            this.nudCharacterSecondChance.Maximum = new decimal(new int[] {
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(404, 170);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(142, 25);
+            this.label9.TabIndex = 32;
+            this.label9.Text = "Evade Chance";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label10.Location = new System.Drawing.Point(442, 128);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 25);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "MaxHealth";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(442, 77);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 25);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Damage";
+            // 
+            // nudMobSpawnCh
+            // 
+            this.nudMobSpawnCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudMobSpawnCh.Location = new System.Drawing.Point(552, 247);
+            this.nudMobSpawnCh.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
-            this.nudCharacterSecondChance.Name = "nudCharacterSecondChance";
-            this.nudCharacterSecondChance.Size = new System.Drawing.Size(120, 30);
-            this.nudCharacterSecondChance.TabIndex = 49;
+            this.nudMobSpawnCh.Name = "nudMobSpawnCh";
+            this.nudMobSpawnCh.Size = new System.Drawing.Size(120, 30);
+            this.nudMobSpawnCh.TabIndex = 28;
+            // 
+            // nudMobAbchance
+            // 
+            this.nudMobAbchance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudMobAbchance.Location = new System.Drawing.Point(552, 206);
+            this.nudMobAbchance.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMobAbchance.Name = "nudMobAbchance";
+            this.nudMobAbchance.Size = new System.Drawing.Size(120, 30);
+            this.nudMobAbchance.TabIndex = 27;
+            // 
+            // nudMobEvChance
+            // 
+            this.nudMobEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudMobEvChance.Location = new System.Drawing.Point(552, 168);
+            this.nudMobEvChance.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMobEvChance.Name = "nudMobEvChance";
+            this.nudMobEvChance.Size = new System.Drawing.Size(120, 30);
+            this.nudMobEvChance.TabIndex = 26;
+            // 
+            // nudMobMaxHealth
+            // 
+            this.nudMobMaxHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudMobMaxHealth.Location = new System.Drawing.Point(552, 123);
+            this.nudMobMaxHealth.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMobMaxHealth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudMobMaxHealth.Name = "nudMobMaxHealth";
+            this.nudMobMaxHealth.Size = new System.Drawing.Size(120, 30);
+            this.nudMobMaxHealth.TabIndex = 25;
+            this.nudMobMaxHealth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nudMobDamage
+            // 
+            this.nudMobDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudMobDamage.Location = new System.Drawing.Point(552, 75);
+            this.nudMobDamage.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudMobDamage.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudMobDamage.Name = "nudMobDamage";
+            this.nudMobDamage.Size = new System.Drawing.Size(120, 30);
+            this.nudMobDamage.TabIndex = 23;
+            this.nudMobDamage.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(694, 123);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(90, 58);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Save Changes";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // lbxMobs
+            // 
+            this.lbxMobs.FormattingEnabled = true;
+            this.lbxMobs.ItemHeight = 16;
+            this.lbxMobs.Location = new System.Drawing.Point(44, 86);
+            this.lbxMobs.Name = "lbxMobs";
+            this.lbxMobs.Size = new System.Drawing.Size(120, 164);
+            this.lbxMobs.TabIndex = 0;
+            this.lbxMobs.SelectedIndexChanged += new System.EventHandler(this.LbxMobs_SelectedIndexChanged);
+            // 
+            // tabPlayerSettings
+            // 
+            this.tabPlayerSettings.Location = new System.Drawing.Point(4, 25);
+            this.tabPlayerSettings.Name = "tabPlayerSettings";
+            this.tabPlayerSettings.Size = new System.Drawing.Size(790, 425);
+            this.tabPlayerSettings.TabIndex = 3;
+            this.tabPlayerSettings.Text = "Player save settings";
+            this.tabPlayerSettings.UseVisualStyleBackColor = true;
+            // 
+            // tabItems
+            // 
+            this.tabItems.Controls.Add(this.cbxIsHealthPot);
+            this.tabItems.Controls.Add(this.tbxItemName);
+            this.tabItems.Controls.Add(this.btnPotions);
+            this.tabItems.Controls.Add(this.btnArmor);
+            this.tabItems.Controls.Add(this.btnWeapons);
+            this.tabItems.Controls.Add(this.label25);
+            this.tabItems.Controls.Add(this.label21);
+            this.tabItems.Controls.Add(this.label22);
+            this.tabItems.Controls.Add(this.label23);
+            this.tabItems.Controls.Add(this.label24);
+            this.tabItems.Controls.Add(this.nudCritEvade);
+            this.tabItems.Controls.Add(this.nudItemDropChance);
+            this.tabItems.Controls.Add(this.nudItemDamArm);
+            this.tabItems.Controls.Add(this.btnSaveItem);
+            this.tabItems.Controls.Add(this.lbxItems);
+            this.tabItems.Location = new System.Drawing.Point(4, 25);
+            this.tabItems.Name = "tabItems";
+            this.tabItems.Size = new System.Drawing.Size(790, 425);
+            this.tabItems.TabIndex = 4;
+            this.tabItems.Text = "Items settings";
+            this.tabItems.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label21.Location = new System.Drawing.Point(290, 238);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(212, 25);
+            this.label21.TabIndex = 53;
+            this.label21.Text = "Critical / Evade chance";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label22.Location = new System.Drawing.Point(374, 200);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(128, 25);
+            this.label22.TabIndex = 52;
+            this.label22.Text = "Drop Chance";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label23.Location = new System.Drawing.Point(394, 105);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(106, 25);
+            this.label23.TabIndex = 51;
+            this.label23.Text = "Item Name";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label24.Location = new System.Drawing.Point(345, 153);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(155, 25);
+            this.label24.TabIndex = 50;
+            this.label24.Text = "Damage / Armor";
+            // 
+            // nudCritEvade
+            // 
+            this.nudCritEvade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudCritEvade.Location = new System.Drawing.Point(522, 236);
+            this.nudCritEvade.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudCritEvade.Name = "nudCritEvade";
+            this.nudCritEvade.Size = new System.Drawing.Size(120, 30);
+            this.nudCritEvade.TabIndex = 49;
+            // 
+            // nudItemDropChance
+            // 
+            this.nudItemDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudItemDropChance.Location = new System.Drawing.Point(522, 198);
+            this.nudItemDropChance.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudItemDropChance.Name = "nudItemDropChance";
+            this.nudItemDropChance.Size = new System.Drawing.Size(120, 30);
+            this.nudItemDropChance.TabIndex = 48;
+            // 
+            // nudItemDamArm
+            // 
+            this.nudItemDamArm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudItemDamArm.Location = new System.Drawing.Point(522, 153);
+            this.nudItemDamArm.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.nudItemDamArm.Name = "nudItemDamArm";
+            this.nudItemDamArm.Size = new System.Drawing.Size(120, 30);
+            this.nudItemDamArm.TabIndex = 47;
+            // 
+            // btnSaveItem
+            // 
+            this.btnSaveItem.Location = new System.Drawing.Point(664, 153);
+            this.btnSaveItem.Name = "btnSaveItem";
+            this.btnSaveItem.Size = new System.Drawing.Size(90, 72);
+            this.btnSaveItem.TabIndex = 45;
+            this.btnSaveItem.Text = "Save Changes";
+            this.btnSaveItem.UseVisualStyleBackColor = true;
+            this.btnSaveItem.Click += new System.EventHandler(this.BtnSaveItem_Click);
+            // 
+            // lbxItems
+            // 
+            this.lbxItems.FormattingEnabled = true;
+            this.lbxItems.ItemHeight = 16;
+            this.lbxItems.Location = new System.Drawing.Point(104, 78);
+            this.lbxItems.Name = "lbxItems";
+            this.lbxItems.Size = new System.Drawing.Size(120, 228);
+            this.lbxItems.TabIndex = 44;
+            this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.LbxItems_SelectedIndexChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label25.Location = new System.Drawing.Point(354, 279);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(148, 25);
+            this.label25.TabIndex = 54;
+            this.label25.Text = "Is Health Potion";
+            // 
+            // btnWeapons
+            // 
+            this.btnWeapons.Location = new System.Drawing.Point(8, 341);
+            this.btnWeapons.Name = "btnWeapons";
+            this.btnWeapons.Size = new System.Drawing.Size(90, 29);
+            this.btnWeapons.TabIndex = 56;
+            this.btnWeapons.Text = "Weapons";
+            this.btnWeapons.UseVisualStyleBackColor = true;
+            this.btnWeapons.Click += new System.EventHandler(this.BtnWeapons_Click);
+            // 
+            // btnArmor
+            // 
+            this.btnArmor.Location = new System.Drawing.Point(117, 341);
+            this.btnArmor.Name = "btnArmor";
+            this.btnArmor.Size = new System.Drawing.Size(90, 29);
+            this.btnArmor.TabIndex = 57;
+            this.btnArmor.Text = "Armor";
+            this.btnArmor.UseVisualStyleBackColor = true;
+            this.btnArmor.Click += new System.EventHandler(this.BtnArmor_Click);
+            // 
+            // btnPotions
+            // 
+            this.btnPotions.Location = new System.Drawing.Point(230, 341);
+            this.btnPotions.Name = "btnPotions";
+            this.btnPotions.Size = new System.Drawing.Size(90, 29);
+            this.btnPotions.TabIndex = 58;
+            this.btnPotions.Text = "Potions";
+            this.btnPotions.UseVisualStyleBackColor = true;
+            this.btnPotions.Click += new System.EventHandler(this.BtnPotions_Click);
+            // 
+            // tbxItemName
+            // 
+            this.tbxItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbxItemName.Location = new System.Drawing.Point(524, 105);
+            this.tbxItemName.Name = "tbxItemName";
+            this.tbxItemName.Size = new System.Drawing.Size(120, 30);
+            this.tbxItemName.TabIndex = 59;
+            // 
+            // cbxIsHealthPot
+            // 
+            this.cbxIsHealthPot.AutoSize = true;
+            this.cbxIsHealthPot.Location = new System.Drawing.Point(524, 279);
+            this.cbxIsHealthPot.Name = "cbxIsHealthPot";
+            this.cbxIsHealthPot.Size = new System.Drawing.Size(121, 21);
+            this.cbxIsHealthPot.TabIndex = 60;
+            this.cbxIsHealthPot.Text = "IsHealthPotion";
+            this.cbxIsHealthPot.UseVisualStyleBackColor = true;
             // 
             // DeveloperSettings
             // 
@@ -753,27 +944,32 @@
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamageMultiplier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmorMultiplier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEnemyDifficultyMultiplier)).EndInit();
             this.tabCharacter.ResumeLayout(false);
             this.tabCharacter.PerformLayout();
-            this.tabMob.ResumeLayout(false);
-            this.tabMob.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudEnemyDifficultyMultiplier)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmorMultiplier)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamageMultiplier)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobSpawnCh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobAbchance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterSecondChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterArmor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterAbCd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterEvChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterMaxHealth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCharacterDamage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCharacterSecondChance)).EndInit();
+            this.tabMob.ResumeLayout(false);
+            this.tabMob.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobSpawnCh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobAbchance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).EndInit();
+            this.tabItems.ResumeLayout(false);
+            this.tabItems.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -831,5 +1027,20 @@
         private System.Windows.Forms.NumericUpDown nudCharacterEvChance;
         private System.Windows.Forms.NumericUpDown nudCharacterMaxHealth;
         private System.Windows.Forms.NumericUpDown nudCharacterDamage;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.NumericUpDown nudCritEvade;
+        private System.Windows.Forms.NumericUpDown nudItemDropChance;
+        private System.Windows.Forms.NumericUpDown nudItemDamArm;
+        private System.Windows.Forms.Button btnSaveItem;
+        private System.Windows.Forms.ListBox lbxItems;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Button btnPotions;
+        private System.Windows.Forms.Button btnArmor;
+        private System.Windows.Forms.Button btnWeapons;
+        private System.Windows.Forms.TextBox tbxItemName;
+        private System.Windows.Forms.CheckBox cbxIsHealthPot;
     }
 }
