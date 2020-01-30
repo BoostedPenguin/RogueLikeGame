@@ -1,0 +1,8 @@
+Change all static classes to public instances - Items && GlobalSettings
+Serialize them to xml on program start BEFORE you go inide MAINGUI
+OR
+When a person MODIFIES something inside of the DEVELOPER FORM
+
+PASS REFERENCE TO ONE OBJECT - NEVER ! CREATE MULTIPLE INSTANCES OF ITEMS && GLOBALSETTINGS
+
+	
