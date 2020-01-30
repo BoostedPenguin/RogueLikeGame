@@ -37,22 +37,59 @@ namespace RogueLikeGame
             }
         }
 
-        public static void SerializeObject(UserSettings user)
+        public static void SerializeObject(object user)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(UserSettings));
-            using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.Create))
+            if (user.GetType() == typeof(UserSettings))
             {
-                serializer.Serialize(fs, user);
+                XmlSerializer serializer = new XmlSerializer(typeof(UserSettings));
+                using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.Create))
+                {
+                    serializer.Serialize(fs, user);
+                }
+            }
+            else if(user.GetType() == typeof(GlobalSettings))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(GlobalSettings));
+                using (FileStream fs = new FileStream("CurrentGlobalSettings.xml", FileMode.Create))
+                {
+                    serializer.Serialize(fs, user);
+                }
+            }
+            else if (user.GetType() == typeof(Items))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Items));
+                using (FileStream fs = new FileStream("CurrentItems.xml", FileMode.Create))
+                {
+                    serializer.Serialize(fs, user);
+                }
             }
         }
 
-        public static UserSettings DeserializeObject()
+        public static object DeserializeObject(int i)
         {
-            XmlSerializer serialize = new XmlSerializer(typeof(UserSettings));
-            using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.Open))
+            XmlSerializer serialize;
+            switch (i)
             {
-                return serialize.Deserialize(fs) as UserSettings;
+                case 0:
+                    serialize = new XmlSerializer(typeof(UserSettings));
+                    using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.Open))
+                    {
+                        return serialize.Deserialize(fs) as UserSettings;
+                    }
+                case 1:
+                    serialize = new XmlSerializer(typeof(GlobalSettings));
+                    using (FileStream fs = new FileStream("CurrentGlobalSettings.xml", FileMode.Open))
+                    {
+                        return serialize.Deserialize(fs) as GlobalSettings;
+                    }
+                case 2:
+                    serialize = new XmlSerializer(typeof(Items));
+                    using (FileStream fs = new FileStream("CurrentItems.xml", FileMode.Open))
+                    {
+                        return serialize.Deserialize(fs) as Items;
+                    }
             }
+            return null;
         }
     }
 }

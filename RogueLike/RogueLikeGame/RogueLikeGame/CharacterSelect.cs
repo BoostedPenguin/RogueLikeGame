@@ -12,11 +12,15 @@ namespace RogueLikeGame
 {
     public partial class CharacterSelect : Form
     {
+        Items allItem;
+        GlobalSettings allSettings;
         string name;
-        public CharacterSelect(string name)
+        public CharacterSelect(string name, Items items, GlobalSettings settings)
         {
             InitializeComponent();
             this.name = name;
+            this.allItem = items;
+            this.allSettings = settings;
             //GlobalSettings.ChangeSoundImage(btnMusic);
         }
 
@@ -39,8 +43,8 @@ namespace RogueLikeGame
 
         private void OnCharacterSelection(GameCharacters type)
         {
-            UserSettings userSettings = new UserSettings(name, type); //ALWAYS pass this <- holds all USER related information
-            MainGUI gui = new MainGUI(userSettings);
+            UserSettings userSettings = new UserSettings(name, type, allItem); //ALWAYS pass this <- holds all USER related information
+            MainGUI gui = new MainGUI(userSettings, allItem, allSettings);
             gui.Show();
             this.Dispose();
         }
@@ -53,7 +57,7 @@ namespace RogueLikeGame
 
         private void CharacterSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
-            GlobalSettings.OnApplicationExit(e);
+            allSettings.OnApplicationExit(e);
         }
     }
 }

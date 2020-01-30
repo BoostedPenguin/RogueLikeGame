@@ -28,7 +28,7 @@ namespace RogueLikeGame
             return TextNarrative.riddles.ElementAt(r.Next(0, TextNarrative.riddles.Count)).Key;
         }
 
-        public static string OnChestOpen(UserSettings user)
+        public static string OnChestOpen(UserSettings user, GlobalSettings allSettings, Items allItems)
         {
             string returnInformation = "";
 
@@ -37,7 +37,7 @@ namespace RogueLikeGame
             {
                 case 0: //Return loot
                 case 1:
-                    switch (Randomizer.EnemyDeathLoot(true))
+                    switch (Randomizer.EnemyDeathLoot(true, allSettings, allItems))
                     {
                         case Weapons weapons:
                             returnInformation = $"You found {weapons.WeaponName}. But you had it already.";
@@ -89,12 +89,12 @@ namespace RogueLikeGame
             }
         }
 
-        public static MobTypes EnemyRandomizer()
+        public static MobTypes EnemyRandomizer(Items allItems)
         {
-            int totalProbability = Items.allMobs.Sum(t => t.SpawnChance);
+            int totalProbability = allItems.allMobs.Sum(t => t.SpawnChance);
             int mr = r.Next(0, totalProbability);
 
-            foreach (Mobs a in Items.allMobs)
+            foreach (Mobs a in allItems.allMobs)
             {
                 if(mr < a.SpawnChance)
                 {
@@ -147,21 +147,21 @@ namespace RogueLikeGame
         }
 
         //On Enemy death loot items
-        public static dynamic EnemyDeathLoot(bool onEncounter) //Dynamic - returns object depending on case
+        public static dynamic EnemyDeathLoot(bool onEncounter, GlobalSettings allSetting, Items allItems) //Dynamic - returns object depending on case
         {
             int wepArmPotNull = r.Next(0, 100); // 20% chance for each item // 40% chance for nothing
             if (onEncounter)
             {
-                wepArmPotNull = r.Next(0, GlobalSettings.totalChance);
+                wepArmPotNull = r.Next(0, allSetting.totalChance);
             }
 
 
 
-            if (wepArmPotNull <= GlobalSettings.weaponDropChance)
+            if (wepArmPotNull <= allSetting.weaponDropChance)
             {
-                int totalProbability = Items.allWeapons.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
+                int totalProbability = allItems.allWeapons.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);                       //Gets a number -> Higher = better loot
-                foreach(Weapons weap in Items.allWeapons)
+                foreach(Weapons weap in allItems.allWeapons)
                 {
                     if(chance < weap.DropChance)                                //If the rng is lower than the dropchance u
                     {                                                           //get the item
@@ -170,11 +170,11 @@ namespace RogueLikeGame
                     chance -= weap.DropChance;                                  // !Remove the last drop chance so it can find an item
                 }
             }
-            else if(GlobalSettings.weaponDropChance < wepArmPotNull && wepArmPotNull <= GlobalSettings.armorDropChance) //Armor
+            else if(allSetting.weaponDropChance < wepArmPotNull && wepArmPotNull <= allSetting.armorDropChance) //Armor
             {
-                int totalProbability = Items.allArmor.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
+                int totalProbability = allItems.allArmor.Sum(t => t.DropChance); //LINQ Holds the total probability of the items
                 int chance = r.Next(0, totalProbability);
-                foreach (Armor b in Items.allArmor)
+                foreach (Armor b in allItems.allArmor)
                 {
                     if (chance < b.DropChance)
                     {
@@ -183,12 +183,12 @@ namespace RogueLikeGame
                     chance -= b.DropChance;
                 }
             }
-            else if(GlobalSettings.armorDropChance < wepArmPotNull && wepArmPotNull <= GlobalSettings.potionDropChance) //Potion
+            else if(allSetting.armorDropChance < wepArmPotNull && wepArmPotNull <= allSetting.potionDropChance) //Potion
             {
-                int totalProbability = Items.allPotions.Sum(t => t.DropChance);
+                int totalProbability = allItems.allPotions.Sum(t => t.DropChance);
                 int chance = r.Next(0, totalProbability);
 
-                foreach (Potions a in Items.allPotions)
+                foreach (Potions a in allItems.allPotions)
                 {
                     if(chance < a.DropChance)
                     {

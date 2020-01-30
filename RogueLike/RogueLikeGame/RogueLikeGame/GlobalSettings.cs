@@ -8,28 +8,24 @@ using System.Media;
 
 namespace RogueLikeGame
 {
-    public static class GlobalSettings
+    public class GlobalSettings
     {
-        public static bool startGame = false;  //Useless    //Starts the game whenever the player starts a new game OR dies and restarts
-        public static int globalEvadeChance = 1;            // Evade calculated: x * multiplier = evade_chance 
-        public static int enemyDifficultyMultiplier = 1;    //Enemy dmg is calculated:   x * multiplier = dmg
-        public static int characterHealthMultiplier = 1;    //Character health is calculated: x * multiplier = health
-        public static int characterArmorMultiplier = 1;     //Character armor is calculated: (base + items) * multiplier = amount blocked 
+        public int enemyDifficultyMultiplier = 1;    //Enemy dmg is calculated:   x * multiplier = dmg
+        public int characterArmorMultiplier = 1;     //Character armor is calculated: (base + items) * multiplier = amount blocked 
                                                             //Ex: dragon deals 20 dmg, you have 10 armor = 10 dmg received
-        public static int characterDamageMultiplier = 1;    //Character damage is calculated: (base * items) * multiplier = amount dealt
-        public static Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
-
-
-        public static bool OnPlayerDeath = false;
+        public int characterDamageMultiplier = 1;    //Character damage is calculated: (base * items) * multiplier = amount dealt
+        //public Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
+        public bool OnPlayerDeath = false;
         #region MobFight
 
         #endregion
 
         #region MusicSettings
 
-        public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
-        public static bool SoundToggle(bool musicOn)
+        public string soundSource = @"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav";
+        public bool SoundToggle(bool musicOn)
         {
+            SoundPlayer sound = new SoundPlayer(soundSource); //Find a way to dispose
             if(musicOn)
             {
                 sound.Stop();
@@ -42,7 +38,7 @@ namespace RogueLikeGame
             }
         }
 
-        public static void ChangeSoundImage(Button btn, bool musicOn)
+        public void ChangeSoundImage(Button btn, bool musicOn)
         {
             if(musicOn)
             {
@@ -53,16 +49,28 @@ namespace RogueLikeGame
                 btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicEnable;
             }
         }
+
+        public void SaveNewSettings(int enemyDifficultyMultiplier, int characterArmorMultiplier, int characterDamageMultiplier, string soundSource, int weaponDropChance, int armorDropChance, int PoisonDropChance)
+        {
+            this.enemyDifficultyMultiplier = enemyDifficultyMultiplier;
+            this.characterArmorMultiplier = characterArmorMultiplier;
+            this.characterDamageMultiplier = characterDamageMultiplier;
+            this.soundSource = soundSource;
+            this.weaponDropChance = weaponDropChance;
+            this.armorDropChance = armorDropChance;
+            this.potionDropChance = PoisonDropChance;
+            this.totalChance = this.potionDropChance;
+        }
         
         #endregion
 
         #region LootChance
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance
-        public static int weaponDropChance = 10;
-        public static int armorDropChance = 20;
-        public static int potionDropChance = 30;
+        public int weaponDropChance = 33;
+        public int armorDropChance = 66;
+        public int potionDropChance = 99;
 
-        public static int totalChance = potionDropChance; //PotionDropChance has the MAX % Of which you will receive an item
+        public int totalChance = 99; //PotionDropChance has the MAX % Of which you will receive an item
         #endregion
         #region RiddleSettings
         public static int damageOnWrongAnswer = 40;
@@ -70,7 +78,7 @@ namespace RogueLikeGame
         #region TreasureChests
         public static int damageOnFailedOpen = 20;
         #endregion
-        public static void OnApplicationExit(FormClosingEventArgs e)
+        public void OnApplicationExit(FormClosingEventArgs e)
         {
             if(e.CloseReason == CloseReason.UserClosing)
             {

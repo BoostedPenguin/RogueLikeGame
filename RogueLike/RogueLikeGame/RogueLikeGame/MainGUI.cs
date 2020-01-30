@@ -8,17 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace RogueLikeGame
 {
     public partial class MainGUI : Form
     {
+        Items allItems;
+        GlobalSettings allSettings;
+
         UserSettings user;         //Should ALWAYS be passed
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
         bool musicOn = false;
         List<Button> allButtons;
         List<Label> allLabels;
-        public MainGUI(UserSettings user)
+        public MainGUI(UserSettings user, Items items, GlobalSettings allSettings)
         { 
             InitializeComponent();
 
@@ -26,6 +30,8 @@ namespace RogueLikeGame
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
 
+            this.allItems = items;
+            this.allSettings = allSettings;
 
             this.user = user;
             //this.Height = 285;
@@ -34,14 +40,17 @@ namespace RogueLikeGame
             FirstSequence();
         }
 
-        public MainGUI()
+        public MainGUI(Items items, GlobalSettings allSettings)
         {
             InitializeComponent();
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
 
-            this.user = XmlSerialization.DeserializeObject();
+            this.allItems = items;
+            this.allSettings = allSettings;
+
+            this.user = (UserSettings)XmlSerialization.DeserializeObject(2);
             this.currentMob = this.user.currentMob;
             PoppulateOnLoad();
         }
@@ -207,7 +216,7 @@ namespace RogueLikeGame
             tbxNarrative.Text = TextNarrative.SecondChoiceA;
             gpxFight.Visible = true;
 
-            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+            currentMob = allItems.ReturnNewMob(MobTypes.SPIDER);
 
             user.mobEncounter = true;
 
@@ -225,7 +234,7 @@ namespace RogueLikeGame
             UpdatePlayerStatistics();
             gpxFight.Visible = true;
 
-            currentMob = Items.ReturnNewMob(MobTypes.SPIDER);
+            currentMob = allItems.ReturnNewMob(MobTypes.SPIDER);
             user.mobEncounter = true;
             StartFight();
 
@@ -499,7 +508,7 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit()}  Armor: {user.TotalArmor()} Evade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}  Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if (user.userAttack)
@@ -568,7 +577,7 @@ namespace RogueLikeGame
         {
             if (user.roundCounter == 0 && !user.firstSequence && !user.elderDragonEncounter)          //Create a new random enemy only on start of fight
             {
-                currentMob = Items.ReturnNewMob(Randomizer.EnemyRandomizer());      //CREATES A NEW MOB BASED ON RNG
+                currentMob = allItems.ReturnNewMob(Randomizer.EnemyRandomizer(allItems));      //CREATES A NEW MOB BASED ON RNG
                 user.userAttack = false;                                                 //To ensure that the user will always hit first
             }
         }
@@ -593,11 +602,11 @@ namespace RogueLikeGame
                     user.roundCounter++;
                     if (user.userAttack)
                     {
-                        lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, user.ability)); //On player hit
+                        lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, user.ability, allSettings)); //On player hit
                     }
                     else
                     {
-                        lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob));                         //On enemy hit
+                        lbxCombatLog.Items.Add(MobFight.OnEnemyHit(user, currentMob, allSettings));                         //On enemy hit
                     }
                     UpdateProgressbar();
                     lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
@@ -630,13 +639,12 @@ namespace RogueLikeGame
                 {
                     File.Delete(path);
                 }
-                GlobalSettings.startGame = false;
                 DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine}Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
-                GlobalSettings.OnPlayerDeath = true;
+                allSettings.OnPlayerDeath = true;
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
                 {
-                    Application.Restart();
-                    Environment.Exit(0);
+                    Process.Start(Application.ExecutablePath);
+                    Application.Exit();
                 }
                 else
                 {
@@ -653,7 +661,7 @@ namespace RogueLikeGame
 
         private void OnEnemyDeath()     //If the enemy dies
         {
-            MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob)); //Calls event of enemy death
+            MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob, allSettings, allItems)); //Calls event of enemy death
             UpdateProgressbar();
             user.roundCounter = 0;
             //currentMob.Boss = false;                                  //Even if it aint a boss it will get reset - thats ok
@@ -664,7 +672,7 @@ namespace RogueLikeGame
                 btnOptionA.Enabled = true;
                 btnOptionA.Text = "Continue";
             }
-            Items.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
+            allItems.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
             if(user.firstSequence)
             {
                 user.encounter = false;
@@ -717,17 +725,17 @@ namespace RogueLikeGame
         }
         private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!GlobalSettings.OnPlayerDeath)
+            if (!allSettings.OnPlayerDeath)
             {
                 SaveDataToFile();
             }
-            GlobalSettings.OnApplicationExit(e);
+            allSettings.OnApplicationExit(e);
         }
 
         private void BtnMusic_Click(object sender, EventArgs e)
         {
-            musicOn = GlobalSettings.SoundToggle(musicOn);
-            GlobalSettings.ChangeSoundImage((Button)sender, musicOn);
+            musicOn = allSettings.SoundToggle(musicOn);
+            allSettings.ChangeSoundImage((Button)sender, musicOn);
         }
 
         private void SearchForPotion(string name)
@@ -813,7 +821,7 @@ namespace RogueLikeGame
                 if (user.firstButtonPressed) //Open
                 {
                     btnOptionB.Enabled = false;
-                    tbxNarrative.Text = Randomizer.OnChestOpen(user);
+                    tbxNarrative.Text = Randomizer.OnChestOpen(user, allSettings, allItems);
                     if(user.CurrentHealth <= 0)
                     {
                         OnPlayerDeath();
@@ -934,7 +942,7 @@ namespace RogueLikeGame
         {
             if(user.elderDragonEncounter)
             {
-                currentMob = Items.ReturnNewMob(MobTypes.ELDERDRAGON);
+                currentMob = allItems.ReturnNewMob(MobTypes.ELDERDRAGON);
                 user.mobEncounter = true;
                 StartFight();
 

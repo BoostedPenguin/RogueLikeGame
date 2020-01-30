@@ -53,9 +53,9 @@ namespace RogueLikeGame
 
         //Call this whenever you want a spider to attack instead of DAMAGE
         //5% chance to deal double damage
-        public double Attack()
+        public double Attack(GlobalSettings allSettings)
         {
-            double multiplier = GlobalSettings.enemyDifficultyMultiplier;
+            double multiplier = allSettings.enemyDifficultyMultiplier;
             switch(Type)
             {
                 case MobTypes.SPIDER:

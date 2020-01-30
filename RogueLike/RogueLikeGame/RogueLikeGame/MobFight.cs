@@ -81,13 +81,13 @@ namespace RogueLikeGame
             }
         }
 
-        public static string OnEnemyHit(UserSettings user, Mobs mob) //When enemy hits you
+        public static string OnEnemyHit(UserSettings user, Mobs mob, GlobalSettings allSettings) //When enemy hits you
         {
             string debuff = "";                             //Return string for information on current debuff
 
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
-                double damage = mob.Attack();               //Total damage
+                double damage = mob.Attack(allSettings);               //Total damage
 
                 if(currentRoundOfDebuff > 0)                //Checks if the mob did an active debuff on the player
                 {
@@ -104,7 +104,7 @@ namespace RogueLikeGame
                     }
                 }
 
-                damage -= user.TotalArmor();            //Total received damage - counting armor
+                damage -= user.TotalArmor(allSettings);            //Total received damage - counting armor
 
                 if (damage < 0)                         //Return string
                 {
@@ -133,7 +133,7 @@ namespace RogueLikeGame
             }
         }
 
-        public static string OnPlayerHit(UserSettings user, Mobs mob, bool ability)
+        public static string OnPlayerHit(UserSettings user, Mobs mob, bool ability, GlobalSettings allSettings)
         {
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
 
@@ -151,7 +151,7 @@ namespace RogueLikeGame
 
             if (!Randomizer.Evade(mob.EvadeChance) || ability == true) //If the mob DOESNT evade
             {
-                double damage = user.TotalDamage();
+                double damage = user.TotalDamage(allSettings);
                 string returnInfo = $"{user.userName} dealt {damage} damage to {mob.Type.ToString()}";
 
                 if (ability)                        //If the user uses an ability
@@ -178,7 +178,7 @@ namespace RogueLikeGame
 
                 mob.Health -= damage;               //Deduct the enemy health
                 //If hit was critical
-                if (damage / user.Damage / GlobalSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
+                if (damage / user.Damage / allSettings.characterDamageMultiplier > user.currentWeapon.DamageBase && !ability)
                 {
                     returnInfo = $"{user.userName} dealt a critical hit for {damage} damage to {mob.Type.ToString()}";
                 }
@@ -215,10 +215,10 @@ namespace RogueLikeGame
             }
         }
 
-        public static string DeathOfEnemy(UserSettings user, Mobs mob) //On enemy death
+        public static string DeathOfEnemy(UserSettings user, Mobs mob, GlobalSettings allSettings, Items allItems) //On enemy death
         {
             string onKill = $"You managed to defeat {mob.Type.ToString()}";
-            switch (Randomizer.EnemyDeathLoot(false))               //Gives me 1 item or null, everytime this is called
+            switch (Randomizer.EnemyDeathLoot(false, allSettings, allItems))               //Gives me 1 item or null, everytime this is called
             {
                 case Weapons Weapon:
                     if(DublicateItems(true, Weapon.WeaponName, user))

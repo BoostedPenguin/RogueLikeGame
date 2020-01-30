@@ -31,70 +31,66 @@ namespace RogueLikeGame
 
         }
 
-        public Characters(GameCharacters characterName)   //If you want to change a character stats use this!
+        public Characters(GameCharacters characterName, int maxHealth, double damage, int armor, int evadeChance, int AbilityCooldown, string startwep, string startarm, int secondch, Items allitems)   //If you want to change a character stats use this!
         {
-            if(GameCharacters.Berserker == characterName)
+            this.CharacterName = characterName;
+            this.UpdateArmor(startarm, allitems);
+            this.UpdateWeapon(startwep, allitems);
+            this.MaxHealth = maxHealth;
+            this.Damage = damage;
+            this.Armor = armor;
+            this.EvadeChance = evadeChance;
+            this.AbilityCooldown = AbilityCooldown;
+            this.SecondChance = secondch;
+        }
+
+        public Characters(Items item, GameCharacters characters)
+        {
+            int index = 0;
+            for(int i = 0; i < item.allCharacters.Count; i++)
             {
-                this.CharacterName = GameCharacters.Berserker;
-                UpdateArmor("Basic Armor"); //Give him this on game start
-                UpdateWeapon("Blunt Sword"); // ^
-                this.MaxHealth = 150;
-                this.Damage = 1.5;
-                this.Armor = 5;
-                this.EvadeChance = 10;
-                this.AbilityCooldown = 5; //How many PLAYER ROUNDS it takes for it to refresh
-                this.SecondChance = 0;
+                if(item.allCharacters[i].CharacterName == characters)
+                {
+                    index = i;
+                    break;
+                }
             }
-            else if(GameCharacters.Ghost == characterName)
-            {
-                this.CharacterName = GameCharacters.Ghost;
-                UpdateArmor("Basic Armor");
-                UpdateWeapon("Blunt Sword");
-                this.MaxHealth = 100;
-                this.Damage = 2;
-                this.Armor = 2;
-                this.EvadeChance = 20;
-                this.AbilityCooldown = 15;
-                this.SecondChance = 1;
-            }
-            else if(GameCharacters.GodKnight == characterName)
-            {
-                this.CharacterName = GameCharacters.GodKnight;
-                UpdateArmor("Basic Armor");
-                UpdateWeapon("Blunt Sword");
-                this.MaxHealth = 200;
-                this.Damage = 1;
-                this.Armor = 8;
-                this.EvadeChance = 5;
-                this.AbilityCooldown = 20;
-                this.SecondChance = 0;
-            }
+            Characters s = item.allCharacters[index];
+            this.CharacterName = s.CharacterName;
+            this.StartArmor = s.StartArmor;
+            this.StartWeapon = s.StartWeapon;
+            this.MaxHealth = s.MaxHealth;
+            this.Damage = s.Damage;
+            this.Armor = s.Armor;
+            this.EvadeChance = s.EvadeChance;
+            this.AbilityCooldown = s.AbilityCooldown;
+            this.SecondChance = s.SecondChance;
         }
 
         //Send all items & startwep
-        private void UpdateWeapon(string startwep) //Used for updating the startwep
+        public void UpdateWeapon(string startwep, Items allItems) //Used for updating the startwep
         {
-            var item = Items.allWeapons.Where(x => (x.WeaponName == startwep)).FirstOrDefault();
+            var item = allItems.allWeapons.Where(x => (x.WeaponName == startwep)).FirstOrDefault();
             if (item != null)
             {
                 this.StartWeapon = item;
             }
             else
             {
-                this.StartWeapon = Items.allWeapons[0];
+                this.StartWeapon = allItems.allWeapons[0];
             }
         }
 
-        private void UpdateArmor(string startarmor) //Used for updating the startarmor
+        public void UpdateArmor(string startarmor, Items allItems) //Used for updating the startarmor
         {
-            var item = this.StartArmor = Items.allArmor.Where(x => (x.ArmorName == startarmor)).FirstOrDefault();
+            var item = this.StartArmor = allItems.allArmor.Where(x => (x.ArmorName == startarmor)).FirstOrDefault();
             if (item != null)
             {
                 this.StartArmor = item;
             }
             else
             {
-                this.StartArmor = Items.allArmor[0];
+                this.StartArmor = allItems.allArmor[0];
             }
         }
     }

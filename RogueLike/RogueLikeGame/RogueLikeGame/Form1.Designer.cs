@@ -33,6 +33,7 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.btnMusic = new System.Windows.Forms.Button();
             this.btnLoadLastSave = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -97,11 +98,24 @@
             this.btnLoadLastSave.UseVisualStyleBackColor = true;
             this.btnLoadLastSave.Click += new System.EventHandler(this.BtnLoadLastSave_Click);
             // 
+            // btnSettings
+            // 
+            this.btnSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnSettings.Location = new System.Drawing.Point(209, 504);
+            this.btnSettings.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(78, 37);
+            this.btnSettings.TabIndex = 5;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.BtnSettings_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 554);
+            this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.btnLoadLastSave);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.btnStart);
@@ -122,6 +136,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnMusic;
         private System.Windows.Forms.Button btnLoadLastSave;
+        private System.Windows.Forms.Button btnSettings;
     }
 }
 

@@ -65,7 +65,7 @@ namespace RogueLikeGame
         }
 
         #endregion
-        public UserSettings(string username, GameCharacters character) : base(character)
+        public UserSettings(string username, GameCharacters character, Items allItems) : base(allItems, character)
         {
             //Stores your inventory list
             this.weapons = new List<Weapons>();
@@ -126,19 +126,19 @@ namespace RogueLikeGame
             return base.EvadeChance + this.currentArmor.EvadeChance;
         }
 
-        public double TotalDamage() //Returns total damage 
+        public double TotalDamage(GlobalSettings allSettings) //Returns total damage 
         {
-            return base.Damage  * this.currentWeapon.Damage() * GlobalSettings.characterDamageMultiplier / debuff;
+            return base.Damage  * this.currentWeapon.Damage() * allSettings.characterDamageMultiplier / debuff;
         }
 
-        public double TotalDamageWithoutCrit()
+        public double TotalDamageWithoutCrit(GlobalSettings allSettings)
         {
-            return base.Damage * this.currentWeapon.DamageBase * GlobalSettings.characterDamageMultiplier / debuff;
+            return base.Damage * this.currentWeapon.DamageBase * allSettings.characterDamageMultiplier / debuff;
         }
 
-        public int TotalArmor() //Returns total armor
+        public int TotalArmor(GlobalSettings allSettings) //Returns total armor
         {
-            return (base.Armor + this.currentArmor.ItemArmor) * GlobalSettings.characterArmorMultiplier;
+            return (base.Armor + this.currentArmor.ItemArmor) * allSettings.characterArmorMultiplier;
         }
 
         public string GodKnightAbility()
