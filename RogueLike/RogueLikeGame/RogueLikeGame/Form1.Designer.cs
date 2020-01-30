@@ -32,6 +32,7 @@
             this.tbxName = new System.Windows.Forms.TextBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.btnMusic = new System.Windows.Forms.Button();
+            this.btnLoadLastSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +59,7 @@
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(162, 434);
+            this.btnStart.Location = new System.Drawing.Point(13, 434);
             this.btnStart.Margin = new System.Windows.Forms.Padding(4);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(185, 71);
@@ -84,11 +85,24 @@
             this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
             // 
+            // btnLoadLastSave
+            // 
+            this.btnLoadLastSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadLastSave.Location = new System.Drawing.Point(302, 434);
+            this.btnLoadLastSave.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLoadLastSave.Name = "btnLoadLastSave";
+            this.btnLoadLastSave.Size = new System.Drawing.Size(185, 71);
+            this.btnLoadLastSave.TabIndex = 4;
+            this.btnLoadLastSave.Text = "Load Game";
+            this.btnLoadLastSave.UseVisualStyleBackColor = true;
+            this.btnLoadLastSave.Click += new System.EventHandler(this.BtnLoadLastSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(532, 554);
+            this.Controls.Add(this.btnLoadLastSave);
             this.Controls.Add(this.btnMusic);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.tbxName);
@@ -107,6 +121,7 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnMusic;
+        private System.Windows.Forms.Button btnLoadLastSave;
     }
 }
 

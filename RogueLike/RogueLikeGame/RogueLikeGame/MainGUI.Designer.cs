@@ -172,7 +172,6 @@
             this.btnAbility.TabIndex = 12;
             this.btnAbility.Text = "Use Ability";
             this.btnAbility.UseVisualStyleBackColor = true;
-            this.btnAbility.Visible = false;
             this.btnAbility.Click += new System.EventHandler(this.BtnAbility_Click);
             // 
             // lblDebuff
@@ -293,7 +292,6 @@
             this.btnFlee.TabIndex = 21;
             this.btnFlee.Text = "Flee Fight";
             this.btnFlee.UseVisualStyleBackColor = true;
-            this.btnFlee.Visible = false;
             this.btnFlee.Click += new System.EventHandler(this.BtnFlee_Click);
             // 
             // lblBuff

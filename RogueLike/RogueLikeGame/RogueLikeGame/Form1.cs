@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.IO;
 
 namespace RogueLikeGame
 {
@@ -17,6 +18,13 @@ namespace RogueLikeGame
         {
             InitializeComponent();
             Items.RepopulateTheLists();
+
+            string path = Directory.GetCurrentDirectory();
+            path += @"\CurrentUserSettings.xml";
+            if(!File.Exists(path))
+            {
+                btnLoadLastSave.Enabled = false;
+            }   
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -24,7 +32,7 @@ namespace RogueLikeGame
             if(!string.IsNullOrWhiteSpace(tbxName.Text))
             {
                 GlobalSettings.startGame = true;                //Use this to check if a new game has started & change when needed!
-                CharacterSelect cs = new CharacterSelect(tbxName.Text, this);
+                CharacterSelect cs = new CharacterSelect(tbxName.Text);
                 this.Hide();
                 cs.Show();
             }
@@ -42,6 +50,17 @@ namespace RogueLikeGame
         {
             //GlobalSettings.SoundToggle();
             //GlobalSettings.ChangeSoundImage((Button)sender);
+        }
+
+        private void BtnLoadLastSave_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(tbxName.Text))
+            {
+                GlobalSettings.startGame = true;                //Use this to check if a new game has started & change when needed!
+                MainGUI gui = new MainGUI();
+                this.Hide();
+                gui.Show();
+            }
         }
     }
 }

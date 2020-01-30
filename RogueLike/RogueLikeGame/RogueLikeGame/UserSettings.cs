@@ -21,6 +21,7 @@ namespace RogueLikeGame
 
         public Mobs currentMob;
         public int roundCounter = 0; //Save in user
+
         #region PlayerDecisions
         public int actionCounter = 0;      //Keeps track of all encounters that have passed since the start        //save in user
 
@@ -45,24 +46,24 @@ namespace RogueLikeGame
         public bool elderDragonSetup = false;      //save in user
         public bool elderDragonEncounter = false;  //save in user
         #endregion
-        public bool musicOn = false; //Save in user
 
         #region LastRecordedOptions
 
         public List<string> textsLbl = new List<string>();
         public List<string> textsBtn = new List<string>();
         public List<bool> isEnabled = new List<bool>();
-        public string lbxCombatText;
+        public List<string> lbxCombatText = new List<string>();
         public string lastNarrative;
 
-        public void PoppulateOnClose(List<string> buttonstxt, List<bool> buttonsEnb, List<string> labelstxt, string text, string text2)
+        public void PoppulateOnClose(List<string> buttonstxt, List<bool> buttonsEnb, List<string> labelstxt, List<string> combatLbx, string narrative)
         {
             textsLbl = labelstxt;
             textsBtn = buttonstxt;
             isEnabled = buttonsEnb;
-            lbxCombatText = text;
-            lastNarrative = text2;
+            lbxCombatText = combatLbx;
+            lastNarrative = narrative;
         }
+
         #endregion
         public UserSettings(string username, GameCharacters character) : base(character)
         {

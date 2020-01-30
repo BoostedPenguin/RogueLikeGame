@@ -20,8 +20,7 @@ namespace RogueLikeGame
     {
         public MobTypes Type { get; set; }          //Type of enemy
         public double Damage { get; set; }          //The BASE damage
-        private double _health;
-        public double Health
+        public double Health                        //Current health.. cant use full property cuz xml sucks
         {
             get;
             set;

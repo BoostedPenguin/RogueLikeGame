@@ -19,6 +19,8 @@ namespace RogueLikeGame
         public static int characterDamageMultiplier = 1;    //Character damage is calculated: (base * items) * multiplier = amount dealt
         public static Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
 
+
+        public static bool OnPlayerDeath = false;
         #region MobFight
 
         #endregion
@@ -26,23 +28,23 @@ namespace RogueLikeGame
         #region MusicSettings
 
         public static SoundPlayer sound = new SoundPlayer(@"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav");
-        public static void SoundToggle(UserSettings user)
+        public static bool SoundToggle(bool musicOn)
         {
-            if(user.musicOn)
+            if(musicOn)
             {
                 sound.Stop();
-                user.musicOn = false;
+                return false;
             }
             else
             {
                 sound.PlayLooping();
-                user.musicOn = true;
+                return true;
             }
         }
 
-        public static void ChangeSoundImage(Button btn, UserSettings user)
+        public static void ChangeSoundImage(Button btn, bool musicOn)
         {
-            if(user.musicOn)
+            if(musicOn)
             {
                 btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicDisable;
             }
@@ -72,7 +74,7 @@ namespace RogueLikeGame
         {
             if(e.CloseReason == CloseReason.UserClosing)
             {
-                DialogResult dialog = MessageBox.Show($"Are you sure you want to exit? {Environment.NewLine} Your current game won't be saved", "Warning", MessageBoxButtons.YesNo);
+                DialogResult dialog = MessageBox.Show($"Are you sure you want to exit? {Environment.NewLine}", "Warning", MessageBoxButtons.YesNo);
                 if(dialog == DialogResult.Yes)
                 {
                     Application.Exit();

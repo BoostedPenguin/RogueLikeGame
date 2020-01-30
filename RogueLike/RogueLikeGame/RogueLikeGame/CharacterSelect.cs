@@ -13,7 +13,7 @@ namespace RogueLikeGame
     public partial class CharacterSelect : Form
     {
         string name;
-        public CharacterSelect(string name, Form1 userform)
+        public CharacterSelect(string name)
         {
             InitializeComponent();
             this.name = name;

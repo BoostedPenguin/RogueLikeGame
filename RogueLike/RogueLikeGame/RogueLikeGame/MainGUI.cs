@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace RogueLikeGame
 {
@@ -14,32 +15,33 @@ namespace RogueLikeGame
     {
         UserSettings user;         //Should ALWAYS be passed
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
-
-        public List<string> textsButton;
-        public List<string> textsLbl;
-        public List<bool> isEnabled;
-
+        bool musicOn = false;
         List<Button> allButtons;
         List<Label> allLabels;
         public MainGUI(UserSettings user)
         { 
             InitializeComponent();
 
-            allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnMusic, btnOptionA, btnOptionB,
+            allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
 
-            textsButton = new List<string>();
-            textsLbl = new List<string>();
-            isEnabled = new List<bool>();
 
             this.user = user;
             //this.Height = 285;
             //this.Width = 580;
-            GlobalSettings.ChangeSoundImage(btnMusic, user);
+            //GlobalSettings.ChangeSoundImage(btnMusic, user);
             FirstSequence();
+        }
+
+        public MainGUI()
+        {
+            InitializeComponent();
+            allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
+            btnOptionC, btnPoisonPot, btnUseItem };
+            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
+
             this.user = XmlSerialization.DeserializeObject();
-            
             this.currentMob = this.user.currentMob;
             PoppulateOnLoad();
         }
@@ -58,8 +60,14 @@ namespace RogueLikeGame
             {
                 allLabels[i].Text = user.textsLbl[i];
             }
+            for(int i = 0; i < user.lbxCombatText.Count; i++)
+            {
+                lbxCombatLog.Items.Add(user.lbxCombatText[i]);
+            }
             tbxNarrative.Text = user.lastNarrative;
-            lbxCombatLog.Items.Add(user.lbxCombatText);
+
+            UpdateProgressbar();
+            UpdateItemsList();
         }
 
         #region IntroConcept
@@ -616,8 +624,15 @@ namespace RogueLikeGame
         {
             if (user.SecondChance <= 0)         //If the user doesn't have a SecondChance
             {
+                string path = Directory.GetCurrentDirectory();
+                path += @"\CurrentUserSettings.xml";
+                if(File.Exists(path))
+                {
+                    File.Delete(path);
+                }
                 GlobalSettings.startGame = false;
                 DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine}Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
+                GlobalSettings.OnPlayerDeath = true;
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
                 {
                     Application.Restart();
@@ -675,8 +690,12 @@ namespace RogueLikeGame
         #endregion
 
         #region Misc
-        private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
+        private void SaveDataToFile()
         {
+            List<string> textsButton = new List<string>();
+            List<string> textsLbl = new List<string>();
+            List<bool> isEnabled = new List<bool>();
+            List<string> lbxCombatStrings = new List<string>();
             foreach (Button a in allButtons)
             {
                 textsButton.Add(a.Text);
@@ -686,23 +705,29 @@ namespace RogueLikeGame
             {
                 textsLbl.Add(a.Text);
             }
-            string s = "";
-            if (lbxCombatLog.Items.Count > 0)
+            foreach (string g in lbxCombatLog.Items)
             {
-                s = lbxCombatLog.Items[lbxCombatLog.Items.Count - 1].ToString();
+                lbxCombatStrings.Add(g);
             }
             string t = tbxNarrative.Text;
 
-            user.PoppulateOnClose(textsButton, isEnabled, textsLbl, s, t);
+            user.PoppulateOnClose(textsButton, isEnabled, textsLbl, lbxCombatStrings, t);
             user.currentMob = this.currentMob;
             XmlSerialization.SerializeObject(user);
+        }
+        private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!GlobalSettings.OnPlayerDeath)
+            {
+                SaveDataToFile();
+            }
             GlobalSettings.OnApplicationExit(e);
         }
 
         private void BtnMusic_Click(object sender, EventArgs e)
         {
-            GlobalSettings.SoundToggle(user);
-            GlobalSettings.ChangeSoundImage((Button)sender, user);
+            musicOn = GlobalSettings.SoundToggle(musicOn);
+            GlobalSettings.ChangeSoundImage((Button)sender, musicOn);
         }
 
         private void SearchForPotion(string name)

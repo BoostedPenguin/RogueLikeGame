@@ -40,7 +40,7 @@ namespace RogueLikeGame
         public static void SerializeObject(UserSettings user)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(UserSettings));
-            using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.OpenOrCreate))
+            using (FileStream fs = new FileStream("CurrentUserSettings.xml", FileMode.Create))
             {
                 serializer.Serialize(fs, user);
             }
