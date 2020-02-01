@@ -8,8 +8,7 @@ namespace RogueLikeGame
 {
     public static class MobFight
     {
-        public static int currentRoundOfDebuff = 0;     //Debuff from enemy to player
-        public static int currentRoundOfBuff = 0;       //Debuff from player to player
+
 
 
         public static string TBStartFight(Mobs mob, UserSettings user) //On start of fight (First round)
@@ -87,17 +86,17 @@ namespace RogueLikeGame
 
             if (!Randomizer.Evade(user.TotalEvadeChance())) //If the user DOESNT manage to evade (calculated on random factor)
             {
-                double damage = mob.Attack(allSettings);               //Total damage
+                double damage = mob.Attack(allSettings, user);               //Total damage
 
-                if(currentRoundOfDebuff > 0)                //Checks if the mob did an active debuff on the player
+                if(user.currentRoundOfDebuff > 0)                //Checks if the mob did an active debuff on the player
                 {
                     debuff = mob.Ability(mob, user);
 
                     if (debuff != null)                     //Will never be null
                     {
-                        currentRoundOfDebuff--;             //1 less round for the remaining debuff
+                        user.currentRoundOfDebuff--;             //1 less round for the remaining debuff
                     }
-                    if(currentRoundOfDebuff <= 0)           //If debuffs gets to 0 - reset the debuff
+                    if(user.currentRoundOfDebuff <= 0)           //If debuffs gets to 0 - reset the debuff
                     {
                         mob.AbilityCounter = -1;
                         user.debuff = 1;
@@ -118,11 +117,11 @@ namespace RogueLikeGame
             }
             else
             {
-                if(currentRoundOfDebuff > 0)
+                if(user.currentRoundOfDebuff > 0)
                 {
                     debuff = mob.Ability(mob, user);
-                    currentRoundOfDebuff--;
-                    if(currentRoundOfDebuff <= 0)
+                    user.currentRoundOfDebuff--;
+                    if(user.currentRoundOfDebuff <= 0)
                     {
                         mob.AbilityCounter = -1;
                         user.debuff = 1;
@@ -137,7 +136,7 @@ namespace RogueLikeGame
         {
             user.currentAbilityCooldown++;          //1 round passed > closer to OFF cd
 
-            if (currentRoundOfBuff > 0) //Execute buff on start of round
+            if (user.currentRoundOfBuff > 0) //Execute buff on start of round
             {
                 switch (user.CharacterName)
                 {
@@ -170,7 +169,7 @@ namespace RogueLikeGame
 
                         case GameCharacters.GodKnight:
                             user.currentAbilityCooldown = 0;
-                            currentRoundOfBuff = 5;
+                            user.currentRoundOfBuff = 5;
                             returnInfo = user.GodKnightAbility();
                             break;
                     }

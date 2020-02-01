@@ -49,12 +49,6 @@ namespace RogueLikeGame
             this.Dispose();
         }
 
-        private void BtnMusic_Click(object sender, EventArgs e)
-        {
-            //GlobalSettings.SoundToggle();
-            //GlobalSettings.ChangeSoundImage((Button)sender);
-        }
-
         private void CharacterSelect_FormClosing(object sender, FormClosingEventArgs e)
         {
             allSettings.OnApplicationExit(e);

@@ -13,7 +13,7 @@ namespace RogueLikeGame
     {
         public static void Serialize(Dictionary<string, int> dictionary)    //Dictionary
         {
-            FileStream fs = new FileStream("Data.xml", FileMode.OpenOrCreate);
+            FileStream fs = new FileStream("UserScores.xml", FileMode.Create);
 
             List<DictionaryEntries> entries = new List<DictionaryEntries>(dictionary.Count);
             foreach (string key in dictionary.Keys)
@@ -24,10 +24,10 @@ namespace RogueLikeGame
             serializer.Serialize(fs, entries);
         }
 
-        public static void Deserialize(Dictionary<string, int> dictionary)  //Dictionary
+        public static object Deserialize()  //Dictionary
         {
-            FileStream fs = new FileStream("Data.xml", FileMode.Open);
-
+            FileStream fs = new FileStream("UserScores.xml", FileMode.Open);
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
             dictionary.Clear();
             XmlSerializer serializer = new XmlSerializer(typeof(List<DictionaryEntries>));
             List<DictionaryEntries> list = (List<DictionaryEntries>)serializer.Deserialize(fs);
@@ -35,6 +35,7 @@ namespace RogueLikeGame
             {
                 dictionary[entry.Key] = entry.Value;
             }
+            return dictionary;
         }
 
         public static void SerializeObject(object user)

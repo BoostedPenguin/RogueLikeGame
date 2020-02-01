@@ -25,6 +25,8 @@ namespace RogueLikeGame
             nudPotionsDropChance.Value = globalSettings.potionDropChance;
             nudWeaponDropChance.Value = globalSettings.weaponDropChance;
             nudCharacterDamageMultiplier.Value = globalSettings.characterDamageMultiplier;
+            nudWrongAnswer.Value = globalSettings.damageOnWrongAnswer;
+            nudTreasureChestOpen.Value = globalSettings.damageOnFailedOpen;
             tbxSoundSource.Text = globalSettings.soundSource;
 
             this.allSettings = globalSettings;

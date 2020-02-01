@@ -8,12 +8,18 @@ namespace RogueLikeGame
 {
     public static class Randomizer
     {
+        public static Dictionary<string, int> dict = new Dictionary<string, int>();
         static readonly Random r = new Random();
         public static int RandomEncounter(int actionCounter)
         {
-            if(actionCounter == 1) //After how many random encounters - return boss fight
+            switch(actionCounter)
             {
-                return 3;
+                case 3:
+                    return 3;
+                case 4:
+                    return 4;
+                case 5:
+                    return 5;
             }
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }
@@ -67,8 +73,8 @@ namespace RogueLikeGame
                     user.roundCounter = 0; //Will create a new mob
                     return "You tried to open the chest, but a hostile mob was hiding inside!";
                 case 3: //Inflict damage on player
-                    user.CurrentHealth -= GlobalSettings.damageOnFailedOpen;
-                    return $"The chest is filled with poison. You got damaged for a total of {GlobalSettings.damageOnFailedOpen} damage";
+                    user.CurrentHealth -= allSettings.damageOnFailedOpen;
+                    return $"The chest is filled with poison. You got damaged for a total of {allSettings.damageOnFailedOpen} damage";
             }
             return null;
         }

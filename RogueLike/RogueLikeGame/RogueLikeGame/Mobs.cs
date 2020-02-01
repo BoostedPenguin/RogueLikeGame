@@ -53,7 +53,7 @@ namespace RogueLikeGame
 
         //Call this whenever you want a spider to attack instead of DAMAGE
         //5% chance to deal double damage
-        public double Attack(GlobalSettings allSettings)
+        public double Attack(GlobalSettings allSettings, UserSettings user)
         {
             double multiplier = allSettings.enemyDifficultyMultiplier;
             switch(Type)
@@ -64,21 +64,21 @@ namespace RogueLikeGame
                 case MobTypes.RAT:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        MobFight.currentRoundOfDebuff = 3; //Rounds of debuff
+                        user.currentRoundOfDebuff = 3; //Rounds of debuff
                     }
                     return Damage * multiplier;
 
                 case MobTypes.SHADOW:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        MobFight.currentRoundOfDebuff = 3;
+                        user.currentRoundOfDebuff = 3;
                     }
                     return Damage * multiplier;
 
                 case MobTypes.ZOMBIE:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        MobFight.currentRoundOfDebuff = 1;
+                        user.currentRoundOfDebuff = 1;
                     }
                     return Damage * multiplier;
 
@@ -89,12 +89,12 @@ namespace RogueLikeGame
                         {
                             if (Randomizer.BossAbilityRandomizer() == 0) //0, 1 randomize - 2 different abilities
                             {
-                                MobFight.currentRoundOfDebuff = 3; //3 rounds of fire on player
+                                user.currentRoundOfDebuff = 3; //3 rounds of fire on player
                                 this.AbilityCounter = 0;
                             }
                             else
                             {
-                                MobFight.currentRoundOfDebuff = 1;
+                                user.currentRoundOfDebuff = 1;
                                 this.AbilityCounter = 1;
                             }
                         }
@@ -106,7 +106,7 @@ namespace RogueLikeGame
                     {
                         if(AbilityCounter == -1)
                         {
-                            MobFight.currentRoundOfDebuff = 10;
+                            user.currentRoundOfDebuff = 10;
                         }
                     }
                     return Damage * multiplier;
@@ -114,7 +114,7 @@ namespace RogueLikeGame
                 case MobTypes.LIFEREAPER:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        MobFight.currentRoundOfDebuff = 1;
+                        user.currentRoundOfDebuff = 1;
                         this.AbilityCounter = 1;
                     }
                     return Damage * multiplier;
@@ -169,8 +169,8 @@ namespace RogueLikeGame
 
                 case MobTypes.FLESHBEHEMOTH:
                     this.AbilityCounter = 0;  //Prevents doing an ability once an ability is already in place
-                    this.DebuffString = $"Death incoming in {MobFight.currentRoundOfDebuff}";
-                    if(MobFight.currentRoundOfDebuff == 1)
+                    this.DebuffString = $"Death incoming in {user.currentRoundOfDebuff}";
+                    if(user.currentRoundOfDebuff == 1)
                     {
                         user.CurrentHealth = 0; //kills the player
                     }

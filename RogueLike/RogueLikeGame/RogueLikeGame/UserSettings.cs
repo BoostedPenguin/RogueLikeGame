@@ -44,7 +44,15 @@ namespace RogueLikeGame
         public bool riddleEncounter = false;       //save in user
 
         public bool elderDragonSetup = false;      //save in user
-        public bool elderDragonEncounter = false;  //save in user
+        public bool behemothSetup = false;
+        public bool reaperSetup = false;
+
+        public int currentRoundOfDebuff = 0;     //Debuff from enemy to player
+        public int currentRoundOfBuff = 0;       //Debuff from player to player
+
+        public MobTypes type;
+
+        public bool bossEncounter = false;  //save in user
         #endregion
 
         #region LastRecordedOptions
@@ -143,10 +151,10 @@ namespace RogueLikeGame
 
         public string GodKnightAbility()
         {
-            if(MobFight.currentRoundOfBuff > 0)
+            if(this.currentRoundOfBuff > 0)
             {
                 this.CurrentHealth += 8;
-                MobFight.currentRoundOfBuff--;
+                this.currentRoundOfBuff--;
             }
             return $"{this.userName} healed for {8} health";
         }

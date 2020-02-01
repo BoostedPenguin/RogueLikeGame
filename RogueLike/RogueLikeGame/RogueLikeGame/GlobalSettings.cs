@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.IO;
 
 namespace RogueLikeGame
 {
@@ -14,15 +15,12 @@ namespace RogueLikeGame
         public int characterArmorMultiplier = 1;     //Character armor is calculated: (base + items) * multiplier = amount blocked 
                                                             //Ex: dragon deals 20 dmg, you have 10 armor = 10 dmg received
         public int characterDamageMultiplier = 1;    //Character damage is calculated: (base * items) * multiplier = amount dealt
-        //public Dictionary<int, string> scores = new Dictionary<int, string>();   //Score of user, name of user
+        //   //Score of user, name of user
         public bool OnPlayerDeath = false;
-        #region MobFight
-
-        #endregion
 
         #region MusicSettings
 
-        public string soundSource = @"C:\Users\Penguin\Desktop\RogueLikeGame\RogueLike\HumbleMatch.wav";
+        public string soundSource = Directory.GetCurrentDirectory() + @"\HumbleMatch.wav";
         public bool SoundToggle(bool musicOn)
         {
             SoundPlayer sound = new SoundPlayer(soundSource); //Find a way to dispose
@@ -49,6 +47,7 @@ namespace RogueLikeGame
                 btn.BackgroundImage = RogueLikeGame.Properties.Resources.musicEnable;
             }
         }
+        #endregion
 
         public void SaveNewSettings(int enemyDifficultyMultiplier, int characterArmorMultiplier, int characterDamageMultiplier, string soundSource, int weaponDropChance, int armorDropChance, int PoisonDropChance)
         {
@@ -61,23 +60,17 @@ namespace RogueLikeGame
             this.potionDropChance = PoisonDropChance;
             this.totalChance = this.potionDropChance;
         }
-        
-        #endregion
 
-        #region LootChance
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance
         public int weaponDropChance = 33;
         public int armorDropChance = 66;
         public int potionDropChance = 99;
 
         public int totalChance = 99; //PotionDropChance has the MAX % Of which you will receive an item
-        #endregion
-        #region RiddleSettings
-        public static int damageOnWrongAnswer = 40;
-        #endregion
-        #region TreasureChests
-        public static int damageOnFailedOpen = 20;
-        #endregion
+
+        public int damageOnWrongAnswer = 40;
+        public int damageOnFailedOpen = 20;
+
         public void OnApplicationExit(FormClosingEventArgs e)
         {
             if(e.CloseReason == CloseReason.UserClosing)

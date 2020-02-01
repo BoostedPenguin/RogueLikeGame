@@ -314,7 +314,7 @@
             this.btnMusic.FlatAppearance.BorderSize = 2;
             this.btnMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnMusic.Location = new System.Drawing.Point(13, 182);
+            this.btnMusic.Location = new System.Drawing.Point(7, 15);
             this.btnMusic.Margin = new System.Windows.Forms.Padding(4);
             this.btnMusic.Name = "btnMusic";
             this.btnMusic.Size = new System.Drawing.Size(65, 56);

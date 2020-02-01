@@ -25,12 +25,12 @@ namespace RogueLikeGame
         public Armor StartArmor { get; set; }    //The starting armor given on start of game
         public int SecondChance { get; set; }
 
-
+        //XML Serialization constructor
         public Characters()
         {
 
         }
-
+        //First initialization of the 3 characters
         public Characters(GameCharacters characterName, int maxHealth, double damage, int armor, int evadeChance, int AbilityCooldown, string startwep, string startarm, int secondch, Items allitems)   //If you want to change a character stats use this!
         {
             this.CharacterName = characterName;
@@ -43,7 +43,7 @@ namespace RogueLikeGame
             this.AbilityCooldown = AbilityCooldown;
             this.SecondChance = secondch;
         }
-
+        //Use an existing character
         public Characters(Items item, GameCharacters characters)
         {
             int index = 0;

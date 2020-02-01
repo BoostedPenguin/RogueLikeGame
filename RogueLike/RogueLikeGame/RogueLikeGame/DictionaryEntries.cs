@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RogueLikeGame
 {
-    class DictionaryEntries
+    public class DictionaryEntries     //XML Serialize the player scores
     {
         public string Key { get; set; }
         public int Value { get; set; }
@@ -15,6 +15,10 @@ namespace RogueLikeGame
         {
             this.Key = key;
             this.Value = value;
+        }
+        public DictionaryEntries()
+        {
+
         }
     }
 }

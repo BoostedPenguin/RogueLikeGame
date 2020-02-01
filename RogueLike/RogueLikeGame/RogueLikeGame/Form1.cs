@@ -16,6 +16,7 @@ namespace RogueLikeGame
     {
         Items allItems;
         GlobalSettings allSettings;
+        Dictionary<string, int> scores = new Dictionary<string, int>();
 
         public Form1()
         {
@@ -27,7 +28,6 @@ namespace RogueLikeGame
             {
                 btnLoadLastSave.Enabled = false;
             }
-
             if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentGlobalSettings.xml"))
             {
                 XmlSerialization.SerializeObject(allSettings);       //<-- USE THESE 2 ONLY WHEN EDITING A SETTING
@@ -36,6 +36,11 @@ namespace RogueLikeGame
             {
                 XmlSerialization.SerializeObject(allItems);    //<-- OR USING SYSTEM DEFAULT
             }
+            if(File.Exists(Directory.GetCurrentDirectory() + @"\UserScores.xml"))
+            {
+                Randomizer.dict = (Dictionary<string, int>)XmlSerialization.Deserialize(); //No need for system default scores
+            }
+
             allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
             allItems = (Items)XmlSerialization.DeserializeObject(2);
         }
@@ -44,10 +49,26 @@ namespace RogueLikeGame
         {
             if(!string.IsNullOrWhiteSpace(tbxName.Text))
             {
-                CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings);
-                this.Hide();
-                cs.Show();
+                if(File.Exists(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml"))
+                {
+                    DialogResult result = MessageBox.Show("Are you sure you want to proceed? Your current save will be overwritten", "Warning", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        StartNewGame();
+                    }
+                }
+                else
+                {
+                    StartNewGame();
+                }
             }
+        }
+
+        private void StartNewGame()
+        {
+            CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings);
+            this.Hide();
+            cs.Show();
         }
 
         private void TbxName_KeyDown(object sender, KeyEventArgs e)
@@ -58,20 +79,11 @@ namespace RogueLikeGame
             }
         }
 
-        private void BtnMusic_Click(object sender, EventArgs e)
-        {
-            //GlobalSettings.SoundToggle();
-            //GlobalSettings.ChangeSoundImage((Button)sender);
-        }
-
         private void BtnLoadLastSave_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(tbxName.Text))
-            {
-                MainGUI gui = new MainGUI(allItems, allSettings);
-                this.Hide();
-                gui.Show();
-            }
+            MainGUI gui = new MainGUI(allItems, allSettings);
+            this.Hide();
+            gui.Show();
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)

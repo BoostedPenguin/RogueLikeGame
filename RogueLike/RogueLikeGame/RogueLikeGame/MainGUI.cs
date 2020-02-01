@@ -50,7 +50,7 @@ namespace RogueLikeGame
             this.allItems = items;
             this.allSettings = allSettings;
 
-            this.user = (UserSettings)XmlSerialization.DeserializeObject(2);
+            this.user = (UserSettings)XmlSerialization.DeserializeObject(0);
             this.currentMob = this.user.currentMob;
             PoppulateOnLoad();
         }
@@ -298,15 +298,23 @@ namespace RogueLikeGame
             }
             else if(user.riddleEncounter)
             {
-                OnRiddleEncounter();
+                OnRiddleEncounter(allSettings);
             }
             else if(user.elderDragonSetup)
             {
                 ElderDragonSetup();
             }
-            else if(user.elderDragonEncounter)
+            else if(user.behemothSetup)
             {
-                ElderDragonEncounter();
+                BehemothSetup();
+            }
+            else if(user.reaperSetup)
+            {
+                ReaperSetup();
+            }
+            else if(user.bossEncounter)
+            {
+                BossEncounter(user.type);
             }
             else if(user.mobEncounter)
             {
@@ -369,6 +377,16 @@ namespace RogueLikeGame
                         user.choice = 0;
                         user.elderDragonSetup = true;
                         ElderDragonSetup();
+                        break;
+                    case 4: //SecondBossEncounter
+                        user.choice = 0;
+                        user.behemothSetup = true;
+                        BehemothSetup();
+                        break;
+                    case 5:
+                        user.choice = 0;
+                        user.reaperSetup = true;
+                        ReaperSetup();
                         break;
                 }
                 user.encounter = false;
@@ -520,7 +538,7 @@ namespace RogueLikeGame
                 lblTurn.Text = $"Player turn";
             }
 
-            if (MobFight.currentRoundOfBuff > 0)
+            if (user.currentRoundOfBuff > 0)
             {
                 lblBuff.Text = "Healed Sucessfully";
             }
@@ -529,7 +547,7 @@ namespace RogueLikeGame
                 lblBuff.Text = "";
             }
 
-            if (MobFight.currentRoundOfDebuff > 0)
+            if (user.currentRoundOfDebuff > 0)
             {
                 lblDebuff.Text = currentMob.DebuffString;
             }
@@ -541,10 +559,10 @@ namespace RogueLikeGame
 
         private void UpdateProgressbar()    //Updates enemy healthbar
         {
+            prbEnemyHealth.Maximum = (int)currentMob.MaxHealth;
             if (user.roundCounter == 0)          //On first round
             {
                 lblMobHealth.Text = $"{currentMob.Type.ToString()}: {currentMob.MaxHealth}/{currentMob.MaxHealth}";
-                prbEnemyHealth.Maximum = (int)currentMob.MaxHealth;
                 prbEnemyHealth.Value = (int)currentMob.MaxHealth;
             }
             else
@@ -575,7 +593,7 @@ namespace RogueLikeGame
         #region MobFight
         private void CreateMob()
         {
-            if (user.roundCounter == 0 && !user.firstSequence && !user.elderDragonEncounter)          //Create a new random enemy only on start of fight
+            if (user.roundCounter == 0 && !user.firstSequence && !user.bossEncounter)          //Create a new random enemy only on start of fight
             {
                 currentMob = allItems.ReturnNewMob(Randomizer.EnemyRandomizer(allItems));      //CREATES A NEW MOB BASED ON RNG
                 user.userAttack = false;                                                 //To ensure that the user will always hit first
@@ -617,7 +635,7 @@ namespace RogueLikeGame
                     if (currentMob.Health <= 0) //On Mob Death
                     {
                         OnEnemyDeath();
-                        MobFight.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
+                        user.currentRoundOfDebuff = 0; //Nulls debuffs on enemy death
                     }
                     UpdateAbilityButton();
                     UpdatePlayerStatistics();
@@ -639,6 +657,7 @@ namespace RogueLikeGame
                 {
                     File.Delete(path);
                 }
+                SerializeScores();
                 DialogResult dialog = MessageBox.Show($"You died! {Environment.NewLine}Do you want to restart?", "Game over", MessageBoxButtons.YesNo);
                 allSettings.OnPlayerDeath = true;
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
@@ -657,6 +676,12 @@ namespace RogueLikeGame
                 user.currentHealth = user.MaxHealth / 2;
                 MessageBox.Show("You had a second chance - sucessfully revived");
             }
+        }
+
+        private void SerializeScores()
+        {
+            Randomizer.dict.Add(user.userName, user.actionCounter);
+            XmlSerialization.Serialize(Randomizer.dict);
         }
 
         private void OnEnemyDeath()     //If the enemy dies
@@ -684,9 +709,9 @@ namespace RogueLikeGame
                 user.secondSequence = true;
                 user.choice = -1;
             }
-            if(user.elderDragonEncounter)
+            if(user.bossEncounter)
             {
-                user.elderDragonEncounter = false;
+                user.bossEncounter = false;
                 tbxNarrative.Text = "You managed to defeat the elder dragon";
                 user.encounter = true;
                 user.mobEncounter = false;
@@ -888,7 +913,7 @@ namespace RogueLikeGame
             }
         }
 
-        private void OnRiddleEncounter()
+        private void OnRiddleEncounter(GlobalSettings allSettings)
         {
             if (user.riddleEncounter)
             {
@@ -901,7 +926,7 @@ namespace RogueLikeGame
                     else
                     {
                         tbxNarrative.Text = TextNarrative.RiddleWrongAnswer;
-                        user.CurrentHealth -= GlobalSettings.damageOnWrongAnswer;
+                        user.CurrentHealth -= allSettings.damageOnWrongAnswer;
                         if(user.CurrentHealth <= 0)
                         {
                             OnPlayerDeath();
@@ -932,20 +957,69 @@ namespace RogueLikeGame
                         break;
                     case 1:
                         tbxNarrative.Text = "Start dragon fight";
-                        user.elderDragonEncounter = true;
+                        user.type = MobTypes.ELDERDRAGON;
+                        user.bossEncounter = true;
                         user.elderDragonSetup = false;
                         break;
                 }
             }
         }
-        private void ElderDragonEncounter()
+
+        private void BehemothSetup()
         {
-            if(user.elderDragonEncounter)
+            if (user.behemothSetup)
             {
-                currentMob = allItems.ReturnNewMob(MobTypes.ELDERDRAGON);
+                switch (user.choice)
+                {
+                    case 0:
+                        tbxNarrative.Text = "Behemoth fight";
+                        ResetButtons();
+                        btnOptionA.Enabled = true;
+                        btnOptionA.Text = "Continue";
+                        btnOptionB.Enabled = false;
+                        user.behemothSetup = true;
+                        break;
+                    case 1:
+                        tbxNarrative.Text = "Start behemoth fight";
+                        user.type = MobTypes.FLESHBEHEMOTH;
+                        user.bossEncounter = true;
+                        user.behemothSetup = false;
+                        break;
+                }
+            }
+        }
+
+        private void ReaperSetup()
+        {
+            if (user.reaperSetup)
+            {
+                switch (user.choice)
+                {
+                    case 0:
+                        tbxNarrative.Text = "Dragon fight";
+                        ResetButtons();
+                        btnOptionA.Enabled = true;
+                        btnOptionA.Text = "Continue";
+                        btnOptionB.Enabled = false;
+                        user.reaperSetup = true;
+                        break;
+                    case 1:
+                        tbxNarrative.Text = "Start dragon fight";
+                        user.type = MobTypes.LIFEREAPER;
+                        user.bossEncounter = true;
+                        user.reaperSetup = false;
+                        break;
+                }
+            }
+        }
+
+        private void BossEncounter(MobTypes mob)
+        {
+            if(user.bossEncounter)
+            {
+                currentMob = allItems.ReturnNewMob(mob);
                 user.mobEncounter = true;
                 StartFight();
-
                 btnOptionA.Enabled = false;
             }
         }
