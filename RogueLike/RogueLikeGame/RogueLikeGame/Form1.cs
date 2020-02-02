@@ -16,17 +16,20 @@ namespace RogueLikeGame
     {
         Items allItems;
         GlobalSettings allSettings;
-        Dictionary<string, int> scores = new Dictionary<string, int>();
+        DictionaryEntries scores;
 
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             allItems = new Items();
             allSettings = new GlobalSettings();
+            scores = new DictionaryEntries();
             allItems.RepopulateTheLists();
             if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml"))
             {
                 btnLoadLastSave.Enabled = false;
+                btnLoadLastSave.BackColor = Color.FromArgb(78, 31, 3);
             }
             if(!File.Exists(Directory.GetCurrentDirectory() + @"\CurrentGlobalSettings.xml"))
             {
@@ -38,9 +41,21 @@ namespace RogueLikeGame
             }
             if(File.Exists(Directory.GetCurrentDirectory() + @"\UserScores.xml"))
             {
-                Randomizer.dict = (Dictionary<string, int>)XmlSerialization.Deserialize(); //No need for system default scores
+                scores = (DictionaryEntries)XmlSerialization.DeserializeObject(3);
             }
+            allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
+            allItems = (Items)XmlSerialization.DeserializeObject(2);
 
+            lbxScores.Items.Clear();
+            lbxScores.Items.Add($"Name     Score");
+            for(int i = 0; i < scores.Id.Count; i++)
+            {
+                lbxScores.Items.Add($"{scores.Name[i]}     {scores.Points[i]}");
+            }
+        }
+
+        public void ReloadSettings()
+        {
             allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
             allItems = (Items)XmlSerialization.DeserializeObject(2);
         }
@@ -66,7 +81,7 @@ namespace RogueLikeGame
 
         private void StartNewGame()
         {
-            CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings);
+            CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings, this, scores);
             this.Hide();
             cs.Show();
         }
@@ -81,16 +96,21 @@ namespace RogueLikeGame
 
         private void BtnLoadLastSave_Click(object sender, EventArgs e)
         {
-            MainGUI gui = new MainGUI(allItems, allSettings);
+            MainGUI gui = new MainGUI(allItems, allSettings, this, scores);
             this.Hide();
             gui.Show();
         }
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            DeveloperSettings dev = new DeveloperSettings(allItems, allSettings);
+            DeveloperSettings dev = new DeveloperSettings(allItems, allSettings, this);
             dev.Show();
             this.Hide();
+        }
+
+        private void BtnScores_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = !panel1.Visible;
         }
     }
 }

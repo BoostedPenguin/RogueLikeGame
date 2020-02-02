@@ -8,17 +8,16 @@ namespace RogueLikeGame
 {
     public static class Randomizer
     {
-        public static Dictionary<string, int> dict = new Dictionary<string, int>();
         static readonly Random r = new Random();
         public static int RandomEncounter(int actionCounter)
         {
-            switch(actionCounter)
+            switch(actionCounter)   //At which round to start the boss fights
             {
-                case 3:
+                case 10:
                     return 3;
-                case 4:
+                case 20:
                     return 4;
-                case 5:
+                case 30:
                     return 5;
             }
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 

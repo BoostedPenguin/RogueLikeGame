@@ -16,9 +16,12 @@ namespace RogueLikeGame
     {
         GlobalSettings allSettings;
         Items allItems;
-        public DeveloperSettings(Items items, GlobalSettings globalSettings)
+        Form1 startForm;
+        public DeveloperSettings(Items items, GlobalSettings globalSettings, Form1 form)
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.startForm = form;
             nudArmorDropChance.Value = globalSettings.armorDropChance;
             nudCharacterArmorMultiplier.Value = globalSettings.characterArmorMultiplier;
             nudEnemyDifficultyMultiplier.Value = globalSettings.enemyDifficultyMultiplier;
@@ -61,6 +64,7 @@ namespace RogueLikeGame
                 mob.Damage = (double)nudMobDamage.Value;
                 mob.EvadeChance = (int)nudMobEvChance.Value;
                 mob.MaxHealth = (double)nudMobMaxHealth.Value;
+                mob.Health = mob.MaxHealth;
                 mob.SpawnChance = (int)nudMobSpawnCh.Value;
                 XmlSerialization.SerializeObject(allItems);
             }
@@ -92,7 +96,7 @@ namespace RogueLikeGame
                 ch.Damage = (double)nudCharacterDamage.Value;
                 ch.EvadeChance = (int)nudCharacterEvChance.Value;
                 ch.MaxHealth = (int)nudCharacterMaxHealth.Value;
-                ch.SecondChance = (int)nudCharacterEvChance.Value;
+                ch.SecondChance = (int)nudCharacterSecondChance.Value;
                 ch.UpdateArmor(tbxCharacterStartArmor.Text, allItems);
                 ch.UpdateWeapon(tbxCharacterStartWeapon.Text, allItems);
                 XmlSerialization.SerializeObject(allItems);
@@ -196,6 +200,10 @@ namespace RogueLikeGame
 
         private void BtnWeapons_Click(object sender, EventArgs e)
         {
+            label21.Enabled = true;
+            nudCritEvade.Enabled = true;
+            label25.Enabled = false;
+            cbxIsHealthPot.Enabled = false;
             switcher = 1;
             ClearItems();
             lbxItems.Items.Clear();
@@ -207,6 +215,10 @@ namespace RogueLikeGame
 
         private void BtnArmor_Click(object sender, EventArgs e)
         {
+            label21.Enabled = true;
+            nudCritEvade.Enabled = true;
+            label25.Enabled = false;
+            cbxIsHealthPot.Enabled = false;
             switcher = 2;
             ClearItems();
             lbxItems.Items.Clear();
@@ -218,6 +230,10 @@ namespace RogueLikeGame
 
         private void BtnPotions_Click(object sender, EventArgs e)
         {
+            label21.Enabled = false;
+            nudCritEvade.Enabled = false;
+            label25.Enabled = true;
+            cbxIsHealthPot.Enabled = true;
             switcher = 3;
             ClearItems();
             lbxItems.Items.Clear();
@@ -226,14 +242,10 @@ namespace RogueLikeGame
                 lbxItems.Items.Add(a.PotionName);
             }
         }
-        public bool restart = true;
         private void DeveloperSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(restart)
-            {
-                restart = false;
-                Application.Restart();
-            }
+            Process.Start(Application.ExecutablePath);
+            Application.Exit();
         }
 
         private void BtnReset_Click(object sender, EventArgs e)
@@ -246,11 +258,16 @@ namespace RogueLikeGame
             {
                 File.Delete(Directory.GetCurrentDirectory() + @"\CurrentItems.xml");
             }
+            this.Hide();
+            startForm.ReloadSettings();
+            startForm.Show();
+        }
 
-            if (restart)
+        private void BtnResetSave_Click(object sender, EventArgs e)
+        {
+            if(File.Exists(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml"))
             {
-                restart = false;
-                Application.Restart();
+                File.Delete(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml");
             }
         }
     }

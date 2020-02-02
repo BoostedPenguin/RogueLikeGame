@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainGUI));
             this.tbxNarrative = new System.Windows.Forms.TextBox();
             this.btnOptionA = new System.Windows.Forms.Button();
             this.btnOptionB = new System.Windows.Forms.Button();
@@ -346,6 +347,7 @@
             this.Controls.Add(this.btnOptionB);
             this.Controls.Add(this.btnOptionA);
             this.Controls.Add(this.tbxNarrative);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainGUI";
             this.Text = "MainGUI";

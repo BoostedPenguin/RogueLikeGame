@@ -11,32 +11,6 @@ namespace RogueLikeGame
 {
     public static class XmlSerialization
     {
-        public static void Serialize(Dictionary<string, int> dictionary)    //Dictionary
-        {
-            FileStream fs = new FileStream("UserScores.xml", FileMode.Create);
-
-            List<DictionaryEntries> entries = new List<DictionaryEntries>(dictionary.Count);
-            foreach (string key in dictionary.Keys)
-            {
-                entries.Add(new DictionaryEntries(key, dictionary[key]));
-            }
-            XmlSerializer serializer = new XmlSerializer(typeof(List<DictionaryEntries>));
-            serializer.Serialize(fs, entries);
-        }
-
-        public static object Deserialize()  //Dictionary
-        {
-            FileStream fs = new FileStream("UserScores.xml", FileMode.Open);
-            Dictionary<string, int> dictionary = new Dictionary<string, int>();
-            dictionary.Clear();
-            XmlSerializer serializer = new XmlSerializer(typeof(List<DictionaryEntries>));
-            List<DictionaryEntries> list = (List<DictionaryEntries>)serializer.Deserialize(fs);
-            foreach (DictionaryEntries entry in list)
-            {
-                dictionary[entry.Key] = entry.Value;
-            }
-            return dictionary;
-        }
 
         public static void SerializeObject(object user)
         {
@@ -60,6 +34,14 @@ namespace RogueLikeGame
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(Items));
                 using (FileStream fs = new FileStream("CurrentItems.xml", FileMode.Create))
+                {
+                    serializer.Serialize(fs, user);
+                }
+            }
+            else if(user.GetType() == typeof(DictionaryEntries))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(DictionaryEntries));
+                using (FileStream fs = new FileStream("UserScores.xml", FileMode.Create))
                 {
                     serializer.Serialize(fs, user);
                 }
@@ -88,6 +70,12 @@ namespace RogueLikeGame
                     using (FileStream fs = new FileStream("CurrentItems.xml", FileMode.Open))
                     {
                         return serialize.Deserialize(fs) as Items;
+                    }
+                case 3:
+                    serialize = new XmlSerializer(typeof(DictionaryEntries));
+                    using(FileStream fs = new FileStream("UserScores.xml", FileMode.Open))
+                    {
+                        return serialize.Deserialize(fs) as DictionaryEntries;
                     }
             }
             return null;

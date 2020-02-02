@@ -28,6 +28,7 @@ namespace RogueLikeGame
             AddAllMobs();
             AddAllCharacters();
         }
+
         public void AddAllWeapons() //CHANGE this if you want to alter STATS
         {
                                       //Name  Damage  Dr.Chance  Crit.Chance

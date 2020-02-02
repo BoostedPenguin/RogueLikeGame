@@ -109,6 +109,9 @@ namespace RogueLikeGame
 
         public static string ElderDragonEncounter1 = "finally meets the great Elder Dragon. It's time for an epic fight";
         public static string ElderDragonEncounter2 = "sees the great Elder Dragon laying on top of a corpse. The battle begins.";
+
+        public static string LifeReaperDefeat = $"You defeated the lord of the underworld. Thank you for playing the game." +
+    $" You can still increase your score by continuing to play the game.";
         #endregion
     }
 }

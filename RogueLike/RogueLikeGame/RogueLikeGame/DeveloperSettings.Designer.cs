@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.nudTreasureChestOpen = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.nudWrongAnswer = new System.Windows.Forms.NumericUpDown();
+            this.label26 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.nudPotionsDropChance = new System.Windows.Forms.NumericUpDown();
             this.nudArmorDropChance = new System.Windows.Forms.NumericUpDown();
@@ -79,6 +84,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.lbxMobs = new System.Windows.Forms.ListBox();
             this.tabPlayerSettings = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
+            this.btnResetSave = new System.Windows.Forms.Button();
             this.tabItems = new System.Windows.Forms.TabPage();
             this.cbxIsHealthPot = new System.Windows.Forms.CheckBox();
             this.tbxItemName = new System.Windows.Forms.TextBox();
@@ -95,12 +102,10 @@
             this.nudItemDamArm = new System.Windows.Forms.NumericUpDown();
             this.btnSaveItem = new System.Windows.Forms.Button();
             this.lbxItems = new System.Windows.Forms.ListBox();
-            this.nudWrongAnswer = new System.Windows.Forms.NumericUpDown();
-            this.label26 = new System.Windows.Forms.Label();
-            this.nudTreasureChestOpen = new System.Windows.Forms.NumericUpDown();
-            this.label27 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTreasureChestOpen)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWrongAnswer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).BeginInit();
@@ -120,12 +125,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).BeginInit();
+            this.tabPlayerSettings.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWrongAnswer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTreasureChestOpen)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -171,9 +175,65 @@
             this.tabGeneral.Text = "General Settings";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
+            // nudTreasureChestOpen
+            // 
+            this.nudTreasureChestOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTreasureChestOpen.Location = new System.Drawing.Point(343, 347);
+            this.nudTreasureChestOpen.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudTreasureChestOpen.Name = "nudTreasureChestOpen";
+            this.nudTreasureChestOpen.Size = new System.Drawing.Size(120, 30);
+            this.nudTreasureChestOpen.TabIndex = 26;
+            this.nudTreasureChestOpen.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label27.Location = new System.Drawing.Point(25, 349);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(290, 25);
+            this.label27.TabIndex = 25;
+            this.label27.Text = "Damage on treasure chest open";
+            // 
+            // nudWrongAnswer
+            // 
+            this.nudWrongAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudWrongAnswer.Location = new System.Drawing.Point(343, 311);
+            this.nudWrongAnswer.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.nudWrongAnswer.Name = "nudWrongAnswer";
+            this.nudWrongAnswer.Size = new System.Drawing.Size(120, 30);
+            this.nudWrongAnswer.TabIndex = 24;
+            this.nudWrongAnswer.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label26.Location = new System.Drawing.Point(25, 313);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(291, 25);
+            this.label26.TabIndex = 23;
+            this.label26.Text = "Damage on wrong riddle answer";
+            // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(614, 160);
+            this.btnReset.Location = new System.Drawing.Point(614, 46);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(133, 58);
             this.btnReset.TabIndex = 22;
@@ -184,7 +244,7 @@
             // nudPotionsDropChance
             // 
             this.nudPotionsDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudPotionsDropChance.Location = new System.Drawing.Point(313, 267);
+            this.nudPotionsDropChance.Location = new System.Drawing.Point(343, 273);
             this.nudPotionsDropChance.Name = "nudPotionsDropChance";
             this.nudPotionsDropChance.Size = new System.Drawing.Size(120, 30);
             this.nudPotionsDropChance.TabIndex = 21;
@@ -192,7 +252,7 @@
             // nudArmorDropChance
             // 
             this.nudArmorDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudArmorDropChance.Location = new System.Drawing.Point(313, 226);
+            this.nudArmorDropChance.Location = new System.Drawing.Point(343, 232);
             this.nudArmorDropChance.Name = "nudArmorDropChance";
             this.nudArmorDropChance.Size = new System.Drawing.Size(120, 30);
             this.nudArmorDropChance.TabIndex = 20;
@@ -200,7 +260,7 @@
             // nudWeaponDropChance
             // 
             this.nudWeaponDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudWeaponDropChance.Location = new System.Drawing.Point(313, 188);
+            this.nudWeaponDropChance.Location = new System.Drawing.Point(343, 191);
             this.nudWeaponDropChance.Name = "nudWeaponDropChance";
             this.nudWeaponDropChance.Size = new System.Drawing.Size(120, 30);
             this.nudWeaponDropChance.TabIndex = 19;
@@ -208,7 +268,7 @@
             // nudCharacterDamageMultiplier
             // 
             this.nudCharacterDamageMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterDamageMultiplier.Location = new System.Drawing.Point(313, 143);
+            this.nudCharacterDamageMultiplier.Location = new System.Drawing.Point(343, 149);
             this.nudCharacterDamageMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -226,7 +286,7 @@
             // nudCharacterArmorMultiplier
             // 
             this.nudCharacterArmorMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterArmorMultiplier.Location = new System.Drawing.Point(313, 101);
+            this.nudCharacterArmorMultiplier.Location = new System.Drawing.Point(343, 107);
             this.nudCharacterArmorMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -244,7 +304,7 @@
             // nudEnemyDifficultyMultiplier
             // 
             this.nudEnemyDifficultyMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudEnemyDifficultyMultiplier.Location = new System.Drawing.Point(313, 46);
+            this.nudEnemyDifficultyMultiplier.Location = new System.Drawing.Point(343, 64);
             this.nudEnemyDifficultyMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -262,16 +322,16 @@
             // tbxSoundSource
             // 
             this.tbxSoundSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbxSoundSource.Location = new System.Drawing.Point(313, 303);
+            this.tbxSoundSource.Location = new System.Drawing.Point(343, 383);
             this.tbxSoundSource.Name = "tbxSoundSource";
-            this.tbxSoundSource.Size = new System.Drawing.Size(447, 30);
+            this.tbxSoundSource.Size = new System.Drawing.Size(422, 30);
             this.tbxSoundSource.TabIndex = 15;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(25, 265);
+            this.label7.Location = new System.Drawing.Point(25, 275);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(198, 25);
             this.label7.TabIndex = 8;
@@ -281,7 +341,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(25, 228);
+            this.label6.Location = new System.Drawing.Point(25, 237);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(186, 25);
             this.label6.TabIndex = 7;
@@ -291,7 +351,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(25, 190);
+            this.label5.Location = new System.Drawing.Point(25, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(208, 25);
             this.label5.TabIndex = 6;
@@ -301,7 +361,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(25, 303);
+            this.label4.Location = new System.Drawing.Point(25, 383);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(138, 25);
             this.label4.TabIndex = 5;
@@ -311,7 +371,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(25, 145);
+            this.label3.Location = new System.Drawing.Point(25, 154);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(259, 25);
             this.label3.TabIndex = 4;
@@ -321,7 +381,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(25, 103);
+            this.label2.Location = new System.Drawing.Point(25, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(238, 25);
             this.label2.TabIndex = 3;
@@ -331,7 +391,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(25, 51);
+            this.label1.Location = new System.Drawing.Point(25, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(232, 25);
             this.label1.TabIndex = 2;
@@ -339,7 +399,7 @@
             // 
             // btnSaveChanges
             // 
-            this.btnSaveChanges.Location = new System.Drawing.Point(614, 344);
+            this.btnSaveChanges.Location = new System.Drawing.Point(614, 299);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(133, 58);
             this.btnSaveChanges.TabIndex = 1;
@@ -514,11 +574,6 @@
             // 
             this.nudCharacterEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterEvChance.Location = new System.Drawing.Point(519, 172);
-            this.nudCharacterEvChance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudCharacterEvChance.Name = "nudCharacterEvChance";
             this.nudCharacterEvChance.Size = new System.Drawing.Size(120, 30);
             this.nudCharacterEvChance.TabIndex = 37;
@@ -664,11 +719,6 @@
             // 
             this.nudMobSpawnCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobSpawnCh.Location = new System.Drawing.Point(552, 247);
-            this.nudMobSpawnCh.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudMobSpawnCh.Name = "nudMobSpawnCh";
             this.nudMobSpawnCh.Size = new System.Drawing.Size(120, 30);
             this.nudMobSpawnCh.TabIndex = 28;
@@ -677,11 +727,6 @@
             // 
             this.nudMobAbchance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobAbchance.Location = new System.Drawing.Point(552, 206);
-            this.nudMobAbchance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudMobAbchance.Name = "nudMobAbchance";
             this.nudMobAbchance.Size = new System.Drawing.Size(120, 30);
             this.nudMobAbchance.TabIndex = 27;
@@ -690,11 +735,6 @@
             // 
             this.nudMobEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobEvChance.Location = new System.Drawing.Point(552, 168);
-            this.nudMobEvChance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudMobEvChance.Name = "nudMobEvChance";
             this.nudMobEvChance.Size = new System.Drawing.Size(120, 30);
             this.nudMobEvChance.TabIndex = 26;
@@ -767,12 +807,34 @@
             // 
             // tabPlayerSettings
             // 
+            this.tabPlayerSettings.Controls.Add(this.label28);
+            this.tabPlayerSettings.Controls.Add(this.btnResetSave);
             this.tabPlayerSettings.Location = new System.Drawing.Point(4, 25);
             this.tabPlayerSettings.Name = "tabPlayerSettings";
             this.tabPlayerSettings.Size = new System.Drawing.Size(790, 425);
             this.tabPlayerSettings.TabIndex = 3;
             this.tabPlayerSettings.Text = "Player save settings";
             this.tabPlayerSettings.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label28.Location = new System.Drawing.Point(257, 116);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(260, 32);
+            this.label28.TabIndex = 24;
+            this.label28.Text = "Delete current save";
+            // 
+            // btnResetSave
+            // 
+            this.btnResetSave.Location = new System.Drawing.Point(320, 172);
+            this.btnResetSave.Name = "btnResetSave";
+            this.btnResetSave.Size = new System.Drawing.Size(133, 58);
+            this.btnResetSave.TabIndex = 23;
+            this.btnResetSave.Text = "Delete Save";
+            this.btnResetSave.UseVisualStyleBackColor = true;
+            this.btnResetSave.Click += new System.EventHandler(this.BtnResetSave_Click);
             // 
             // tabItems
             // 
@@ -813,7 +875,7 @@
             this.tbxItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbxItemName.Location = new System.Drawing.Point(524, 105);
             this.tbxItemName.Name = "tbxItemName";
-            this.tbxItemName.Size = new System.Drawing.Size(120, 30);
+            this.tbxItemName.Size = new System.Drawing.Size(230, 30);
             this.tbxItemName.TabIndex = 59;
             // 
             // btnPotions
@@ -900,11 +962,6 @@
             // 
             this.nudCritEvade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCritEvade.Location = new System.Drawing.Point(522, 236);
-            this.nudCritEvade.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudCritEvade.Name = "nudCritEvade";
             this.nudCritEvade.Size = new System.Drawing.Size(120, 30);
             this.nudCritEvade.TabIndex = 49;
@@ -913,11 +970,6 @@
             // 
             this.nudItemDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudItemDropChance.Location = new System.Drawing.Point(522, 198);
-            this.nudItemDropChance.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
             this.nudItemDropChance.Name = "nudItemDropChance";
             this.nudItemDropChance.Size = new System.Drawing.Size(120, 30);
             this.nudItemDropChance.TabIndex = 48;
@@ -937,7 +989,7 @@
             // 
             // btnSaveItem
             // 
-            this.btnSaveItem.Location = new System.Drawing.Point(664, 153);
+            this.btnSaveItem.Location = new System.Drawing.Point(664, 331);
             this.btnSaveItem.Name = "btnSaveItem";
             this.btnSaveItem.Size = new System.Drawing.Size(90, 72);
             this.btnSaveItem.TabIndex = 45;
@@ -955,74 +1007,21 @@
             this.lbxItems.TabIndex = 44;
             this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.LbxItems_SelectedIndexChanged);
             // 
-            // nudWrongAnswer
-            // 
-            this.nudWrongAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudWrongAnswer.Location = new System.Drawing.Point(313, 342);
-            this.nudWrongAnswer.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudWrongAnswer.Name = "nudWrongAnswer";
-            this.nudWrongAnswer.Size = new System.Drawing.Size(120, 30);
-            this.nudWrongAnswer.TabIndex = 24;
-            this.nudWrongAnswer.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label26.Location = new System.Drawing.Point(25, 344);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(291, 25);
-            this.label26.TabIndex = 23;
-            this.label26.Text = "Damage on wrong riddle answer";
-            // 
-            // nudTreasureChestOpen
-            // 
-            this.nudTreasureChestOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTreasureChestOpen.Location = new System.Drawing.Point(313, 378);
-            this.nudTreasureChestOpen.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.nudTreasureChestOpen.Name = "nudTreasureChestOpen";
-            this.nudTreasureChestOpen.Size = new System.Drawing.Size(120, 30);
-            this.nudTreasureChestOpen.TabIndex = 26;
-            this.nudTreasureChestOpen.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label27.Location = new System.Drawing.Point(25, 380);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(290, 25);
-            this.label27.TabIndex = 25;
-            this.label27.Text = "Damage on treasure chest open";
-            // 
             // DeveloperSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(802, 453);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DeveloperSettings";
             this.Text = "DeveloperSettings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeveloperSettings_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTreasureChestOpen)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWrongAnswer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudPotionsDropChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudArmorDropChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWeaponDropChance)).EndInit();
@@ -1044,13 +1043,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMobEvChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMobMaxHealth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMobDamage)).EndInit();
+            this.tabPlayerSettings.ResumeLayout(false);
+            this.tabPlayerSettings.PerformLayout();
             this.tabItems.ResumeLayout(false);
             this.tabItems.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudWrongAnswer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTreasureChestOpen)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1128,5 +1127,7 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.NumericUpDown nudTreasureChestOpen;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button btnResetSave;
+        private System.Windows.Forms.Label label28;
     }
 }

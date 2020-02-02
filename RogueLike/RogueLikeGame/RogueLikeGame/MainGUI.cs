@@ -16,37 +16,41 @@ namespace RogueLikeGame
     {
         Items allItems;
         GlobalSettings allSettings;
-
+        Form1 startForm;
         UserSettings user;         //Should ALWAYS be passed
         Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
+        DictionaryEntries scores;
         bool musicOn = false;
-        List<Button> allButtons;
-        List<Label> allLabels;
-        public MainGUI(UserSettings user, Items items, GlobalSettings allSettings)
+        readonly List<Button> allButtons;
+        readonly List<Label> allLabels;
+        public MainGUI(UserSettings user, Items items, GlobalSettings allSettings, Form1 form, DictionaryEntries scores)
         { 
             InitializeComponent();
-
+            this.scores = scores;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //Add all UI elements to a list
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
-
+            this.startForm = form;
             this.allItems = items;
             this.allSettings = allSettings;
 
             this.user = user;
             //this.Height = 285;
             //this.Width = 580;
-            //GlobalSettings.ChangeSoundImage(btnMusic, user);
             FirstSequence();
         }
 
-        public MainGUI(Items items, GlobalSettings allSettings)
+        public MainGUI(Items items, GlobalSettings allSettings, Form1 form, DictionaryEntries scores)
         {
             InitializeComponent();
+            this.scores = scores;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
-
+            this.startForm = form;
             this.allItems = items;
             this.allSettings = allSettings;
 
@@ -74,8 +78,10 @@ namespace RogueLikeGame
                 lbxCombatLog.Items.Add(user.lbxCombatText[i]);
             }
             tbxNarrative.Text = user.lastNarrative;
-
-            UpdateProgressbar();
+            if (this.currentMob != null)
+            {
+                UpdateProgressbar();
+            }
             UpdateItemsList();
         }
 
@@ -265,10 +271,6 @@ namespace RogueLikeGame
                         TreasureSetup();
                         user.encounter = true;
                         break;
-                        //END OF CURRENT TUTORIAL
-                        //EXPERIMENTAL THINGS BELOW ONLY 
-                        //secondSequence = false;
-                        //encounter = true;
                 }
             }
         }
@@ -360,6 +362,7 @@ namespace RogueLikeGame
                 user.actionCounter++;
                 switch (Randomizer.RandomEncounter(user.actionCounter))
                 {
+                    //Random Encounters
                     case 0: //Mob
                         user.mobEncounter = true;
                         DisableNarrativeButton();
@@ -373,6 +376,7 @@ namespace RogueLikeGame
                         user.riddleSetup = true;
                         RiddleSetup();
                         break;
+                    //End of random encounters
                     case 3: //FirstBossEncounter
                         user.choice = 0;
                         user.elderDragonSetup = true;
@@ -383,7 +387,7 @@ namespace RogueLikeGame
                         user.behemothSetup = true;
                         BehemothSetup();
                         break;
-                    case 5:
+                    case 5: //ThirdBossEncounter
                         user.choice = 0;
                         user.reaperSetup = true;
                         ReaperSetup();
@@ -419,6 +423,7 @@ namespace RogueLikeGame
                         btnUseItem.Enabled = false;
                         lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     }
+                    DisableCombatButtons();
                     UpdateItemsList();
                     UpdatePlayerStatistics();
                 }
@@ -446,7 +451,6 @@ namespace RogueLikeGame
             UpdatePlayerStatistics();
             UpdateItemsList();
         }
-
 
         private void BtnFlee_Click(object sender, EventArgs e)
         {
@@ -580,7 +584,6 @@ namespace RogueLikeGame
             }
         }
 
-
         private void UpdateAbilityButton() //Checks if the ability is off cooldown
         {
             if (user.currentAbilityCooldown >= user.AbilityCooldown && !user.userAttack && user.roundCounter != 0)
@@ -604,6 +607,7 @@ namespace RogueLikeGame
         {
             if (user.mobEncounter)
             {
+                btnAttack.Enabled = true;
                 CreateMob();
 
                 if (currentMob.Health > 0 && user.roundCounter == 0)                     //On start of fight - Check if it's the first round
@@ -662,6 +666,8 @@ namespace RogueLikeGame
                 allSettings.OnPlayerDeath = true;
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
                 {
+                    //startForm.Show();
+                    //this.Dispose();
                     Process.Start(Application.ExecutablePath);
                     Application.Exit();
                 }
@@ -680,16 +686,16 @@ namespace RogueLikeGame
 
         private void SerializeScores()
         {
-            Randomizer.dict.Add(user.userName, user.actionCounter);
-            XmlSerialization.Serialize(Randomizer.dict);
+            scores.AddToLists(user.userName, user.actionCounter);
+            XmlSerialization.SerializeObject(scores);
         }
 
         private void OnEnemyDeath()     //If the enemy dies
         {
+            btnAttack.Enabled = false;
             MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob, allSettings, allItems)); //Calls event of enemy death
             UpdateProgressbar();
             user.roundCounter = 0;
-            //currentMob.Boss = false;                                  //Even if it aint a boss it will get reset - thats ok
             if (!user.firstSequence)
             {
                 user.encounter = true;
@@ -697,8 +703,8 @@ namespace RogueLikeGame
                 btnOptionA.Enabled = true;
                 btnOptionA.Text = "Continue";
             }
-            allItems.RepopulateTheLists();         //Repopulates the item OBJECTS because the enemy stats have CHANGED < replace with only mob repopulate?
-            if(user.firstSequence)
+            this.currentMob.Health = currentMob.MaxHealth; //Repopulate the health for next encounter
+            if (user.firstSequence)
             {
                 user.encounter = false;
                 btnOptionA.Enabled = true;
@@ -712,7 +718,11 @@ namespace RogueLikeGame
             if(user.bossEncounter)
             {
                 user.bossEncounter = false;
-                tbxNarrative.Text = "You managed to defeat the elder dragon";
+                tbxNarrative.Text = "You managed to defeat one of the three great bosses";
+                if (currentMob.Type == MobTypes.LIFEREAPER)
+                {
+                    tbxNarrative.Text = TextNarrative.LifeReaperDefeat;
+                }
                 user.encounter = true;
                 user.mobEncounter = false;
                 btnOptionA.Text = "Continue";
@@ -748,6 +758,7 @@ namespace RogueLikeGame
             user.currentMob = this.currentMob;
             XmlSerialization.SerializeObject(user);
         }
+
         private void MainGUI_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!allSettings.OnPlayerDeath)
@@ -792,6 +803,7 @@ namespace RogueLikeGame
                     }
                 }
                 UpdatePlayerStatistics();
+                DisableCombatButtons();
             }
         }
         #endregion
@@ -837,7 +849,6 @@ namespace RogueLikeGame
             tbxNarrative.Text = "You've found a treasure chest";
             user.treasureEncounter = true;
         }
-
 
         private void OnTreasureEncounter()
         {
@@ -917,7 +928,7 @@ namespace RogueLikeGame
         {
             if (user.riddleEncounter)
             {
-                if (TextNarrative.riddles.ContainsKey(tbxNarrative.Text))
+                if (TextNarrative.riddles.ContainsKey(tbxNarrative.Text.ToLower()))
                 {
                     if (tbxRiddleAnswer.Text == TextNarrative.riddles[tbxNarrative.Text])
                     {

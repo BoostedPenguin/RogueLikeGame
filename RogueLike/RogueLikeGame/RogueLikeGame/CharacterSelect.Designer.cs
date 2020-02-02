@@ -28,19 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CharacterSelect));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.rbtBerserker = new System.Windows.Forms.RadioButton();
-            this.rbtGhost = new System.Windows.Forms.RadioButton();
-            this.rbtGodKnight = new System.Windows.Forms.RadioButton();
-            this.btnChoose = new System.Windows.Forms.Button();
+            this.btnGhost = new System.Windows.Forms.Button();
+            this.btnGodKnight = new System.Windows.Forms.Button();
+            this.btnBerserker = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 11);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(25, 9);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(353, 421);
@@ -52,8 +54,10 @@
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(377, 11);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(386, 9);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(353, 421);
@@ -65,8 +69,10 @@
             // 
             // label3
             // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(739, 11);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(748, 9);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(353, 421);
@@ -76,63 +82,56 @@
     "ns";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // rbtBerserker
+            // btnGhost
             // 
-            this.rbtBerserker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtBerserker.Location = new System.Drawing.Point(184, 436);
-            this.rbtBerserker.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtBerserker.Name = "rbtBerserker";
-            this.rbtBerserker.Size = new System.Drawing.Size(19, 16);
-            this.rbtBerserker.TabIndex = 1;
-            this.rbtBerserker.TabStop = true;
-            this.rbtBerserker.UseVisualStyleBackColor = true;
+            this.btnGhost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGhost.Location = new System.Drawing.Point(428, 451);
+            this.btnGhost.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGhost.Name = "btnGhost";
+            this.btnGhost.Size = new System.Drawing.Size(273, 73);
+            this.btnGhost.TabIndex = 4;
+            this.btnGhost.Text = "Choose character";
+            this.btnGhost.UseVisualStyleBackColor = true;
+            this.btnGhost.Click += new System.EventHandler(this.BtnGhost_Click);
             // 
-            // rbtGhost
+            // btnGodKnight
             // 
-            this.rbtGhost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtGhost.Location = new System.Drawing.Point(551, 436);
-            this.rbtGhost.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtGhost.Name = "rbtGhost";
-            this.rbtGhost.Size = new System.Drawing.Size(19, 16);
-            this.rbtGhost.TabIndex = 2;
-            this.rbtGhost.TabStop = true;
-            this.rbtGhost.UseVisualStyleBackColor = true;
+            this.btnGodKnight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGodKnight.Location = new System.Drawing.Point(794, 451);
+            this.btnGodKnight.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGodKnight.Name = "btnGodKnight";
+            this.btnGodKnight.Size = new System.Drawing.Size(273, 73);
+            this.btnGodKnight.TabIndex = 5;
+            this.btnGodKnight.Text = "Choose character";
+            this.btnGodKnight.UseVisualStyleBackColor = true;
+            this.btnGodKnight.Click += new System.EventHandler(this.BtnGodKnight_Click);
             // 
-            // rbtGodKnight
+            // btnBerserker
             // 
-            this.rbtGodKnight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtGodKnight.Location = new System.Drawing.Point(917, 436);
-            this.rbtGodKnight.Margin = new System.Windows.Forms.Padding(4);
-            this.rbtGodKnight.Name = "rbtGodKnight";
-            this.rbtGodKnight.Size = new System.Drawing.Size(19, 16);
-            this.rbtGodKnight.TabIndex = 3;
-            this.rbtGodKnight.TabStop = true;
-            this.rbtGodKnight.UseVisualStyleBackColor = true;
-            // 
-            // btnChoose
-            // 
-            this.btnChoose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChoose.Location = new System.Drawing.Point(425, 466);
-            this.btnChoose.Margin = new System.Windows.Forms.Padding(4);
-            this.btnChoose.Name = "btnChoose";
-            this.btnChoose.Size = new System.Drawing.Size(273, 73);
-            this.btnChoose.TabIndex = 4;
-            this.btnChoose.Text = "Choose character";
-            this.btnChoose.UseVisualStyleBackColor = true;
-            this.btnChoose.Click += new System.EventHandler(this.BtnChoose_Click);
+            this.btnBerserker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBerserker.Location = new System.Drawing.Point(67, 451);
+            this.btnBerserker.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBerserker.Name = "btnBerserker";
+            this.btnBerserker.Size = new System.Drawing.Size(273, 73);
+            this.btnBerserker.TabIndex = 6;
+            this.btnBerserker.Text = "Choose character";
+            this.btnBerserker.UseVisualStyleBackColor = true;
+            this.btnBerserker.Click += new System.EventHandler(this.BtnBerserker_Click);
             // 
             // CharacterSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::RogueLikeGame.Properties.Resources.mainbd3;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1128, 554);
-            this.Controls.Add(this.btnChoose);
-            this.Controls.Add(this.rbtGodKnight);
-            this.Controls.Add(this.rbtGhost);
-            this.Controls.Add(this.rbtBerserker);
+            this.Controls.Add(this.btnBerserker);
+            this.Controls.Add(this.btnGodKnight);
+            this.Controls.Add(this.btnGhost);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CharacterSelect";
             this.Text = "CharacterSelect";
@@ -146,9 +145,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RadioButton rbtBerserker;
-        private System.Windows.Forms.RadioButton rbtGhost;
-        private System.Windows.Forms.RadioButton rbtGodKnight;
-        private System.Windows.Forms.Button btnChoose;
+        private System.Windows.Forms.Button btnGhost;
+        private System.Windows.Forms.Button btnGodKnight;
+        private System.Windows.Forms.Button btnBerserker;
     }
 }
