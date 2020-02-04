@@ -16,7 +16,7 @@ namespace RogueLikeGame
     {
         Items allItems;
         GlobalSettings allSettings;
-        DictionaryEntries scores;
+        readonly DictionaryEntries scores;
 
         public Form1()
         {
@@ -47,10 +47,10 @@ namespace RogueLikeGame
             allItems = (Items)XmlSerialization.DeserializeObject(2);
 
             lbxScores.Items.Clear();
-            lbxScores.Items.Add($"Name     Score");
+            lbxScores.Items.Add($"Name\t\tScore");
             for(int i = 0; i < scores.Id.Count; i++)
             {
-                lbxScores.Items.Add($"{scores.Name[i]}     {scores.Points[i]}");
+                lbxScores.Items.Add($"{scores.Name[i]}\t\t{scores.Points[i]}");
             }
         }
 
@@ -96,7 +96,7 @@ namespace RogueLikeGame
 
         private void BtnLoadLastSave_Click(object sender, EventArgs e)
         {
-            MainGUI gui = new MainGUI(allItems, allSettings, this, scores);
+            MainGUI gui = new MainGUI(allItems, allSettings, scores);
             this.Hide();
             gui.Show();
         }

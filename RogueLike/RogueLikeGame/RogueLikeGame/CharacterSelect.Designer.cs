@@ -39,7 +39,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(38)))), ((int)(((byte)(16)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(25, 9);
@@ -47,14 +47,13 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(353, 421);
             this.label1.TabIndex = 0;
-            this.label1.Text = "\rBerserker\r\rRelentless bounty hunter spreading savagery and bloodshed wherever he" +
-    " goes\r\rSpecial Ability:\rDeal 3 times more damage for one turn\r\rCooldown: 5 turns" +
-    "";
+            this.label1.Text = "\r\nBerserker\r\n\r\nRelentless bounty hunter spreading savagery and bloodshed wherever" +
+    " he goes\r\n\r\nSpecial Ability:\r\nDeal a critical hit for massive damage";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
             // 
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(38)))), ((int)(((byte)(16)))));
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(386, 9);
@@ -62,14 +61,13 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(353, 421);
             this.label2.TabIndex = 1;
-            this.label2.Text = "\rGhost\r\rThe trapped soul of an adventurer that stepped through the Gates of Hell " +
-    "and was slain by theHarbringer\r\rSpecial Ability:\rVanish from the fight\r\rCooldown" +
-    ": 8 turns";
+            this.label2.Text = "\r\nGhost\r\n\r\nThe trapped soul of an adventurer that slain by the LifeReaper\r\n\r\n\r\nSp" +
+    "ecial Ability:\r\nVanish from the fight\r\n\r\nPassive:\r\nSecond chance on death";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(38)))), ((int)(((byte)(16)))));
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(748, 9);
@@ -77,45 +75,62 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(353, 421);
             this.label3.TabIndex = 2;
-            this.label3.Text = "\rGodKnight\r\rProtector of the divine, \rbanished for his trechery\ragainst the gods " +
-    "themselves\r\rSpecial Ability:\rActivates \"Second chance\" on death\r\rCooldown: 8 tur" +
-    "ns";
+            this.label3.Text = "\r\nGodKnight\r\n\r\nProtector of the divine, \r\nbanished for his trechery\r\nagainst the " +
+    "gods themselves\r\n\r\nSpecial Ability:\r\nRegenerate health for a few rounds";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnGhost
             // 
+            this.btnGhost.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnGhost.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGhost.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGhost.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGhost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGhost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGhost.ForeColor = System.Drawing.Color.White;
             this.btnGhost.Location = new System.Drawing.Point(428, 451);
             this.btnGhost.Margin = new System.Windows.Forms.Padding(4);
             this.btnGhost.Name = "btnGhost";
             this.btnGhost.Size = new System.Drawing.Size(273, 73);
             this.btnGhost.TabIndex = 4;
             this.btnGhost.Text = "Choose character";
-            this.btnGhost.UseVisualStyleBackColor = true;
+            this.btnGhost.UseVisualStyleBackColor = false;
             this.btnGhost.Click += new System.EventHandler(this.BtnGhost_Click);
             // 
             // btnGodKnight
             // 
+            this.btnGodKnight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnGodKnight.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGodKnight.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGodKnight.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnGodKnight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGodKnight.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGodKnight.ForeColor = System.Drawing.Color.White;
             this.btnGodKnight.Location = new System.Drawing.Point(794, 451);
             this.btnGodKnight.Margin = new System.Windows.Forms.Padding(4);
             this.btnGodKnight.Name = "btnGodKnight";
             this.btnGodKnight.Size = new System.Drawing.Size(273, 73);
             this.btnGodKnight.TabIndex = 5;
             this.btnGodKnight.Text = "Choose character";
-            this.btnGodKnight.UseVisualStyleBackColor = true;
+            this.btnGodKnight.UseVisualStyleBackColor = false;
             this.btnGodKnight.Click += new System.EventHandler(this.BtnGodKnight_Click);
             // 
             // btnBerserker
             // 
+            this.btnBerserker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.btnBerserker.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnBerserker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnBerserker.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnBerserker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBerserker.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBerserker.ForeColor = System.Drawing.Color.White;
             this.btnBerserker.Location = new System.Drawing.Point(67, 451);
             this.btnBerserker.Margin = new System.Windows.Forms.Padding(4);
             this.btnBerserker.Name = "btnBerserker";
             this.btnBerserker.Size = new System.Drawing.Size(273, 73);
             this.btnBerserker.TabIndex = 6;
             this.btnBerserker.Text = "Choose character";
-            this.btnBerserker.UseVisualStyleBackColor = true;
+            this.btnBerserker.UseVisualStyleBackColor = false;
             this.btnBerserker.Click += new System.EventHandler(this.BtnBerserker_Click);
             // 
             // CharacterSelect

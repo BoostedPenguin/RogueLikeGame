@@ -31,7 +31,7 @@ namespace RogueLikeGame
         private void OnCharacterSelection(GameCharacters type)
         {
             UserSettings userSettings = new UserSettings(name, type, allItem); //ALWAYS pass this <- holds all USER related information
-            MainGUI gui = new MainGUI(userSettings, allItem, allSettings, startForm, scores);
+            MainGUI gui = new MainGUI(userSettings, allItem, allSettings, scores);
             gui.Show();
             this.Dispose();
         }

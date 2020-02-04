@@ -64,7 +64,7 @@ namespace RogueLikeGame
             allMobs.Add(new Mobs(MobTypes.ZOMBIE, 4, 10, 15, 50, 25, false));
 
             allMobs.Add(new Mobs(MobTypes.ELDERDRAGON, 10, 10, 20, 50, 0, true));
-            allMobs.Add(new Mobs(MobTypes.FLESHBEHEMOTH, 4, 10, 20, 500, 0, true));
+            allMobs.Add(new Mobs(MobTypes.FLESHBEHEMOTH, 4, 10, 20, 200, 0, true));
             allMobs.Add(new Mobs(MobTypes.LIFEREAPER, 4, 10, 20, 50, 0, true));
         }
 

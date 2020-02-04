@@ -107,9 +107,14 @@ namespace RogueLikeGame
         public static string ZombieEncounter2 = "felt dizzy by the smell of a half-rotten zombie";
         public static string ZombieEncounter3 = "draw his weapon at the sight of a zombie";
 
+        public static string BossInfo = "You're entering a boss fight. All flee options are disabled.";
+
         public static string ElderDragonEncounter1 = "finally meets the great Elder Dragon. It's time for an epic fight";
         public static string ElderDragonEncounter2 = "sees the great Elder Dragon laying on top of a corpse. The battle begins.";
 
+
+        public static string BehemothEncounter1 = "discovers the lair of the ancient Behemoth. The smell of rotten corpses is in the air.";
+        public static string LifeReaperEncounter1 = "meets the lord of the underworld. The LifeReaper draws his scythe and prepares for battle.";
         public static string LifeReaperDefeat = $"You defeated the lord of the underworld. Thank you for playing the game." +
     $" You can still increase your score by continuing to play the game.";
         #endregion

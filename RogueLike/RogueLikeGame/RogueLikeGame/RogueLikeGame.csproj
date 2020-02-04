@@ -150,6 +150,8 @@
   <ItemGroup>
     <Content Include="favi.ico" />
     <Content Include="favi2.ico" />
+    <None Include="Resources\fullbd1.png" />
+    <None Include="Resources\fullbd.png" />
     <None Include="Resources\mainbd3.png" />
     <None Include="Resources\mainbd22.png" />
     <None Include="Resources\mainbd21.png" />

@@ -75,6 +75,10 @@ namespace RogueLikeGame
                             return $"{user.userName} {TextNarrative.ElderDragonEncounter2}";
                     }
                     return null;
+                case MobTypes.FLESHBEHEMOTH:
+                    return $"{user.userName} {TextNarrative.BehemothEncounter1}";
+                case MobTypes.LIFEREAPER:
+                    return $"{user.userName} {TextNarrative.LifeReaperEncounter1}";
                 default:
                     return null;
             }
@@ -140,8 +144,6 @@ namespace RogueLikeGame
             {
                 switch (user.CharacterName)
                 {
-                    case GameCharacters.Ghost:
-                        break;
                     case GameCharacters.GodKnight:
                         user.GodKnightAbility();
                         break;
@@ -164,6 +166,8 @@ namespace RogueLikeGame
 
                         case GameCharacters.Ghost:
                             user.roundCounter = 0;
+                            user.mobEncounter = false;
+                            user.encounter = true;
                             user.currentAbilityCooldown = 0;
                             return $"{user.userName} used his ability and fled from {mob.Type.ToString()}";
 

@@ -14,9 +14,9 @@ namespace RogueLikeGame
 {
     public partial class DeveloperSettings : Form
     {
-        GlobalSettings allSettings;
-        Items allItems;
-        Form1 startForm;
+        readonly GlobalSettings allSettings;
+        readonly Items allItems;
+        readonly Form1 startForm;
         public DeveloperSettings(Items items, GlobalSettings globalSettings, Form1 form)
         {
             InitializeComponent();
@@ -31,6 +31,10 @@ namespace RogueLikeGame
             nudWrongAnswer.Value = globalSettings.damageOnWrongAnswer;
             nudTreasureChestOpen.Value = globalSettings.damageOnFailedOpen;
             tbxSoundSource.Text = globalSettings.soundSource;
+            nudElderBossCounter.Value = globalSettings.elderDragonAction;
+            nudBehemothCounter.Value = globalSettings.behemothAction;
+            nudLifeReaperCounter.Value = globalSettings.lifeReaperAction;
+
 
             this.allSettings = globalSettings;
             this.allItems = items;
@@ -50,7 +54,8 @@ namespace RogueLikeGame
         {
             allSettings.SaveNewSettings((int)nudEnemyDifficultyMultiplier.Value, (int)nudCharacterArmorMultiplier.Value,
                 (int)nudCharacterDamageMultiplier.Value, tbxSoundSource.Text, (int)nudWeaponDropChance.Value,
-                (int)nudArmorDropChance.Value, (int)nudPotionsDropChance.Value);
+                (int)nudArmorDropChance.Value, (int)nudPotionsDropChance.Value, (int)nudElderBossCounter.Value, 
+                (int)nudBehemothCounter.Value, (int)nudLifeReaperCounter.Value);
             XmlSerialization.SerializeObject(allSettings);    //<--
         }
 
@@ -242,10 +247,15 @@ namespace RogueLikeGame
                 lbxItems.Items.Add(a.PotionName);
             }
         }
+        bool restart = true;
         private void DeveloperSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Process.Start(Application.ExecutablePath);
-            Application.Exit();
+            if (restart)
+            {
+                restart = false;
+                Process.Start(Application.ExecutablePath);
+                Application.Exit();
+            }
         }
 
         private void BtnReset_Click(object sender, EventArgs e)

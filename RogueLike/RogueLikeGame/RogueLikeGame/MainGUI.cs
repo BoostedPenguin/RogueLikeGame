@@ -8,22 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Diagnostics;
+using System.Diagnostics;   
 
 namespace RogueLikeGame
 {
     public partial class MainGUI : Form
     {
-        Items allItems;
-        GlobalSettings allSettings;
-        Form1 startForm;
-        UserSettings user;         //Should ALWAYS be passed
-        Mobs currentMob;           //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
-        DictionaryEntries scores;
+        readonly Items allItems;
+        readonly GlobalSettings allSettings;
+        readonly UserSettings user;         //Should ALWAYS be passed
+        Mobs currentMob;                    //TEMPORARY store of the current MOB that you're fighting | PASS WHEN NEEDED
+        readonly DictionaryEntries scores;
         bool musicOn = false;
         readonly List<Button> allButtons;
         readonly List<Label> allLabels;
-        public MainGUI(UserSettings user, Items items, GlobalSettings allSettings, Form1 form, DictionaryEntries scores)
+        public MainGUI(UserSettings user, Items items, GlobalSettings allSettings, DictionaryEntries scores)
         { 
             InitializeComponent();
             this.scores = scores;
@@ -32,17 +31,13 @@ namespace RogueLikeGame
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
-            this.startForm = form;
             this.allItems = items;
             this.allSettings = allSettings;
-
             this.user = user;
-            //this.Height = 285;
-            //this.Width = 580;
             FirstSequence();
         }
 
-        public MainGUI(Items items, GlobalSettings allSettings, Form1 form, DictionaryEntries scores)
+        public MainGUI(Items items, GlobalSettings allSettings, DictionaryEntries scores)
         {
             InitializeComponent();
             this.scores = scores;
@@ -50,7 +45,6 @@ namespace RogueLikeGame
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
             allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
-            this.startForm = form;
             this.allItems = items;
             this.allSettings = allSettings;
 
@@ -61,7 +55,9 @@ namespace RogueLikeGame
 
         public void PoppulateOnLoad()
         {
-            for(int i = 0; i < user.textsBtn.Count; i++)
+            gpxFight.Enabled = user.isGpxEnabled[0];
+            gpxItems.Enabled = user.isGpxEnabled[1];
+            for (int i = 0; i < user.textsBtn.Count; i++)
             {
                 allButtons[i].Text = user.textsBtn[i];
             }
@@ -77,6 +73,8 @@ namespace RogueLikeGame
             {
                 lbxCombatLog.Items.Add(user.lbxCombatText[i]);
             }
+            lblTurn.Visible = user.isGpxEnabled[2];
+            lblPlayerStatistics.Visible = user.isGpxEnabled[3];
             tbxNarrative.Text = user.lastNarrative;
             if (this.currentMob != null)
             {
@@ -162,15 +160,12 @@ namespace RogueLikeGame
         private void ContinueNarrative()
         {
             tbxNarrative.Text = TextNarrative.FirstSceneBD;
-            btnOptionA.Text = "Continue";
         }
 
         private void ContinueNarrative2()
         {
             tbxNarrative.Text = TextNarrative.FirstSceneBD2;
-            this.Height = 620;
             lblPlayerStatistics.Visible = true;
-            btnOptionA.Text = "Continue";
         }
 
         private void FirstChoiceNarrative()
@@ -186,9 +181,7 @@ namespace RogueLikeGame
         private void FirstChoiceOptionA()
         {
             tbxNarrative.Text = TextNarrative.FirstChoiceA;
-            this.Width = 1050;
             gpxItems.Visible = true;
-            gpxItems.Enabled = false;
             btnOptionA.Text = "Continue";
             btnOptionB.Enabled = false;
             btnOptionC.Enabled = false;
@@ -219,15 +212,14 @@ namespace RogueLikeGame
         private void SecondChoiceOptionA()
         {
             gpxItems.Enabled = true;
+            gpxFight.Enabled = true;
+            lblTurn.Visible = true;
+            lblPlayerStatistics.Visible = true;
             tbxNarrative.Text = TextNarrative.SecondChoiceA;
             gpxFight.Visible = true;
-
             currentMob = allItems.ReturnNewMob(MobTypes.SPIDER);
-
             user.mobEncounter = true;
-
             StartFight();
-
             btnOptionB.Enabled = false;
             btnOptionA.Enabled = false;
         }
@@ -360,7 +352,7 @@ namespace RogueLikeGame
             if (user.encounter)
             {
                 user.actionCounter++;
-                switch (Randomizer.RandomEncounter(user.actionCounter))
+                switch (Randomizer.RandomEncounter(user.actionCounter, allSettings))
                 {
                     //Random Encounters
                     case 0: //Mob
@@ -443,18 +435,30 @@ namespace RogueLikeGame
 
         private void BtnAbility_Click(object sender, EventArgs e) //On ability button click
         {
-            btnAbility.Enabled = false;
-            user.userAttack = !user.userAttack;
-            user.ability = true;
-            StartFight();
-            user.ability = false;
-            UpdatePlayerStatistics();
-            UpdateItemsList();
+            if (currentMob.Boss && user.CharacterName == GameCharacters.Ghost)
+            {
+                //Do nothing because you dont want to evade a boss fight
+            }
+            else
+            {
+                btnAbility.Enabled = false;
+                user.userAttack = !user.userAttack;
+                user.ability = true;
+                StartFight();
+                if (user.CharacterName == GameCharacters.Ghost)
+                {
+                    btnFlee.Enabled = false;
+                    btnOptionA.Enabled = true;
+                }
+                user.ability = false;
+                UpdatePlayerStatistics();
+                UpdateItemsList();
+            }
         }
 
         private void BtnFlee_Click(object sender, EventArgs e)
         {
-            if (!currentMob.Boss)
+            if (!currentMob.Boss && !   user.firstSequence)
             {
                 string checkIfFled = MobFight.OnPlayerFlee(user, currentMob);
                 if (checkIfFled == null)
@@ -465,6 +469,7 @@ namespace RogueLikeGame
                     lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     btnOptionA.Enabled = true;
                     btnOptionA.Text = "Continue";
+                    btnAttack.Enabled = false;
                     user.encounter = true;
                     user.mobEncounter = false;
                 }
@@ -530,7 +535,7 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}  Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}{Environment.NewLine}Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if (user.userAttack)
@@ -607,6 +612,7 @@ namespace RogueLikeGame
         {
             if (user.mobEncounter)
             {
+                lblTurn.Visible = true;
                 btnAttack.Enabled = true;
                 CreateMob();
 
@@ -693,6 +699,7 @@ namespace RogueLikeGame
         private void OnEnemyDeath()     //If the enemy dies
         {
             btnAttack.Enabled = false;
+            lblTurn.Visible = false;
             MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob, allSettings, allItems)); //Calls event of enemy death
             UpdateProgressbar();
             user.roundCounter = 0;
@@ -739,6 +746,13 @@ namespace RogueLikeGame
             List<string> textsLbl = new List<string>();
             List<bool> isEnabled = new List<bool>();
             List<string> lbxCombatStrings = new List<string>();
+            List<bool> isGpxEnabled = new List<bool>()
+            {
+                gpxFight.Enabled,
+                gpxItems.Enabled,
+                lblTurn.Visible,
+                lblPlayerStatistics.Visible
+            };
             foreach (Button a in allButtons)
             {
                 textsButton.Add(a.Text);
@@ -754,7 +768,7 @@ namespace RogueLikeGame
             }
             string t = tbxNarrative.Text;
 
-            user.PoppulateOnClose(textsButton, isEnabled, textsLbl, lbxCombatStrings, t);
+            user.PoppulateOnClose(textsButton, isEnabled, textsLbl, lbxCombatStrings, t, isGpxEnabled);
             user.currentMob = this.currentMob;
             XmlSerialization.SerializeObject(user);
         }
@@ -928,9 +942,9 @@ namespace RogueLikeGame
         {
             if (user.riddleEncounter)
             {
-                if (TextNarrative.riddles.ContainsKey(tbxNarrative.Text.ToLower()))
+                if (TextNarrative.riddles.ContainsKey(tbxNarrative.Text))
                 {
-                    if (tbxRiddleAnswer.Text == TextNarrative.riddles[tbxNarrative.Text])
+                    if (tbxRiddleAnswer.Text.ToLower() == TextNarrative.riddles[tbxNarrative.Text])
                     {
                         tbxNarrative.Text = "Your answer is correct";
                     }
@@ -959,7 +973,7 @@ namespace RogueLikeGame
                 switch(user.choice)
                 {
                     case 0:
-                        tbxNarrative.Text = "Dragon fight";
+                        tbxNarrative.Text = "Dragon Encounter";
                         ResetButtons();
                         btnOptionA.Enabled = true;
                         btnOptionA.Text = "Continue";
@@ -967,7 +981,7 @@ namespace RogueLikeGame
                         user.elderDragonSetup = true;
                         break;
                     case 1:
-                        tbxNarrative.Text = "Start dragon fight";
+                        tbxNarrative.Text = TextNarrative.BossInfo;
                         user.type = MobTypes.ELDERDRAGON;
                         user.bossEncounter = true;
                         user.elderDragonSetup = false;
@@ -983,7 +997,7 @@ namespace RogueLikeGame
                 switch (user.choice)
                 {
                     case 0:
-                        tbxNarrative.Text = "Behemoth fight";
+                        tbxNarrative.Text = "Behemoth Encounter";
                         ResetButtons();
                         btnOptionA.Enabled = true;
                         btnOptionA.Text = "Continue";
@@ -991,7 +1005,7 @@ namespace RogueLikeGame
                         user.behemothSetup = true;
                         break;
                     case 1:
-                        tbxNarrative.Text = "Start behemoth fight";
+                        tbxNarrative.Text = TextNarrative.BossInfo;
                         user.type = MobTypes.FLESHBEHEMOTH;
                         user.bossEncounter = true;
                         user.behemothSetup = false;
@@ -1007,7 +1021,7 @@ namespace RogueLikeGame
                 switch (user.choice)
                 {
                     case 0:
-                        tbxNarrative.Text = "Dragon fight";
+                        tbxNarrative.Text = "Reaper Encounter";
                         ResetButtons();
                         btnOptionA.Enabled = true;
                         btnOptionA.Text = "Continue";
@@ -1015,7 +1029,7 @@ namespace RogueLikeGame
                         user.reaperSetup = true;
                         break;
                     case 1:
-                        tbxNarrative.Text = "Start dragon fight";
+                        tbxNarrative.Text = TextNarrative.BossInfo;
                         user.type = MobTypes.LIFEREAPER;
                         user.bossEncounter = true;
                         user.reaperSetup = false;

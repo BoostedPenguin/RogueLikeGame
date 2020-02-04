@@ -60,16 +60,18 @@ namespace RogueLikeGame
         public List<string> textsLbl = new List<string>();
         public List<string> textsBtn = new List<string>();
         public List<bool> isEnabled = new List<bool>();
+        public List<bool> isGpxEnabled = new List<bool>();
         public List<string> lbxCombatText = new List<string>();
         public string lastNarrative;
 
-        public void PoppulateOnClose(List<string> buttonstxt, List<bool> buttonsEnb, List<string> labelstxt, List<string> combatLbx, string narrative)
+        public void PoppulateOnClose(List<string> buttonstxt, List<bool> buttonsEnb, List<string> labelstxt, List<string> combatLbx, string narrative, List<bool> gpxEnabled)
         {
             textsLbl = labelstxt;
             textsBtn = buttonstxt;
             isEnabled = buttonsEnb;
             lbxCombatText = combatLbx;
             lastNarrative = narrative;
+            isGpxEnabled = gpxEnabled;
         }
 
         #endregion

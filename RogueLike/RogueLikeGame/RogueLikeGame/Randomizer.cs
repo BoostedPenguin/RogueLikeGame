@@ -9,16 +9,19 @@ namespace RogueLikeGame
     public static class Randomizer
     {
         static readonly Random r = new Random();
-        public static int RandomEncounter(int actionCounter)
+        public static int RandomEncounter(int actionCounter, GlobalSettings settings)
         {
-            switch(actionCounter)   //At which round to start the boss fights
+            if(actionCounter == settings.elderDragonAction)
             {
-                case 10:
-                    return 3;
-                case 20:
-                    return 4;
-                case 30:
-                    return 5;
+                return 3;
+            }
+            else if(actionCounter == settings.behemothAction)
+            {
+                return 4;
+            }
+            else if(actionCounter == settings.lifeReaperAction)
+            {
+                return 5;
             }
             return r.Next(0, 3); //0 - Mob, 1 - Treasure Chest, 2 - Riddle 
         }

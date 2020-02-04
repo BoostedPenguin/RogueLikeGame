@@ -130,6 +130,9 @@
   <data name="mainbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="mainbd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbd3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="mainbd21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbd21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,7 +142,10 @@
   <data name="mainbd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbd2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mainbd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbd3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="fullbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fullbd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullbd1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
