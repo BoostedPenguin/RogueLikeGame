@@ -30,7 +30,7 @@ namespace RogueLikeGame
             //Add all UI elements to a list
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
-            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
+            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats };
             this.allItems = items;
             this.allSettings = allSettings;
             this.user = user;
@@ -44,7 +44,7 @@ namespace RogueLikeGame
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem };
-            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn };
+            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats };
             this.allItems = items;
             this.allSettings = allSettings;
 
@@ -75,7 +75,10 @@ namespace RogueLikeGame
             }
             lblTurn.Visible = user.isGpxEnabled[2];
             lblPlayerStatistics.Visible = user.isGpxEnabled[3];
+            lblMobStats.Visible = user.isGpxEnabled[4];
             tbxNarrative.Text = user.lastNarrative;
+            btnAbility.Visible = user.isGpxEnabled[5];
+            btnFlee.Visible = user.isGpxEnabled[6];
             if (this.currentMob != null)
             {
                 UpdateProgressbar();
@@ -535,9 +538,17 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Health: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}{Environment.NewLine}Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Player Stats:\nHealth: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}{Environment.NewLine}Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
+            if(currentMob != null && currentMob.Health > 0)
+            {
+                lblMobStats.Text = $"Mob stats:\nType: {currentMob.Type}\nHealth: {currentMob.MaxHealth}\nDamage: {currentMob.Damage}\nEvade Chance: {currentMob.EvadeChance}\nAbility Chance {currentMob.AbilityChance}\nAbility: {currentMob.AbilityString()}";
+            }
+            else
+            {
+                lblMobStats.Text = "";
+            }
             if (user.userAttack)
             {
                 lblTurn.Text = $"Enemy turn";
@@ -628,6 +639,7 @@ namespace RogueLikeGame
                 else if (currentMob.Health > 0 && user.roundCounter != 0)                                //Actual fight <- if it ain't the first round
                 {
                     user.roundCounter++;
+                    lblMobStats.Visible = true;
                     if (user.userAttack)
                     {
                         lbxCombatLog.Items.Add(MobFight.OnPlayerHit(user, currentMob, user.ability, allSettings)); //On player hit
@@ -699,6 +711,7 @@ namespace RogueLikeGame
         private void OnEnemyDeath()     //If the enemy dies
         {
             btnAttack.Enabled = false;
+            lblMobStats.Visible = false;
             lblTurn.Visible = false;
             MessageBox.Show(MobFight.DeathOfEnemy(user, currentMob, allSettings, allItems)); //Calls event of enemy death
             UpdateProgressbar();
@@ -751,7 +764,10 @@ namespace RogueLikeGame
                 gpxFight.Enabled,
                 gpxItems.Enabled,
                 lblTurn.Visible,
-                lblPlayerStatistics.Visible
+                lblPlayerStatistics.Visible,
+                lblMobStats.Visible,
+                btnAbility.Visible,
+                btnFlee.Visible
             };
             foreach (Button a in allButtons)
             {

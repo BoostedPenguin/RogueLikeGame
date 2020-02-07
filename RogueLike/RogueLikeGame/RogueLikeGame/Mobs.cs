@@ -71,7 +71,7 @@ namespace RogueLikeGame
                 case MobTypes.SHADOW:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        user.currentRoundOfDebuff = 3;
+                        user.currentRoundOfDebuff = 7;
                     }
                     return Damage * multiplier;
 
@@ -200,6 +200,28 @@ namespace RogueLikeGame
 
                 default:
                     return $"";
+            }
+        }
+        public string AbilityString()
+        {
+            switch(this.Type)
+            {
+                case MobTypes.SPIDER:
+                    return "Crit for double damage";
+                case MobTypes.RAT:
+                    return "Poison the player";
+                case MobTypes.SHADOW:
+                    return "Reduce the damage the player inflicts";
+                case MobTypes.ZOMBIE:
+                    return "Regenerate health";
+                case MobTypes.ELDERDRAGON:
+                    return "Inflict damage on player with claws or fire breath";
+                case MobTypes.FLESHBEHEMOTH:
+                    return "Insta-Kill the player after a couple of rounds";
+                case MobTypes.LIFEREAPER:
+                    return "Vampirize health from the player";
+                default:
+                    return null;
             }
         }
     }

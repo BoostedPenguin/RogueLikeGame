@@ -268,9 +268,9 @@ namespace RogueLikeGame
             {
                 File.Delete(Directory.GetCurrentDirectory() + @"\CurrentItems.xml");
             }
-            this.Hide();
-            startForm.ReloadSettings();
-            startForm.Show();
+            restart = false;
+            Process.Start(Application.ExecutablePath);
+            Application.Exit();
         }
 
         private void BtnResetSave_Click(object sender, EventArgs e)
