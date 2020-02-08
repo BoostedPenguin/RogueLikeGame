@@ -20,7 +20,7 @@ namespace RogueLikeGame
         public double debuff;                    //Mob debuff for damage: damage / debuff = currentDamage 
 
         public Mobs currentMob;
-        public int roundCounter = 0; //Save in user
+        public int roundCounter = 0; 
 
         #region PlayerDecisions
         public int actionCounter = 0;      //Keeps track of all encounters that have passed since the start        //save in user

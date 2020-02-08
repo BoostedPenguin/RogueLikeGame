@@ -16,12 +16,10 @@ namespace RogueLikeGame
     {
         readonly GlobalSettings allSettings;
         readonly Items allItems;
-        readonly Form1 startForm;
-        public DeveloperSettings(Items items, GlobalSettings globalSettings, Form1 form)
+        public DeveloperSettings(Items items, GlobalSettings globalSettings)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.startForm = form;
             nudArmorDropChance.Value = globalSettings.armorDropChance;
             nudCharacterArmorMultiplier.Value = globalSettings.characterArmorMultiplier;
             nudEnemyDifficultyMultiplier.Value = globalSettings.enemyDifficultyMultiplier;
@@ -34,7 +32,7 @@ namespace RogueLikeGame
             nudElderBossCounter.Value = globalSettings.elderDragonAction;
             nudBehemothCounter.Value = globalSettings.behemothAction;
             nudLifeReaperCounter.Value = globalSettings.lifeReaperAction;
-
+            nudTimer.Value = globalSettings.timerInterval;
 
             this.allSettings = globalSettings;
             this.allItems = items;
@@ -55,7 +53,7 @@ namespace RogueLikeGame
             allSettings.SaveNewSettings((int)nudEnemyDifficultyMultiplier.Value, (int)nudCharacterArmorMultiplier.Value,
                 (int)nudCharacterDamageMultiplier.Value, tbxSoundSource.Text, (int)nudWeaponDropChance.Value,
                 (int)nudArmorDropChance.Value, (int)nudPotionsDropChance.Value, (int)nudElderBossCounter.Value, 
-                (int)nudBehemothCounter.Value, (int)nudLifeReaperCounter.Value);
+                (int)nudBehemothCounter.Value, (int)nudLifeReaperCounter.Value, (int)nudTimer.Value);
             XmlSerialization.SerializeObject(allSettings);    //<--
         }
 

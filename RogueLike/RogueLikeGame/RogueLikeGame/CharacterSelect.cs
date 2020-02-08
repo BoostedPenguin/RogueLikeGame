@@ -12,16 +12,14 @@ namespace RogueLikeGame
 {
     public partial class CharacterSelect : Form
     {
-        readonly Form1 startForm;
         readonly Items allItem;
         readonly GlobalSettings allSettings;
         readonly DictionaryEntries scores;
         readonly string name;
-        public CharacterSelect(string name, Items items, GlobalSettings settings, Form1 form, DictionaryEntries scores)
+        public CharacterSelect(string name, Items items, GlobalSettings settings, DictionaryEntries scores)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.startForm = form;
             this.name = name;
             this.scores = scores;
             this.allItem = items;

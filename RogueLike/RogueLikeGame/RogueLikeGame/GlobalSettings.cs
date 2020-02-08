@@ -22,6 +22,7 @@ namespace RogueLikeGame
         public int behemothAction = 20;
         public int lifeReaperAction = 30;
 
+        public int timerInterval = 300;
         #region MusicSettings
 
         public string soundSource = Directory.GetCurrentDirectory() + @"\HumbleMatch.wav";
@@ -54,7 +55,7 @@ namespace RogueLikeGame
         #endregion
 
         public void SaveNewSettings(int enemyDifficultyMultiplier, int characterArmorMultiplier, int characterDamageMultiplier, string soundSource, int weaponDropChance, int armorDropChance, int PoisonDropChance,
-            int elder, int behemoth, int reaper)
+            int elder, int behemoth, int reaper, int timer)
         {
             this.enemyDifficultyMultiplier = enemyDifficultyMultiplier;
             this.characterArmorMultiplier = characterArmorMultiplier;
@@ -67,6 +68,7 @@ namespace RogueLikeGame
             this.elderDragonAction = elder;
             this.behemothAction = behemoth;
             this.lifeReaperAction = reaper;
+            this.timerInterval = timer;
         }
 
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance

@@ -50,7 +50,7 @@ namespace RogueLikeGame
             lbxScores.Items.Add($"Name\t\tScore");
             for(int i = 0; i < scores.Id.Count; i++)
             {
-                lbxScores.Items.Add($"{scores.Name[i]}\t\t{scores.Points[i]}");
+                lbxScores.Items.Add($"{scores.Id[i]} {scores.Name[i]}\t\t{scores.Points[i]}");
             }
         }
 
@@ -62,7 +62,7 @@ namespace RogueLikeGame
 
         private void BtnStart_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(tbxName.Text))
+            if(!string.IsNullOrWhiteSpace(tbxName.Text) && tbxName.Text.Length < 6)
             {
                 if(File.Exists(Directory.GetCurrentDirectory() + @"\CurrentUserSettings.xml"))
                 {
@@ -77,11 +77,16 @@ namespace RogueLikeGame
                     StartNewGame();
                 }
             }
+            else
+            {
+                lblWrongUsername.Text = $"Use a name between 1-6 characters";
+                tbxName.BackColor = Color.IndianRed;
+            }
         }
 
         private void StartNewGame()
         {
-            CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings, this, scores);
+            CharacterSelect cs = new CharacterSelect(tbxName.Text, allItems, allSettings, scores);
             this.Hide();
             cs.Show();
         }
@@ -103,7 +108,7 @@ namespace RogueLikeGame
 
         private void BtnSettings_Click(object sender, EventArgs e)
         {
-            DeveloperSettings dev = new DeveloperSettings(allItems, allSettings, this);
+            DeveloperSettings dev = new DeveloperSettings(allItems, allSettings);
             dev.Show();
             this.Hide();
         }
