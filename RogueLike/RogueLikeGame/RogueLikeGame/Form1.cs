@@ -43,21 +43,16 @@ namespace RogueLikeGame
             {
                 scores = (DictionaryEntries)XmlSerialization.DeserializeObject(3);
             }
+
             allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
             allItems = (Items)XmlSerialization.DeserializeObject(2);
 
             lbxScores.Items.Clear();
-            lbxScores.Items.Add($"Name\t\tScore");
-            for(int i = 0; i < scores.Id.Count; i++)
+            lbxScores.Items.Add($"Id\tName\t\tScore");
+            for (int i = 0; i < scores.Id.Count; i++)
             {
-                lbxScores.Items.Add($"{scores.Id[i]} {scores.Name[i]}\t\t{scores.Points[i]}");
+                lbxScores.Items.Add($"{scores.Id[i]}\t{scores.Name[i]}\t\t{scores.Points[i]}");
             }
-        }
-
-        public void ReloadSettings()
-        {
-            allSettings = (GlobalSettings)XmlSerialization.DeserializeObject(1);
-            allItems = (Items)XmlSerialization.DeserializeObject(2);
         }
 
         private void BtnStart_Click(object sender, EventArgs e)

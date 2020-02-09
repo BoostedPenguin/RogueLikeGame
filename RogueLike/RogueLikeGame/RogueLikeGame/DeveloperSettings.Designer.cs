@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.label32 = new System.Windows.Forms.Label();
+            this.nudTimer = new System.Windows.Forms.NumericUpDown();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -108,10 +110,9 @@
             this.nudItemDamArm = new System.Windows.Forms.NumericUpDown();
             this.btnSaveItem = new System.Windows.Forms.Button();
             this.lbxItems = new System.Windows.Forms.ListBox();
-            this.nudTimer = new System.Windows.Forms.NumericUpDown();
-            this.label32 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLifeReaperCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBehemothCounter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElderBossCounter)).BeginInit();
@@ -141,7 +142,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -152,7 +152,7 @@
             this.tabControl1.Controls.Add(this.tabPlayerSettings);
             this.tabControl1.Controls.Add(this.tabItems);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(598, 369);
@@ -189,13 +189,48 @@
             this.tabGeneral.Controls.Add(this.label1);
             this.tabGeneral.Controls.Add(this.btnSaveChanges);
             this.tabGeneral.Location = new System.Drawing.Point(4, 22);
-            this.tabGeneral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabGeneral.Margin = new System.Windows.Forms.Padding(2);
             this.tabGeneral.Name = "tabGeneral";
-            this.tabGeneral.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabGeneral.Padding = new System.Windows.Forms.Padding(2);
             this.tabGeneral.Size = new System.Drawing.Size(590, 343);
             this.tabGeneral.TabIndex = 0;
             this.tabGeneral.Text = "General Settings";
             this.tabGeneral.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label32.Location = new System.Drawing.Point(6, 20);
+            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(159, 20);
+            this.label32.TabIndex = 34;
+            this.label32.Text = "Auto attack Timer ms";
+            // 
+            // nudTimer
+            // 
+            this.nudTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudTimer.Location = new System.Drawing.Point(229, 18);
+            this.nudTimer.Margin = new System.Windows.Forms.Padding(2);
+            this.nudTimer.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudTimer.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudTimer.Name = "nudTimer";
+            this.nudTimer.Size = new System.Drawing.Size(90, 26);
+            this.nudTimer.TabIndex = 33;
+            this.nudTimer.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
             // label31
             // 
@@ -234,7 +269,7 @@
             // 
             this.nudLifeReaperCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudLifeReaperCounter.Location = new System.Drawing.Point(460, 222);
-            this.nudLifeReaperCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudLifeReaperCounter.Margin = new System.Windows.Forms.Padding(2);
             this.nudLifeReaperCounter.Name = "nudLifeReaperCounter";
             this.nudLifeReaperCounter.Size = new System.Drawing.Size(90, 26);
             this.nudLifeReaperCounter.TabIndex = 29;
@@ -243,7 +278,7 @@
             // 
             this.nudBehemothCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudBehemothCounter.Location = new System.Drawing.Point(460, 155);
-            this.nudBehemothCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudBehemothCounter.Margin = new System.Windows.Forms.Padding(2);
             this.nudBehemothCounter.Name = "nudBehemothCounter";
             this.nudBehemothCounter.Size = new System.Drawing.Size(90, 26);
             this.nudBehemothCounter.TabIndex = 28;
@@ -252,7 +287,7 @@
             // 
             this.nudElderBossCounter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudElderBossCounter.Location = new System.Drawing.Point(460, 87);
-            this.nudElderBossCounter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudElderBossCounter.Margin = new System.Windows.Forms.Padding(2);
             this.nudElderBossCounter.Name = "nudElderBossCounter";
             this.nudElderBossCounter.Size = new System.Drawing.Size(90, 26);
             this.nudElderBossCounter.TabIndex = 27;
@@ -261,7 +296,7 @@
             // 
             this.nudTreasureChestOpen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudTreasureChestOpen.Location = new System.Drawing.Point(229, 282);
-            this.nudTreasureChestOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudTreasureChestOpen.Margin = new System.Windows.Forms.Padding(2);
             this.nudTreasureChestOpen.Minimum = new decimal(new int[] {
             1,
             0,
@@ -291,7 +326,7 @@
             // 
             this.nudWrongAnswer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudWrongAnswer.Location = new System.Drawing.Point(229, 253);
-            this.nudWrongAnswer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudWrongAnswer.Margin = new System.Windows.Forms.Padding(2);
             this.nudWrongAnswer.Minimum = new decimal(new int[] {
             1,
             0,
@@ -320,7 +355,7 @@
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(352, 257);
-            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(100, 47);
             this.btnReset.TabIndex = 22;
@@ -332,7 +367,7 @@
             // 
             this.nudPotionsDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudPotionsDropChance.Location = new System.Drawing.Point(229, 222);
-            this.nudPotionsDropChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudPotionsDropChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudPotionsDropChance.Name = "nudPotionsDropChance";
             this.nudPotionsDropChance.Size = new System.Drawing.Size(90, 26);
             this.nudPotionsDropChance.TabIndex = 21;
@@ -341,7 +376,7 @@
             // 
             this.nudArmorDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudArmorDropChance.Location = new System.Drawing.Point(229, 188);
-            this.nudArmorDropChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudArmorDropChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudArmorDropChance.Name = "nudArmorDropChance";
             this.nudArmorDropChance.Size = new System.Drawing.Size(90, 26);
             this.nudArmorDropChance.TabIndex = 20;
@@ -350,7 +385,7 @@
             // 
             this.nudWeaponDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudWeaponDropChance.Location = new System.Drawing.Point(229, 155);
-            this.nudWeaponDropChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudWeaponDropChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudWeaponDropChance.Name = "nudWeaponDropChance";
             this.nudWeaponDropChance.Size = new System.Drawing.Size(90, 26);
             this.nudWeaponDropChance.TabIndex = 19;
@@ -359,7 +394,7 @@
             // 
             this.nudCharacterDamageMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterDamageMultiplier.Location = new System.Drawing.Point(229, 121);
-            this.nudCharacterDamageMultiplier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterDamageMultiplier.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterDamageMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -378,7 +413,7 @@
             // 
             this.nudCharacterArmorMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterArmorMultiplier.Location = new System.Drawing.Point(229, 87);
-            this.nudCharacterArmorMultiplier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterArmorMultiplier.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterArmorMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -397,7 +432,7 @@
             // 
             this.nudEnemyDifficultyMultiplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudEnemyDifficultyMultiplier.Location = new System.Drawing.Point(229, 52);
-            this.nudEnemyDifficultyMultiplier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudEnemyDifficultyMultiplier.Margin = new System.Windows.Forms.Padding(2);
             this.nudEnemyDifficultyMultiplier.Minimum = new decimal(new int[] {
             1,
             0,
@@ -416,7 +451,7 @@
             // 
             this.tbxSoundSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbxSoundSource.Location = new System.Drawing.Point(229, 311);
-            this.tbxSoundSource.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxSoundSource.Margin = new System.Windows.Forms.Padding(2);
             this.tbxSoundSource.Name = "tbxSoundSource";
             this.tbxSoundSource.Size = new System.Drawing.Size(318, 26);
             this.tbxSoundSource.TabIndex = 15;
@@ -501,7 +536,7 @@
             // btnSaveChanges
             // 
             this.btnSaveChanges.Location = new System.Drawing.Point(480, 257);
-            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveChanges.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveChanges.Name = "btnSaveChanges";
             this.btnSaveChanges.Size = new System.Drawing.Size(100, 47);
             this.btnSaveChanges.TabIndex = 1;
@@ -530,9 +565,9 @@
             this.tabCharacter.Controls.Add(this.button2);
             this.tabCharacter.Controls.Add(this.lbxCharacters);
             this.tabCharacter.Location = new System.Drawing.Point(4, 22);
-            this.tabCharacter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabCharacter.Margin = new System.Windows.Forms.Padding(2);
             this.tabCharacter.Name = "tabCharacter";
-            this.tabCharacter.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabCharacter.Padding = new System.Windows.Forms.Padding(2);
             this.tabCharacter.Size = new System.Drawing.Size(590, 343);
             this.tabCharacter.TabIndex = 1;
             this.tabCharacter.Text = "Character Settings";
@@ -553,7 +588,7 @@
             // 
             this.nudCharacterSecondChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterSecondChance.Location = new System.Drawing.Point(389, 233);
-            this.nudCharacterSecondChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterSecondChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterSecondChance.Maximum = new decimal(new int[] {
             500,
             0,
@@ -567,7 +602,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label19.Location = new System.Drawing.Point(278, 295);
+            this.label19.Location = new System.Drawing.Point(270, 295);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(109, 20);
@@ -578,7 +613,7 @@
             // 
             this.tbxCharacterStartWeapon.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbxCharacterStartWeapon.Location = new System.Drawing.Point(389, 292);
-            this.tbxCharacterStartWeapon.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxCharacterStartWeapon.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCharacterStartWeapon.Name = "tbxCharacterStartWeapon";
             this.tbxCharacterStartWeapon.Size = new System.Drawing.Size(91, 26);
             this.tbxCharacterStartWeapon.TabIndex = 47;
@@ -587,7 +622,7 @@
             // 
             this.tbxCharacterStartArmor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbxCharacterStartArmor.Location = new System.Drawing.Point(389, 263);
-            this.tbxCharacterStartArmor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxCharacterStartArmor.Margin = new System.Windows.Forms.Padding(2);
             this.tbxCharacterStartArmor.Name = "tbxCharacterStartArmor";
             this.tbxCharacterStartArmor.Size = new System.Drawing.Size(91, 26);
             this.tbxCharacterStartArmor.TabIndex = 46;
@@ -596,7 +631,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label18.Location = new System.Drawing.Point(288, 267);
+            this.label18.Location = new System.Drawing.Point(288, 266);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(91, 20);
@@ -607,7 +642,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label13.Location = new System.Drawing.Point(322, 206);
+            this.label13.Location = new System.Drawing.Point(327, 206);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(52, 20);
@@ -618,7 +653,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label14.Location = new System.Drawing.Point(264, 172);
+            this.label14.Location = new System.Drawing.Point(255, 173);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(124, 20);
@@ -629,7 +664,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label15.Location = new System.Drawing.Point(278, 141);
+            this.label15.Location = new System.Drawing.Point(266, 142);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(113, 20);
@@ -640,7 +675,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(307, 107);
+            this.label16.Location = new System.Drawing.Point(294, 105);
             this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(85, 20);
@@ -651,7 +686,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label17.Location = new System.Drawing.Point(307, 66);
+            this.label17.Location = new System.Drawing.Point(309, 72);
             this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(70, 20);
@@ -662,7 +697,7 @@
             // 
             this.nudCharacterArmor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterArmor.Location = new System.Drawing.Point(389, 204);
-            this.nudCharacterArmor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterArmor.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterArmor.Maximum = new decimal(new int[] {
             500,
             0,
@@ -676,7 +711,7 @@
             // 
             this.nudCharacterAbCd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterAbCd.Location = new System.Drawing.Point(389, 171);
-            this.nudCharacterAbCd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterAbCd.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterAbCd.Maximum = new decimal(new int[] {
             500,
             0,
@@ -690,7 +725,7 @@
             // 
             this.nudCharacterEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterEvChance.Location = new System.Drawing.Point(389, 140);
-            this.nudCharacterEvChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterEvChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterEvChance.Name = "nudCharacterEvChance";
             this.nudCharacterEvChance.Size = new System.Drawing.Size(90, 26);
             this.nudCharacterEvChance.TabIndex = 37;
@@ -699,7 +734,7 @@
             // 
             this.nudCharacterMaxHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCharacterMaxHealth.Location = new System.Drawing.Point(389, 103);
-            this.nudCharacterMaxHealth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterMaxHealth.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterMaxHealth.Maximum = new decimal(new int[] {
             500,
             0,
@@ -722,8 +757,8 @@
             // nudCharacterDamage
             // 
             this.nudCharacterDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudCharacterDamage.Location = new System.Drawing.Point(389, 64);
-            this.nudCharacterDamage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCharacterDamage.Location = new System.Drawing.Point(390, 70);
+            this.nudCharacterDamage.Margin = new System.Windows.Forms.Padding(2);
             this.nudCharacterDamage.Maximum = new decimal(new int[] {
             500,
             0,
@@ -746,7 +781,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(497, 130);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(68, 47);
             this.button2.TabIndex = 3;
@@ -758,7 +793,7 @@
             // 
             this.lbxCharacters.FormattingEnabled = true;
             this.lbxCharacters.Location = new System.Drawing.Point(30, 42);
-            this.lbxCharacters.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxCharacters.Margin = new System.Windows.Forms.Padding(2);
             this.lbxCharacters.Name = "lbxCharacters";
             this.lbxCharacters.Size = new System.Drawing.Size(91, 186);
             this.lbxCharacters.TabIndex = 0;
@@ -779,7 +814,7 @@
             this.tabMob.Controls.Add(this.button1);
             this.tabMob.Controls.Add(this.lbxMobs);
             this.tabMob.Location = new System.Drawing.Point(4, 22);
-            this.tabMob.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabMob.Margin = new System.Windows.Forms.Padding(2);
             this.tabMob.Name = "tabMob";
             this.tabMob.Size = new System.Drawing.Size(590, 343);
             this.tabMob.TabIndex = 2;
@@ -845,7 +880,7 @@
             // 
             this.nudMobSpawnCh.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobSpawnCh.Location = new System.Drawing.Point(414, 201);
-            this.nudMobSpawnCh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMobSpawnCh.Margin = new System.Windows.Forms.Padding(2);
             this.nudMobSpawnCh.Name = "nudMobSpawnCh";
             this.nudMobSpawnCh.Size = new System.Drawing.Size(90, 26);
             this.nudMobSpawnCh.TabIndex = 28;
@@ -854,7 +889,7 @@
             // 
             this.nudMobAbchance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobAbchance.Location = new System.Drawing.Point(414, 167);
-            this.nudMobAbchance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMobAbchance.Margin = new System.Windows.Forms.Padding(2);
             this.nudMobAbchance.Name = "nudMobAbchance";
             this.nudMobAbchance.Size = new System.Drawing.Size(90, 26);
             this.nudMobAbchance.TabIndex = 27;
@@ -863,7 +898,7 @@
             // 
             this.nudMobEvChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobEvChance.Location = new System.Drawing.Point(414, 136);
-            this.nudMobEvChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMobEvChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudMobEvChance.Name = "nudMobEvChance";
             this.nudMobEvChance.Size = new System.Drawing.Size(90, 26);
             this.nudMobEvChance.TabIndex = 26;
@@ -872,7 +907,7 @@
             // 
             this.nudMobMaxHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobMaxHealth.Location = new System.Drawing.Point(414, 100);
-            this.nudMobMaxHealth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMobMaxHealth.Margin = new System.Windows.Forms.Padding(2);
             this.nudMobMaxHealth.Maximum = new decimal(new int[] {
             500,
             0,
@@ -896,7 +931,7 @@
             // 
             this.nudMobDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudMobDamage.Location = new System.Drawing.Point(414, 61);
-            this.nudMobDamage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudMobDamage.Margin = new System.Windows.Forms.Padding(2);
             this.nudMobDamage.Maximum = new decimal(new int[] {
             500,
             0,
@@ -919,7 +954,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(520, 100);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 47);
             this.button1.TabIndex = 2;
@@ -931,7 +966,7 @@
             // 
             this.lbxMobs.FormattingEnabled = true;
             this.lbxMobs.Location = new System.Drawing.Point(33, 70);
-            this.lbxMobs.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxMobs.Margin = new System.Windows.Forms.Padding(2);
             this.lbxMobs.Name = "lbxMobs";
             this.lbxMobs.Size = new System.Drawing.Size(91, 134);
             this.lbxMobs.TabIndex = 0;
@@ -942,7 +977,7 @@
             this.tabPlayerSettings.Controls.Add(this.label28);
             this.tabPlayerSettings.Controls.Add(this.btnResetSave);
             this.tabPlayerSettings.Location = new System.Drawing.Point(4, 22);
-            this.tabPlayerSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPlayerSettings.Margin = new System.Windows.Forms.Padding(2);
             this.tabPlayerSettings.Name = "tabPlayerSettings";
             this.tabPlayerSettings.Size = new System.Drawing.Size(590, 343);
             this.tabPlayerSettings.TabIndex = 3;
@@ -963,7 +998,7 @@
             // btnResetSave
             // 
             this.btnResetSave.Location = new System.Drawing.Point(240, 140);
-            this.btnResetSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnResetSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnResetSave.Name = "btnResetSave";
             this.btnResetSave.Size = new System.Drawing.Size(100, 47);
             this.btnResetSave.TabIndex = 23;
@@ -989,7 +1024,7 @@
             this.tabItems.Controls.Add(this.btnSaveItem);
             this.tabItems.Controls.Add(this.lbxItems);
             this.tabItems.Location = new System.Drawing.Point(4, 22);
-            this.tabItems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabItems.Margin = new System.Windows.Forms.Padding(2);
             this.tabItems.Name = "tabItems";
             this.tabItems.Size = new System.Drawing.Size(590, 343);
             this.tabItems.TabIndex = 4;
@@ -1000,7 +1035,7 @@
             // 
             this.cbxIsHealthPot.AutoSize = true;
             this.cbxIsHealthPot.Location = new System.Drawing.Point(393, 227);
-            this.cbxIsHealthPot.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbxIsHealthPot.Margin = new System.Windows.Forms.Padding(2);
             this.cbxIsHealthPot.Name = "cbxIsHealthPot";
             this.cbxIsHealthPot.Size = new System.Drawing.Size(95, 17);
             this.cbxIsHealthPot.TabIndex = 60;
@@ -1011,7 +1046,7 @@
             // 
             this.tbxItemName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbxItemName.Location = new System.Drawing.Point(393, 85);
-            this.tbxItemName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbxItemName.Margin = new System.Windows.Forms.Padding(2);
             this.tbxItemName.Name = "tbxItemName";
             this.tbxItemName.Size = new System.Drawing.Size(174, 26);
             this.tbxItemName.TabIndex = 59;
@@ -1019,7 +1054,7 @@
             // btnPotions
             // 
             this.btnPotions.Location = new System.Drawing.Point(172, 277);
-            this.btnPotions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPotions.Margin = new System.Windows.Forms.Padding(2);
             this.btnPotions.Name = "btnPotions";
             this.btnPotions.Size = new System.Drawing.Size(68, 24);
             this.btnPotions.TabIndex = 58;
@@ -1030,7 +1065,7 @@
             // btnArmor
             // 
             this.btnArmor.Location = new System.Drawing.Point(88, 277);
-            this.btnArmor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnArmor.Margin = new System.Windows.Forms.Padding(2);
             this.btnArmor.Name = "btnArmor";
             this.btnArmor.Size = new System.Drawing.Size(68, 24);
             this.btnArmor.TabIndex = 57;
@@ -1041,7 +1076,7 @@
             // btnWeapons
             // 
             this.btnWeapons.Location = new System.Drawing.Point(6, 277);
-            this.btnWeapons.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnWeapons.Margin = new System.Windows.Forms.Padding(2);
             this.btnWeapons.Name = "btnWeapons";
             this.btnWeapons.Size = new System.Drawing.Size(68, 24);
             this.btnWeapons.TabIndex = 56;
@@ -1108,7 +1143,7 @@
             // 
             this.nudCritEvade.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudCritEvade.Location = new System.Drawing.Point(392, 192);
-            this.nudCritEvade.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudCritEvade.Margin = new System.Windows.Forms.Padding(2);
             this.nudCritEvade.Name = "nudCritEvade";
             this.nudCritEvade.Size = new System.Drawing.Size(90, 26);
             this.nudCritEvade.TabIndex = 49;
@@ -1117,7 +1152,7 @@
             // 
             this.nudItemDropChance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudItemDropChance.Location = new System.Drawing.Point(392, 161);
-            this.nudItemDropChance.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudItemDropChance.Margin = new System.Windows.Forms.Padding(2);
             this.nudItemDropChance.Name = "nudItemDropChance";
             this.nudItemDropChance.Size = new System.Drawing.Size(90, 26);
             this.nudItemDropChance.TabIndex = 48;
@@ -1126,7 +1161,7 @@
             // 
             this.nudItemDamArm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.nudItemDamArm.Location = new System.Drawing.Point(392, 124);
-            this.nudItemDamArm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudItemDamArm.Margin = new System.Windows.Forms.Padding(2);
             this.nudItemDamArm.Maximum = new decimal(new int[] {
             500,
             0,
@@ -1139,7 +1174,7 @@
             // btnSaveItem
             // 
             this.btnSaveItem.Location = new System.Drawing.Point(498, 269);
-            this.btnSaveItem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSaveItem.Margin = new System.Windows.Forms.Padding(2);
             this.btnSaveItem.Name = "btnSaveItem";
             this.btnSaveItem.Size = new System.Drawing.Size(68, 58);
             this.btnSaveItem.TabIndex = 45;
@@ -1151,46 +1186,11 @@
             // 
             this.lbxItems.FormattingEnabled = true;
             this.lbxItems.Location = new System.Drawing.Point(78, 63);
-            this.lbxItems.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxItems.Margin = new System.Windows.Forms.Padding(2);
             this.lbxItems.Name = "lbxItems";
             this.lbxItems.Size = new System.Drawing.Size(91, 186);
             this.lbxItems.TabIndex = 44;
             this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.LbxItems_SelectedIndexChanged);
-            // 
-            // nudTimer
-            // 
-            this.nudTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nudTimer.Location = new System.Drawing.Point(229, 18);
-            this.nudTimer.Margin = new System.Windows.Forms.Padding(2);
-            this.nudTimer.Maximum = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            this.nudTimer.Minimum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nudTimer.Name = "nudTimer";
-            this.nudTimer.Size = new System.Drawing.Size(90, 26);
-            this.nudTimer.TabIndex = 33;
-            this.nudTimer.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label32.Location = new System.Drawing.Point(6, 20);
-            this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(159, 20);
-            this.label32.TabIndex = 34;
-            this.label32.Text = "Auto attack Timer ms";
             // 
             // DeveloperSettings
             // 
@@ -1199,13 +1199,15 @@
             this.ClientSize = new System.Drawing.Size(602, 368);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "DeveloperSettings";
             this.Text = "DeveloperSettings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DeveloperSettings_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudLifeReaperCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudBehemothCounter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudElderBossCounter)).EndInit();
@@ -1239,7 +1241,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).EndInit();
             this.ResumeLayout(false);
 
         }

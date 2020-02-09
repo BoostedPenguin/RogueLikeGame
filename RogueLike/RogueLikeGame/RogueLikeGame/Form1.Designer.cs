@@ -139,7 +139,7 @@
             this.lbxScores.FormattingEnabled = true;
             this.lbxScores.ItemHeight = 20;
             this.lbxScores.Location = new System.Drawing.Point(13, 10);
-            this.lbxScores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lbxScores.Margin = new System.Windows.Forms.Padding(2);
             this.lbxScores.Name = "lbxScores";
             this.lbxScores.Size = new System.Drawing.Size(353, 364);
             this.lbxScores.TabIndex = 7;
@@ -148,7 +148,7 @@
             // 
             this.panel1.Controls.Add(this.lbxScores);
             this.panel1.Location = new System.Drawing.Point(10, 46);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(379, 392);
             this.panel1.TabIndex = 8;
@@ -159,7 +159,7 @@
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(113)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.panel2.Controls.Add(this.label1);
             this.panel2.Location = new System.Drawing.Point(70, 69);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(262, 226);
             this.panel2.TabIndex = 8;
@@ -191,6 +191,7 @@
             this.Controls.Add(this.tbxName);
             this.Controls.Add(this.lblWrongUsername);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "RogueLikeGame";
             this.panel1.ResumeLayout(false);

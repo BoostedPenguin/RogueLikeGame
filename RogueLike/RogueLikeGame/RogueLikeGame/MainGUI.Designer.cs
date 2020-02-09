@@ -115,6 +115,10 @@
             // 
             // btnUseItem
             // 
+            this.btnUseItem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnUseItem.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnUseItem.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnUseItem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnUseItem.Location = new System.Drawing.Point(139, 93);
             this.btnUseItem.Name = "btnUseItem";
             this.btnUseItem.Size = new System.Drawing.Size(68, 31);
@@ -154,6 +158,10 @@
             // 
             // btnAbility
             // 
+            this.btnAbility.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAbility.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAbility.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAbility.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnAbility.Location = new System.Drawing.Point(113, 130);
             this.btnAbility.Name = "btnAbility";
             this.btnAbility.Size = new System.Drawing.Size(94, 31);
@@ -175,6 +183,10 @@
             // 
             // btnHealthPot
             // 
+            this.btnHealthPot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnHealthPot.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnHealthPot.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnHealthPot.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnHealthPot.Location = new System.Drawing.Point(247, 216);
             this.btnHealthPot.Name = "btnHealthPot";
             this.btnHealthPot.Size = new System.Drawing.Size(70, 24);
@@ -185,6 +197,10 @@
             // 
             // btnPoisonPot
             // 
+            this.btnPoisonPot.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnPoisonPot.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnPoisonPot.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnPoisonPot.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnPoisonPot.Location = new System.Drawing.Point(399, 219);
             this.btnPoisonPot.Name = "btnPoisonPot";
             this.btnPoisonPot.Size = new System.Drawing.Size(70, 24);
@@ -279,6 +295,10 @@
             // 
             // btnAA
             // 
+            this.btnAA.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAA.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAA.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAA.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnAA.Location = new System.Drawing.Point(517, 133);
             this.btnAA.Name = "btnAA";
             this.btnAA.Size = new System.Drawing.Size(114, 58);
@@ -290,6 +310,10 @@
             // 
             // btnAttack
             // 
+            this.btnAttack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAttack.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAttack.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnAttack.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnAttack.Location = new System.Drawing.Point(517, 18);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(114, 58);
@@ -300,6 +324,10 @@
             // 
             // btnFlee
             // 
+            this.btnFlee.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnFlee.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnFlee.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
+            this.btnFlee.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(31)))), ((int)(((byte)(3)))));
             this.btnFlee.Location = new System.Drawing.Point(113, 167);
             this.btnFlee.Name = "btnFlee";
             this.btnFlee.Size = new System.Drawing.Size(94, 31);
@@ -328,9 +356,9 @@
             this.btnMusic.FlatAppearance.BorderSize = 2;
             this.btnMusic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMusic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnMusic.Location = new System.Drawing.Point(5, 12);
+            this.btnMusic.Location = new System.Drawing.Point(12, 26);
             this.btnMusic.Name = "btnMusic";
-            this.btnMusic.Size = new System.Drawing.Size(49, 46);
+            this.btnMusic.Size = new System.Drawing.Size(57, 55);
             this.btnMusic.TabIndex = 20;
             this.btnMusic.UseVisualStyleBackColor = false;
             this.btnMusic.Click += new System.EventHandler(this.BtnMusic_Click);
@@ -348,7 +376,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
             this.panel1.Controls.Add(this.lblMobStats);
             this.panel1.Controls.Add(this.lblPlayerStatistics);
             this.panel1.Controls.Add(this.gpxItems);
@@ -388,7 +416,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::RogueLikeGame.Properties.Resources.colorlessbd;
+            this.BackgroundImage = global::RogueLikeGame.Properties.Resources.colorlessbd1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1004, 861);
             this.Controls.Add(this.lblNarrative);
@@ -400,6 +428,7 @@
             this.Controls.Add(this.btnOptionA);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "MainGUI";
             this.Text = "MainGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);

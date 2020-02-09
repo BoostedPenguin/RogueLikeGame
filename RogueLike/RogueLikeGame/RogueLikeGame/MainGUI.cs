@@ -542,7 +542,7 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Player Stats:\nHealth: {user.currentHealth}/{user.MaxHealth}  Damage: {user.TotalDamageWithoutCrit(allSettings)}{Environment.NewLine}Armor: {user.TotalArmor(allSettings)} Evade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Player Stats:\nHealth: {user.currentHealth}/{user.MaxHealth}\nDamage: {user.TotalDamageWithoutCrit(allSettings)}\nArmor: {user.TotalArmor(allSettings)}\nEvade Chance: {user.TotalEvadeChance()}";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(currentMob != null && currentMob.Health > 0)
