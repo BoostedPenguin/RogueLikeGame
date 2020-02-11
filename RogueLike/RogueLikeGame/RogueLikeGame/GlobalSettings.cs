@@ -54,23 +54,6 @@ namespace RogueLikeGame
         }
         #endregion
 
-        public void SaveNewSettings(int enemyDifficultyMultiplier, int characterArmorMultiplier, int characterDamageMultiplier, string soundSource, int weaponDropChance, int armorDropChance, int PoisonDropChance,
-            int elder, int behemoth, int reaper, int timer)
-        {
-            this.enemyDifficultyMultiplier = enemyDifficultyMultiplier;
-            this.characterArmorMultiplier = characterArmorMultiplier;
-            this.characterDamageMultiplier = characterDamageMultiplier;
-            this.soundSource = soundSource;
-            this.weaponDropChance = weaponDropChance;
-            this.armorDropChance = armorDropChance;
-            this.potionDropChance = PoisonDropChance;
-            this.totalChance = this.potionDropChance;
-            this.elderDragonAction = elder;
-            this.behemothAction = behemoth;
-            this.lifeReaperAction = reaper;
-            this.timerInterval = timer;
-        }
-
         //One step to the other is the amount of % you have for that item to drop ex: from 0-20 = weaponDropchance, from 20-40 armordropchance
         public int weaponDropChance = 33;
         public int armorDropChance = 66;

@@ -1146,12 +1146,12 @@ namespace RogueLikeGame
                 }
                 else
                 {
-                    btnUseItem.Enabled = true;
                     timerAutoAttack.Enabled = false;
                 }
             }
             else
             {
+                btnAttack.Enabled = true;
                 timerAutoAttack.Enabled = false;
             }
         }

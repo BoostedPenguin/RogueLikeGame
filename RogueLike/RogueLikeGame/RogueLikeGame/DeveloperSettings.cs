@@ -50,10 +50,18 @@ namespace RogueLikeGame
 
         private void BtnSaveChanges_Click(object sender, EventArgs e)
         {
-            allSettings.SaveNewSettings((int)nudEnemyDifficultyMultiplier.Value, (int)nudCharacterArmorMultiplier.Value,
-                (int)nudCharacterDamageMultiplier.Value, tbxSoundSource.Text, (int)nudWeaponDropChance.Value,
-                (int)nudArmorDropChance.Value, (int)nudPotionsDropChance.Value, (int)nudElderBossCounter.Value, 
-                (int)nudBehemothCounter.Value, (int)nudLifeReaperCounter.Value, (int)nudTimer.Value);
+            allSettings.enemyDifficultyMultiplier = (int)nudEnemyDifficultyMultiplier.Value;
+            allSettings.characterArmorMultiplier = (int)nudCharacterArmorMultiplier.Value;
+            allSettings.characterDamageMultiplier = (int)nudCharacterDamageMultiplier.Value;
+            allSettings.soundSource = tbxSoundSource.Text;
+            allSettings.weaponDropChance = (int)nudWeaponDropChance.Value;
+            allSettings.armorDropChance = (int)nudArmorDropChance.Value;
+            allSettings.potionDropChance = (int)nudPotionsDropChance.Value;
+            allSettings.elderDragonAction = (int)nudElderBossCounter.Value;
+            allSettings.behemothAction = (int)nudBehemothCounter.Value;
+            allSettings.lifeReaperAction = (int)nudLifeReaperCounter.Value;
+            allSettings.timerInterval = (int)nudTimer.Value;
+
             XmlSerialization.SerializeObject(allSettings);    //<--
         }
 

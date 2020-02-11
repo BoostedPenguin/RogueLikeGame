@@ -8,9 +8,6 @@ namespace RogueLikeGame
 {
     public static class MobFight
     {
-
-
-
         public static string TBStartFight(Mobs mob, UserSettings user) //On start of fight (First round)
         {
             int i;
@@ -142,7 +139,7 @@ namespace RogueLikeGame
 
             if (user.currentRoundOfBuff > 0) //Execute buff on start of round
             {
-                switch (user.CharacterName)
+                switch (user.CharacterName) //Only godknight has an active round buff
                 {
                     case GameCharacters.GodKnight:
                         user.GodKnightAbility();
