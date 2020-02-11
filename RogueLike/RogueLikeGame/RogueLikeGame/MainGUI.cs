@@ -42,6 +42,7 @@ namespace RogueLikeGame
         public MainGUI(Items items, GlobalSettings allSettings, DictionaryEntries scores)
         {
             InitializeComponent();
+            timerAutoAttack.Interval = allSettings.timerInterval;
             this.scores = scores;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
@@ -852,6 +853,7 @@ namespace RogueLikeGame
                     }
                 }
                 UpdatePlayerStatistics();
+                UpdateProgressbar();
                 DisableCombatButtons();
             }
         }

@@ -33,20 +33,14 @@
             this.btnOptionA = new System.Windows.Forms.Button();
             this.btnOptionB = new System.Windows.Forms.Button();
             this.btnOptionC = new System.Windows.Forms.Button();
-            this.lbxCombatLog = new System.Windows.Forms.ListBox();
             this.lbxCurrentItems = new System.Windows.Forms.ListBox();
             this.btnUseItem = new System.Windows.Forms.Button();
-            this.lblPlayerStatistics = new System.Windows.Forms.Label();
-            this.prbEnemyHealth = new System.Windows.Forms.ProgressBar();
-            this.lblMobHealth = new System.Windows.Forms.Label();
             this.btnAbility = new System.Windows.Forms.Button();
             this.lblDebuff = new System.Windows.Forms.Label();
             this.btnHealthPot = new System.Windows.Forms.Button();
             this.btnPoisonPot = new System.Windows.Forms.Button();
             this.lblHealthPot = new System.Windows.Forms.Label();
             this.lblPoisonPot = new System.Windows.Forms.Label();
-            this.gpxFight = new System.Windows.Forms.GroupBox();
-            this.lblTurn = new System.Windows.Forms.Label();
             this.gpxItems = new System.Windows.Forms.GroupBox();
             this.lblAbilityCD = new System.Windows.Forms.Label();
             this.btnAA = new System.Windows.Forms.Button();
@@ -55,18 +49,24 @@
             this.lblBuff = new System.Windows.Forms.Label();
             this.btnMusic = new System.Windows.Forms.Button();
             this.tbxRiddleAnswer = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblMobStats = new System.Windows.Forms.Label();
             this.timerAutoAttack = new System.Windows.Forms.Timer(this.components);
             this.lblNarrative = new System.Windows.Forms.Label();
-            this.gpxFight.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblMobHealth = new System.Windows.Forms.Label();
+            this.prbEnemyHealth = new System.Windows.Forms.ProgressBar();
+            this.lblTurn = new System.Windows.Forms.Label();
+            this.lbxCombatLog = new System.Windows.Forms.ListBox();
+            this.gpxFight = new System.Windows.Forms.GroupBox();
+            this.lblPlayerStatistics = new System.Windows.Forms.Label();
+            this.lblMobStats = new System.Windows.Forms.Label();
             this.gpxItems.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.gpxFight.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOptionA
             // 
-            this.btnOptionA.Location = new System.Drawing.Point(311, 155);
+            this.btnOptionA.Location = new System.Drawing.Point(131, 155);
             this.btnOptionA.Name = "btnOptionA";
             this.btnOptionA.Size = new System.Drawing.Size(94, 31);
             this.btnOptionA.TabIndex = 1;
@@ -76,7 +76,7 @@
             // 
             // btnOptionB
             // 
-            this.btnOptionB.Location = new System.Drawing.Point(445, 155);
+            this.btnOptionB.Location = new System.Drawing.Point(265, 155);
             this.btnOptionB.Name = "btnOptionB";
             this.btnOptionB.Size = new System.Drawing.Size(94, 31);
             this.btnOptionB.TabIndex = 2;
@@ -86,24 +86,13 @@
             // 
             // btnOptionC
             // 
-            this.btnOptionC.Location = new System.Drawing.Point(582, 155);
+            this.btnOptionC.Location = new System.Drawing.Point(402, 155);
             this.btnOptionC.Name = "btnOptionC";
             this.btnOptionC.Size = new System.Drawing.Size(94, 31);
             this.btnOptionC.TabIndex = 3;
             this.btnOptionC.Text = "button3";
             this.btnOptionC.UseVisualStyleBackColor = true;
             this.btnOptionC.Click += new System.EventHandler(this.BtnOptionC_Click);
-            // 
-            // lbxCombatLog
-            // 
-            this.lbxCombatLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbxCombatLog.FormattingEnabled = true;
-            this.lbxCombatLog.HorizontalScrollbar = true;
-            this.lbxCombatLog.ItemHeight = 16;
-            this.lbxCombatLog.Location = new System.Drawing.Point(88, 18);
-            this.lbxCombatLog.Name = "lbxCombatLog";
-            this.lbxCombatLog.Size = new System.Drawing.Size(487, 196);
-            this.lbxCombatLog.TabIndex = 4;
             // 
             // lbxCurrentItems
             // 
@@ -126,35 +115,6 @@
             this.btnUseItem.Text = "Use";
             this.btnUseItem.UseVisualStyleBackColor = true;
             this.btnUseItem.Click += new System.EventHandler(this.BtnUseItem_Click);
-            // 
-            // lblPlayerStatistics
-            // 
-            this.lblPlayerStatistics.AutoSize = true;
-            this.lblPlayerStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPlayerStatistics.ForeColor = System.Drawing.Color.White;
-            this.lblPlayerStatistics.Location = new System.Drawing.Point(676, 46);
-            this.lblPlayerStatistics.Name = "lblPlayerStatistics";
-            this.lblPlayerStatistics.Size = new System.Drawing.Size(70, 25);
-            this.lblPlayerStatistics.TabIndex = 7;
-            this.lblPlayerStatistics.Text = "label1";
-            this.lblPlayerStatistics.Visible = false;
-            // 
-            // prbEnemyHealth
-            // 
-            this.prbEnemyHealth.Location = new System.Drawing.Point(89, 246);
-            this.prbEnemyHealth.Name = "prbEnemyHealth";
-            this.prbEnemyHealth.Size = new System.Drawing.Size(486, 23);
-            this.prbEnemyHealth.TabIndex = 10;
-            // 
-            // lblMobHealth
-            // 
-            this.lblMobHealth.AutoSize = true;
-            this.lblMobHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobHealth.Location = new System.Drawing.Point(162, 272);
-            this.lblMobHealth.Name = "lblMobHealth";
-            this.lblMobHealth.Size = new System.Drawing.Size(74, 25);
-            this.lblMobHealth.TabIndex = 11;
-            this.lblMobHealth.Text = "Health";
             // 
             // btnAbility
             // 
@@ -229,34 +189,6 @@
             this.lblPoisonPot.TabIndex = 17;
             this.lblPoisonPot.Text = "Poison Pots:";
             // 
-            // gpxFight
-            // 
-            this.gpxFight.BackColor = System.Drawing.SystemColors.Control;
-            this.gpxFight.Controls.Add(this.lbxCombatLog);
-            this.gpxFight.Controls.Add(this.lblTurn);
-            this.gpxFight.Controls.Add(this.prbEnemyHealth);
-            this.gpxFight.Controls.Add(this.lblMobHealth);
-            this.gpxFight.Enabled = false;
-            this.gpxFight.Location = new System.Drawing.Point(12, 262);
-            this.gpxFight.Margin = new System.Windows.Forms.Padding(2);
-            this.gpxFight.Name = "gpxFight";
-            this.gpxFight.Padding = new System.Windows.Forms.Padding(2);
-            this.gpxFight.Size = new System.Drawing.Size(651, 308);
-            this.gpxFight.TabIndex = 19;
-            this.gpxFight.TabStop = false;
-            this.gpxFight.Text = "gpxFight";
-            // 
-            // lblTurn
-            // 
-            this.lblTurn.AutoSize = true;
-            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurn.Location = new System.Drawing.Point(457, 272);
-            this.lblTurn.Name = "lblTurn";
-            this.lblTurn.Size = new System.Drawing.Size(70, 25);
-            this.lblTurn.TabIndex = 20;
-            this.lblTurn.Text = "label1";
-            this.lblTurn.Visible = false;
-            // 
             // gpxItems
             // 
             this.gpxItems.BackColor = System.Drawing.SystemColors.Control;
@@ -274,11 +206,11 @@
             this.gpxItems.Controls.Add(this.btnHealthPot);
             this.gpxItems.Controls.Add(this.btnPoisonPot);
             this.gpxItems.Enabled = false;
-            this.gpxItems.Location = new System.Drawing.Point(13, 13);
+            this.gpxItems.Location = new System.Drawing.Point(12, 12);
             this.gpxItems.Margin = new System.Windows.Forms.Padding(2);
             this.gpxItems.Name = "gpxItems";
             this.gpxItems.Padding = new System.Windows.Forms.Padding(2);
-            this.gpxItems.Size = new System.Drawing.Size(651, 245);
+            this.gpxItems.Size = new System.Drawing.Size(651, 308);
             this.gpxItems.TabIndex = 12;
             this.gpxItems.TabStop = false;
             this.gpxItems.Text = "gpxItems";
@@ -365,7 +297,7 @@
             // 
             // tbxRiddleAnswer
             // 
-            this.tbxRiddleAnswer.Location = new System.Drawing.Point(311, 192);
+            this.tbxRiddleAnswer.Location = new System.Drawing.Point(131, 192);
             this.tbxRiddleAnswer.Margin = new System.Windows.Forms.Padding(2);
             this.tbxRiddleAnswer.Multiline = true;
             this.tbxRiddleAnswer.Name = "tbxRiddleAnswer";
@@ -373,30 +305,6 @@
             this.tbxRiddleAnswer.TabIndex = 21;
             this.tbxRiddleAnswer.Visible = false;
             this.tbxRiddleAnswer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxRiddleAnswer_KeyDown);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
-            this.panel1.Controls.Add(this.lblMobStats);
-            this.panel1.Controls.Add(this.lblPlayerStatistics);
-            this.panel1.Controls.Add(this.gpxItems);
-            this.panel1.Controls.Add(this.gpxFight);
-            this.panel1.Location = new System.Drawing.Point(0, 291);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1008, 611);
-            this.panel1.TabIndex = 22;
-            // 
-            // lblMobStats
-            // 
-            this.lblMobStats.AutoSize = true;
-            this.lblMobStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblMobStats.ForeColor = System.Drawing.Color.White;
-            this.lblMobStats.Location = new System.Drawing.Point(676, 346);
-            this.lblMobStats.Name = "lblMobStats";
-            this.lblMobStats.Size = new System.Drawing.Size(70, 25);
-            this.lblMobStats.TabIndex = 23;
-            this.lblMobStats.Text = "label1";
-            this.lblMobStats.Visible = false;
             // 
             // timerAutoAttack
             // 
@@ -408,9 +316,101 @@
             this.lblNarrative.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNarrative.Location = new System.Drawing.Point(110, 26);
             this.lblNarrative.Name = "lblNarrative";
-            this.lblNarrative.Size = new System.Drawing.Size(762, 126);
+            this.lblNarrative.Size = new System.Drawing.Size(414, 126);
             this.lblNarrative.TabIndex = 23;
             this.lblNarrative.Text = "label1";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(37)))), ((int)(((byte)(37)))));
+            this.panel1.Controls.Add(this.gpxItems);
+            this.panel1.Controls.Add(this.gpxFight);
+            this.panel1.Location = new System.Drawing.Point(0, 291);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1239, 336);
+            this.panel1.TabIndex = 22;
+            // 
+            // lblMobHealth
+            // 
+            this.lblMobHealth.AutoSize = true;
+            this.lblMobHealth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMobHealth.Location = new System.Drawing.Point(99, 272);
+            this.lblMobHealth.Name = "lblMobHealth";
+            this.lblMobHealth.Size = new System.Drawing.Size(74, 25);
+            this.lblMobHealth.TabIndex = 11;
+            this.lblMobHealth.Text = "Health";
+            // 
+            // prbEnemyHealth
+            // 
+            this.prbEnemyHealth.Location = new System.Drawing.Point(26, 246);
+            this.prbEnemyHealth.Name = "prbEnemyHealth";
+            this.prbEnemyHealth.Size = new System.Drawing.Size(486, 23);
+            this.prbEnemyHealth.TabIndex = 10;
+            // 
+            // lblTurn
+            // 
+            this.lblTurn.AutoSize = true;
+            this.lblTurn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTurn.Location = new System.Drawing.Point(394, 272);
+            this.lblTurn.Name = "lblTurn";
+            this.lblTurn.Size = new System.Drawing.Size(70, 25);
+            this.lblTurn.TabIndex = 20;
+            this.lblTurn.Text = "label1";
+            this.lblTurn.Visible = false;
+            // 
+            // lbxCombatLog
+            // 
+            this.lbxCombatLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbxCombatLog.FormattingEnabled = true;
+            this.lbxCombatLog.HorizontalScrollbar = true;
+            this.lbxCombatLog.ItemHeight = 16;
+            this.lbxCombatLog.Location = new System.Drawing.Point(25, 18);
+            this.lbxCombatLog.Name = "lbxCombatLog";
+            this.lbxCombatLog.Size = new System.Drawing.Size(487, 196);
+            this.lbxCombatLog.TabIndex = 4;
+            // 
+            // gpxFight
+            // 
+            this.gpxFight.BackColor = System.Drawing.SystemColors.Control;
+            this.gpxFight.Controls.Add(this.lbxCombatLog);
+            this.gpxFight.Controls.Add(this.lblTurn);
+            this.gpxFight.Controls.Add(this.prbEnemyHealth);
+            this.gpxFight.Controls.Add(this.lblMobHealth);
+            this.gpxFight.Enabled = false;
+            this.gpxFight.Location = new System.Drawing.Point(692, 12);
+            this.gpxFight.Margin = new System.Windows.Forms.Padding(2);
+            this.gpxFight.Name = "gpxFight";
+            this.gpxFight.Padding = new System.Windows.Forms.Padding(2);
+            this.gpxFight.Size = new System.Drawing.Size(535, 308);
+            this.gpxFight.TabIndex = 19;
+            this.gpxFight.TabStop = false;
+            this.gpxFight.Text = "gpxFight";
+            // 
+            // lblPlayerStatistics
+            // 
+            this.lblPlayerStatistics.AutoSize = true;
+            this.lblPlayerStatistics.BackColor = System.Drawing.Color.Black;
+            this.lblPlayerStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPlayerStatistics.ForeColor = System.Drawing.Color.White;
+            this.lblPlayerStatistics.Location = new System.Drawing.Point(603, 39);
+            this.lblPlayerStatistics.Name = "lblPlayerStatistics";
+            this.lblPlayerStatistics.Size = new System.Drawing.Size(70, 25);
+            this.lblPlayerStatistics.TabIndex = 7;
+            this.lblPlayerStatistics.Text = "label1";
+            this.lblPlayerStatistics.Visible = false;
+            // 
+            // lblMobStats
+            // 
+            this.lblMobStats.AutoSize = true;
+            this.lblMobStats.BackColor = System.Drawing.Color.Black;
+            this.lblMobStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblMobStats.ForeColor = System.Drawing.Color.White;
+            this.lblMobStats.Location = new System.Drawing.Point(936, 39);
+            this.lblMobStats.Name = "lblMobStats";
+            this.lblMobStats.Size = new System.Drawing.Size(70, 25);
+            this.lblMobStats.TabIndex = 23;
+            this.lblMobStats.Text = "label1";
+            this.lblMobStats.Visible = false;
             // 
             // MainGUI
             // 
@@ -418,8 +418,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::RogueLikeGame.Properties.Resources.colorlessbd1;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1004, 861);
+            this.ClientSize = new System.Drawing.Size(1238, 634);
+            this.Controls.Add(this.lblMobStats);
             this.Controls.Add(this.lblNarrative);
+            this.Controls.Add(this.lblPlayerStatistics);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbxRiddleAnswer);
             this.Controls.Add(this.btnMusic);
@@ -432,12 +434,11 @@
             this.Name = "MainGUI";
             this.Text = "MainGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);
-            this.gpxFight.ResumeLayout(false);
-            this.gpxFight.PerformLayout();
             this.gpxItems.ResumeLayout(false);
             this.gpxItems.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.gpxFight.ResumeLayout(false);
+            this.gpxFight.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -447,31 +448,31 @@
         private System.Windows.Forms.Button btnOptionA;
         private System.Windows.Forms.Button btnOptionB;
         private System.Windows.Forms.Button btnOptionC;
-        private System.Windows.Forms.ListBox lbxCombatLog;
         private System.Windows.Forms.ListBox lbxCurrentItems;
         private System.Windows.Forms.Button btnUseItem;
-        private System.Windows.Forms.Label lblPlayerStatistics;
-        private System.Windows.Forms.ProgressBar prbEnemyHealth;
-        private System.Windows.Forms.Label lblMobHealth;
         private System.Windows.Forms.Button btnAbility;
         private System.Windows.Forms.Label lblDebuff;
         private System.Windows.Forms.Button btnHealthPot;
         private System.Windows.Forms.Button btnPoisonPot;
         private System.Windows.Forms.Label lblHealthPot;
         private System.Windows.Forms.Label lblPoisonPot;
-        private System.Windows.Forms.GroupBox gpxFight;
         private System.Windows.Forms.GroupBox gpxItems;
-        private System.Windows.Forms.Label lblTurn;
         private System.Windows.Forms.Button btnMusic;
         private System.Windows.Forms.Label lblBuff;
         private System.Windows.Forms.Button btnFlee;
         private System.Windows.Forms.TextBox tbxRiddleAnswer;
         private System.Windows.Forms.Button btnAttack;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblMobStats;
         private System.Windows.Forms.Button btnAA;
         private System.Windows.Forms.Timer timerAutoAttack;
         private System.Windows.Forms.Label lblAbilityCD;
         private System.Windows.Forms.Label lblNarrative;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblMobStats;
+        private System.Windows.Forms.Label lblPlayerStatistics;
+        private System.Windows.Forms.GroupBox gpxFight;
+        private System.Windows.Forms.ListBox lbxCombatLog;
+        private System.Windows.Forms.Label lblTurn;
+        private System.Windows.Forms.ProgressBar prbEnemyHealth;
+        private System.Windows.Forms.Label lblMobHealth;
     }
 }
