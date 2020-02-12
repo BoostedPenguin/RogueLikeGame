@@ -146,7 +146,7 @@ namespace RogueLikeGame
             return base.Damage * this.currentWeapon.DamageBase * allSettings.characterDamageMultiplier / debuff;
         }
 
-        public int TotalArmor(GlobalSettings allSettings) //Returns total armor
+        public double TotalArmor(GlobalSettings allSettings) //Returns total armor
         {
             return (base.Armor + this.currentArmor.ItemArmor) * allSettings.characterArmorMultiplier;
         }

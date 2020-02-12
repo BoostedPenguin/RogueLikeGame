@@ -31,9 +31,10 @@ namespace RogueLikeGame
         public int SpawnChance { get; set; }        //Chance of the enemy to spawn
         public string DebuffString { get; set; }    //Debuff string 
         public int AbilityCounter { get; set; }     //Switcher for multiple-abilities mobs
+        public int AbilityRounds { get; set; }      //Amount of rounds for the ability
         public bool Boss { get; set; }              //If it's a boss enemy
 
-        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance, bool boss)
+        public Mobs(MobTypes type, double damage, int evadeChance, int abilityChance, int health, int spawnChance, bool boss, int abilityRounds)
         {
             this.Type = type;
             this.EvadeChance = evadeChance;
@@ -44,6 +45,7 @@ namespace RogueLikeGame
             this.SpawnChance = spawnChance;
             this.Boss = boss;
             this.AbilityCounter = -1;
+            this.AbilityRounds = abilityRounds;
         }
 
         public Mobs()
@@ -64,21 +66,21 @@ namespace RogueLikeGame
                 case MobTypes.RAT:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        user.currentRoundOfDebuff = 3; //Rounds of debuff
+                        user.currentRoundOfDebuff = this.AbilityRounds; //Rounds of debuff
                     }
                     return Damage * multiplier;
 
                 case MobTypes.SHADOW:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        user.currentRoundOfDebuff = 7;
+                        user.currentRoundOfDebuff = this.AbilityRounds;
                     }
                     return Damage * multiplier;
 
                 case MobTypes.ZOMBIE:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        user.currentRoundOfDebuff = 1;
+                        user.currentRoundOfDebuff = this.AbilityRounds;
                     }
                     return Damage * multiplier;
 
@@ -89,7 +91,7 @@ namespace RogueLikeGame
                         {
                             if (Randomizer.BossAbilityRandomizer() == 0) //0, 1 randomize - 2 different abilities
                             {
-                                user.currentRoundOfDebuff = 3; //3 rounds of fire on player
+                                user.currentRoundOfDebuff = this.AbilityRounds; //3 rounds of fire on player
                                 this.AbilityCounter = 0;
                             }
                             else
@@ -106,7 +108,7 @@ namespace RogueLikeGame
                     {
                         if(AbilityCounter == -1)
                         {
-                            user.currentRoundOfDebuff = 10;
+                            user.currentRoundOfDebuff = this.AbilityRounds;
                         }
                     }
                     return Damage * multiplier;
@@ -114,7 +116,7 @@ namespace RogueLikeGame
                 case MobTypes.LIFEREAPER:
                     if(Randomizer.EnemyAbilityChance(AbilityChance))
                     {
-                        user.currentRoundOfDebuff = 1;
+                        user.currentRoundOfDebuff = this.AbilityRounds;
                         this.AbilityCounter = 1;
                     }
                     return Damage * multiplier;
@@ -211,13 +213,13 @@ namespace RogueLikeGame
                 case MobTypes.RAT:
                     return "Poison the player";
                 case MobTypes.SHADOW:
-                    return "Reduce the damage the player inflicts";
+                    return "Reduce player damage";
                 case MobTypes.ZOMBIE:
                     return "Regenerate health";
                 case MobTypes.ELDERDRAGON:
-                    return "Inflict damage on player with claws or fire breath";
+                    return "Inflict heavy damage on player";
                 case MobTypes.FLESHBEHEMOTH:
-                    return "Insta-Kill the player after a couple of rounds";
+                    return $"Insta-Kill the player after {this.AbilityRounds} turns";
                 case MobTypes.LIFEREAPER:
                     return "Vampirize health from the player";
                 default:

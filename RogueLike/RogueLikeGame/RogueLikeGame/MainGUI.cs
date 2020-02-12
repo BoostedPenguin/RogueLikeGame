@@ -31,7 +31,7 @@ namespace RogueLikeGame
             //Add all UI elements to a list
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem, btnAA };
-            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats, lblAbilityCD };
+            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats, lblAbilityCD, lblAAInfo };
             this.allItems = items;
             this.allSettings = allSettings;
             this.user = user;
@@ -47,7 +47,7 @@ namespace RogueLikeGame
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             allButtons = new List<Button>() { btnAbility, btnAttack, btnFlee, btnHealthPot, btnOptionA, btnOptionB,
             btnOptionC, btnPoisonPot, btnUseItem, btnAA };
-            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats, lblAbilityCD };
+            allLabels = new List<Label>() { lblBuff, lblDebuff, lblHealthPot, lblMobHealth, lblPlayerStatistics, lblPoisonPot, lblTurn, lblMobStats, lblAbilityCD, lblAAInfo };
             this.allItems = items;
             this.allSettings = allSettings;
 
@@ -229,6 +229,7 @@ namespace RogueLikeGame
             StartFight();
             btnOptionB.Enabled = false;
             btnOptionA.Enabled = false;
+            btnAttack.Enabled = true;
         }
 
         private void SecondChoiceOptionB()
@@ -245,6 +246,8 @@ namespace RogueLikeGame
 
             btnOptionB.Enabled = false;
             btnOptionA.Enabled = false;
+            btnAttack.Enabled = true;
+
         }
 
         private void SecondSequence()
@@ -457,6 +460,11 @@ namespace RogueLikeGame
                 {
                     btnFlee.Enabled = false;
                     btnOptionA.Enabled = true;
+
+                    lbxCombatLog.Items.Add($"Sucessfully fled {currentMob.Type}");
+                    user.roundCounter = 0; //Overried the currentMob with a new mob.. has to be changed in the future
+                    btnAttack.Enabled = false;
+                    lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                 }
                 user.ability = false;
                 UpdatePlayerStatistics();
@@ -529,7 +537,7 @@ namespace RogueLikeGame
             lbxCurrentItems.Items.Add("All armor:");
             foreach (Armor b in user.armor)
             {
-                string armOutput = $"{b.ArmorName}\t{b.ItemArmor} block, {b.EvadeChance}% EvadeChance";
+                string armOutput = $"{b.ArmorName}\t{b.ItemArmor}% dmg reduction, {b.EvadeChance}% EvadeChance";
                 if (user.currentArmor.ArmorName.Contains(b.ArmorName))  //If this item is currently equipped by the user
                 {
                     lbxCurrentItems.Items.Add($"(+) {armOutput}");
@@ -543,16 +551,24 @@ namespace RogueLikeGame
 
         private void UpdatePlayerStatistics() //Update the bottom player statistics
         {
-            lblPlayerStatistics.Text = $"Player Stats:\nHealth: {user.currentHealth}/{user.MaxHealth}\nDamage: {user.TotalDamageWithoutCrit(allSettings)}\nArmor: {user.TotalArmor(allSettings)}\nEvade Chance: {user.TotalEvadeChance()}";
+            lblPlayerStatistics.Text = $"Player Stats:\nHealth: {user.currentHealth.ToString("0.00")}/{user.MaxHealth}\nDamage: {user.TotalDamageWithoutCrit(allSettings)}\nDmg Reduction: {user.TotalArmor(allSettings)}%\nEvade Chance: {user.TotalEvadeChance()}%";
             lblHealthPot.Text = $"Health Potions: {user.AmountPotions(true)}";
             lblPoisonPot.Text = $"Poison Potions: {user.AmountPotions(false)}";
             if(currentMob != null && currentMob.Health > 0)
             {
-                lblMobStats.Text = $"Mob stats:\nType: {currentMob.Type}\nHealth: {currentMob.MaxHealth}\nDamage: {currentMob.Damage}\nEvade Chance: {currentMob.EvadeChance}\nAbility Chance {currentMob.AbilityChance}\nAbility: {currentMob.AbilityString()}";
+                lblMobStats.Text = $"Mob stats:\nType: {currentMob.Type}\nHealth: {currentMob.MaxHealth}\nDamage: {currentMob.Damage}\nEvade Chance: {currentMob.EvadeChance}\nAbility Chance: {currentMob.AbilityChance}\nAbility: {currentMob.AbilityString()}";
             }
             else
             {
                 lblMobStats.Text = "";
+            }
+            if(user.CurrentHealth > user.MaxHealth / 4)
+            {
+                lblAAInfo.Text = "";
+            }
+            else
+            {
+                lblAAInfo.Text = "Disabled if under 25% health";
             }
 
             if(user.currentAbilityCooldown < user.AbilityCooldown)
@@ -802,6 +818,10 @@ namespace RogueLikeGame
             {
                 lbxCombatStrings.Add(g);
             }
+            if(timerAutoAttack.Enabled)
+            {
+                isEnabled[1] = true;
+            }
             string t = lblNarrative.Text;
 
             user.PoppulateOnClose(textsButton, isEnabled, textsLbl, lbxCombatStrings, t, isGpxEnabled);
@@ -992,7 +1012,8 @@ namespace RogueLikeGame
                 {
                     if (tbxRiddleAnswer.Text.ToLower() == TextNarrative.riddles[lblNarrative.Text])
                     {
-                        lblNarrative.Text = "Your answer is correct";
+                        lblNarrative.Text = "Your answer is correct. You get healed";
+                        user.CurrentHealth += (double)allSettings.onCorrectRiddle / 100 * (double)user.MaxHealth;
                     }
                     else
                     {
@@ -1002,9 +1023,9 @@ namespace RogueLikeGame
                         {
                             OnPlayerDeath();
                         }
-                        UpdatePlayerStatistics();
                     }
                 }
+                UpdatePlayerStatistics();
                 tbxRiddleAnswer.Text = "";
                 tbxRiddleAnswer.Visible = false;
                 user.riddleEncounter = false;
@@ -1091,6 +1112,7 @@ namespace RogueLikeGame
                 btnAttack.Enabled = true;
                 currentMob = allItems.ReturnNewMob(mob);
                 user.mobEncounter = true;
+                user.userAttack = false;
                 StartFight();
                 btnOptionA.Enabled = false;
             }
@@ -1108,7 +1130,7 @@ namespace RogueLikeGame
         {
             if (!timerAutoAttack.Enabled)
             {
-                if (user.CurrentHealth > user.MaxHealth / 4) //Doesnt work if below 20% health
+                if (user.CurrentHealth > user.MaxHealth / 4) //Doesnt work if below 25% health
                 {
                     timerAutoAttack.Enabled = true;
 
@@ -1134,7 +1156,7 @@ namespace RogueLikeGame
 
         private void timerAutoAttack_Tick(object sender, EventArgs e)
         {
-            if (user.CurrentHealth > user.MaxHealth / 4) //Doesnt work if below 20% health
+            if (user.CurrentHealth > user.MaxHealth / 4) //Doesnt work if below 25% health
             {
                 if(currentMob.Health > 0)
                 {
@@ -1153,8 +1175,26 @@ namespace RogueLikeGame
             }
             else
             {
+                DisableCombatButtons();
                 btnAttack.Enabled = true;
                 timerAutoAttack.Enabled = false;
+                UpdateAbilityButton();
+            }
+        }
+
+        private void btnOptionA_EnabledChanged(object sender, EventArgs e)
+        {
+            if(sender.GetType() == typeof(Button))
+            {
+                Button b = (Button)sender;
+                if(b.Enabled)
+                {
+                    b.BackColor = Color.FromArgb(192, 64, 0);
+                }
+                else
+                {
+                    b.BackColor = Color.FromArgb(215, 185, 169);
+                }
             }
         }
     }

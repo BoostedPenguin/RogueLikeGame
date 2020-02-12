@@ -118,40 +118,49 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="musicDisable" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\musicDisable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="colorlessbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\colorlessbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="musicEnable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\musicEnable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="fullbd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\fullbd1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="button" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mainbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mainbd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbd3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="mainbd21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbd21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mainbd22" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mainbd22.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="mainbd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\mainbd2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="fullbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fullbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bdfight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bdfight.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="colorlessbd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\colorlessbd1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainbd3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbd3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="musicDisable" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\musicDisable.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="statbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\statbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainbd2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbd2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="colorlessbd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\colorlessbd.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fullbd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fullbd1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mainbd21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainbd21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="statbd1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\statbd1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

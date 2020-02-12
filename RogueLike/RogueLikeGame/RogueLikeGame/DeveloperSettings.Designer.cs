@@ -110,6 +110,10 @@
             this.nudItemDamArm = new System.Windows.Forms.NumericUpDown();
             this.btnSaveItem = new System.Windows.Forms.Button();
             this.lbxItems = new System.Windows.Forms.ListBox();
+            this.nudAbilityRounds = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.nudSettingsHealthOnRiddle = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTimer)).BeginInit();
@@ -142,6 +146,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAbilityRounds)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSettingsHealthOnRiddle)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -160,6 +166,8 @@
             // 
             // tabGeneral
             // 
+            this.tabGeneral.Controls.Add(this.label34);
+            this.tabGeneral.Controls.Add(this.nudSettingsHealthOnRiddle);
             this.tabGeneral.Controls.Add(this.label32);
             this.tabGeneral.Controls.Add(this.nudTimer);
             this.tabGeneral.Controls.Add(this.label31);
@@ -801,6 +809,8 @@
             // 
             // tabMob
             // 
+            this.tabMob.Controls.Add(this.label33);
+            this.tabMob.Controls.Add(this.nudAbilityRounds);
             this.tabMob.Controls.Add(this.label12);
             this.tabMob.Controls.Add(this.label11);
             this.tabMob.Controls.Add(this.label9);
@@ -825,7 +835,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label12.Location = new System.Drawing.Point(292, 202);
+            this.label12.Location = new System.Drawing.Point(287, 203);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(117, 20);
@@ -836,7 +846,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(310, 169);
+            this.label11.Location = new System.Drawing.Point(299, 169);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(105, 20);
@@ -847,7 +857,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(303, 138);
+            this.label9.Location = new System.Drawing.Point(291, 138);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(113, 20);
@@ -858,7 +868,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(332, 104);
+            this.label10.Location = new System.Drawing.Point(319, 102);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 20);
@@ -869,7 +879,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(332, 63);
+            this.label8.Location = new System.Drawing.Point(334, 63);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(70, 20);
@@ -1192,6 +1202,61 @@
             this.lbxItems.TabIndex = 44;
             this.lbxItems.SelectedIndexChanged += new System.EventHandler(this.LbxItems_SelectedIndexChanged);
             // 
+            // nudAbilityRounds
+            // 
+            this.nudAbilityRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudAbilityRounds.Location = new System.Drawing.Point(414, 234);
+            this.nudAbilityRounds.Margin = new System.Windows.Forms.Padding(2);
+            this.nudAbilityRounds.Name = "nudAbilityRounds";
+            this.nudAbilityRounds.Size = new System.Drawing.Size(90, 26);
+            this.nudAbilityRounds.TabIndex = 35;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label33.Location = new System.Drawing.Point(294, 236);
+            this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(110, 20);
+            this.label33.TabIndex = 36;
+            this.label33.Text = "Ability Rounds";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label34.Location = new System.Drawing.Point(332, 20);
+            this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(120, 20);
+            this.label34.TabIndex = 36;
+            this.label34.Text = "Health on riddle";
+            // 
+            // nudSettingsHealthOnRiddle
+            // 
+            this.nudSettingsHealthOnRiddle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.nudSettingsHealthOnRiddle.Location = new System.Drawing.Point(460, 18);
+            this.nudSettingsHealthOnRiddle.Margin = new System.Windows.Forms.Padding(2);
+            this.nudSettingsHealthOnRiddle.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.nudSettingsHealthOnRiddle.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nudSettingsHealthOnRiddle.Name = "nudSettingsHealthOnRiddle";
+            this.nudSettingsHealthOnRiddle.Size = new System.Drawing.Size(90, 26);
+            this.nudSettingsHealthOnRiddle.TabIndex = 35;
+            this.nudSettingsHealthOnRiddle.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
             // DeveloperSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1241,6 +1306,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudCritEvade)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDropChance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudItemDamArm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudAbilityRounds)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSettingsHealthOnRiddle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1328,5 +1395,9 @@
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown nudTimer;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.NumericUpDown nudAbilityRounds;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.NumericUpDown nudSettingsHealthOnRiddle;
     }
 }

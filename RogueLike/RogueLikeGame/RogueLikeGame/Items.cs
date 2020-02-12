@@ -41,11 +41,11 @@ namespace RogueLikeGame
         public void AddAllArmor()  //CHANGE this if you want to alter STATS
         {
                                     //Name  Armor  Ev.Chance  Dr.Chance
-            allArmor.Add(new Armor("Basic Armor", 2, 5, 35));
-            allArmor.Add(new Armor("Advanced Armor", 4, 10, 30));
-            allArmor.Add(new Armor("Dragon Armor", 8, 15, 10));
-            allArmor.Add(new Armor("Flesh Armor", 12, 15, 20));
-            allArmor.Add(new Armor("Armor Of Divine", 12, 50, 5));
+            allArmor.Add(new Armor("Basic Armor", 10, 10, 35));
+            allArmor.Add(new Armor("Advanced Armor", 20, 10, 30));
+            allArmor.Add(new Armor("Dragon Armor", 30, 15, 10));
+            allArmor.Add(new Armor("Flesh Armor", 40, 15, 20));
+            allArmor.Add(new Armor("Armor Of Divine", 50, 50, 5));
         }
         public void AddAllPotions()  //CHANGE this if you want to alter STATS
         {
@@ -57,23 +57,23 @@ namespace RogueLikeGame
         {
             //Bosses need to have 0% chance to spawn - It's not a random encounter
 
-                         //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth //SpawnChance //Boss
-            allMobs.Add(new Mobs(MobTypes.SPIDER, 7, 10, 5, 40, 30, false));
-            allMobs.Add(new Mobs(MobTypes.RAT, 9, 15, 10, 50, 25, false));
-            allMobs.Add(new Mobs(MobTypes.SHADOW, 11, 25, 15, 40, 25, false));
-            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 12, 10, 15, 50, 20, false));
+                         //Type    //Damage //Ev.Chance //Ability Chance //MaxHealth //SpawnChance //Boss //AbilityRounds
+            allMobs.Add(new Mobs(MobTypes.SPIDER, 3, 10, 5, 40, 30, false, 1));
+            allMobs.Add(new Mobs(MobTypes.RAT, 5, 15, 10, 50, 25, false, 3));
+            allMobs.Add(new Mobs(MobTypes.SHADOW, 6, 25, 15, 40, 25, false, 7));
+            allMobs.Add(new Mobs(MobTypes.ZOMBIE, 6, 10, 15, 50, 20, false, 1));
 
-            allMobs.Add(new Mobs(MobTypes.ELDERDRAGON, 12, 10, 15, 120, 0, true));
-            allMobs.Add(new Mobs(MobTypes.FLESHBEHEMOTH, 9, 10, 20, 150, 0, true));
-            allMobs.Add(new Mobs(MobTypes.LIFEREAPER, 15, 10, 20, 120, 0, true));
+            allMobs.Add(new Mobs(MobTypes.ELDERDRAGON, 7, 10, 15, 120, 0, true, 3));
+            allMobs.Add(new Mobs(MobTypes.FLESHBEHEMOTH, 5, 10, 20, 150, 0, true, 15));
+            allMobs.Add(new Mobs(MobTypes.LIFEREAPER, 9, 10, 20, 120, 0, true, 1));
         }
 
         public void AddAllCharacters()
         {
                                            //Type   //Health   //Damage multiplier //Base armor //EvadeCh //Ability cd
-            allCharacters.Add(new Characters(GameCharacters.Berserker, 150, 1.5, 3, 10, 5, "Blunt Sword", "Basic Armor", 0, this));
-            allCharacters.Add(new Characters(GameCharacters.Ghost, 100, 2, 2, 20, 20, "Blunt Sword", "Basic Armor", 1, this));
-            allCharacters.Add(new Characters(GameCharacters.GodKnight, 200, 1, 4, 5, 20, "Blunt Sword", "Basic Armor", 0, this));
+            allCharacters.Add(new Characters(GameCharacters.Berserker, 200, 1.5, 10, 10, 5, "Blunt Sword", "Basic Armor", 0, this));
+            allCharacters.Add(new Characters(GameCharacters.Ghost, 150, 2, 8, 20, 20, "Blunt Sword", "Basic Armor", 1, this));
+            allCharacters.Add(new Characters(GameCharacters.GodKnight, 250, 1, 15, 5, 20, "Blunt Sword", "Basic Armor", 0, this));
         }
 
         public Mobs ReturnNewMob(MobTypes types) //Returns the OBJECT based on it's TYPE

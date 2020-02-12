@@ -33,6 +33,8 @@ namespace RogueLikeGame
             nudBehemothCounter.Value = globalSettings.behemothAction;
             nudLifeReaperCounter.Value = globalSettings.lifeReaperAction;
             nudTimer.Value = globalSettings.timerInterval;
+            nudSettingsHealthOnRiddle.Value = globalSettings.onCorrectRiddle;
+            
 
             this.allSettings = globalSettings;
             this.allItems = items;
@@ -61,6 +63,7 @@ namespace RogueLikeGame
             allSettings.behemothAction = (int)nudBehemothCounter.Value;
             allSettings.lifeReaperAction = (int)nudLifeReaperCounter.Value;
             allSettings.timerInterval = (int)nudTimer.Value;
+            allSettings.onCorrectRiddle = (int)nudSettingsHealthOnRiddle.Value;
 
             XmlSerialization.SerializeObject(allSettings);    //<--
         }
@@ -77,6 +80,7 @@ namespace RogueLikeGame
                 mob.MaxHealth = (double)nudMobMaxHealth.Value;
                 mob.Health = mob.MaxHealth;
                 mob.SpawnChance = (int)nudMobSpawnCh.Value;
+                mob.AbilityRounds = (int)nudAbilityRounds.Value;
                 XmlSerialization.SerializeObject(allItems);
             }
         }
@@ -93,6 +97,7 @@ namespace RogueLikeGame
                 nudMobEvChance.Value = mob.EvadeChance;
                 nudMobMaxHealth.Value = (decimal)mob.MaxHealth;
                 nudMobSpawnCh.Value = mob.SpawnChance;
+                nudAbilityRounds.Value = mob.AbilityRounds;
             }
         }
 

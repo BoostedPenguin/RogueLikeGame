@@ -63,6 +63,16 @@ namespace RogueLikeGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bdfight {
+            get {
+                object obj = ResourceManager.GetObject("bdfight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap button {
             get {
                 object obj = ResourceManager.GetObject("button", resourceCulture);
@@ -176,6 +186,26 @@ namespace RogueLikeGame.Properties {
         internal static System.Drawing.Bitmap musicEnable {
             get {
                 object obj = ResourceManager.GetObject("musicEnable", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap statbd {
+            get {
+                object obj = ResourceManager.GetObject("statbd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap statbd1 {
+            get {
+                object obj = ResourceManager.GetObject("statbd1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

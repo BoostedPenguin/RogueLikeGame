@@ -104,7 +104,8 @@ namespace RogueLikeGame
                     }
                 }
 
-                damage -= user.TotalArmor(allSettings);            //Total received damage - counting armor
+                damage *= (double)(100 - user.TotalArmor(allSettings)) / 100;            //Total received damage - counting armor
+
 
                 if (damage < 0)                         //Return string
                 {
