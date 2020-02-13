@@ -1,6 +1,7 @@
 Hellsgate
 
 Roguelike game based around random encounters, loot and enemy fight.
+Release is not final. Bugfixes are required for future operation.
 
 Features:
 + Textbased narrative

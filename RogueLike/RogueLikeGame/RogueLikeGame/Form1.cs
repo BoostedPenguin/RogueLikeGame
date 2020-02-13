@@ -48,10 +48,10 @@ namespace RogueLikeGame
             allItems = (Items)XmlSerialization.DeserializeObject(2);
 
             lbxScores.Items.Clear();
-            lbxScores.Items.Add($"Id\tName\t\tScore");
+            lbxScores.Items.Add($"Id\tDate\t\tName\t\tScore");
             for (int i = 0; i < scores.Id.Count; i++)
             {
-                lbxScores.Items.Add($"{scores.Id[i]}\t{scores.Name[i]}\t\t{scores.Points[i]}");
+                lbxScores.Items.Add($"{scores.Id[i]}\t{scores.Date[i]}\t{scores.Name[i]}\t\t{scores.Points[i]}");
             }
         }
 

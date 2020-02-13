@@ -61,7 +61,7 @@ namespace RogueLikeGame
         public int armorDropChance = 40;
         public int potionDropChance = 60;
 
-        public int totalChance = 99; //PotionDropChance has the MAX % Of which you will receive an item
+        public int totalChance = 60; //PotionDropChance has the MAX % Of which you will receive an item
 
         public int damageOnWrongAnswer = 40;
         public int damageOnFailedOpen = 20;

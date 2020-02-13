@@ -218,11 +218,15 @@ namespace RogueLikeGame
 
         private void SecondChoiceOptionA()
         {
+            lblNarrative.Text = TextNarrative.SecondChoiceA;
+            SecondChoiceShort();
+        }
+        private void SecondChoiceShort()
+        {
             gpxItems.Enabled = true;
             gpxFight.Enabled = true;
             lblTurn.Visible = true;
             lblPlayerStatistics.Visible = true;
-            lblNarrative.Text = TextNarrative.SecondChoiceA;
             gpxFight.Visible = true;
             currentMob = allItems.ReturnNewMob(MobTypes.SPIDER);
             user.mobEncounter = true;
@@ -231,23 +235,13 @@ namespace RogueLikeGame
             btnOptionA.Enabled = false;
             btnAttack.Enabled = true;
         }
-
         private void SecondChoiceOptionB()
         {
             gpxItems.Enabled = true;
             lblNarrative.Text = TextNarrative.SecondChoiceB;
             user.CurrentHealth -= 10;
             UpdatePlayerStatistics();
-            gpxFight.Visible = true;
-
-            currentMob = allItems.ReturnNewMob(MobTypes.SPIDER);
-            user.mobEncounter = true;
-            StartFight();
-
-            btnOptionB.Enabled = false;
-            btnOptionA.Enabled = false;
-            btnAttack.Enabled = true;
-
+            SecondChoiceShort();
         }
 
         private void SecondSequence()
@@ -664,6 +658,10 @@ namespace RogueLikeGame
                     UpdateProgressbar();                                            //Update progressbar based on enemy MAX HEALTH
                     user.roundCounter++;
                     lblNarrative.Text = MobFight.TBStartFight(currentMob, user);    //On start of fight events
+                    if(user.firstSequence)
+                    {
+                        lblNarrative.Text = TextNarrative.SecondChoiceB;
+                    }
                     UpdateAbilityButton();                                          //Checks if you're ability is on CD;
                     lbxCombatLog.SelectedIndex = lbxCombatLog.Items.Count - 1;
                     DisableCombatButtons();
@@ -719,8 +717,6 @@ namespace RogueLikeGame
                 allSettings.OnPlayerDeath = true;
                 if (dialog == DialogResult.Yes) //If yes, restart the game, if no - close application
                 {
-                    //startForm.Show();
-                    //this.Dispose();
                     Process.Start(Application.ExecutablePath);
                     Application.Exit();
                 }
@@ -739,7 +735,7 @@ namespace RogueLikeGame
 
         private void SerializeScores()
         {
-            scores.AddToLists(user.userName, user.actionCounter);
+            scores.AddToLists(user.userName, user.actionCounter, DateTime.Now.ToString("yyyy/MM/dd"));
             XmlSerialization.SerializeObject(scores);
         }
 
@@ -948,7 +944,6 @@ namespace RogueLikeGame
                         btnOptionA.Enabled = false;
                         user.treasureEncounter = false;
                         user.mobEncounter = true;
-
                         StartFight();
                     }
                     else

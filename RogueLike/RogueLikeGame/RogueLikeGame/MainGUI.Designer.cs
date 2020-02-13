@@ -41,6 +41,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.gpxItems = new System.Windows.Forms.GroupBox();
+            this.lblAAInfo = new System.Windows.Forms.Label();
             this.lblAbilityCD = new System.Windows.Forms.Label();
             this.btnAA = new System.Windows.Forms.Button();
             this.btnAttack = new System.Windows.Forms.Button();
@@ -63,7 +64,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblPlayerStatistics = new System.Windows.Forms.Label();
             this.lblMobStats = new System.Windows.Forms.Label();
-            this.lblAAInfo = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gpxItems.SuspendLayout();
@@ -225,6 +225,16 @@
             this.gpxItems.TabIndex = 12;
             this.gpxItems.TabStop = false;
             this.gpxItems.Text = "gpxItems";
+            // 
+            // lblAAInfo
+            // 
+            this.lblAAInfo.AutoSize = true;
+            this.lblAAInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblAAInfo.Location = new System.Drawing.Point(5, 201);
+            this.lblAAInfo.Name = "lblAAInfo";
+            this.lblAAInfo.Size = new System.Drawing.Size(141, 13);
+            this.lblAAInfo.TabIndex = 25;
+            this.lblAAInfo.Text = "Disabled if under 25% health";
             // 
             // lblAbilityCD
             // 
@@ -512,16 +522,6 @@
             this.lblMobStats.Text = "label1";
             this.lblMobStats.Visible = false;
             // 
-            // lblAAInfo
-            // 
-            this.lblAAInfo.AutoSize = true;
-            this.lblAAInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblAAInfo.Location = new System.Drawing.Point(5, 201);
-            this.lblAAInfo.Name = "lblAAInfo";
-            this.lblAAInfo.Size = new System.Drawing.Size(141, 13);
-            this.lblAAInfo.TabIndex = 25;
-            this.lblAAInfo.Text = "Disabled if under 25% health";
-            // 
             // MainGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,7 +533,7 @@
             this.Controls.Add(this.panel3);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "MainGUI";
             this.Text = "MainGUI";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainGUI_FormClosing);

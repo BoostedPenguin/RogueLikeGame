@@ -59,6 +59,7 @@ namespace RogueLikeGame
             allSettings.weaponDropChance = (int)nudWeaponDropChance.Value;
             allSettings.armorDropChance = (int)nudArmorDropChance.Value;
             allSettings.potionDropChance = (int)nudPotionsDropChance.Value;
+            allSettings.totalChance = (int)nudPotionsDropChance.Value;
             allSettings.elderDragonAction = (int)nudElderBossCounter.Value;
             allSettings.behemothAction = (int)nudBehemothCounter.Value;
             allSettings.lifeReaperAction = (int)nudLifeReaperCounter.Value;

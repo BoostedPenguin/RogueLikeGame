@@ -10,37 +10,36 @@ namespace RogueLikeGame
     {
         //Use this static class to extract string 
         #region StartNarrative
-        public static string Prologue = "Welcome to the world of Hellsgate. The game was designed based all around RNG. Depending on your luck you will" +
+        public static string Prologue = "Welcome to the world of Hellsgate. The game was designed based all around RNG. Depending on your luck you will " +
             "manage to fight different enemies, gather loot, explore the darkness surrounding the dungeon and fight powerful bosses. Have fun!";
-        public static string FirstSceneBD = "It isn't every day that you find yourself in the bottom of a godforsaken dungeon," +
-            "but yet the thrill of adventure and loot will make even the strongest men question their sanity";
-        public static string FirstSceneBD2 = "You seek to find the Holly Grail. Legends say that Satan took it to the depths of Hell in" +
-            "order to anger God. You are determined to find it.. whatever the cost"; //Enable character statistics
+        public static string FirstSceneBD = "You seek to destroy the evil menace from the underworld - The LifeReaper. You travel to an ancient city " +
+            "which is rumored to house the portal to Hell.";
+        public static string FirstSceneBD2 = "While traveling, some thiefs steal all your gear. You are forced to walk to the city on foot and without gear";
+        //Enable character statistics
         #endregion
 
         #region Sequence1
-        public static string FirstChoiceNarrative = "You step into the ruins of an ancient city. On the Left you have an entrance to a dungeon" +
-            "keep. On the Right you have there is a sign";
+        public static string FirstChoiceNarrative = "You finally arrive and you step into the ruins. On the Left you have an entrance to a dungeon" +
+            "keep. On the Right you have a sign";
         public static string FirstChoiceA = "You step into the dungeon.. it appears to be an abandoned sewege system. You keep walking for" +
-            "hours until you stumble on some lost gear. You pick them up and keep going forward."; //Show the lbxitems and btnuse .visible
+            "hours until you stumble upon some lost gear. You pick it up and keep going forward."; //Show the lbxitems and btnuse .visible
         public static string FirstChoiceB = "The sign appears to be a picture of your mom. You seem confused."; //Only Display Redirect to A
-        public static string FirstChoiceC = "You try to turn back, but the developer gets angry because you tried to ignore all of his work" +
+        public static string FirstChoiceC = "You try to turn back, but the developer gets angry because you tried to ignore all of his work " +
             "and renames you to Pussy"; //user.username = "pussy" Redirect to A
-        public static string SecondChoiceNarrative = "You get dizzy from all of the walking in circles. You stumble upon some cobweb.. and a giant" +
+        public static string SecondChoiceNarrative = "You get dizzy from all of the walking in circles. You stumble upon some cobweb.. and a giant " +
             "angry spider looks towards you";
         public static string SecondChoiceA = "You decide to fight the spider"; //Enable fight controls
-        public static string SecondChoiceB = "You start to pray to whatever god you believe in but the spider doesnt seem to care. And bites you";
+        public static string SecondChoiceB = "You start to pray to whatever god you believe in but the spider doesn't seem to care. And bites you";
         //-10 health - start fight
         #endregion
 
         #region Sequence2
-        public static string SecondChoiceSuccess = "You managed to kill the spider. You find a magical amulet next to the spider. " +
-            "Maybe that's why the spider was 4 meters in width? Magic?";
+        public static string SecondChoiceSuccess = "You managed to kill the spider. You find a magical amulet and a chest next to it. " +
+            "First you decide to check the amulet";
         public static string SecondChoiceSuccess2 = "You touch the amulet and you feel a power surge through your body. You have a special ability now";
         //Enable abilities
-        public static string ThirdChoiceNarrative = "You keep walking through the abandoned sewer when you suddently stumble upon a chest";
+        public static string ThirdChoiceNarrative = "You turn to the chest. It's your choice what to do with it's contents.";
         //Discover a chest 
-        public static string ThirdChoiceSuccess = "";
         #endregion
 
         #region Riddles
